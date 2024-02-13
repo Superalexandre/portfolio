@@ -1,0 +1,151 @@
+{
+    "extends": [
+        // "@remix-run/eslint-config",
+        "@remix-run/eslint-config/node",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": [
+            "tsconfig.json"
+        ],
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "@stylistic",
+        "import"
+    ],
+    "rules": {
+        "@typescript-eslint/semi": [
+            "error",
+            "never"
+        ],
+        "@stylistic/no-extra-semi": [
+            "error"
+        ],
+        "@typescript-eslint/indent": [
+            "error",
+            4
+        ],
+        "@stylistic/arrow-spacing": [
+            "error",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "@stylistic/quotes": [
+            "error",
+            "double"
+        ],
+        "import/no-unresolved": [
+            "error",
+            {
+                "ignore": [
+                    "^@app/",
+                    "^@components/",
+                    "^@pages/",
+                    "^@styles/",
+                    "^@utils/",
+                    "^config"
+                ]
+            }
+        ],
+        "import/order": [
+            "warn",
+            {
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal",
+                    [
+                        "parent",
+                        "sibling"
+                    ],
+                    "index",
+                    "unknown"
+                ],
+                "newlines-between": "always",
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                }
+            }
+        ],
+        "require-await": [
+            "error"
+        ],
+        "prefer-arrow-callback": [
+            "error"
+        ],
+        "no-unneeded-ternary": [
+            "error"
+        ],
+        "no-useless-rename": [
+            "error",
+            {
+                "ignoreDestructuring": false,
+                "ignoreImport": false,
+                "ignoreExport": false
+            }
+        ],
+        "no-lonely-if": [
+            "error"
+        ],
+        "no-empty-function": [
+            "error"
+        ],
+        "eqeqeq": [
+            "error",
+            "always"
+        ],
+        "@typescript-eslint/no-shadow": [
+            "error"
+        ],
+        "camelcase": [
+            "error"
+        ],
+        // "@typescript-eslint/no-use-before-define": [
+        //     "error"
+        // ],
+        "react/jsx-filename-extension": [
+            "warn",
+            {
+                "extensions": [
+                    ".tsx"
+                ]
+            }
+        ],
+        "@next/next/no-html-link-for-pages": "off"
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "settings": {
+        "react": {
+            "pragma": "React"
+        },
+        "import/resolver": {
+            "node": {
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ]
+            },
+            "typescript": {
+                "project": [
+                    "tsconfig.json"
+                ]
+            }
+        }
+    },
+    "ignorePatterns": []
+}

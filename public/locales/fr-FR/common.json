@@ -1,0 +1,65 @@
+{
+    "description": "Étudiant en Informatique",
+    "happeningNow": "(en cours)",
+    "born": "Né le",
+    "schools": {
+        "title": "Parcours scolaire",
+        "bts": {
+            "description": "BTS SIO (Services Informatiques aux Organisations) option SLAM (Solutions Logicielles et Applications Métiers) a l'ISCB de Tours (37) en alternance chez <link href='/ambin'>Ambin Informatique</link>"
+        },
+        "bac": {
+            "description": "Bac STI2D (Sciences et Technologies de l'Industrie et du Développement Durable) option SIN (Systèmes d'Information et Numérique) au lycée Grandmont de Tours (37)"
+        },
+        "brevet": {
+            "description": "Brevet des collèges au collège Jules Michelet de Tours (37) avec mention assez bien"
+        },
+        "2nd": {
+            "description": "Seconde générale et technologique au lycée Paul-Louis Courier de Tours (37)"
+        }
+    },
+    "languages": {
+        "title": "Langues parlées",
+        "fr": "Français",
+        "en": "Anglais",
+        "es": "Espagnol"
+    },
+    "programmingLanguages": {
+        "title": "Langages de programmation"
+    },
+    "console": {
+        "allRightsReserved": "(c) Alexandre Corporation. Tous droits réservés.",
+        "none": "Aucun",
+        "command": "Commande",
+        "description": "Description",
+        "usage": "Utilisation",
+        "aliases": "Alias",
+        "commands": {
+            "error": {
+                "commandNotFound": "'{{command}}' n’est pas reconnu en tant que commande interne"
+            },
+            "help": {
+                "description": "Affiche la liste des commandes disponibles",
+                "usage": "help (commande)"
+            },
+            "setLanguage": {
+                "description": "Change la langue de la console",
+                "usage": "setLanguage [langue]",
+                "missingArgument": "Veuillez spécifier une langue {{languages}}",
+                "invalidArgument": "La langue {{language}} n’est pas reconnue",
+                "success": "La langue de la console a été changée pour le {{language}}"
+            },
+            "clear": {
+                "description": "Efface le contenu de la console",
+                "usage": "clear | cls"
+            },
+            "exit": {
+                "description": "Ferme la console et retourne à la page d'accueil",
+                "usage": "exit | quit | home"
+            },
+            "schools": {
+                "description": "Affiche le parcours scolaire",
+                "usage": "schools"
+            }
+        }
+    }
+}

@@ -1,0 +1,65 @@
+{
+    "description": "Computer Science Student",
+    "happeningNow": "(in progress)",
+    "born": "Born on",
+    "schools": {
+        "title": "Educational Background",
+        "bts": {
+            "description": "BTS SIO (Computer Services to Organizations) with a specialization in SLAM (Software Solutions and Business Applications) at ISCB in Tours (37), in apprenticeship at <link href='/ambin'>Ambin Informatique</link>"
+        },
+        "bac": {
+            "description": "Baccalaureate STI2D (Sciences and Technologies of Industry and Sustainable Development) with a specialization in SIN (Information Systems and Digital) at Lycée Grandmont in Tours (37)"
+        },
+        "brevet": {
+            "description": "Brevet des Collèges at Collège Jules Michelet in Tours (37) with honors"
+        },
+        "2nd": {
+            "description": "Seconde générale et technologique at Lycée Paul-Louis Courier in Tours (37)"
+        }
+    },
+    "languages": {
+        "title": "Spoken Languages",
+        "fr": "French",
+        "en": "English",
+        "es": "Spanish"
+    },
+    "programmingLanguages": {
+        "title": "Programming Languages"
+    },
+    "console": {
+        "allRightsReserved": "(c) Alexandre Corporation. All rights reserved.",
+        "none": "None",
+        "command": "Command",
+        "description": "Description",
+        "usage": "Usage",
+        "aliases": "Aliases",
+        "commands": {
+            "error": {
+                "commandNotFound": "'{{command}}' is not recognized as an internal command"
+            },
+            "help": {
+                "description": "Displays the list of available commands",
+                "usage": "help (command)"
+            },
+            "setLanguage": {
+                "description": "Changes the language of the console",
+                "usage": "setLanguage [language]",
+                "missingArgument": "Please specify a language {{languages}}",
+                "invalidArgument": "The language '{{language}}' is not recognized",
+                "success": "The language has been successfully changed to {{language}}"
+            },
+            "clear": {
+                "description": "Clears the content of the console",
+                "usage": "clear | cls"
+            },
+            "exit": {
+                "description": "Closes the console and returns to the home page",
+                "usage": "exit | quit | home"
+            },
+            "schools": {
+                "description": "Displays the educational background",
+                "usage": "schools"
+            }
+        }
+    }
+}
