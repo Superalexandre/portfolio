@@ -1,3 +1,6 @@
-```sh
-npx create-remix@latest --template https://github.com/mcansh/remix-fastify/tree/main/examples/basic
-```
+# Portfolio Alexandre
+
+# Todo :
+- [ ] Add todo to issue
+- [ ] Github actions
+- [ ] Deploy on server
