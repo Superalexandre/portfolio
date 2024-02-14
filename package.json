@@ -22,7 +22,7 @@
         "@remix-run/css-bundle": "^2.6.0",
         "@remix-run/node": "^2.6.0",
         "@remix-run/react": "^2.6.0",
-        "@studio-freight/react-lenis": "^0.0.43",
+        "@studio-freight/react-lenis": "^0.0.44",
         "@stylistic/eslint-plugin": "^1.6.1",
         "@uidotdev/usehooks": "^2.4.1",
         "fastify": "^4.26.0",
