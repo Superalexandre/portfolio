@@ -1,0 +1,13 @@
+name: Build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Installing dependencies
+      run: npm i
+    - name: Run Build
+      run: npm run build
+    - name: Run ESLint
+      run: npx eslint .
