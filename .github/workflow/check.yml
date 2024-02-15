@@ -10,4 +10,6 @@ jobs:
     - name: Run Build
       run: npm run build
     - name: Run ESLint
-      run: npx eslint .
+      run: npm run lint
+    - name: Run unsued dependencies
+      run: npm run depcheck
