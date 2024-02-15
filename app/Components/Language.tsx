@@ -1,3 +1,4 @@
+import { useLocalStorageValue } from "@react-hookz/web"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { MdLanguage } from "react-icons/md"
@@ -6,7 +7,10 @@ import useChangeLanguage from "./utils/useChangeLanguage"
 
 export default function Language() {
     const { i18n } = useTranslation()
-    const [language, setLanguage] = useState(i18n.language)
+
+    const cachedLanguage = useLocalStorageValue("language")
+
+    const [language, setLanguage] = useState(cachedLanguage.value as string || i18n.language)
     const [isOpen, setIsOpen] = useState(false)
 
     useChangeLanguage(language)
