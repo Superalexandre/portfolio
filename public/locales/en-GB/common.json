@@ -59,6 +59,12 @@
             "schools": {
                 "description": "Displays the educational background",
                 "usage": "schools"
+            },
+            "color": {
+                "description": "Changes the color of the console",
+                "usage": "color [color]",
+                "missingArgument": "Please specify a color {{colors}}",
+                "invalidArgument": "The color '{{color}}' is not recognized"
             }
         }
     }

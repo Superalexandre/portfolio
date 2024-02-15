@@ -17,6 +17,9 @@ export const meta: MetaFunction = () => {
 }
 
 type History = Array<string | string[]>
+interface Colors {
+    [key: string]: string
+}
 
 export default function Index() {
     const navigate = useNavigate()
@@ -39,10 +42,19 @@ export default function Index() {
     const [historyIndex, setHistoryIndex] = useState<number>(0)
     const [command, setCommand] = useState<string>("")
     const [path,] = useState<string>("C:\\Users\\Alexandre>")
+    const [color, setColor] = useState<string>("white")
 
     const resetCommand = () => {
         setCommand("")
         setHistoryIndex(0)
+    }
+
+    const colors: Colors = {
+        "white": "text-white",
+        "green": "text-green-500",
+        "red": "text-red-500",
+        "blue": "text-blue-500",
+        "yellow": "text-yellow-500",
     }
 
     useKeyboardEvent(true, async(e) => {
@@ -105,7 +117,7 @@ export default function Index() {
                 return navigate("/")
             }
 
-            const resultCommand = await handleCommand(cmd, t, i18n, setLanguage, ...args)
+            const resultCommand = await handleCommand(cmd, t, i18n, setLanguage, setColor, colors, ...args)
 
             setHistory((prev: History) => [...prev, [lastCommand, ...resultCommand]])
             setHistoryCommand((prev) => [...prev, command])
@@ -124,16 +136,16 @@ export default function Index() {
                 {history.map((line, i) => (
                     Array.isArray(line) ? (
                         <div key={i}>
-                            {line.map((l, j) => <p key={j} className="text-white break-all">{l}</p>)}
+                            {line.map((l, j) => <p key={j} className={`${colors[color]} break-all`}>{l}</p>)}
                         </div>
                     )
                         : (
-                            <p key={i} className="text-white break-all">{line}</p>
+                            <p key={i} className={`${colors[color]} break-all`}>{line}</p>
                         )
                 ))}
             </div>
 
-            <p className="text-white break-all">{path}{command}</p>
+            <p className={`${colors[color]} break-all`}>{path}{command}</p>
         </div>
     )
 }
@@ -151,7 +163,7 @@ interface CommandProps {
     run: (...args: string[]) => CommandResult
 }
 
-const handleCommand = (command: string, t: TFunction<"common", undefined>, i18n: i18nType, setLanguage: (locale: string) => void, ...args: string[]): CommandResult => {
+const handleCommand = (command: string, t: TFunction<"common", undefined>, i18n: i18nType, setLanguage: (locale: string) => void, setColor: (color: string) => void, colors: Colors, ...args: string[]): CommandResult => {
     const commands: Command = {
         help: {
             name: "help",
@@ -219,7 +231,21 @@ const handleCommand = (command: string, t: TFunction<"common", undefined>, i18n:
             run: () => {
                 return schools.map((school) => `[${school.startDate} -> ${school.endDate}] ${school.name} (${school.code})`)
             },
-        }
+        },
+        color: {
+            name: "color",
+            description: [t("console.commands.color.description")],
+            usage: [t("console.commands.color.usage")],
+            alias: ["colors"],
+            run: (color) => {
+                if (!color) return [t("console.commands.color.missingArgument", { colors: Object.keys(colors).join(", ") })]
+                if (!Object.keys(colors).includes(color)) return [t("console.commands.color.invalidArgument", { color })]
+
+                setColor(color)
+
+                return []
+            },
+        },
     }
 
     if (commands[command]) return commands[command].run(...args)

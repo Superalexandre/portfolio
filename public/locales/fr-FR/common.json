@@ -59,6 +59,12 @@
             "schools": {
                 "description": "Affiche le parcours scolaire",
                 "usage": "schools"
+            },
+            "color": {
+                "description": "Change la couleur de la console",
+                "usage": "color [couleur]",
+                "missingArgument": "Veuillez spécifier une couleur {{colors}}",
+                "invalidArgument": "La couleur {{color}} n’est pas reconnue"
             }
         }
     }
