@@ -22,7 +22,7 @@
         "@remix-run/react": "^2.6.0",
         "@stylistic/eslint-plugin": "^1.6.1",
         "@types/node": "^20.11.19",
-        "@typescript-eslint/parser": "^5.62.0",
+        "@typescript-eslint/parser": "^7.0.0",
         "depcheck": "^1.4.7",
         "eslint-import-resolver-typescript": "^3.6.1",
         "eslint-plugin-import": "^2.29.1",
