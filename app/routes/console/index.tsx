@@ -33,7 +33,6 @@ export default function Index() {
     // Set the version of the console (the date of birth of the author of the portfolio)
     const version = `${birthDate.getFullYear()}.${birthDate.getMonth() + 1}.${birthDate.getDate()}-${dateNow.getFullYear() - birthDate.getFullYear()}`
 
-    // TODO: Error with the translation
     const allRightsReserved = t("console.allRightsReserved")
     const [history, setHistory] = useState<History>([[`Alexandre OS [version ${version}]`, allRightsReserved]])
     const [historyCommand, setHistoryCommand] = useState<string[]>([])
@@ -46,7 +45,7 @@ export default function Index() {
         setHistoryIndex(0)
     }
 
-    useKeyboardEvent(true, (e) => {
+    useKeyboardEvent(true, async(e) => {
         const validRegex = /^[a-zA-Z0-9 _-]$|^Enter$|^Backspace$|^ArrowUp$|^ArrowDown$/
 
         if (!validRegex.test(e.key)) return
@@ -106,7 +105,7 @@ export default function Index() {
                 return navigate("/")
             }
 
-            const resultCommand = handleCommand(cmd, t, i18n, setLanguage, ...args)
+            const resultCommand = await handleCommand(cmd, t, i18n, setLanguage, ...args)
 
             setHistory((prev: History) => [...prev, [lastCommand, ...resultCommand]])
             setHistoryCommand((prev) => [...prev, command])
@@ -143,15 +142,16 @@ interface Command {
     [key: string]: CommandProps
 }
 
+type CommandResult = string[] | Promise<string[]>
 interface CommandProps {
     name: string
     description: string[]
     usage: string[],
     alias: string[],
-    run: (...args: string[]) => string[]
+    run: (...args: string[]) => CommandResult
 }
 
-const handleCommand = (command: string, t: TFunction<"common", undefined>, i18n: i18nType, setLanguage: (locale: string) => void, ...args: string[]): string[] => {
+const handleCommand = (command: string, t: TFunction<"common", undefined>, i18n: i18nType, setLanguage: (locale: string) => void, ...args: string[]): CommandResult => {
     const commands: Command = {
         help: {
             name: "help",
@@ -180,7 +180,7 @@ const handleCommand = (command: string, t: TFunction<"common", undefined>, i18n:
             description: [t("console.commands.setLanguage.description")],
             usage: [t("console.commands.setLanguage.usage")],
             alias: ["sl"],
-            run: (language) => {
+            run: async(language) => {
                 const supportedLngs = i18n.options.supportedLngs as string[]
                 const availableLanguages = supportedLngs.filter((lng) => lng !== "cimode")
 
@@ -188,8 +188,8 @@ const handleCommand = (command: string, t: TFunction<"common", undefined>, i18n:
                 if (!availableLanguages.includes(language)) return [t("console.commands.setLanguage.invalidArgument", { language })]
 
                 setLanguage(language)
+                await i18n.changeLanguage(language) // ! Force the change of the language
 
-                // TODO: Error with the translation
                 return [t("console.commands.setLanguage.success", { language })]
             },
         },
