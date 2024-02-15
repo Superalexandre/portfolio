@@ -31,7 +31,7 @@ export default function Index() {
 
     const birthDate = information.birthDate
     const dateNow = new Date()
-    
+
     // Set the version of the console (the date of birth of the author of the portfolio)
     const version = `${birthDate.getFullYear()}.${birthDate.getMonth() + 1}.${birthDate.getDate()}-${dateNow.getFullYear() - birthDate.getFullYear()}`
 
@@ -54,6 +54,10 @@ export default function Index() {
         "red": "text-red-500",
         "blue": "text-blue-500",
         "yellow": "text-yellow-500",
+        "orange": "text-orange-500",
+        "pink": "text-pink-500",
+        "purple": "text-purple-500",
+        "lime": "text-lime-500",
     }
 
     useKeyboardEvent(true, async(e) => {
