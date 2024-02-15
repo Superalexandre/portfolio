@@ -1,4 +1,4 @@
-import { useKeyboardEvent } from "@react-hookz/web"
+import { useKeyboardEvent, useLocalStorageValue } from "@react-hookz/web"
 import { MetaFunction } from "@remix-run/node"
 import { useNavigate } from "@remix-run/react"
 import { TFunction, i18n as i18nType } from "i18next"
@@ -22,17 +22,16 @@ interface Colors {
 }
 
 export default function Index() {
+    const cachedLanguage = useLocalStorageValue("language")
     const navigate = useNavigate()
-    const { t, i18n } = useTranslation("common", {
-        useSuspense: true
-    })
-    const [language, setLanguage] = useState(i18n.language)
+
+    const { t, i18n } = useTranslation("common", { useSuspense: true })
+    const [language, setLanguage] = useState(cachedLanguage.value as string || i18n.language)
     useChangeLanguage(language)
 
     const birthDate = information.birthDate
-
     const dateNow = new Date()
-
+    
     // Set the version of the console (the date of birth of the author of the portfolio)
     const version = `${birthDate.getFullYear()}.${birthDate.getMonth() + 1}.${birthDate.getDate()}-${dateNow.getFullYear() - birthDate.getFullYear()}`
 
