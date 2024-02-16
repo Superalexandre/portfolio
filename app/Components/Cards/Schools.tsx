@@ -100,15 +100,8 @@ const Description = ({ code, t }: { code: string, t: TFunction<"common", undefin
 }
 
 const link = ({ href, text }: { href: string, text: string }) => {
-    const linkTag = `
-        <a 
-            href=${href} 
-            rel="noreferrer" 
-            class="dark:text-white hover:text-main-color dark:hover:text-main-color underline decoration-main-color"
-        >
-            ${text}
-        </a>
-    `
+    const className = "dark:text-white hover:text-main-color dark:hover:text-main-color underline decoration-main-color"
+    const linkTag = `<a href=${href} rel="noreferrer" class="${className}">${text}</a>`
     
     return linkTag
 }

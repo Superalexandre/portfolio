@@ -5,7 +5,7 @@
     "schools": {
         "title": "Educational Background",
         "bts": {
-            "description": "BTS SIO (Computer Services to Organizations) with a specialization in SLAM (Software Solutions and Business Applications) at ISCB in Tours (37), in apprenticeship at <link href='/ambin'>Ambin Informatique</link>"
+            "description": "BTS SIO (Computer Services to Organizations) with a specialization in SLAM (Software Solutions and Business Applications) at <link href='/iscb'>ISCB</link> in Tours (37), in apprenticeship at <link href='/ambin'>Ambin Informatique</link>"
         },
         "bac": {
             "description": "Baccalaureate STI2D (Sciences and Technologies of Industry and Sustainable Development) with a specialization in SIN (Information Systems and Digital) at Lycée Grandmont in Tours (37)"

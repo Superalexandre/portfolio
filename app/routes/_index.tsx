@@ -3,6 +3,7 @@ import type { MetaFunction } from "@remix-run/node"
 import Background from "~/Components/Background"
 import Languages from "~/Components/Cards/Languages"
 import NameCard from "~/Components/Cards/Name"
+import PersonalProjects from "~/Components/Cards/PersonalProjects"
 import ProgrammingLanguages from "~/Components/Cards/ProgrammingLanguages"
 import Schools from "~/Components/Cards/Schools"
 
@@ -24,6 +25,8 @@ export default function Index() {
                 <Languages />
             
                 <ProgrammingLanguages />
+
+                <PersonalProjects />
             </div>
         </Background>
     )
