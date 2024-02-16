@@ -135,8 +135,13 @@ function handleBrowserRequest(
             {
                 onShellReady() {
                     shellRendered = true
+                    const timerPass = new Timer("passThrough")
                     const body = new PassThrough()
+                    timerPass.end()
+
+                    const createReadableStream = new Timer("createReadableStream")
                     const stream = createReadableStreamFromReadable(body)
+                    createReadableStream.end()
 
                     responseHeaders.set("Content-Type", "text/html")
 
@@ -149,7 +154,9 @@ function handleBrowserRequest(
                     )
                     timer.end()
 
+                    const startPipe = new Timer("startPipe")
                     pipe(body)
+                    startPipe.end()
                 },
                 onShellError(error: unknown) {
                     reject(error)
