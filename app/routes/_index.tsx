@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
     return (
-        <Background className="p-5">
+        <Background className="p-5 min-w-full h-full min-h-screen">
             <div className="flex flex-col gap-5">
                 <NameCard />
             

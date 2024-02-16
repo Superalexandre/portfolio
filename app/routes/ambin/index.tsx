@@ -1,4 +1,5 @@
 import { MetaFunction } from "@remix-run/node"
+
 import Background from "~/Components/Background"
 
 export const meta: MetaFunction = () => {
@@ -10,10 +11,10 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
     return (
-        <Background className="p-5">
+        <Background className="p-5 min-w-full h-full min-h-screen">
             <div>
                 <h1>Index</h1>
-                <a href="/">Home</a>
+                <a href="/" className="text-main-color">Home</a>
             </div>
         </Background>
     )
