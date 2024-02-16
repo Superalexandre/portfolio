@@ -11,6 +11,8 @@ import { isbot } from "isbot"
 import { renderToPipeableStream } from "react-dom/server"
 import { I18nextProvider, initReactI18next } from "react-i18next"
 
+import Timer from "logger/timer"
+
 import i18n from "./i18n"
 import i18next from "./i18next.server"
 
@@ -63,6 +65,7 @@ function handleBotRequest(
 ) {
     return new Promise((resolve, reject) => {
         let shellRendered = false
+        const timerPipe = new Timer("pipeBot")
         const { pipe, abort } = renderToPipeableStream(
             <I18nextProvider i18n={i18nInstance}>
                 <RemixServer
@@ -79,12 +82,14 @@ function handleBotRequest(
 
                     responseHeaders.set("Content-Type", "text/html")
 
+                    const timer = new Timer("handleBotRequest")
                     resolve(
                         new Response(stream, {
                             headers: responseHeaders,
                             status: responseStatusCode,
                         }),
                     )
+                    timer.end()
 
                     pipe(body)
                 },
@@ -102,6 +107,7 @@ function handleBotRequest(
                 },
             },
         )
+        timerPipe.end()
 
         setTimeout(abort, ABORT_DELAY)
     })
@@ -116,6 +122,8 @@ function handleBrowserRequest(
 ) {
     return new Promise((resolve, reject) => {
         let shellRendered = false
+
+        const timerPipe = new Timer("pipeBrowser")
         const { pipe, abort } = renderToPipeableStream(
             <I18nextProvider i18n={i18nInstance}>
                 <RemixServer
@@ -132,12 +140,14 @@ function handleBrowserRequest(
 
                     responseHeaders.set("Content-Type", "text/html")
 
+                    const timer = new Timer("handleBrowserRequest")
                     resolve(
                         new Response(stream, {
                             headers: responseHeaders,
                             status: responseStatusCode,
                         }),
                     )
+                    timer.end()
 
                     pipe(body)
                 },
@@ -155,6 +165,7 @@ function handleBrowserRequest(
                 },
             },
         )
+        timerPipe.end()
 
         setTimeout(abort, ABORT_DELAY)
     })

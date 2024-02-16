@@ -1,17 +1,3 @@
-/*
-import { RemixBrowser } from "@remix-run/react"
-import { startTransition, StrictMode } from "react"
-import { hydrateRoot } from "react-dom/client"
-
-startTransition(() => {
-    hydrateRoot(
-        document,
-        <StrictMode>
-            <RemixBrowser />
-        </StrictMode>,
-    )
-})
-*/
 import { RemixBrowser } from "@remix-run/react"
 import i18next from "i18next"
 import LanguageDetector from "i18next-browser-languagedetector"
@@ -21,9 +7,12 @@ import { hydrateRoot } from "react-dom/client"
 import { I18nextProvider, initReactI18next } from "react-i18next"
 import { getInitialNamespaces } from "remix-i18next"
 
+import Timer from "logger/timer"
+
 import i18n from "./i18n"
 
 async function hydrate() {
+    const timer = new Timer("i18n")
     await i18next
         .use(initReactI18next) // Tell i18next to use the react-i18next plugin
         .use(LanguageDetector) // Setup a client-side language detector
@@ -43,7 +32,10 @@ async function hydrate() {
                 caches: [],
             },
         })
+    timer.end()
 
+
+    const startTransitionTimer = new Timer("startTransition")
     startTransition(() => {
         hydrateRoot(
             document,
@@ -54,10 +46,15 @@ async function hydrate() {
             </I18nextProvider>
         )
     })
+    startTransitionTimer.end()
 }
 
 if (window.requestIdleCallback) {
+    const idleCallBack = new Timer("idleCallBack")
     window.requestIdleCallback(hydrate)
+    idleCallBack.end()
 } else {
+    const timeoutTimer = new Timer("timeout")
     window.setTimeout(hydrate, 1)
+    timeoutTimer.end()
 }
