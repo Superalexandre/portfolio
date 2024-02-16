@@ -11,7 +11,7 @@
         "typecheck": "tsc",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
         "depcheck": "depcheck --ignores '~,ts-node,@typescript-eslint/eslint-plugin'",
-        "deploy": "npm i && npm run build && tsc"
+        "deploy": "npm i && npm run build && tsc --p tsconfigServer.json"
     },
     "dependencies": {
         "@fastify/early-hints": "^1.0.1",

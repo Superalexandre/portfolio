@@ -1,4 +1,5 @@
 import fs from "node:fs"
+import { IncomingMessage } from "node:http"
 import path from "node:path"
 import url from "node:url"
 
@@ -8,7 +9,8 @@ import type { GetLoadContextFunction, RequestHandler as RequestHandlerRemix } fr
 import { createRequestHandler, getEarlyHintLinks } from "@mcansh/remix-fastify"
 import type { ServerBuild} from "@remix-run/node"
 import { broadcastDevReady, installGlobals } from "@remix-run/node"
-import fastify from "fastify"
+import fastify, { FastifyBaseLogger, FastifyRequest, FastifySchema, FastifySchemaCompiler, RawServerDefault, RouteGenericInterface } from "fastify"
+import { FastifyTypeProvider, FastifyTypeProviderDefault, ResolveFastifyRequestType } from "fastify/types/type-provider"
 
 installGlobals()
 
@@ -31,6 +33,7 @@ if (process.env.NODE_ENV === "development") {
 
 const app = fastify()
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const noopContentParser = (_request: any, payload: any, done: any) => {
     done(null, payload)
 }
@@ -84,7 +87,8 @@ if (process.env.NODE_ENV === "development") {
     await broadcastDevReady(initialBuild)
 }
 
-async function createDevRequestHandler(initialBuildParam: ServerBuild, getLoadContext?: GetLoadContextFunction): Promise<RequestHandlerRemix> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function createDevRequestHandler(initialBuildParam: ServerBuild, getLoadContext?: GetLoadContextFunction<any>): Promise<RequestHandlerRemix<any>> {
     let build = initialBuildParam
 
     async function handleServerUpdate() {
@@ -100,7 +104,8 @@ async function createDevRequestHandler(initialBuildParam: ServerBuild, getLoadCo
         .on("add", handleServerUpdate)
         .on("change", handleServerUpdate)
 
-    return async (request, reply) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return async (request: any, reply) => {
         const links = getEarlyHintLinks(request, build)
         await reply.writeEarlyHintsLinks(links)
 

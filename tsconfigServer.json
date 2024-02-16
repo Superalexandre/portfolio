@@ -1,14 +1,10 @@
 {
     "include": [
-        "remix.env.d.ts",
-        "remix.config.js",
-        "**/*.ts",
-        "**/*.tsx",
         "app.ts"
     ],
     "exclude": [
         "node_modules",
-        "build",
+        "build"
     ],
     "compilerOptions": {
         "lib": [
@@ -30,30 +26,9 @@
         "allowJs": true,
         "forceConsistentCasingInFileNames": true,
         "baseUrl": ".",
-        "paths": {
-            "~/*": [
-                "./app/*"
-            ],
-        },
         "types": [
             "node"
         ],
-        // Remix takes care of building everything in `remix build`.
-        "noEmit": true,
         "outDir": "."
-    },
-    "ts-node": {
-        "esm": true,
-        "transpileOnly": true,
-        "experimentalSpecifierResolution": "node",
-        "compilerOptions": {
-            // "module": "Node16",
-            // "moduleResolution": "Node16",
-            // "target": "ES2022",
-
-            "module": "ESNext",
-            "target": "ESNext",
-            "moduleResolution": "Node",
-        }
     }
 }
