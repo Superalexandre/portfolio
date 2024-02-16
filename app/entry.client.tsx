@@ -7,9 +7,9 @@ import { hydrateRoot } from "react-dom/client"
 import { I18nextProvider, initReactI18next } from "react-i18next"
 import { getInitialNamespaces } from "remix-i18next"
 
-import Timer from "logger/timer"
-
 import i18n from "./i18n"
+import Timer from "../logger/timer.js"
+
 
 async function hydrate() {
     const timer = new Timer("i18n")
