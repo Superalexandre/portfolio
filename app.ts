@@ -9,7 +9,9 @@ import { createRequestHandler, getEarlyHintLinks } from "@mcansh/remix-fastify"
 import type { ServerBuild} from "@remix-run/node"
 import { broadcastDevReady, installGlobals } from "@remix-run/node"
 import fastify from "fastify"
+
 import "dotenv/config"
+import Timer from "./logger/timer.js"
 
 installGlobals()
 
@@ -25,17 +27,21 @@ let handler: any
 if (process.env.NODE_ENV === "development") {
     handler = await createDevRequestHandler(initialBuild)
 } else {
+    const timer = new Timer("createRequestHandler")
     handler = createRequestHandler({
         build: initialBuild,
         mode: initialBuild.mode,
     })
+    timer.end()
 }
 
 const app = fastify()
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const noopContentParser = (_request: any, payload: any, done: any) => {
+    const timer = new Timer("noopContentParser")
     done(null, payload)
+    timer.end()
 }
 
 app.addContentTypeParser("application/json", noopContentParser)
@@ -71,11 +77,19 @@ await app.register(fastifyStatic, {
 
 app.all("*", async (request, reply) => {
     if (process.env.NODE_ENV === "production") {
+        const timer = new Timer("getEarlyHintLinks")
+
         const links = getEarlyHintLinks(request, initialBuild)
         await reply.writeEarlyHintsLinks(links)
+
+        timer.end()
     }
 
-    return handler(request, reply)
+    const timer = new Timer("handler")
+    const handle = await handler(request, reply)
+    timer.end()
+
+    return handle
 })
 
 const port = process.env.PORT ? Number(process.env.PORT) || 3000 : 3000
