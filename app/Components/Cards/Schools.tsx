@@ -11,7 +11,7 @@ import { DateOptions, formatDate } from "../utils/date"
 
 export default function Schools() {
     const { t, i18n } = useTranslation("common")
-    const [sorted, setSorted] = useState<"asc" | "desc">("desc")
+    const [sorted/*, setSorted*/] = useState<"asc" | "desc">("desc")
 
     const sortFunction = (a: SchoolType, b: SchoolType) => {
         if (sorted === "asc") {
@@ -21,7 +21,7 @@ export default function Schools() {
         }
     }
 
-    const [schools, setSchools] = useState<SchoolType[]>(schoolsData.sort(sortFunction))
+    const [schools/*, setSchools*/] = useState<SchoolType[]>(schoolsData.sort(sortFunction))
 
     return (
         <Card className="relative">

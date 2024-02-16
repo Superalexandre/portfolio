@@ -1,5 +1,4 @@
 import fs from "node:fs"
-import { IncomingMessage } from "node:http"
 import path from "node:path"
 import url from "node:url"
 
@@ -9,8 +8,8 @@ import type { GetLoadContextFunction, RequestHandler as RequestHandlerRemix } fr
 import { createRequestHandler, getEarlyHintLinks } from "@mcansh/remix-fastify"
 import type { ServerBuild} from "@remix-run/node"
 import { broadcastDevReady, installGlobals } from "@remix-run/node"
-import fastify, { FastifyBaseLogger, FastifyRequest, FastifySchema, FastifySchemaCompiler, RawServerDefault, RouteGenericInterface } from "fastify"
-import { FastifyTypeProvider, FastifyTypeProviderDefault, ResolveFastifyRequestType } from "fastify/types/type-provider"
+import fastify from "fastify"
+import "dotenv/config"
 
 installGlobals()
 
@@ -20,6 +19,7 @@ const VERSION_PATH = "./build/version.txt"
 
 const initialBuild: ServerBuild = await import(BUILD_PATH)
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let handler: any
 
 if (process.env.NODE_ENV === "development") {
@@ -81,7 +81,7 @@ app.all("*", async (request, reply) => {
 const port = process.env.PORT ? Number(process.env.PORT) || 3000 : 3000
 
 const address = await app.listen({ port, host: "0.0.0.0" })
-console.log(`✅ app ready: ${address}`)
+console.log(`✅ app ready: ${address} | NODE_ENV=${process.env.NODE_ENV}`)
 
 if (process.env.NODE_ENV === "development") {
     await broadcastDevReady(initialBuild)

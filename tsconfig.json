@@ -39,8 +39,7 @@
             "node"
         ],
         // Remix takes care of building everything in `remix build`.
-        "noEmit": true,
-        "outDir": "."
+        "noEmit": true
     },
     "ts-node": {
         "esm": true,
@@ -55,5 +54,5 @@
             "target": "ESNext",
             "moduleResolution": "Node",
         }
-    }
+    },
 }

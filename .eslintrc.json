@@ -129,7 +129,8 @@
     },
     "settings": {
         "react": {
-            "pragma": "React"
+            "pragma": "React",
+            "version": "detect"
         },
         "import/resolver": {
             "node": {
@@ -147,5 +148,11 @@
             }
         }
     },
-    "ignorePatterns": []
+    "ignorePatterns": [
+        "node_modules/",
+        "build/",
+        "public/",
+        "server.js",
+        "app.js"
+    ]
 }
