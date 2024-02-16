@@ -12,6 +12,8 @@ import { useTranslation } from "react-i18next"
 
 import stylesheet from "~/tailwind.css"
 
+import Birthday from "./Components/Birthday"
+
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: stylesheet },
     ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -29,7 +31,10 @@ export default function App() {
                 <Links />
             </head>
             <body className="min-w-full min-h-full">
-                <Outlet />
+                <Birthday>
+                    <Outlet />
+                </Birthday>
+                
                 <ScrollRestoration />
                 <Scripts />
                 <LiveReload />

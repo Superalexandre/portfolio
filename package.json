@@ -36,6 +36,7 @@
         "i18next-http-backend": "^2.4.3",
         "isbot": "^5.0.0",
         "react": "^18.2.0",
+        "react-confetti": "^6.1.0",
         "react-dom": "^18.2.0",
         "react-i18next": "^14.0.5",
         "react-icons": "^5.0.1",
