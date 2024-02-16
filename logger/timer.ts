@@ -1,3 +1,5 @@
+import Logger from "./logger"
+
 export default class Timer {
     private startTime: number
     private endTime: number
@@ -16,6 +18,6 @@ export default class Timer {
         this.endTime = Date.now()
         this.duration = this.endTime - this.startTime
 
-        console.log(`${this.name} took: ${this.duration}ms`)
+        Logger.timer(this.name, this.duration)
     }
 }
