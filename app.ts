@@ -2,6 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 import url from "node:url"
 
+import fastifyCompress from "@fastify/compress"
 import { fastifyEarlyHints } from "@fastify/early-hints"
 import { fastifyStatic } from "@fastify/static"
 import type { GetLoadContextFunction, RequestHandler as RequestHandlerRemix } from "@mcansh/remix-fastify"
@@ -48,6 +49,7 @@ app.addContentTypeParser("application/json", noopContentParser)
 app.addContentTypeParser("*", noopContentParser)
 
 await app.register(fastifyEarlyHints, { warn: true })
+await app.register(fastifyCompress)
 
 await app.register(fastifyStatic, {
     root: path.join(__dirname, "public"),
