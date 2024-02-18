@@ -20,6 +20,7 @@ export default function Language() {
             <button 
                 className="hover:cursor-pointer"
                 onClick={() => setIsOpen(!isOpen)}    
+                aria-label="Change language"
             >
                 <MdLanguage 
                     className="dark:text-white" 
@@ -33,12 +34,14 @@ export default function Language() {
                 <button
                     className="dark:text-white dark:hover:text-main-color hover:text-main-color"
                     onClick={() => setLanguage("fr-FR")}
+                    aria-label="Français"
                 >
                     Français
                 </button>
                 <button
                     className="dark:text-white dark:hover:text-main-color hover:text-main-color"
                     onClick={() => setLanguage("en-GB")}
+                    aria-label="English"
                 >
                     English
                 </button>

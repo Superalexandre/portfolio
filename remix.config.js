@@ -23,7 +23,7 @@ export default {
             url: true      
         }
     },
-    serverMinify: true,
+    serverMinify: process.env.NODE_ENV === "production",
     routes: (defineRoutes) => {
         return flatRoutes("routes", defineRoutes)
     }

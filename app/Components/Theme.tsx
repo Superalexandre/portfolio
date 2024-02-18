@@ -5,6 +5,7 @@ export default function Theme({ theme, setTheme }: { theme: "light" | "dark", se
 
         <button
             onClick={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
+            aria-label="Change theme"
         >
             {theme === "dark" ?
                 <MdLightMode size={30} className="dark:text-white" />
