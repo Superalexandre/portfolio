@@ -76,6 +76,7 @@ export default async function handleRequest(
 
                     const t2 = new Timer("pipeToResponse")
                     pipe(body)
+                    resolve(response)
                     t2.end()
                 },
                 onShellError(error: unknown) {
