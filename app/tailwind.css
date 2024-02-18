@@ -8,3 +8,55 @@
         font-family: "Roboto", sans-serif;
     }
 }
+
+.heart {
+    width: 20px;
+    height: 20px;
+    background-color: #e74c3c;
+    position: absolute;
+    transform: rotate(-45deg);
+    margin: 0;
+    animation: heart-fall linear infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: #e74c3c;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: 10px;
+}
+
+.rain {
+    background: rgb(23, 112, 126);
+    background: linear-gradient(90deg, rgba(13, 52, 58, 1) 0%, rgba(255, 255, 255, 0.5) 100%);
+
+    width: 1px;
+    height: 89px;
+    animation: rain-fall .63s linear infinite;
+}
+
+
+@keyframes heart-fall {
+    to {
+        transform: translateY(100vh) rotate(-45deg);
+    }
+}
+
+@keyframes rain-fall {
+    to {
+        transform: translateY(100vh);
+    }
+}

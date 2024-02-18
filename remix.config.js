@@ -1,3 +1,5 @@
+import { flatRoutes } from "remix-flat-routes"
+
 /** @type {import('@remix-run/dev').AppConfig} */
 export default {
     ignoredRouteFiles: ["**/.*"],
@@ -11,5 +13,18 @@ export default {
     serverModuleFormat: "esm",
     serverPlatform: "node",
     // cacheDirectory: "./node_modules/.cache/remix",
+    browserNodeBuiltinsPolyfill: {
+        modules: {
+            fs: true,
+            path: true,
+            process: true,
+            util: true,
+            buffer: true,
+            url: true      
+        }
+    },
     serverMinify: true,
+    routes: (defineRoutes) => {
+        return flatRoutes("routes", defineRoutes)
+    }
 }

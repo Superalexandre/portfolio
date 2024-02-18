@@ -11,7 +11,8 @@
         "typecheck": "tsc",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
         "depcheck": "depcheck --ignores '~,ts-node,@typescript-eslint/eslint-plugin'",
-        "deploy": "npm i && npm run build && tsc --p tsconfigServer.json"
+        "deploy": "npm i && npm run build && npm run db:migration && tsc --p tsconfigServer.json",
+        "db:migration": "drizzle-kit generate:sqlite --out ./app/database/migrations --schema ./app/database/schema/secretMessages.ts"
     },
     "dependencies": {
         "@fastify/early-hints": "^1.0.1",
@@ -24,8 +25,10 @@
         "@stylistic/eslint-plugin": "^1.6.1",
         "@types/node": "^20.11.19",
         "@typescript-eslint/parser": "^7.0.0",
+        "better-sqlite3": "^9.4.1",
         "depcheck": "^1.4.7",
         "dotenv": "^16.4.4",
+        "drizzle-orm": "^0.29.3",
         "eslint-import-resolver-typescript": "^3.6.1",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-react": "^7.33.2",
@@ -41,15 +44,20 @@
         "react-i18next": "^14.0.5",
         "react-icons": "^5.0.1",
         "remix-i18next": "^5.5.0",
-        "ts-node": "^10.9.2"
+        "ts-node": "^10.9.2",
+        "uuid": "^9.0.1"
     },
     "devDependencies": {
         "@remix-run/dev": "^2.6.0",
         "@remix-run/eslint-config": "^2.6.0",
+        "@types/better-sqlite3": "^7.6.9",
         "@types/react": "^18.2.55",
         "@types/react-dom": "^18.2.19",
+        "@types/uuid": "^9.0.8",
         "chokidar": "^3.6.0",
+        "drizzle-kit": "^0.20.14",
         "eslint": "^8.56.0",
+        "remix-flat-routes": "^0.6.4",
         "tailwindcss": "^3.4.1",
         "typescript": "^5.3.3"
     },

@@ -10,3 +10,6 @@ logger/*.js
 
 tsconfig.tsbuildinfo
 tsconfigServer.tsbuildinfo
+
+/app/database/sqlite.db
+/app/database/migrations

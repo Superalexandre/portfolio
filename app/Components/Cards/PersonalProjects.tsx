@@ -25,6 +25,6 @@ export default function PersonalProjects() {
 
 const PersonalProject = ({ project }: { project: PersonalProjectType }) => {
     return (
-        <p className="dark:text-white">{project.name}</p>
+        <a href={`/project/${project.id}`} className="dark:text-white">{project.name}</a>
     )
 }
