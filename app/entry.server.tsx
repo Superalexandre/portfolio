@@ -4,17 +4,17 @@ import { PassThrough } from "node:stream"
 import type { /* AppLoadContext, */ EntryContext } from "@remix-run/node"
 import { createReadableStreamFromReadable } from "@remix-run/node"
 import { RemixServer } from "@remix-run/react"
-import type { i18n as i18nType } from "i18next"
 import { createInstance } from "i18next"
 import Backend from "i18next-fs-backend"
 import { isbot } from "isbot"
 import { renderToPipeableStream } from "react-dom/server"
 import { I18nextProvider, initReactI18next } from "react-i18next"
 
+import Logger from "logger/logger"
 
 import i18n from "./i18n"
 import i18next from "./i18next.server"
-import Timer from "../logger/timer.js"
+// import Timer from "../logger/timer.js"
 
 const ABORT_DELAY = 5_000
 
@@ -39,35 +39,15 @@ export default async function handleRequest(
             backend: { loadPath: resolvePath("./public/locales/{{lng}}/{{ns}}.json") },
         })
 
-    return isbot(request.headers.get("user-agent") ?? "")
-        ? handleBotRequest(
-            request,
-            responseStatusCode,
-            responseHeaders,
-            remixContext,
-            instance
-        )
-        : handleBrowserRequest(
-            request,
-            responseStatusCode,
-            responseHeaders,
-            remixContext,
-            instance
-        )
-}
+    const callbackName = isbot(request.headers.get("user-agent"))
+        ? "onAllReady"
+        : "onShellReady"
 
-function handleBotRequest(
-    request: Request,
-    responseStatusCode: number,
-    responseHeaders: Headers,
-    remixContext: EntryContext,
-    i18nInstance: i18nType
-) {
     return new Promise((resolve, reject) => {
-        let shellRendered = false
-        const timerPipe = new Timer("pipeBot")
+        let didError = false
+
         const { pipe, abort } = renderToPipeableStream(
-            <I18nextProvider i18n={i18nInstance}>
+            <I18nextProvider i18n={instance}>
                 <RemixServer
                     context={remixContext}
                     url={request.url}
@@ -75,21 +55,18 @@ function handleBotRequest(
                 />
             </I18nextProvider>,
             {
-                onAllReady() {
-                    shellRendered = true
+                [callbackName]: () => {
                     const body = new PassThrough()
                     const stream = createReadableStreamFromReadable(body)
 
                     responseHeaders.set("Content-Type", "text/html")
 
-                    const timer = new Timer("handleBotRequest")
                     resolve(
                         new Response(stream, {
                             headers: responseHeaders,
-                            status: responseStatusCode,
+                            status: didError ? 500 : responseStatusCode,
                         }),
                     )
-                    timer.end()
 
                     pipe(body)
                 },
@@ -97,82 +74,12 @@ function handleBotRequest(
                     reject(error)
                 },
                 onError(error: unknown) {
-                    responseStatusCode = 500
-                    // Log streaming rendering errors from inside the shell.  Don't log
-                    // errors encountered during initial shell rendering since they'll
-                    // reject and get logged in handleDocumentRequest.
-                    if (shellRendered) {
-                        console.error(error)
-                    }
-                },
+                    didError = true
+
+                    Logger.error("handleRequest", error)
+                }
             },
         )
-        timerPipe.end()
-
-        setTimeout(abort, ABORT_DELAY)
-    })
-}
-
-function handleBrowserRequest(
-    request: Request,
-    responseStatusCode: number,
-    responseHeaders: Headers,
-    remixContext: EntryContext,
-    i18nInstance: i18nType
-) {
-    return new Promise((resolve, reject) => {
-        let shellRendered = false
-
-        const timerPipe = new Timer("pipeBrowser")
-        const { pipe, abort } = renderToPipeableStream(
-            <I18nextProvider i18n={i18nInstance}>
-                <RemixServer
-                    context={remixContext}
-                    url={request.url}
-                    abortDelay={ABORT_DELAY}
-                />
-            </I18nextProvider>,
-            {
-                onShellReady() {
-                    shellRendered = true
-                    const timerPass = new Timer("passThrough")
-                    const body = new PassThrough()
-                    timerPass.end()
-
-                    const createReadableStream = new Timer("createReadableStream")
-                    const stream = createReadableStreamFromReadable(body)
-                    createReadableStream.end()
-
-                    responseHeaders.set("Content-Type", "text/html")
-
-                    const timer = new Timer("handleBrowserRequest")
-                    resolve(
-                        new Response(stream, {
-                            headers: responseHeaders,
-                            status: responseStatusCode,
-                        }),
-                    )
-                    timer.end()
-
-                    const startPipe = new Timer("startPipe")
-                    pipe(body)
-                    startPipe.end()
-                },
-                onShellError(error: unknown) {
-                    reject(error)
-                },
-                onError(error: unknown) {
-                    responseStatusCode = 500
-                    // Log streaming rendering errors from inside the shell.  Don't log
-                    // errors encountered during initial shell rendering since they'll
-                    // reject and get logged in handleDocumentRequest.
-                    if (shellRendered) {
-                        console.error(error)
-                    }
-                },
-            },
-        )
-        timerPipe.end()
 
         setTimeout(abort, ABORT_DELAY)
     })
