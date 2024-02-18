@@ -10,12 +10,14 @@ import {
 } from "@remix-run/react"
 import { useTranslation } from "react-i18next"
 
+import optimizedStyles from "~/tailwind-minify.css"
 import stylesheet from "~/tailwind.css"
 
 import Birthday from "./Components/Birthday"
 
 export const links: LinksFunction = () => [
-    { rel: "stylesheet", href: stylesheet },
+    ...(process.env.NODE_ENV === "development" ? [{ rel: "stylesheet", href: stylesheet }] : []),
+    ...(process.env.NODE_ENV === "production" && optimizedStyles ? [{ rel: "stylesheet", href: optimizedStyles }] : []),
     ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ]
 
