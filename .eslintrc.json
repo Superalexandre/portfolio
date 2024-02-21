@@ -153,6 +153,7 @@
         "build/",
         "public/",
         "server.js",
-        "app.js"
+        "app.js",
+        "logger/*.js"
     ]
 }
