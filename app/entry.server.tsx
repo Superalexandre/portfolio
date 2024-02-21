@@ -10,10 +10,10 @@ import { isbot } from "isbot"
 import { renderToPipeableStream } from "react-dom/server"
 import { I18nextProvider, initReactI18next } from "react-i18next"
 
-import Logger from "logger/logger"
 
 import i18n from "./i18n"
 import i18next from "./i18next.server"
+import Logger from "../logger/logger.js"
 import Timer from "../logger/timer.js"
 
 const ABORT_DELAY = 5_000
