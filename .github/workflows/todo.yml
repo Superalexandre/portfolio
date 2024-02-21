@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: "actions/checkout@v4"
       - name: "TODO to Issue"
-        uses: "alstr/todo-to-issue-action@v4"
+        uses: "alstr/todo-to-issue-action@v4.12.3"
         with:
           AUTO_ASSIGN: true
           IDENTIFIERS: '[{"name": "TODO", "labels": []}, {"name": "FIXME", "labels": ["bug"]}, {"name": "FIX", "labels": ["bug"]}, {"name": "eslint-disable-next-line", "labels": ["types"]}]'
