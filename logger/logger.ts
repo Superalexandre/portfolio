@@ -1,7 +1,7 @@
 export default class Logger {
     // constructor () {}
 
-    // TODO: Add color and time to the log method
+    // TODO Add color and time to the log method
     static log(message: string, ...args: unknown[]) {
         console.log(message, ...args)
     }
@@ -14,5 +14,5 @@ export default class Logger {
         console.log(`${name} took: ${duration}ms`)
     }
 
-    // TODO: Add a warning method
+    // TODO Add a warning method
 }

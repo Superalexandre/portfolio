@@ -1,4 +1,4 @@
 # Portfolio Alexandre
 
-# Todo :
+# TODO :
 - [ ] Deploy on server

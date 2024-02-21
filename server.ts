@@ -13,6 +13,8 @@ app.use("/*", serveStatic({ root: "./public" }))
 app.use("/build/*", serveStatic({ root: "./public/build" }))
 app.use("*", remix({ build, mode: process.env.NODE_ENV }))
 
+// TODO: Test
+
 serve({
     fetch: app.fetch,
     port: Number(process.env.PORT) || 3000
