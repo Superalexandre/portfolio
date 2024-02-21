@@ -5,10 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Installing dependencies
-      run: npm i
-    - name: Run Build
-      run: npm run build
+    - name: Run deploy
+      run: npm run deploy
     - name: Run ESLint
       run: npm run lint
     - name: Run unsued dependencies
