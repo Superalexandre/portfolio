@@ -11,6 +11,13 @@ const app = new Hono()
 app.use("/*", serveStatic({ root: "./public" }))
 app.use("/build/*", serveStatic({ root: "./public/build" }))
 app.use("*", remix({ build: await import(BUILD_PATH), mode: process.env.NODE_ENV }))
+app.notFound((c) => {
+    return c.text("Not Found", { status: 404 })
+})
+app.onError((error, c) => {
+    console.error(error)
+    return c.text("Internal Server Error", { status: 500 })
+})
 
 serve({
     fetch: app.fetch,

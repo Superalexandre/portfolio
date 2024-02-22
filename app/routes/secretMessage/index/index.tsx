@@ -3,6 +3,7 @@ import { Form, useActionData } from "@remix-run/react"
 import { MdContentCopy, MdOpenInNew } from "react-icons/md"
 
 import createMessage from "./createMessage"
+import type { Ambiance, BackgroundColor } from "./createMessage"
 
 // TODO: Add title, and a loading animation when the message is being created
 // TODO:: Mobile version (button displayed weirdly), add a message when the message is copied to the clipboard 
@@ -21,8 +22,13 @@ export async function action({ request }: ActionFunctionArgs) {
 
     const stringMessage = message.toString()
     const stringAuthor = author?.toString() || "Anonyme"
-    const backgroundColor: any = body.get("backgroundColor")?.toString() || "dark"
-    const ambiance: any = body.get("ambiance")?.toString() || "normal"
+    
+    const bodyBackgroundColor = body.get("backgroundColor")?.toString() as BackgroundColor
+    const backgroundColor: BackgroundColor = bodyBackgroundColor || "dark"
+
+    const bodyAmbiance = body.get("ambiance")?.toString() as Ambiance
+    const ambiance: Ambiance = bodyAmbiance || "normal"
+    
     const isQuestion = body.get("isQuestion") === "on"
 
     if (stringMessage.length <= 0) return json({

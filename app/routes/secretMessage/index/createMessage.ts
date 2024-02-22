@@ -6,10 +6,13 @@ import { v4 as uuid } from "uuid"
 import { databasePath, migrationsFolder } from "~/database/path"
 import { secretMessages } from "~/database/schema/secretMessages"
 
+type BackgroundColor = "dark" | "white" | "pink"
+type Ambiance = "normal" | "confetti" | "love" | "rain"
+
 interface Params {
     isQuestion: boolean
-    ambiance: "normal" | "confetti" | "love" | "rain"
-    backgroundColor: "dark" | "white" | "pink"
+    ambiance: Ambiance
+    backgroundColor: BackgroundColor
 }
 
 export default function createMessage(message: string, author: string, { isQuestion, ambiance, backgroundColor }: Params = { isQuestion: false, ambiance: "normal", backgroundColor: "dark" }) {
@@ -37,4 +40,10 @@ export default function createMessage(message: string, author: string, { isQuest
         message: "Message créé avec succès !",
         id
     }
+}
+
+export type {
+    Params,
+    BackgroundColor,
+    Ambiance
 }
