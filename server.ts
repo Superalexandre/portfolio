@@ -13,8 +13,6 @@ app.use("/*", serveStatic({ root: "./public" }))
 app.use("/build/*", serveStatic({ root: "./public/build" }))
 app.use("*", remix({ build, mode: process.env.NODE_ENV }))
 
-// TODO Add remix i18n
-
 serve({
     fetch: app.fetch,
     port: Number(process.env.PORT) || 3000

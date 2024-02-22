@@ -6,6 +6,7 @@ node_modules
 .env
 
 app.js
+server.js
 logger/*.js
 
 tsconfig.tsbuildinfo

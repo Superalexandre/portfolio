@@ -1,6 +1,8 @@
 {
     "include": [
-        "app.ts"
+        "app.ts",
+        "server.ts",
+        "logger/*.ts"
     ],
     "exclude": [
         "node_modules",

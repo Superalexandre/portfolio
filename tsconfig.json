@@ -4,7 +4,8 @@
         "remix.config.js",
         "**/*.ts",
         "**/*.tsx",
-        "app.ts"
+        "app.ts",
+        "server.ts"
     ],
     "exclude": [
         "node_modules",
