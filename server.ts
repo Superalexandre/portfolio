@@ -9,12 +9,9 @@ import "dotenv/config"
 
 const app = new Hono()
 
-// TODO TEST ACTIONS
 app.use("/*", serveStatic({ root: "./public" }))
 app.use("/build/*", serveStatic({ root: "./public/build" }))
 app.use("*", remix({ build, mode: process.env.NODE_ENV }))
-
-// TODO Add remix i18n
 
 serve({
     fetch: app.fetch,
