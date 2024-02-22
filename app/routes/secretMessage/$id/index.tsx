@@ -9,6 +9,8 @@ import { formatDate } from "~/Components/utils/date"
 import addView from "./addView"
 import getMessage from "./getMessage"
 
+// TODO: Add title and description
+
 export async function loader({ params }: { params: { id: string } }) {
     const message = await getMessage(params.id)
 

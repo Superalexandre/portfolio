@@ -4,6 +4,9 @@ import { MdContentCopy, MdOpenInNew } from "react-icons/md"
 
 import createMessage from "./createMessage"
 
+// TODO: Add title, and a loading animation when the message is being created
+// TODO:: Mobile version (button displayed weirdly), add a message when the message is copied to the clipboard 
+
 export async function action({ request }: ActionFunctionArgs) {
     const body = await request.formData()
     const message = body.get("message")
