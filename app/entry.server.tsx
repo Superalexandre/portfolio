@@ -14,7 +14,6 @@ import { I18nextProvider, initReactI18next } from "react-i18next"
 import i18n from "./i18n"
 import i18next from "./i18next.server"
 import Logger from "../logger/logger.js"
-import Timer from "../logger/timer.js"
 
 const ABORT_DELAY = 5_000
 
@@ -57,27 +56,19 @@ export default async function handleRequest(
             {
                 [callbackName]: () => {
                     const body = new PassThrough()
-                    const t0 = new Timer("renderToPipeableStream")
                     const stream = createReadableStreamFromReadable(body)
-                    t0.end()
 
                     responseHeaders.set("Content-Type", "text/html")
 
-                    const t3 = new Timer("response")
                     const response = new Response(stream, {
                         headers: responseHeaders,
                         status: didError ? 500 : responseStatusCode,
                     })
-                    t3.end()
 
-                    const t1 = new Timer("pipeToResponse")
                     resolve(response)
-                    t1.end()
 
-                    const t2 = new Timer("pipeToResponse")
                     pipe(body)
                     resolve(response)
-                    t2.end()
                 },
                 onShellError(error: unknown) {
                     reject(error)

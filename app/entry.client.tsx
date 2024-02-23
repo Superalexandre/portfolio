@@ -8,11 +8,8 @@ import { I18nextProvider, initReactI18next } from "react-i18next"
 import { getInitialNamespaces } from "remix-i18next"
 
 import i18n from "./i18n"
-import Timer from "../logger/timer.js"
-
 
 async function hydrate() {
-    const timer = new Timer("i18n")
     await i18next
         .use(initReactI18next) // Tell i18next to use the react-i18next plugin
         .use(LanguageDetector) // Setup a client-side language detector
@@ -32,10 +29,7 @@ async function hydrate() {
                 caches: [],
             },
         })
-    timer.end()
 
-
-    const startTransitionTimer = new Timer("startTransition")
     startTransition(() => {
         hydrateRoot(
             document,
@@ -46,15 +40,10 @@ async function hydrate() {
             </I18nextProvider>
         )
     })
-    startTransitionTimer.end()
 }
 
 if (window.requestIdleCallback) {
-    const idleCallBack = new Timer("idleCallBack")
     window.requestIdleCallback(hydrate)
-    idleCallBack.end()
 } else {
-    const timeoutTimer = new Timer("timeout")
     window.setTimeout(hydrate, 1)
-    timeoutTimer.end()
 }
