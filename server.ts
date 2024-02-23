@@ -23,5 +23,5 @@ serve({
     fetch: app.fetch,
     port: Number(process.env.PORT) || 3000
 }, (info) => {
-    console.log(`Server listening on http://localhost:${info.port}`)
+    console.log(`Server listening on http://localhost:${info.port} in ${process.env.NODE_ENV} mode.`)
 })
