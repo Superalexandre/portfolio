@@ -6,7 +6,7 @@ import {
     Meta,
     Outlet,
     Scripts,
-    ScrollRestoration,
+    ScrollRestoration
 } from "@remix-run/react"
 import { useTranslation } from "react-i18next"
 
@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next"
 import stylesheet from "~/tailwind.css"
 
 import Birthday from "./Components/Birthday"
+import ErrorBoundary from "./Errors/error"
 
 export const links: LinksFunction = () => [
     // ...(process.env.NODE_ENV === "development" ? [{ rel: "stylesheet", href: stylesheet }] : []),
@@ -37,11 +38,15 @@ export default function App() {
                 <Birthday>
                     <Outlet />
                 </Birthday>
-                
+
                 <ScrollRestoration />
                 <Scripts />
                 <LiveReload />
             </body>
         </html>
     )
+}
+
+export {
+    ErrorBoundary
 }
