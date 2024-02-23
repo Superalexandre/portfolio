@@ -96,10 +96,7 @@ const Description = ({ code, t }: { code: string, t: TFunction<"common", undefin
         updatedDescription = updatedDescription.replace(linkMatch[0], link({ href: linkHref, text: linkText }))
     }
 
-    return <p className="dark:text-white text-center">
-        {updatedDescription}
-    </p>
-    // return <p className="dark:text-white text-center" dangerouslySetInnerHTML={{ __html: updatedDescription }} />
+    return <p className="dark:text-white text-center" dangerouslySetInnerHTML={{ __html: updatedDescription }} />
 }
 
 const link = ({ href, text }: { href: string, text: string }) => {
