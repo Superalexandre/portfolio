@@ -1,5 +1,5 @@
 import { useWindowSize } from "@react-hookz/web"
-import { ActionFunctionArgs } from "@remix-run/node"
+import { ActionFunctionArgs, MetaFunction } from "@remix-run/node"
 import { Form, useActionData, useLoaderData } from "@remix-run/react"
 import React from "react"
 import Confetti from "react-confetti"
@@ -9,7 +9,12 @@ import { formatDate } from "~/Components/utils/date"
 import addView from "./addView"
 import getMessage from "./getMessage"
 
-// TODO: Add title and description
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Voir votre message secret" },
+        { name: "description", content: "Vous avez reçu un message secret" },
+    ]
+}
 
 export async function loader({ params }: { params: { id: string } }) {
     const message = await getMessage(params.id)
