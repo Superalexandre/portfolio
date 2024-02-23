@@ -97,7 +97,7 @@ export default function Index() {
             <div className={`${displayMessage ? "block" : "hidden"} min-w-full h-full min-h-screen flex justify-center items-center flex-col gap-8 lg:gap-0`}>
                 <div className="w-1/2 flex justify-center items-center flex-col z-10">
                     <div className={`w-1/2 min-h-96 ${color.secondBg} rounded-lg flex justify-center items-center mt-4 border ${color.border}`}>
-                        <p className={`${color.text} text-center m-4`}>{data.message}</p>
+                        <p className={`${color.text} text-center m-4 break-all lg:break-normal`}>{data.message}</p>
                     </div>
                     <p className={`w-1/2 text-center lg:text-right ${color.text}`}>Écrit par {data.author} le {date}</p>
 
