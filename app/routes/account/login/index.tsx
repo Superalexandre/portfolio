@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ActionFunctionArgs, json } from "@remix-run/node"
+import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node"
 import { Form } from "@remix-run/react"
 import { useState } from "react"
 import { MdLogin, MdVisibility, MdVisibilityOff } from "react-icons/md"
@@ -24,6 +24,12 @@ type FormData = zod.infer<typeof schema>
 
 const resolver = zodResolver(schema)
 
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Connexion" },
+        { name: "description", content: "Connectez vous !" },
+    ]
+}
 
 export async function action({ request }: ActionFunctionArgs) {
     const { errors, data, receivedValues: defaultValues } = await getValidatedFormData<FormData>(request, resolver)
@@ -113,6 +119,7 @@ const ShowButton = ({ show, setShow }: { show: boolean, setShow: (show: boolean)
             type="button"
             onClick={() => setShow(!show)}
             className="text-white absolute right-0 top-0 bottom-0 m-3"
+            aria-label="Afficher le mot de passe"
         >
             <MdVisibility size={20} className={`${show ? "hidden" : "block"}`} />
             <MdVisibilityOff size={20} className={`${show ? "block" : "hidden"}`} />
