@@ -23,6 +23,7 @@ export default function createMessage(message: string, author: string, { isQuest
 
     const id = uuid()
     const secretCode = Math.random().toString(36).substring(2, 6)
+    
     db.insert(secretMessages).values({
         id: id,
         secretCode: secretCode,

@@ -20,7 +20,7 @@ export default {
             process: true,
             util: true,
             buffer: true,
-            url: true      
+            url: true
         }
     },
     serverMinify: process.env.NODE_ENV === "production",

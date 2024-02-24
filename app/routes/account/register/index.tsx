@@ -1,27 +1,40 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ActionFunctionArgs, json } from "@remix-run/node"
-import { Form, /* useActionData, */ useNavigation } from "@remix-run/react"
+import { Form, /* useActionData,  useNavigation */ } from "@remix-run/react"
 import { useState } from "react"
 import { MdAdd, MdVisibility, MdVisibilityOff } from "react-icons/md"
 import { getValidatedFormData, useRemixForm } from "remix-hook-form"
 import * as zod from "zod"
 
+import createAccount from "./createAccount"
+
 const schema = zod.object({
     name: zod
         .string()
         .min(3)
-        .max(32),
+        .max(32)
+        .trim(),
     firstName: zod
         .string()
         .min(3)
-        .max(32),
+        .max(32)
+        .trim(),
     username: zod
         .string()
         .min(3)
-        .max(32),
+        .max(32)
+        .trim()
+        .regex(/^[a-zA-Z0-9_]+$/),
+    birthDate: zod
+        .date({
+            coerce: true
+        })
+        .max(new Date()),
     mail: zod
         .string()
-        .email(),
+        .email()
+        .trim()
+        .toLowerCase(),
     password: zod
         .string()
         .min(8)
@@ -29,7 +42,7 @@ const schema = zod.object({
     passwordConfirmation: zod
         .string()
         .min(8)
-        .max(255),
+        .max(255)
 })
 
 type FormData = zod.infer<typeof schema>
@@ -53,23 +66,18 @@ export async function action({ request }: ActionFunctionArgs) {
                 }
             },
             defaultValues
-        })
+        }, { status: 400 })
     }
 
-    console.log(data)
+    const result = await createAccount({ request, ...data })
 
-    return json({ success: true, error: false, message: "Hello World" })
+    return result
 }
 
 export default function Index() {
-    // const result = useActionData<typeof action>()
-    const navigation = useNavigation()
-
-    const isLoading = navigation.state === "submitting"
-
     const {
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isLoading, dirtyFields, isSubmitSuccessful},
         register,
     } = useRemixForm<FormData>({
         mode: "onSubmit",
@@ -77,6 +85,10 @@ export default function Index() {
         submitConfig: {
             action: "/account/register",
             method: "post",
+        },
+        resetOptions: {
+            keepIsSubmitted: false,
+            keepIsSubmitSuccessful: false,
         }
     })
 
@@ -84,8 +96,7 @@ export default function Index() {
     const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false)
 
     const inputClass = "flex flex-col justify-center items-start w-11/12 lg:w-1/2"
-
-    // console.log("result", result)
+    const errorClass = "text-red-500 text-center lg:text-left w-full"
 
     return (
         <Form
@@ -97,86 +108,113 @@ export default function Index() {
             <div className={inputClass}>
                 <label htmlFor="name" className="text-white">Nom</label>
                 <input
-                    {...register("name")}
                     type="text"
+                    {...register("name")}
+                    id="name"
                     name="name"
                     placeholder="Nom"
+                    autoComplete="name"
                     className="bg-slate-800 text-white p-2 rounded w-full"
                 />
-                {errors.name && <span className="text-red-500">{errors.name.message}</span>}
+                {errors.name ? <span className={errorClass}>{errors.name.message}</span> : null}
             </div>
 
             <div className={inputClass}>
                 <label htmlFor="firstName" className="text-white">Prénom</label>
                 <input
-                    {...register("firstName")}
                     type="text"
+                    {...register("firstName")}
+                    id="firstName"
                     name="firstName"
                     placeholder="Prénom"
+                    autoComplete="given-name"
                     className="bg-slate-800 text-white p-2 rounded w-full"
                 />
-                {errors.firstName && <span className="text-red-500">{errors.firstName.message}</span>}
+                {errors.firstName ? <span className={errorClass}>{errors.firstName.message}</span> : null}
             </div>
 
             <div className={inputClass}>
                 <label htmlFor="username" className="text-white">Pseudo</label>
                 <input
-                    {...register("username")}
                     type="text"
+                    {...register("username")}
+                    id="username"
                     name="username"
                     placeholder="Pseudo"
+                    autoComplete="username"
                     className="bg-slate-800 text-white p-2 rounded w-full"
                 />
-                {errors.username && <span className="text-red-500">{errors.username.message}</span>}
+                {errors.username ? <span className={errorClass}>{errors.username.message}</span> : null}
             </div>
+
+            <div className={inputClass}>
+                <label htmlFor="birthDate" className="text-white">Date de naissance</label>
+                <input
+                    type="date"
+                    {...register("birthDate", { valueAsDate: true })}
+                    id="birthDate"
+                    name="birthDate"
+                    placeholder="Date de naissance"
+                    autoComplete="bday-day bday-month bday-year"
+                    className="bg-slate-800 text-white p-2 rounded w-full"
+                />
+                {errors.birthDate ? <span className={errorClass}>{errors.birthDate.message}</span> : null}
+            </div>
+
 
             <div className={inputClass}>
                 <label htmlFor="mail" className="text-white">Email</label>
                 <input
-                    {...register("mail")}
                     type="mail"
+                    {...register("mail")}
+                    id="mail"
                     name="mail"
                     placeholder="Email"
+                    autoComplete="email"
                     className="bg-slate-800 text-white p-2 rounded w-full"
                 />
-                {errors.mail && <span className="text-red-500">{errors.mail.message}</span>}
+                {errors.mail ? <span className={errorClass}>{errors.mail.message}</span> : null}
             </div>
 
             <div className={inputClass}>
                 <label htmlFor="password" className="text-white">Mot de passe</label>
                 <div className="relative w-full">
                     <input
-                        {...register("password")}
                         type={showPassword ? "text" : "password"}
+                        {...register("password")}
+                        id="password"
                         name="password"
                         placeholder="Mot de passe"
+                        autoComplete="new-password"
                         className="bg-slate-800 text-white p-2 rounded w-full"
                     />
                     <ShowButton show={showPassword} setShow={setShowPassword} />
                 </div>
 
-                {errors.password && <span className="text-red-500">{errors.password.message}</span>}
+                {errors.password ? <span className={errorClass}>{errors.password.message}</span> : null}
             </div>
 
             <div className={inputClass}>
                 <label htmlFor="passwordConfirmation" className="text-white">Confirmation du mot de passe</label>
                 <div className="relative w-full">
                     <input
-                        {...register("passwordConfirmation")}
                         type={showPasswordConfirmation ? "text" : "password"}
+                        {...register("passwordConfirmation")}
+                        id="passwordConfirmation"
                         name="passwordConfirmation"
                         placeholder="Confirmation du mot de passe"
+                        autoComplete="new-password"
                         className="bg-slate-800 text-white p-2 rounded w-full"
                     />
                     <ShowButton show={showPasswordConfirmation} setShow={setShowPasswordConfirmation} />
                 </div>
 
-                {errors.passwordConfirmation && <span className="text-red-500">{errors.passwordConfirmation.message}</span>}
+                {errors.passwordConfirmation ? <span className={errorClass}>{errors.passwordConfirmation.message}</span> : null}
             </div>
 
             <button
                 type="submit"
-                className="bg-green-500 text-white p-2 rounded flex flex-row justify-center items-center gap-4"
+                className={`${isLoading ? "opacity-50" : "hover::bg-green-700"} bg-green-500 text-white p-4 rounded flex flex-row justify-center items-center gap-2`}
                 disabled={isLoading}
             >
                 <MdAdd size={20} className={`${isLoading ? "hidden" : "block"}`} />
@@ -184,6 +222,7 @@ export default function Index() {
 
                 Créer un compte
             </button>
+            {!dirtyFields && isSubmitSuccessful ? <p className="text-green-500">Compte créé avec succès !</p> : null}
         </Form>
     )
 }

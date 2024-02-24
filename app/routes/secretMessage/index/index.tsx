@@ -112,7 +112,7 @@ export default function Index() {
 
             <button 
                 type="submit" 
-                className={`${isLoading ? "opacity-50" : "hover:bg-green-700 "} bg-green-500 text-white font-bold rounded-lg flex items-center justify-center gap-3 p-4`}
+                className={`${isLoading ? "opacity-50" : "hover:bg-green-700 "} bg-green-500 text-white font-bold rounded-lg flex items-center justify-center gap-2 p-4`}
                 disabled={isLoading}
             >
                 <div className={`${isLoading ? "block" : "hidden"} loader w-5 h-5`}></div>
