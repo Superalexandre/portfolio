@@ -22,9 +22,9 @@ async function getSession(request: Request) {
     return sessionCookie
 }
 
-export async function logout(request: Request) {
+export async function logout(request: Request, redirectUrl = "/") {
     const session = await getSession(request)
-    return redirect("/", {
+    return redirect(redirectUrl, {
         headers: {
             "Set-Cookie": await sessionStorage.destroySession(session),
         },
