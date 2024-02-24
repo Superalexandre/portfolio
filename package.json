@@ -46,7 +46,7 @@
         "react-icons": "^5.0.1",
         "remix": "^2.7.2",
         "remix-hook-form": "^4.1.0",
-        "remix-i18next": "^6.0.0",
+        "remix-i18next": "^5.5.0",
         "ts-node": "^10.9.2",
         "uuid": "^9.0.1",
         "zod": "^3.22.4"
