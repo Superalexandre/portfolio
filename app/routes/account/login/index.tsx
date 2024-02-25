@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node"
 import { Form } from "@remix-run/react"
 import { useState } from "react"
-import { MdLogin, MdVisibility, MdVisibilityOff } from "react-icons/md"
+import { MdLogin, MdMail, MdPassword, MdVisibility, MdVisibilityOff } from "react-icons/md"
 import { getValidatedFormData, useRemixForm } from "remix-hook-form"
 import * as zod from "zod"
 
@@ -44,15 +44,12 @@ export async function action({ request }: ActionFunctionArgs) {
 export default function Index() {
     const {
         handleSubmit,
-        formState: { errors, isLoading },
+        formState: { errors, isSubmitting },
         register,
     } = useRemixForm<FormData>({
         mode: "onSubmit",
         resolver,
-        submitConfig: {
-            action: "/account/login",
-            method: "post",
-        }
+        
     })
 
     const [showPassword, setShowPassword] = useState(false)
@@ -62,13 +59,23 @@ export default function Index() {
 
     return (
         <Form
+            action="/account/login"
+            method="post"
             onSubmit={handleSubmit}
             className="bg-slate-700 min-w-full h-full min-h-screen flex justify-center items-center flex-col gap-4"
         >
-            <h1 className="text-white text-3xl font-bold text-center">Se connecter</h1>
+            <h1 className="text-white text-3xl font-bold text-center flex flex-row items-center justify-center gap-2">
+                <MdLogin size={30} />
+
+                Se connecter
+            </h1>
 
             <div className={inputClass}>
-                <label htmlFor="mailOrUsername" className="text-white">Email ou pseudo</label>
+                <label htmlFor="mailOrUsername" className="text-white flex flex-row items-center justify-center gap-2">
+                    <MdMail size={20} />
+                
+                    Email ou pseudo
+                </label>
                 <input
                     type="text"
                     {...register("mailOrUsername")}
@@ -82,7 +89,11 @@ export default function Index() {
             </div>
 
             <div className={inputClass}>
-                <label htmlFor="password" className="text-white">Mot de passe</label>
+                <label htmlFor="password" className="text-white flex flex-row items-center justify-center gap-2">
+                    <MdPassword size={20} />
+
+                    Mot de passe
+                </label>
                 <div className="relative w-full">
                     <input
                         type={showPassword ? "text" : "password"}
@@ -99,13 +110,16 @@ export default function Index() {
                 {errors.password ? <span className={errorClass}>{errors.password.message}</span> : null}
             </div>
 
+            <a href="/account/register" className="text-white underline hover:text-slate-400">Pas encore de compte ? Inscrivez-vous !</a>
+            {/* <a href="/account/forgot-password" className="text-white underline hover:text-slate-400">Mot de passe oublié ?</a> */}
+
             <button
                 type="submit"
-                className={`${isLoading ? "opacity-50" : "hover::bg-green-700"} bg-green-500 text-white p-4 rounded flex flex-row justify-center items-center gap-2`}
-                disabled={isLoading}
+                className={`${isSubmitting ? "opacity-50" : "hover:bg-green-700"} bg-green-500 text-white p-4 rounded flex flex-row justify-center items-center gap-2`}
+                disabled={isSubmitting}
             >
-                <MdLogin size={20} className={`${isLoading ? "hidden" : "block"}`} />
-                <div className={`${isLoading ? "block" : "hidden"} loader w-5 h-5`}></div>
+                <MdLogin size={20} className={`${isSubmitting ? "hidden" : "block"}`} />
+                <div className={`${isSubmitting ? "block" : "hidden"} loader w-5 h-5`}></div>
 
                 Se connecter
             </button>
@@ -118,7 +132,7 @@ const ShowButton = ({ show, setShow }: { show: boolean, setShow: (show: boolean)
         <button
             type="button"
             onClick={() => setShow(!show)}
-            className="text-white absolute right-0 top-0 bottom-0 m-3"
+            className="text-white absolute right-0 top-0 bottom-0 mr-3 hover:text-slate-400"
             aria-label="Afficher le mot de passe"
         >
             <MdVisibility size={20} className={`${show ? "hidden" : "block"}`} />

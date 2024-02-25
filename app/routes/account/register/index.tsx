@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node"
-import { Form, /* useActionData,  useNavigation */ } from "@remix-run/react"
+import { Form } from "@remix-run/react"
 import { useState } from "react"
-import { MdAdd, MdVisibility, MdVisibilityOff } from "react-icons/md"
+import { MdAdd, MdBadge, MdCalendarMonth, MdEmail, MdPassword, MdVisibility, MdVisibilityOff } from "react-icons/md"
 import { getValidatedFormData, useRemixForm } from "remix-hook-form"
 import * as zod from "zod"
 
@@ -83,19 +83,11 @@ export async function action({ request }: ActionFunctionArgs) {
 export default function Index() {
     const {
         handleSubmit,
-        formState: { errors, isLoading, dirtyFields, isSubmitSuccessful},
+        formState: { errors, isSubmitting },
         register,
     } = useRemixForm<FormData>({
         mode: "onSubmit",
-        resolver,
-        submitConfig: {
-            action: "/account/register",
-            method: "post",
-        },
-        resetOptions: {
-            keepIsSubmitted: false,
-            keepIsSubmitSuccessful: false,
-        }
+        resolver
     })
 
     const [showPassword, setShowPassword] = useState(false)
@@ -106,13 +98,23 @@ export default function Index() {
 
     return (
         <Form
+            action="/account/register"
+            method="post"
             onSubmit={handleSubmit}
             className="bg-slate-700 min-w-full h-full min-h-screen flex justify-center items-center flex-col gap-4"
         >
-            <h1 className="text-white text-3xl font-bold text-center">Créer un compte</h1>
+            <h1 className="text-white text-3xl font-bold text-center flex flex-row items-center justify-center gap-2">
+                <MdAdd size={30} />
+
+                Créer un compte
+            </h1>
 
             <div className={inputClass}>
-                <label htmlFor="name" className="text-white">Nom</label>
+                <label htmlFor="name" className="text-white flex flex-row items-center justify-center gap-2">
+                    <MdBadge size={20} />
+
+                    Nom
+                </label>
                 <input
                     type="text"
                     {...register("name")}
@@ -126,7 +128,11 @@ export default function Index() {
             </div>
 
             <div className={inputClass}>
-                <label htmlFor="firstName" className="text-white">Prénom</label>
+                <label htmlFor="firstName" className="text-white flex flex-row items-center justify-center gap-2">
+                    <MdBadge size={20} />
+                
+                    Prénom
+                </label>
                 <input
                     type="text"
                     {...register("firstName")}
@@ -140,7 +146,11 @@ export default function Index() {
             </div>
 
             <div className={inputClass}>
-                <label htmlFor="username" className="text-white">Pseudo</label>
+                <label htmlFor="username" className="text-white flex flex-row items-center justify-center gap-2">
+                    <MdBadge size={20} />
+
+                    Pseudo
+                </label>
                 <input
                     type="text"
                     {...register("username")}
@@ -154,7 +164,11 @@ export default function Index() {
             </div>
 
             <div className={inputClass}>
-                <label htmlFor="birthDate" className="text-white">Date de naissance</label>
+                <label htmlFor="birthDate" className="text-white flex flex-row items-center justify-center gap-2">
+                    <MdCalendarMonth size={20} />
+
+                    Date de naissance
+                </label>
                 <input
                     type="date"
                     {...register("birthDate", { valueAsDate: true })}
@@ -169,7 +183,11 @@ export default function Index() {
 
 
             <div className={inputClass}>
-                <label htmlFor="mail" className="text-white">Email</label>
+                <label htmlFor="mail" className="text-white flex flex-row items-center justify-center gap-2">
+                    <MdEmail size={20} />
+                
+                    Email
+                </label>
                 <input
                     type="mail"
                     {...register("mail")}
@@ -183,7 +201,11 @@ export default function Index() {
             </div>
 
             <div className={inputClass}>
-                <label htmlFor="password" className="text-white">Mot de passe</label>
+                <label htmlFor="password" className="text-white flex flex-row items-center justify-center gap-2">
+                    <MdPassword size={20} />
+                
+                    Mot de passe
+                </label>
                 <div className="relative w-full">
                     <input
                         type={showPassword ? "text" : "password"}
@@ -201,7 +223,11 @@ export default function Index() {
             </div>
 
             <div className={inputClass}>
-                <label htmlFor="passwordConfirmation" className="text-white">Confirmation du mot de passe</label>
+                <label htmlFor="passwordConfirmation" className="text-white flex flex-row items-center justify-center gap-2">
+                    <MdPassword size={20} />
+                
+                    Confirmation du mot de passe
+                </label>
                 <div className="relative w-full">
                     <input
                         type={showPasswordConfirmation ? "text" : "password"}
@@ -218,17 +244,18 @@ export default function Index() {
                 {errors.passwordConfirmation ? <span className={errorClass}>{errors.passwordConfirmation.message}</span> : null}
             </div>
 
+            <a href="/account/login" className="text-white underline hover:text-slate-400">Déjà un compte ? Connectez-vous</a>
+
             <button
                 type="submit"
-                className={`${isLoading ? "opacity-50" : "hover::bg-green-700"} bg-green-500 text-white p-4 rounded flex flex-row justify-center items-center gap-2`}
-                disabled={isLoading}
+                className={`${isSubmitting ? "opacity-50" : "hover:bg-green-700"} bg-green-500 text-white p-4 rounded flex flex-row justify-center items-center gap-2`}
+                disabled={isSubmitting}
             >
-                <MdAdd size={20} className={`${isLoading ? "hidden" : "block"}`} />
-                <div className={`${isLoading ? "block" : "hidden"} loader w-5 h-5`}></div>
+                <MdAdd size={20} className={`${isSubmitting ? "hidden" : "block"}`} />
+                <div className={`${isSubmitting ? "block" : "hidden"} loader w-5 h-5`}></div>
 
                 Créer un compte
             </button>
-            {!dirtyFields && isSubmitSuccessful ? <p className="text-green-500">Compte créé avec succès !</p> : null}
         </Form>
     )
 }
@@ -238,7 +265,7 @@ const ShowButton = ({ show, setShow }: { show: boolean, setShow: (show: boolean)
         <button
             type="button"
             onClick={() => setShow(!show)}
-            className="text-white absolute right-0 top-0 bottom-0 m-3"
+            className="text-white absolute right-0 top-0 bottom-0 mr-3 hover:text-slate-400"
             aria-label="Afficher le mot de passe"
         >
             <MdVisibility size={20} className={`${show ? "hidden" : "block"}`} />
