@@ -3,6 +3,7 @@ import { drizzle } from "drizzle-orm/better-sqlite3"
 import { migrate } from "drizzle-orm/better-sqlite3/migrator"
 import { v4 as uuid } from "uuid"
 
+import User from "types/User"
 import { databasePath, migrationsFolder } from "~/database/path"
 import { secretMessages } from "~/database/schema/secretMessages"
 
@@ -15,8 +16,7 @@ interface Params {
     backgroundColor: BackgroundColor
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function createMessage(message: string, author: string, account: any, { isQuestion, ambiance, backgroundColor }: Params = { isQuestion: false, ambiance: "normal", backgroundColor: "dark" }) {
+export default function createMessage(message: string, author: string, account: User, { isQuestion, ambiance, backgroundColor }: Params = { isQuestion: false, ambiance: "normal", backgroundColor: "dark" }) {
     const sqlite = new Database(databasePath, { fileMustExist: true })
     const db = drizzle(sqlite)
 
