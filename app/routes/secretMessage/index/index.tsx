@@ -2,6 +2,7 @@ import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node"
 import { Form, useActionData, useNavigation } from "@remix-run/react"
 import { MdContentCopy, MdOpenInNew, MdSend } from "react-icons/md"
 
+import { useCopyToClipboard } from "~/hooks/useCopyToClipboard"
 import { getUser } from "~/session.server"
 
 import createMessage from "./createMessage"
@@ -28,13 +29,13 @@ export async function action({ request }: ActionFunctionArgs) {
 
     const stringMessage = message.toString()
     const stringAuthor = author?.toString() || "Anonyme"
-    
+
     const bodyBackgroundColor = body.get("backgroundColor")?.toString() as BackgroundColor
     const backgroundColor: BackgroundColor = bodyBackgroundColor || "dark"
 
     const bodyAmbiance = body.get("ambiance")?.toString() as Ambiance
     const ambiance: Ambiance = bodyAmbiance || "normal"
-    
+
     const isQuestion = body.get("isQuestion") === "on"
 
     if (stringMessage.length <= 0) return json({
@@ -68,10 +69,7 @@ export default function Index() {
 
     const isLoading = navigation.state === "submitting"
 
-    const copyToClipboard = (id: string) => {
-        const url = `${window.location.origin}/secretMessage/${id}`
-        navigator.clipboard.writeText(url)
-    }
+    const [, copy] = useCopyToClipboard()
 
     return (
         <Form
@@ -102,7 +100,7 @@ export default function Index() {
                 <option value="rain">Pluie</option>
             </select>
 
-            
+
             {/* 
             <div className="flex justify-center items-center gap-2 flex-row w-11/12 lg:w-1/2">
                 <input type="checkbox" name="isQuestion" id="isQuestion" className="bg-slate-800 text-white p-5 rounded-lg" />
@@ -110,14 +108,14 @@ export default function Index() {
             </div> 
             */}
 
-            <button 
-                type="submit" 
+            <button
+                type="submit"
                 className={`${isLoading ? "opacity-50" : "hover:bg-green-700 "} bg-green-500 text-white font-bold rounded-lg flex items-center justify-center gap-2 p-4`}
                 disabled={isLoading}
             >
                 <div className={`${isLoading ? "block" : "hidden"} loader w-5 h-5`}></div>
                 <MdSend size={20} className={`${isLoading ? "hidden" : "block"}`} />
-             
+
                 Envoyer
             </button>
             <div className="flex items-center justify-center flex-col">
@@ -128,14 +126,14 @@ export default function Index() {
 
                         <button 
                             className="text-green-500 flex flex-row gap-2"
-                            onClick={() => copyToClipboard(result.id)}
+                            onClick={() => copy(`${window.location.origin}/secretMessage/${result.id}`)}
                             type="button"
                         >
                             <p className="block lg:hidden">Copié</p>
                             <MdContentCopy size={20} />
                         </button>
 
-                        <a 
+                        <a
                             className="text-green-500 flex flex-row gap-2"
                             href={`/secretMessage/${result.id}`}
                             target="_blank"
