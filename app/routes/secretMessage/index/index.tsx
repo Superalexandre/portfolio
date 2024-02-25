@@ -2,6 +2,8 @@ import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node"
 import { Form, useActionData, useNavigation } from "@remix-run/react"
 import { MdContentCopy, MdOpenInNew, MdSend } from "react-icons/md"
 
+import { getUser } from "~/session.server"
+
 import createMessage from "./createMessage"
 import type { Ambiance, BackgroundColor } from "./createMessage"
 
@@ -49,10 +51,8 @@ export async function action({ request }: ActionFunctionArgs) {
         id: null
     })
 
-    const result = createMessage(stringMessage, stringAuthor, { isQuestion, ambiance, backgroundColor })
-
-    // Fake 2 seconds loading
-    // await new Promise(resolve => setTimeout(resolve, 30_000))
+    const account = await getUser(request)
+    const result = createMessage(stringMessage, stringAuthor, account, { isQuestion, ambiance, backgroundColor })
 
     return json({
         success: true,

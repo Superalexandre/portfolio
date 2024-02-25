@@ -15,7 +15,8 @@ interface Params {
     backgroundColor: BackgroundColor
 }
 
-export default function createMessage(message: string, author: string, { isQuestion, ambiance, backgroundColor }: Params = { isQuestion: false, ambiance: "normal", backgroundColor: "dark" }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function createMessage(message: string, author: string, account: any, { isQuestion, ambiance, backgroundColor }: Params = { isQuestion: false, ambiance: "normal", backgroundColor: "dark" }) {
     const sqlite = new Database(databasePath, { fileMustExist: true })
     const db = drizzle(sqlite)
 
@@ -23,7 +24,7 @@ export default function createMessage(message: string, author: string, { isQuest
 
     const id = uuid()
     const secretCode = Math.random().toString(36).substring(2, 6)
-    
+
     db.insert(secretMessages).values({
         id: id,
         secretCode: secretCode,
@@ -32,7 +33,8 @@ export default function createMessage(message: string, author: string, { isQuest
         createdAt: new Date().toISOString(),
         isQuestion: isQuestion,
         ambiance,
-        backgroundColor
+        backgroundColor,
+        userId: account?.id || null
     }).run()
 
     return {

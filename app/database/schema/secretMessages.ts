@@ -1,5 +1,7 @@
 import { text, sqliteTable, integer } from "drizzle-orm/sqlite-core"
 
+import { accounts } from "./accounts"
+
 export const secretMessages = sqliteTable("secret_messages", {
     id: text("id")
         .primaryKey()
@@ -25,4 +27,6 @@ export const secretMessages = sqliteTable("secret_messages", {
     ambiance: text("ambiance", { enum: ["normal", "confetti", "love", "rain"] })
         .notNull()
         .default("normal"),
+    userId: text("user_id")
+        .references(() => accounts.id)
 })

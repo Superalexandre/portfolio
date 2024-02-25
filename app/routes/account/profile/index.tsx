@@ -1,64 +1,94 @@
-import { ActionFunctionArgs, json, redirect } from "@remix-run/node"
-import { Form, useLoaderData } from "@remix-run/react"
-import { MdLogout } from "react-icons/md"
+import { MetaFunction } from "@remix-run/node"
+import { Form, Link, Outlet, useLocation, useNavigation } from "@remix-run/react"
+import { useState } from "react"
+import { MdLogout, MdMenu, MdPerson, MdSettings, MdSms } from "react-icons/md"
 
-import { getUserToken } from "~/session.server"
-
-import getProfile from "./getProfile"
-
-export async function loader({ request }: ActionFunctionArgs) {
-    const session = await getUserToken(request)
-    if (!session) return redirect("/account/login")
-
-    const profile = await getProfile(session)
-    if (!profile) return redirect("/account/login")
-
-    return json({
-        profile
-    })
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Votre profile" },
+        { name: "description", content: "Votre profile" },
+    ]
 }
 
 export default function Index() {
-    const { profile } = useLoaderData<typeof loader>()
-
-    const date = new Date()
-    const greeting = date.getHours() < 12 ? "Bonjour," : "Bonsoir,"
+    const navigation = useNavigation()
+    const location = useLocation()
 
     return (
         <div className="bg-slate-700 min-w-full h-full min-h-screen flex flex-row">
-            <SideBar />
+            <SideBar 
+                location={location.pathname}
+            />
 
-            <div className="flex flex-row justify-center w-full">
-                <div className="flex flex-col items-center gap-4 m-4">
-                    <img
-                        src={`https://api.dicebear.com/7.x/bottts/png?seed=${profile.avatarSeed}`}
-                        alt={`${profile.username} avatar`}
-                        className="w-24 h-24 rounded-full"
-                    />
+            <div className={`${navigation.state === "loading" ? "block" : "hidden"} w-full min-h-full flex flex-col justify-center items-center gap-4`}>
+                <div className="loader h-40 w-40" />
+                <p className="text-center text-white">Chargement...</p>
+            </div>
 
-                    <h1 className="text-2xl text-center text-white">
-                        {greeting} {profile.username}
-                    </h1>
-                </div>
+            <div className={`${navigation.state === "loading" ? "hidden" : "block"} w-full min-h-full`}>
+                <Outlet />
             </div>
         </div>
     )
 }
 
-const SideBar = () => {
-    return (
-        <div className="bg-slate-800 w-52 h-auto flex flex-col justify-between items-center py-4">
-            <div className="h-auto flex flex-col gap-4 items-center justify-center">
-                <p className="text-center text-white">Mes messages</p>
-                <p className="text-center text-white">Paramètres</p>
-            </div>
-            <Form action="/account/logout" method="post">
-                <button type="submit" className="text-center text-white flex flex-row items-center justify-center gap-2">
-                    <MdLogout />
+const SideBar = ({ location = "/account/profile/" }: { location: string | undefined }) => {
+    const [open, setOpen] = useState(false)
 
-                    Déconnexion
-                </button>
-            </Form>
-        </div>
+    return (
+        <>
+            <button
+                className={`absolute top-0 left-0 m-4 lg:hidden ${open ? "rotate-90" : ""} transition-all duration-150`}
+                onClick={() => setOpen(!open)}
+            >
+                <MdMenu 
+                    className="text-white" 
+                    size={24}
+                />
+            </button>
+            <div
+                className={`absolute top-0 left-0 w-full h-full opacity-60 bg-black lg:hidden ${open ? "block" : "hidden"}`}
+                onClick={() => setOpen(false)}
+            >
+            </div>
+
+            <div className={`${open ? "translate-x-0" : "-translate-x-full"} bg-slate-800 min-w-52 h-full flex flex-col justify-between items-center py-4 lg:translate-x-0 fixed transition-all duration-150 z-10`}>
+                <div className="h-auto flex flex-col gap-4 items-center justify-center">
+                    <Link
+                        to={"/account/profile"}
+                        className={`${location === "/account/profile" ? "!text-slate-500" : ""} text-center text-white hover:text-slate-400 flex flex-row items-center justify-center gap-2`}
+                    >
+                        <MdPerson />
+
+                        Mon profile
+                    </Link>
+                    
+                    <Link 
+                        to={"/account/profile/my-message"}
+                        className={`${location === "/account/profile/my-message" ? "!text-slate-500" : ""} text-center text-white hover:text-slate-400 flex flex-row items-center justify-center gap-2`}
+                    >
+                        <MdSms />
+
+                        Mes messages
+                    </Link>
+
+                    <Link
+                        to={"/account/profile/settings"}
+                        className={`${location === "/account/profile/settings" ? "!text-slate-500" : ""} text-center text-white hover:text-slate-400 flex flex-row items-center justify-center gap-2`}
+                    >
+                        <MdSettings />
+
+                        Paramètres
+                    </Link>
+                </div>
+                <Form action="/account/logout" method="post">
+                    <button type="submit" className="text-center text-white hover:text-slate-400 flex flex-row items-center justify-center gap-2">
+                        <MdLogout />
+
+                        Déconnexion
+                    </button>
+                </Form>
+            </div>
+        </>
     )
 }

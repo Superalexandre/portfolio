@@ -1,5 +1,12 @@
 import { createCookieSessionStorage } from "@remix-run/node"
 import { redirect } from "@remix-run/node"
+import Database from "better-sqlite3"
+import { eq } from "drizzle-orm"
+import { drizzle } from "drizzle-orm/better-sqlite3"
+import { migrate } from "drizzle-orm/better-sqlite3/migrator"
+
+import { databasePath, migrationsFolder } from "~/database/path"
+import { accounts } from "~/database/schema/accounts"
 
 const SESSION_KEY = "token"
 const MAX_AGE = 60 * 60 * 24 * 7 // 7 days
@@ -63,10 +70,22 @@ export async function getUser(request: Request) {
 
     if (!token) return null
 
-    return token
-}
+    const sqlite = new Database(databasePath, { fileMustExist: true })
+    const db = drizzle(sqlite)
 
-// export async function getUserSession(request: Request) {
-//     const session = await getSession(request)
-//     return session.get(SESSION_KEY)
-// }
+    migrate(db, { migrationsFolder: migrationsFolder })
+
+    const users = await db
+        .select()
+        .from(accounts)
+        .where(
+            eq(accounts.token, token)
+        )
+        .execute()
+
+    if (!users || users.length === 0 || !users[0]) return null
+    
+    const user = users[0]
+
+    return user
+}
