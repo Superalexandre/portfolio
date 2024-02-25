@@ -110,8 +110,8 @@ export default function Index() {
                 {errors.password ? <span className={errorClass}>{errors.password.message}</span> : null}
             </div>
 
-            <a href="/account/register" className="text-white underline hover:text-slate-400">Pas encore de compte ? Inscrivez-vous !</a>
-            {/* <a href="/account/forgot-password" className="text-white underline hover:text-slate-400">Mot de passe oublié ?</a> */}
+            <a href="/account/register" className="text-white underline hover:text-slate-400 text-center">Pas encore de compte ? Inscrivez-vous !</a>
+            {/* <a href="/account/forgot-password" className="text-white underline hover:text-slate-400 text-center">Mot de passe oublié ?</a> */}
 
             <button
                 type="submit"

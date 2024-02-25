@@ -244,7 +244,7 @@ export default function Index() {
                 {errors.passwordConfirmation ? <span className={errorClass}>{errors.passwordConfirmation.message}</span> : null}
             </div>
 
-            <a href="/account/login" className="text-white underline hover:text-slate-400">Déjà un compte ? Connectez-vous</a>
+            <a href="/account/login" className="text-white underline hover:text-slate-400 text-center">Déjà un compte ? Connectez-vous</a>
 
             <button
                 type="submit"
