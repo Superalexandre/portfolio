@@ -1,0 +1,53 @@
+name: Run action
+on:
+  - push
+jobs:
+  install:
+    name: 📦 Install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm install
+  lint:
+    name: 🧹 Lint
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm run lint
+  depcheck:
+    name: 📦 Depcheck
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm run depcheck
+  deploy:
+    name: 🚀 Deploy
+    runs-on: ubuntu-latest
+    needs: [install, lint, depcheck]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm run deploy
+  timeline:
+    name: 🕒 Timeline
+    runs-on: ubuntu-latest
+    needs: [install, lint, depcheck, deploy]
+    steps:
+      - uses: Kesin11/actions-timeline@v2
