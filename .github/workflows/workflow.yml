@@ -30,18 +30,22 @@ jobs:
       - name: 🧹 Lint
         # continue-on-error: true
         id: lint
-        run: npm run lint
+        # run: npm run lint
+        run: eslint --ext .js,.jsx,.ts,.tsx .
       - name: 📦 Depcheck
         # continue-on-error: true
         id: depcheck
-        run: npm run depcheck
+        # run: npm run depcheck
+        run: depcheck --ignores '~,ts-node,@typescript-eslint/eslint-plugin'
       - name: ♻️ Duplicate
         # continue-on-error: true
         id: duplicate
-        run: npm run duplicate
+        # run: npm run duplicate
+        run: npx jscpd ./app
       - name: 🚀 Check deploy
         id: deploy
-        run: npm run deploy
+        # run: npm run deploy
+        run: npm i && npm run tailwind:css && npm run build && npm run db:migration && tsc --p tsconfigServer.json
   timeline:
     name: 🕒 Timeline
     runs-on: ubuntu-latest
