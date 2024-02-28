@@ -11,11 +11,11 @@ on:
         description: "By default, the commit entered above is compared to the one directly before it; to go back further, enter an earlier SHA here"
         required: false
 jobs:
-  build:
+  check:
     runs-on: "ubuntu-latest"
     steps:
       - uses: "actions/checkout@v4"
-      - name: TODO to Issue
+      - name: 📝 TODO to Issue
         uses: "alstr/todo-to-issue-action@v4.12.3"
         with:
           AUTO_ASSIGN: true
