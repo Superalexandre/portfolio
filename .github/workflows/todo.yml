@@ -20,4 +20,4 @@ jobs:
         uses: "alstr/todo-to-issue-action@v4.12.3"
         with:
           AUTO_ASSIGN: true
-          IDENTIFIERS: '[{"name": "TODO", "labels": []}, {"name": "FIXME", "labels": ["bug"]}, {"name": "FIX", "labels": ["bug"]}, {"name": "eslint-disable-next-line", "labels": ["types"]}]'
+          IDENTIFIERS: '[{"name": "TODO", "labels": ["type/todo"]},{"name": "FIXME", "labels": ["type/bug"]},{"name": "FIX", "labels": ["type/bug"]},{"name": "eslint-disable-next-line", "labels": ["type/types"]}]'
