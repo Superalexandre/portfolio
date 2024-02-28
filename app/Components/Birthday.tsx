@@ -1,7 +1,7 @@
 import { useWindowSize } from "@react-hookz/web"
 import Confetti from "react-confetti"
 
-import information from "~/Data/informations"
+import information from "@/informations/informations"
 
 export default function Birthday({ children }: { children: React.ReactNode }) {
     const { width, height } = useWindowSize()

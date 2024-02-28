@@ -3,11 +3,12 @@ import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { MdSchool } from "react-icons/md"
 
-import { schools as schoolsData } from "~/Data/schools"
-import { School as SchoolType } from "~/Data/schools"
+import { schools as schoolsData } from "@/informations/schools"
+import { School as SchoolType } from "@/informations/schools"
 
+import { DateOptions, formatDate } from "../../utils/date"
 import Card from "../Card"
-import { DateOptions, formatDate } from "../utils/date"
+
 
 export default function Schools() {
     const { t, i18n } = useTranslation("common")

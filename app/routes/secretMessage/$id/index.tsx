@@ -4,7 +4,7 @@ import { Form, useActionData, useLoaderData } from "@remix-run/react"
 import React from "react"
 import Confetti from "react-confetti"
 
-import { formatDate } from "~/Components/utils/date"
+import { formatDate } from "~/utils/date"
 
 import addView from "./addView"
 import getMessage from "./getMessage"

@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next"
 import stylesheet from "~/tailwind.css"
 
 import Birthday from "./Components/Birthday"
-import ErrorBoundary from "./Errors/error"
+import ErrorBoundary from "./errors/error"
 
 export const links: LinksFunction = () => [
     // ...(process.env.NODE_ENV === "development" ? [{ rel: "stylesheet", href: stylesheet }] : []),

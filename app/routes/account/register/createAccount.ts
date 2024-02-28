@@ -7,8 +7,8 @@ import { drizzle } from "drizzle-orm/better-sqlite3"
 import { migrate } from "drizzle-orm/better-sqlite3/migrator"
 import { v4 as uuid } from "uuid"
 
-import { databasePath, migrationsFolder } from "~/database/path"
-import { accounts } from "~/database/schema/accounts"
+import { databasePath, migrationsFolder } from "@/database/path"
+import { accounts } from "@/database/schema/accounts"
 import { createUserSession } from "~/session.server"
 
 

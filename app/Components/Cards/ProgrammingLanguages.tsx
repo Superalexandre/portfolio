@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next"
 import { MdComputer } from "react-icons/md"
 
-import type { ProgrammingLanguage as ProgrammingLanguageType } from "~/Data/programmingLanguages"
-import programmingLanguages from "~/Data/programmingLanguages"
+
+import type { ProgrammingLanguage as ProgrammingLanguageType } from "@/informations/programmingLanguages"
+import programmingLanguages from "@/informations/programmingLanguages"
 
 import Card from "../Card"
 

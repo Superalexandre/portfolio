@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { MdLanguage } from "react-icons/md"
 
-import useChangeLanguage from "./utils/useChangeLanguage"
+import useChangeLanguage from "../hooks/useChangeLanguage"
 
 export default function Language() {
     const { i18n } = useTranslation()

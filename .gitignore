@@ -12,6 +12,6 @@ logger/*.js
 tsconfig.tsbuildinfo
 tsconfigServer.tsbuildinfo
 
-/app/database/sqlite.db
-/app/database/migrations
+/database/sqlite.db
+/database/migrations
 /app/tailwind-minify.css

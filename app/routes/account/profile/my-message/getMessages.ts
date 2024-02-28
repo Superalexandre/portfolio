@@ -3,9 +3,9 @@ import { desc, eq } from "drizzle-orm"
 import { drizzle } from "drizzle-orm/better-sqlite3"
 import { migrate } from "drizzle-orm/better-sqlite3/migrator"
 
+import { databasePath, migrationsFolder } from "@/database/path"
+import { secretMessages } from "@/database/schema/secretMessages"
 import User from "@/types/User"
-import { databasePath, migrationsFolder } from "~/database/path"
-import { secretMessages } from "~/database/schema/secretMessages"
 
 export default async function getMessages(user: User) {
     const sqlite = new Database(databasePath, { fileMustExist: true })

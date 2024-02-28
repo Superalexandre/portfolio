@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next"
 
-import information from "~/Data/informations"
+import information from "@/informations/informations"
 
+import { DateOptions, formatDate } from "../../utils/date"
 import Card from "../Card"
-import { DateOptions, formatDate } from "../utils/date"
-import YearsOld from "../utils/YearsOld"
+import YearsOld from "../YearsOld"
 
 export default function NameCard() {
     const { t, i18n } = useTranslation()

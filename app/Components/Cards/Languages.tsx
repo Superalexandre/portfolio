@@ -2,8 +2,9 @@ import { TFunction } from "i18next"
 import { useTranslation } from "react-i18next"
 import { MdLanguage } from "react-icons/md"
 
-import type { Language as LanguageType } from "~/Data/languages"
-import languages from "~/Data/languages"
+
+import type { Language as LanguageType } from "@/informations/languages"
+import languages from "@/informations/languages"
 
 import Card from "../Card"
 

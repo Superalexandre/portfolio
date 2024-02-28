@@ -5,9 +5,10 @@ import { TFunction, i18n as i18nType } from "i18next"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 
-import useChangeLanguage from "~/Components/utils/useChangeLanguage"
-import information from "~/Data/informations"
-import schools from "~/Data/schools"
+
+import information from "@/informations/informations"
+import schools from "@/informations/schools"
+import useChangeLanguage from "~/hooks/useChangeLanguage"
 
 export const meta: MetaFunction = () => {
     return [

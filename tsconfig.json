@@ -38,6 +38,12 @@
             "@/types/*": [
                 "./types/*"
             ],
+            "@/database/*": [
+                "./database/*"
+            ],
+            "@/informations/*": [
+                "./informations/*"
+            ],
         },
         "types": [
             "node"
