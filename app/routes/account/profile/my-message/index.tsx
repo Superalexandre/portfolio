@@ -1,7 +1,7 @@
 import { ActionFunctionArgs, json, redirect } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 
-import User from "types/User"
+import User from "@/types/User"
 import { getUser } from "~/session.server"
 
 import getMessages from "./getMessages"

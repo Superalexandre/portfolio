@@ -3,7 +3,7 @@ import { drizzle } from "drizzle-orm/better-sqlite3"
 import { migrate } from "drizzle-orm/better-sqlite3/migrator"
 import { v4 as uuid } from "uuid"
 
-import User from "types/User"
+import User from "@/types/User"
 import { databasePath, migrationsFolder } from "~/database/path"
 import { secretMessages } from "~/database/schema/secretMessages"
 
