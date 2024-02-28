@@ -31,7 +31,7 @@ jobs:
         # continue-on-error: true
         id: lint
         # run: npm run lint
-        run: eslint --ext .js,.jsx,.ts,.tsx .
+        run: npx eslint --ext .js,.jsx,.ts,.tsx .
       - name: 📦 Depcheck
         # continue-on-error: true
         id: depcheck
