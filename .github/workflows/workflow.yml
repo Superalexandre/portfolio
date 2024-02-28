@@ -6,21 +6,27 @@ jobs:
     name: 📦 Install
     runs-on: ubuntu-latest
     steps:
-      - name: Cache dependencies
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Attempt to restore the cache
+        uses: actions/cache@v3
         id: cache
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            ${{ runner.os }}-
+      - name: Install dependencies if cache miss
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Save the cache after installing dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         uses: actions/cache@v3
         with:
           path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci --ignore-scripts
-      # - uses: actions/checkout@v4
-      # - uses: actions/setup-node@v4
-      #   with:
-      #     node-version: 20
-      #     cache: npm
-      # - run: npm install
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
   lint:
     name: 🧹 Lint
     runs-on: ubuntu-latest
