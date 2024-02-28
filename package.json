@@ -6,6 +6,7 @@
     "scripts": {
         "build": "remix build",
         "dev": "remix dev --manual -c \"node --no-warnings --loader ts-node/esm --watch-path ./server.ts --enable-source-maps ./server.ts\"",
+        "dev:ai": "node --no-warnings --loader ts-node/esm ./ai/ai.ts",
         "start": "node --enable-source-maps ./server.js",
         "typecheck": "tsc",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
@@ -13,11 +14,13 @@
         "deploy": "npm i && npm run tailwind:css && npm run build && npm run db:migration && tsc --p tsconfigServer.json",
         "tailwind:css": "npx tailwindcss -o ./app/tailwind-minify.css --minify",
         "db:migration": "drizzle-kit generate:sqlite --out ./database/migrations --schema ./database/schema/schemas.ts",
+        "db:revert": "drizzle-kit drop",
         "duplicate": "npx jscpd ./app"
     },
     "dependencies": {
         "@hono/node-server": "^1.8.1",
         "@hookform/resolvers": "^3.3.4",
+        "@inquirer/prompts": "^4.1.0",
         "@react-hookz/web": "^24.0.4",
         "@remix-run/css-bundle": "^2.6.0",
         "@remix-run/node": "^2.6.0",
@@ -28,6 +31,7 @@
         "@typescript-eslint/parser": "^7.0.0",
         "bcryptjs": "^2.4.3",
         "better-sqlite3": "^9.4.1",
+        "chalk": "^5.3.0",
         "depcheck": "^1.4.7",
         "dotenv": "^16.4.4",
         "drizzle-orm": "^0.29.3",
@@ -40,6 +44,7 @@
         "i18next-fs-backend": "^2.3.1",
         "i18next-http-backend": "^2.4.3",
         "isbot": "^5.0.0",
+        "node-llama-cpp": "^2.8.8",
         "react": "^18.2.0",
         "react-confetti": "^6.1.0",
         "react-dom": "^18.2.0",

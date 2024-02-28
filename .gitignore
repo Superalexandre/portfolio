@@ -15,3 +15,5 @@ tsconfigServer.tsbuildinfo
 /database/sqlite.db
 /database/migrations
 /app/tailwind-minify.css
+
+/ai/models
