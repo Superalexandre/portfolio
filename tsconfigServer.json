@@ -32,6 +32,20 @@
             "node",
             "./types.d.ts"
         ],
+        "paths": {
+            "~/*": [
+                "./app/*"
+            ],
+            "@/types/*": [
+                "./types/*"
+            ],
+            "@/database/*": [
+                "./database/*"
+            ],
+            "@/informations/*": [
+                "./informations/*"
+            ]
+        },
         "outDir": "."
     }
 }
