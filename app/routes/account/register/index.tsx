@@ -6,8 +6,9 @@ import { MdAdd, MdBadge, MdCalendarMonth, MdEmail, MdPassword, MdVisibility, MdV
 import { getValidatedFormData, useRemixForm } from "remix-hook-form"
 import * as zod from "zod"
 
-import createAccount from "./createAccount"
 import Loader from "~/Components/Loader"
+
+import createAccount from "./createAccount"
 
 const schema = zod.object({
     name: zod
