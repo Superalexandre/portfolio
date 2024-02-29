@@ -183,16 +183,8 @@ const ConfettiComponent = ({ children }: { children: React.ReactNode }) => {
     )
 }
 
-const HeartComponent = ({ children }: { children: React.ReactNode }) => {
-    const numberOfHearts = 50
-    const hearts = Array.from({ length: numberOfHearts }, (_, index) => ({
-        id: index,
-        style: {
-            left: `${Math.random() * 100}vw`,
-            animationDuration: `${Math.random() * 2 + 1}s`,
-            opacity: Math.random(),
-        },
-    }))
+const HeartComponent = ({ children, number = 50 }: { children: React.ReactNode, number?: number }) => {
+    const hearts = generateElements(number)
 
     return (
         <div className="relative h-screen overflow-hidden">
@@ -213,16 +205,8 @@ const HeartComponent = ({ children }: { children: React.ReactNode }) => {
     )
 }
 
-const RainComponent = ({ children }: { children: React.ReactNode }) => {
-    const numberOfHearts = 50
-    const rains = Array.from({ length: numberOfHearts }, (_, index) => ({
-        id: index,
-        style: {
-            left: `${Math.random() * 100}vw`,
-            animationDuration: `${Math.random() * 2 + 1}s`,
-            opacity: Math.random(),
-        },
-    }))
+const RainComponent = ({ children, number = 50 }: { children: React.ReactNode, number?: number }) => {
+    const rains = generateElements(number)
 
     return (
         <div className="relative h-screen overflow-hidden">
@@ -241,4 +225,17 @@ const RainComponent = ({ children }: { children: React.ReactNode }) => {
             {children}
         </div>
     )
+}
+
+const generateElements = (number: number) => {
+    const elements = Array.from({ length: number }, (_, index) => ({
+        id: index,
+        style: {
+            left: `${Math.random() * 100}vw`,
+            animationDuration: `${Math.random() * 2 + 1}s`,
+            opacity: Math.random(),
+        },
+    }))
+
+    return elements
 }

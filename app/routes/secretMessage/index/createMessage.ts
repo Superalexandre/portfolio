@@ -16,7 +16,7 @@ interface Params {
     backgroundColor: BackgroundColor
 }
 
-export default function createMessage(message: string, author: string, account: User, { isQuestion, ambiance, backgroundColor }: Params = { isQuestion: false, ambiance: "normal", backgroundColor: "dark" }) {
+export default function createMessage(message: string, author: string, account: User | null, { isQuestion, ambiance, backgroundColor }: Params = { isQuestion: false, ambiance: "normal", backgroundColor: "dark" }) {
     const sqlite = new Database(databasePath, { fileMustExist: true })
     const db = drizzle(sqlite)
 

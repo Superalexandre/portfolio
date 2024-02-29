@@ -7,6 +7,7 @@ import { migrate } from "drizzle-orm/better-sqlite3/migrator"
 
 import { databasePath, migrationsFolder } from "@/database/path"
 import { accounts } from "@/database/schema/accounts"
+import User from "@/types/User"
 
 const SESSION_KEY = "token"
 const MAX_AGE = 60 * 60 * 24 * 7 // 7 days
@@ -87,5 +88,5 @@ export async function getUser(request: Request) {
     
     const user = users[0]
 
-    return user
+    return user as User
 }

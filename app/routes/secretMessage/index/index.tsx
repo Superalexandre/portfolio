@@ -2,6 +2,7 @@ import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node"
 import { Form, useActionData, useNavigation } from "@remix-run/react"
 import { MdContentCopy, MdOpenInNew, MdSend } from "react-icons/md"
 
+import Loader from "~/Components/Loader"
 import { useCopyToClipboard } from "~/hooks/useCopyToClipboard"
 import { getUser } from "~/session.server"
 
@@ -113,7 +114,8 @@ export default function Index() {
                 className={`${isLoading ? "opacity-50" : "hover:bg-green-700 "} bg-green-500 text-white font-bold rounded-lg flex items-center justify-center gap-2 p-4`}
                 disabled={isLoading}
             >
-                <div className={`${isLoading ? "block" : "hidden"} loader w-5 h-5`}></div>
+                <Loader className={`${isLoading ? "block" : "hidden"} w-5 h-5`}></Loader>
+                
                 <MdSend size={20} className={`${isLoading ? "hidden" : "block"}`} />
 
                 Envoyer

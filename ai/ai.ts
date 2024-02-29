@@ -1,9 +1,12 @@
 import path from "path"
 import { fileURLToPath } from "url"
 
-import { input } from "@inquirer/prompts"
-import chalk from "chalk"
 import { LlamaModel, LlamaContext, LlamaChatSession, Token } from "node-llama-cpp"
+import { Socket } from "socket.io"
+import { DefaultEventsMap } from "socket.io/dist/typed-events"
+import { v4 as uuid } from "uuid"
+
+import AIMessage from "@/types/AIMessage"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -18,49 +21,54 @@ const model = new LlamaModel({
 const context = new LlamaContext({ model })
 const session = new LlamaChatSession({ context, promptWrapper: undefined })
 
-async function main() {
-    // eslint-disable-next-line no-constant-condition
-    while (true) {
-        const message = await input({
-            message: "You :",
-            theme: {
-                prefix: undefined,
-                style: {
-                    message: chalk.cyan
-                }
-            }
-        })
+type SocketParams = Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, unknown>
 
-        if (message === "exit") break
-        if (message === "clear") {
-            console.clear()
-            continue
+async function reply({ socket, message }: { socket: SocketParams, message: string }) {
+    const signal = new AbortController()
+    const id = uuid()
+    
+    socket.emit("message", {
+        id: id,
+        content: "",
+        analyzing: true,
+        date: new Date(),
+        author: "AI"
+    } satisfies AIMessage)
+
+    const startResponse = Date.now()
+    let cachedMessage = ""
+    const rep = await session.prompt(message, {
+        signal: signal.signal,
+        temperature: 0.8,
+        onToken(chunk: Token[]) {
+            cachedMessage += context.decode(chunk)
+
+            socket.emit("message", {
+                id: id,
+                content: cachedMessage,
+                analyzing: false,
+                date: new Date(),
+                author: "AI",
+            } satisfies AIMessage)
         }
+    })
+    const endResponse = Date.now()
 
-        if (message === "context") {
-            console.log(session.context)
-            continue
-        }
+    const time = endResponse - startResponse
+    
+    socket.emit("message", {
+        id: id,
+        content: rep,
+        analyzing: false,
+        date: new Date(),
+        author: "AI",
+        time: time,
+    } satisfies AIMessage)
 
-        const signal = new AbortController()
-
-        const startResponse = Date.now()
-        await session.prompt(message, {
-            signal: signal.signal,
-            temperature: 0.8,
-            onToken(chunk: Token[]) {
-                process.stdout.write(context.decode(chunk))
-            }
-        })
-        const endResponse = Date.now()
-
-        const time = endResponse - startResponse
-        const timeStr = time < 1000 ? `${time}ms` : `${(time / 1000).toFixed(2)}s`
-
-        const color = (text: string) => time < 1000 ? chalk.green(text) : time < 2000 ? chalk.yellow(text) : chalk.red(text)
-
-        console.log(`\n\nTemps : [${color(timeStr)}${chalk.reset()}]`)
-    }
+    return {
+        signal,
+        success: true
+    }    
 }
 
-main()
+export default reply

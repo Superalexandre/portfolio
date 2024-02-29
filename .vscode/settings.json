@@ -9,6 +9,11 @@
         "isbot",
         "kouisine",
         "mcansh",
-        "sudref"
+        "sudref",
+        "Uninstantiated",
+        "UNINSTANTIATED"
+    ],
+    "i18n-ally.localesPaths": [
+        "public/locales"
     ]
 }

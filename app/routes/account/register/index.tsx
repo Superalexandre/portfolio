@@ -7,6 +7,7 @@ import { getValidatedFormData, useRemixForm } from "remix-hook-form"
 import * as zod from "zod"
 
 import createAccount from "./createAccount"
+import Loader from "~/Components/Loader"
 
 const schema = zod.object({
     name: zod
@@ -252,7 +253,7 @@ export default function Index() {
                 disabled={isSubmitting}
             >
                 <MdAdd size={20} className={`${isSubmitting ? "hidden" : "block"}`} />
-                <div className={`${isSubmitting ? "block" : "hidden"} loader w-5 h-5`}></div>
+                <Loader className={`${isSubmitting ? "block" : "hidden"} w-5 h-5`}></Loader>
 
                 Créer un compte
             </button>
