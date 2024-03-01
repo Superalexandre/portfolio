@@ -2,10 +2,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node"
 import { Form } from "@remix-run/react"
 import { useState } from "react"
+import { FieldErrors } from "react-hook-form"
 import { MdAdd, MdBadge, MdCalendarMonth, MdEmail, MdPassword, MdVisibility, MdVisibilityOff } from "react-icons/md"
 import { getValidatedFormData, useRemixForm } from "remix-hook-form"
 import * as zod from "zod"
 
+import { InputForm } from "~/Components/Input"
 import Loader from "~/Components/Loader"
 
 import createAccount from "./createAccount"
@@ -95,9 +97,6 @@ export default function Index() {
     const [showPassword, setShowPassword] = useState(false)
     const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false)
 
-    const inputClass = "flex flex-col justify-center items-start w-11/12 lg:w-1/2"
-    const errorClass = "text-red-500 text-center lg:text-left w-full"
-
     return (
         <Form
             action="/account/register"
@@ -111,142 +110,88 @@ export default function Index() {
                 Créer un compte
             </h1>
 
-            <div className={inputClass}>
-                <label htmlFor="name" className="text-white flex flex-row items-center justify-center gap-2">
-                    <MdBadge size={20} />
+            <InputForm
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Nom"
+                autoComplete="name"
+                errors={errors as FieldErrors}
+                register={register}
+                Icon={MdBadge}
+            />
 
-                    Nom
-                </label>
-                <input
-                    type="text"
-                    {...register("name")}
-                    id="name"
-                    name="name"
-                    placeholder="Nom"
-                    autoComplete="name"
-                    className="bg-slate-800 text-white p-2 rounded w-full"
-                />
-                {errors.name ? <span className={errorClass}>{errors.name.message}</span> : null}
-            </div>
+            <InputForm
+                type="text"
+                name="firstName"
+                id="firstName"
+                placeholder="Prénom"
+                autoComplete="given-name"
+                errors={errors as FieldErrors}
+                register={register}
+                Icon={MdBadge}
+            />
 
-            <div className={inputClass}>
-                <label htmlFor="firstName" className="text-white flex flex-row items-center justify-center gap-2">
-                    <MdBadge size={20} />
-                
-                    Prénom
-                </label>
-                <input
-                    type="text"
-                    {...register("firstName")}
-                    id="firstName"
-                    name="firstName"
-                    placeholder="Prénom"
-                    autoComplete="given-name"
-                    className="bg-slate-800 text-white p-2 rounded w-full"
-                />
-                {errors.firstName ? <span className={errorClass}>{errors.firstName.message}</span> : null}
-            </div>
+            <InputForm
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Pseudo"
+                autoComplete="username"
+                errors={errors as FieldErrors}
+                register={register}
+                Icon={MdBadge}
+            />
 
-            <div className={inputClass}>
-                <label htmlFor="username" className="text-white flex flex-row items-center justify-center gap-2">
-                    <MdBadge size={20} />
+            <InputForm
+                type="date"
+                name="birthDate"
+                id="birthDate"
+                placeholder="Date de naissance"
+                autoComplete="bday-day bday-month bday-year"
+                errors={errors as FieldErrors}
+                register={register}
+                Icon={MdCalendarMonth}
+            />
 
-                    Pseudo
-                </label>
-                <input
-                    type="text"
-                    {...register("username")}
-                    id="username"
-                    name="username"
-                    placeholder="Pseudo"
-                    autoComplete="username"
-                    className="bg-slate-800 text-white p-2 rounded w-full"
-                />
-                {errors.username ? <span className={errorClass}>{errors.username.message}</span> : null}
-            </div>
+            <InputForm
+                type="mail"
+                name="mail"
+                id="mail"
+                placeholder="Email"
+                autoComplete="email"
+                errors={errors as FieldErrors}
+                register={register}
+                Icon={MdEmail}
+            />
 
-            <div className={inputClass}>
-                <label htmlFor="birthDate" className="text-white flex flex-row items-center justify-center gap-2">
-                    <MdCalendarMonth size={20} />
+            <InputForm
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                placeholder="Mot de passe"
+                autoComplete="new-password"
+                errors={errors as FieldErrors}
+                register={register}
+                Icon={MdPassword}
+                ShowButton={<ShowButton show={showPassword} setShow={setShowPassword} />}
+            />
 
-                    Date de naissance
-                </label>
-                <input
-                    type="date"
-                    {...register("birthDate", { valueAsDate: true })}
-                    id="birthDate"
-                    name="birthDate"
-                    placeholder="Date de naissance"
-                    autoComplete="bday-day bday-month bday-year"
-                    className="bg-slate-800 text-white p-2 rounded w-full"
-                />
-                {errors.birthDate ? <span className={errorClass}>{errors.birthDate.message}</span> : null}
-            </div>
+            <InputForm
+                type={showPasswordConfirmation ? "text" : "password"}
+                name="passwordConfirmation"
+                id="passwordConfirmation"
+                placeholder="Confirmation du mot de passe"
+                autoComplete="new-password"
+                errors={errors as FieldErrors}
+                register={register}
+                Icon={MdPassword}
+                ShowButton={<ShowButton show={showPasswordConfirmation} setShow={setShowPasswordConfirmation} />}
+            />
 
-
-            <div className={inputClass}>
-                <label htmlFor="mail" className="text-white flex flex-row items-center justify-center gap-2">
-                    <MdEmail size={20} />
-                
-                    Email
-                </label>
-                <input
-                    type="mail"
-                    {...register("mail")}
-                    id="mail"
-                    name="mail"
-                    placeholder="Email"
-                    autoComplete="email"
-                    className="bg-slate-800 text-white p-2 rounded w-full"
-                />
-                {errors.mail ? <span className={errorClass}>{errors.mail.message}</span> : null}
-            </div>
-
-            <div className={inputClass}>
-                <label htmlFor="password" className="text-white flex flex-row items-center justify-center gap-2">
-                    <MdPassword size={20} />
-                
-                    Mot de passe
-                </label>
-                <div className="relative w-full">
-                    <input
-                        type={showPassword ? "text" : "password"}
-                        {...register("password")}
-                        id="password"
-                        name="password"
-                        placeholder="Mot de passe"
-                        autoComplete="new-password"
-                        className="bg-slate-800 text-white p-2 rounded w-full"
-                    />
-                    <ShowButton show={showPassword} setShow={setShowPassword} />
-                </div>
-
-                {errors.password ? <span className={errorClass}>{errors.password.message}</span> : null}
-            </div>
-
-            <div className={inputClass}>
-                <label htmlFor="passwordConfirmation" className="text-white flex flex-row items-center justify-center gap-2">
-                    <MdPassword size={20} />
-                
-                    Confirmation du mot de passe
-                </label>
-                <div className="relative w-full">
-                    <input
-                        type={showPasswordConfirmation ? "text" : "password"}
-                        {...register("passwordConfirmation")}
-                        id="passwordConfirmation"
-                        name="passwordConfirmation"
-                        placeholder="Confirmation du mot de passe"
-                        autoComplete="new-password"
-                        className="bg-slate-800 text-white p-2 rounded w-full"
-                    />
-                    <ShowButton show={showPasswordConfirmation} setShow={setShowPasswordConfirmation} />
-                </div>
-
-                {errors.passwordConfirmation ? <span className={errorClass}>{errors.passwordConfirmation.message}</span> : null}
-            </div>
-
-            <a href="/account/login" className="text-white underline hover:text-slate-400 text-center">Déjà un compte ? Connectez-vous</a>
+            <a href="/account/login" className="text-white underline hover:text-slate-400 text-center">
+                Déjà un compte ? Connectez-vous
+            </a>
 
             <button
                 type="submit"

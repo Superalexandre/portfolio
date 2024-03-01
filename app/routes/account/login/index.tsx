@@ -2,9 +2,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node"
 import { Form } from "@remix-run/react"
 import { useState } from "react"
+import { FieldErrors } from "react-hook-form"
 import { MdLogin, MdMail, MdPassword, MdVisibility, MdVisibilityOff } from "react-icons/md"
 import { getValidatedFormData, useRemixForm } from "remix-hook-form"
 import * as zod from "zod"
+
+import { InputForm } from "~/Components/Input"
 
 import login from "./login"
 
@@ -49,13 +52,9 @@ export default function Index() {
     } = useRemixForm<FormData>({
         mode: "onSubmit",
         resolver,
-        
     })
 
     const [showPassword, setShowPassword] = useState(false)
-
-    const inputClass = "flex flex-col justify-center items-start w-11/12 lg:w-1/2"
-    const errorClass = "text-red-500 text-center lg:text-left w-full"
 
     return (
         <Form
@@ -70,47 +69,32 @@ export default function Index() {
                 Se connecter
             </h1>
 
-            <div className={inputClass}>
-                <label htmlFor="mailOrUsername" className="text-white flex flex-row items-center justify-center gap-2">
-                    <MdMail size={20} />
-                
-                    Email ou pseudo
-                </label>
-                <input
-                    type="text"
-                    {...register("mailOrUsername")}
-                    id="mailOrUsername"
-                    name="mailOrUsername"
-                    placeholder="Email ou pseudo"
-                    autoComplete="username email"
-                    className="bg-slate-800 text-white p-2 rounded w-full"
-                />
-                {errors.mailOrUsername ? <span className={errorClass}>{errors.mailOrUsername.message}</span> : null}
-            </div>
+            <InputForm
+                type="text"
+                name="mailOrUsername"
+                id="mailOrUsername"
+                placeholder="Email ou pseudo"
+                autoComplete="username email"
+                errors={errors as FieldErrors}
+                register={register}
+                Icon={MdMail}
+            />
 
-            <div className={inputClass}>
-                <label htmlFor="password" className="text-white flex flex-row items-center justify-center gap-2">
-                    <MdPassword size={20} />
+            <InputForm
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                placeholder="Mot de passe"
+                autoComplete="new-password"
+                errors={errors as FieldErrors}
+                register={register}
+                Icon={MdPassword}
+                ShowButton={<ShowButton show={showPassword} setShow={setShowPassword} />}
+            />
 
-                    Mot de passe
-                </label>
-                <div className="relative w-full">
-                    <input
-                        type={showPassword ? "text" : "password"}
-                        {...register("password")}
-                        id="password"
-                        name="password"
-                        placeholder="Mot de passe"
-                        autoComplete="new-password"
-                        className="bg-slate-800 text-white p-2 rounded w-full"
-                    />
-                    <ShowButton show={showPassword} setShow={setShowPassword} />
-                </div>
-
-                {errors.password ? <span className={errorClass}>{errors.password.message}</span> : null}
-            </div>
-
-            <a href="/account/register" className="text-white underline hover:text-slate-400 text-center">Pas encore de compte ? Inscrivez-vous !</a>
+            <a href="/account/register" className="text-white underline hover:text-slate-400 text-center">
+                Pas encore de compte ? Inscrivez-vous !
+            </a>
             {/* <a href="/account/forgot-password" className="text-white underline hover:text-slate-400 text-center">Mot de passe oublié ?</a> */}
 
             <button

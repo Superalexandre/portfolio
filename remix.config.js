@@ -8,7 +8,8 @@ export default {
     publicPath: "/build/",
     serverBuildPath: "build/index.js",
     serverDependenciesToBundle: [
-        "remix-i18next",
+        "remix-i18next/client",
+        "remix-i18next/server",
     ],
     serverModuleFormat: "esm",
     serverPlatform: "node",
