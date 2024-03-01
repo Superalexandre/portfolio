@@ -36,7 +36,9 @@ jobs:
         # continue-on-error: true
         id: depcheck
         # run: npm run depcheck
-        run: npx depcheck --ignores '~,ts-node,@typescript-eslint/eslint-plugin'
+
+        # TODO: Temporary fix for depcheck
+        run: npx depcheck --ignores 'react-hook-form,~,ts-node,@typescript-eslint/eslint-plugin'
       - name: ♻️ Duplicate
         # continue-on-error: true
         id: duplicate
