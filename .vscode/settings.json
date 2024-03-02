@@ -16,5 +16,31 @@
     ],
     "i18n-ally.localesPaths": [
         "public/locales"
+    ],
+    "i18n-ally.sourceLanguage": "fr-FR",
+    "i18n-ally.keystyle": "nested",
+    "i18n-ally.indent": 4,
+    "i18n-ally.pathMatcher": "{locale}/{namespaces}.json",
+    "i18n-ally.namespace": true,
+    "i18n-ally.enabledFrameworks": [
+        "i18next",
+        "react-i18next",
+    ],
+    "i18n-ally.keysInUse": [
+        "common.schools.bts.description",
+        "common.schools.bts.title",
+
+        "common.schools.2nd.description",
+        "common.schools.2nd.title",
+
+        "common.schools.bac.description",
+        "common.schools.bac.title",
+
+        "common.schools.brevet.description",
+        "common.schools.brevet.title",
+
+        "common.languages.fr",
+        "common.languages.en",
+        "common.languages.es",
     ]
 }

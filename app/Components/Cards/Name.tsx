@@ -7,7 +7,7 @@ import Card from "../Card"
 import YearsOld from "../YearsOld"
 
 export default function NameCard() {
-    const { t, i18n } = useTranslation()
+    const { t, i18n } = useTranslation("common")
 
     const options: DateOptions = {
         lang: i18n.language,

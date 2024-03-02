@@ -1,3 +1,4 @@
+import { differenceInYears, differenceInMonths, differenceInDays, differenceInSeconds, differenceInMilliseconds, differenceInMinutes, differenceInHours } from "date-fns"
 import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 
@@ -31,26 +32,25 @@ export default function YearsOld({ className, startDate, endDate }: { className?
 
     useEffect(() => {
         const calculateAge = () => {
-            const age = new Date(endDate || Date.now()).getTime() - new Date(startDate).getTime()
+            const end = new Date(endDate || new Date())
+            const years = differenceInYears(end, new Date(startDate))
 
-            const years = Math.floor(age / (1000 * 60 * 60 * 24 * 365))
+            const totalMonths = differenceInMonths(end, new Date(startDate))
+            const months = Math.floor(totalMonths % 12)
 
-            const totalMonths = Math.floor(age / (1000 * 60 * 60 * 24 * 30))
-            const months = Math.floor((age % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30))
+            const totalDays = differenceInDays(end, new Date(startDate))
+            const days = Math.floor(totalDays % 30.44)
 
-            const totalDays = Math.floor(age / (1000 * 60 * 60 * 24))
-            const days = Math.floor((age % (1000 * 60 * 60 * 24 * 365)) % (1000 * 60 * 60 * 24 * 30) / (1000 * 60 * 60 * 24))
+            const totalHours = differenceInHours(end, new Date(startDate))
+            const hours = totalHours % 24
 
-            const totalHours = Math.floor(age / (1000 * 60 * 60))
-            const hours = Math.floor((age % (1000 * 60 * 60 * 24 * 365)) % (1000 * 60 * 60 * 24 * 30) % (1000 * 60 * 60 * 24) / (1000 * 60 * 60))
+            const totalMinutes = differenceInMinutes(end, new Date(startDate))
+            const minutes = Math.floor(totalMinutes % 60)
 
-            const totalMinutes = Math.floor(age / (1000 * 60))
-            const minutes = Math.floor((age % (1000 * 60 * 60 * 24 * 365)) % (1000 * 60 * 60 * 24 * 30) % (1000 * 60 * 60 * 24) % (1000 * 60 * 60) / (1000 * 60))
+            const totalSeconds = differenceInSeconds(end, new Date(startDate))
+            const seconds = Math.floor(totalSeconds % 60)
 
-            const totalSeconds = Math.floor(age / 1000)
-            const seconds = Math.floor((age % (1000 * 60 * 60 * 24 * 365)) % (1000 * 60 * 60 * 24 * 30) % (1000 * 60 * 60 * 24) % (1000 * 60 * 60) % (1000 * 60) / 1000)
-
-            const totalMilliseconds = Math.floor(age)
+            const totalMilliseconds = differenceInMilliseconds(end, new Date(startDate))
 
             setData((prev) => {
                 return {
@@ -69,9 +69,13 @@ export default function YearsOld({ className, startDate, endDate }: { className?
 
         calculateAge()
 
-        setInterval(() => {
+        const interval = setInterval(() => {
             calculateAge()
         }, 1000)
+
+        return () => {
+            clearInterval(interval)
+        }
     }, [startDate, endDate, t])
 
     return (

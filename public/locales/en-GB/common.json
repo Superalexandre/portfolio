@@ -5,16 +5,20 @@
     "schools": {
         "title": "Educational Background",
         "bts": {
-            "description": "BTS SIO (Computer Services to Organizations) with a specialization in SLAM (Software Solutions and Business Applications) at <link href='/iscb'>ISCB</link> in Tours (37), in apprenticeship at <link href='/ambin'>Ambin Informatique</link>"
+            "description": "BTS SIO (Computer Services to Organizations) with a specialization in SLAM (Software Solutions and Business Applications) at <link href='/iscb'>ISCB</link> in Tours (37), in apprenticeship at <link href='/ambin'>Ambin Informatique</link>",
+            "title": "BTS SIO SLAM"
         },
         "bac": {
-            "description": "Baccalaureate STI2D (Sciences and Technologies of Industry and Sustainable Development) with a specialization in SIN (Information Systems and Digital) at Lycée Grandmont in Tours (37)"
+            "description": "Baccalaureate STI2D (Sciences and Technologies of Industry and Sustainable Development) with a specialization in SIN (Information Systems and Digital) at Lycée Grandmont in Tours (37)",
+            "title": "Bac STI2D SIN"
         },
         "brevet": {
-            "description": "Brevet des Collèges at Collège Jules Michelet in Tours (37) with honors"
+            "description": "Brevet des Collèges at Collège Jules Michelet in Tours (37) with honors",
+            "title": "College certificate"
         },
         "2nd": {
-            "description": "Seconde générale et technologique at Lycée Paul-Louis Courier in Tours (37)"
+            "description": "Seconde générale et technologique at Lycée Paul-Louis Courier in Tours (37)",
+            "title": "General and technological second"
         }
     },
     "languages": {
@@ -67,5 +71,8 @@
                 "invalidArgument": "The color '{{color}}' is not recognized"
             }
         }
+    },
+    "personalProjects": {
+        "title": "Personal projects"
     }
 }

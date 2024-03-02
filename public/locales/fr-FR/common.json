@@ -5,16 +5,20 @@
     "schools": {
         "title": "Parcours scolaire",
         "bts": {
-            "description": "BTS SIO (Services Informatiques aux Organisations) option SLAM (Solutions Logicielles et Applications Métiers) a l'<link href='/iscb'>ISCB</link> de Tours (37) en alternance chez <link href='/ambin'>Ambin Informatique</link>"
+            "description": "BTS SIO (Services Informatiques aux Organisations) option SLAM (Solutions Logicielles et Applications Métiers) a l'<link href='/iscb'>ISCB</link> de Tours (37) en alternance chez <link href='/ambin'>Ambin Informatique</link>",
+            "title": "BTS SIO SLAM"
         },
         "bac": {
-            "description": "Bac STI2D (Sciences et Technologies de l'Industrie et du Développement Durable) option SIN (Systèmes d'Information et Numérique) au lycée Grandmont de Tours (37)"
+            "description": "Bac STI2D (Sciences et Technologies de l'Industrie et du Développement Durable) option SIN (Systèmes d'Information et Numérique) au lycée Grandmont de Tours (37)",
+            "title": "Bac STI2D SIN"
         },
         "brevet": {
-            "description": "Brevet des collèges au collège Jules Michelet de Tours (37) avec mention assez bien"
+            "description": "Brevet des collèges au collège Jules Michelet de Tours (37) avec mention assez bien",
+            "title": "Brevet des collèges"
         },
         "2nd": {
-            "description": "Seconde générale et technologique au lycée Paul-Louis Courier de Tours (37)"
+            "description": "Seconde générale et technologique au lycée Paul-Louis Courier de Tours (37)",
+            "title": "Seconde générale et technologique"
         }
     },
     "languages": {
@@ -67,5 +71,8 @@
                 "invalidArgument": "La couleur {{color}} n’est pas reconnue"
             }
         }
+    },
+    "personalProjects": {
+        "title": "Projet personnels"
     }
 }

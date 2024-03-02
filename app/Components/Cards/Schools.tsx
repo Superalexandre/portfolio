@@ -59,7 +59,7 @@ export default function Schools() {
 }
 
 const School = ({ school, lang, t }: { school: SchoolType, lang: string, t: TFunction<"common", undefined> }) => {
-    const { name, code, startDate, endDate } = school
+    const { code, startDate, endDate } = school
 
     const today = new Date()
     const start = new Date(startDate)
@@ -73,8 +73,8 @@ const School = ({ school, lang, t }: { school: SchoolType, lang: string, t: TFun
     const formattedEndDate = formatDate(end, options)
 
     return (
-        <div className="flex w-5/6 flex-col items-center justify-center gap-4 rounded-lg bg-slate-300 p-4 transition-all duration-300 hover:scale-110 dark:bg-slate-900 lg:w-3/6">
-            <h2 className="text-center text-2xl font-bold dark:text-white">{name} {happeningNow ? t("happeningNow") : ""}</h2>
+        <div className="flex w-5/6 flex-col items-center justify-center gap-4 rounded-lg bg-slate-300 p-4 transition-transform duration-300 hover:scale-110 dark:bg-slate-900 lg:w-3/6">
+            <h2 className="text-center text-2xl font-bold dark:text-white">{t(`schools.${code}.title`)} {happeningNow ? t("happeningNow") : ""}</h2>
             <p className="text-center dark:text-white">{formattedStartDate} -{">"} {formattedEndDate}</p>
             <Description code={code} t={t} />
         </div>
