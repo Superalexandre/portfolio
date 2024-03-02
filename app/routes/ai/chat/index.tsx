@@ -70,24 +70,24 @@ export default function Index() {
     )
 
     return (
-        <div className="bg-slate-700 min-w-full h-full min-h-screen flex flex-col justify-between">
-            <div className="m-4 max-h-[85vh] min-h-[85vh] overflow-auto border-slate-600 border-2 rounded-lg flex flex-col gap-4">
+        <div className="flex h-full min-h-screen min-w-full flex-col justify-between bg-slate-700">
+            <div className="m-4 flex max-h-[85vh] min-h-[85vh] flex-col gap-4 overflow-auto rounded-lg border-2 border-slate-600">
                 {messages.length === 0 ?
-                    <div className="min-h-fit flex flex-col justify-center items-center">
-                        <p className="text-white text-lg text-center">Aucun message</p>
-                        <p className="text-gray-400 text-sm text-center">Commencer a écrire !</p>
+                    <div className="flex min-h-fit flex-col items-center justify-center">
+                        <p className="text-center text-lg text-white">Aucun message</p>
+                        <p className="text-center text-sm text-gray-400">Commencer a écrire !</p>
                     </div> :
                     <Messages messages={messages} />
                 }
             </div>
 
-            <div className="h-16 gap-4 m-4 flex flex-row">
+            <div className="m-4 flex h-16 flex-row gap-4">
                 <input
                     type="text"
                     id="prompt"
                     name="prompt"
                     placeholder="Entrez votre message"
-                    className="bg-slate-800 text-white p-2 rounded w-full h-full"
+                    className="h-full w-full rounded bg-slate-800 p-2 text-white"
                     ref={input}
                     onKeyDown={(e) => {
                         if (e.key === "Enter") handleMessage()
@@ -96,7 +96,7 @@ export default function Index() {
 
                 <button
                     onClick={handleMessage}
-                    className="bg-green-500 text-white p-2 rounded flex flex-row items-center justify-center gap-2 w-32 h-full"
+                    className="flex h-full w-32 flex-row items-center justify-center gap-2 rounded bg-green-500 p-2 text-white"
                 >
                     <MdSend size={20} />
 
@@ -113,7 +113,7 @@ const Messages = ({ messages }: { messages: AIMessage[] }) => {
         const classDot = `h-4 w-4 bg-white rounded-full animate-bounce ${classNameDot}`
         
         return (
-            <div className={`flex gap-2 items-center justify-center w-auto ${className}`}>
+            <div className={`flex w-auto items-center justify-center gap-2 ${className}`}>
                 <span className='sr-only'>Loading...</span>
                 <div className={`${classDot} [animation-delay:-0.3s]`}></div>
                 <div className={`${classDot} [animation-delay:-0.15s]`}></div>
@@ -136,19 +136,19 @@ const Messages = ({ messages }: { messages: AIMessage[] }) => {
 
     return messages.map((message, index) => (
         <div
-            className="p-2 flex flex-col"
+            className="flex flex-col p-2"
             key={index}
         >
             <p className={`${message.author === "User" ? "text-blue-500" : "text-purple-500"} font-bold`}>
                 {message.author} :
 
-                {message.time ? <span className="text-gray-400 text-sm ml-2">({message.time}ms)</span> : null}
+                {message.time ? <span className="ml-2 text-sm text-gray-400">({message.time}ms)</span> : null}
             </p>
 
             {message.analyzing ?
                 <Thinking /> :
                 <Markdown
-                    className="text-white prose"
+                    className="prose text-white"
                 >
                     {message.content}
                 </Markdown>

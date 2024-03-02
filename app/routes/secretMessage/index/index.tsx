@@ -76,25 +76,25 @@ export default function Index() {
         <Form
             method="post"
             action="/secretMessage"
-            className="bg-slate-700 min-w-full h-full min-h-screen flex justify-center items-center flex-col gap-4"
+            className="flex h-full min-h-screen min-w-full flex-col items-center justify-center gap-4 bg-slate-700"
         >
             <textarea
                 name="message"
                 id="message"
-                className="bg-slate-800 text-white p-5 rounded-lg w-11/12 lg:w-1/2 h-96"
+                className="h-96 w-11/12 rounded-lg bg-slate-800 p-5 text-white lg:w-1/2"
                 placeholder="Entrez votre message secret"
             >
             </textarea>
 
-            <input type="text" name="author" id="author" className="bg-slate-800 text-white p-5 rounded-lg w-11/12 lg:w-1/2" placeholder="Entrez votre nom (vide si Anonyme)" />
+            <input type="text" name="author" id="author" className="w-11/12 rounded-lg bg-slate-800 p-5 text-white lg:w-1/2" placeholder="Entrez votre nom (vide si Anonyme)" />
 
-            <select name="backgroundColor" id="backgroundColor" className="bg-slate-800 text-white p-5 rounded-lg w-11/12 lg:w-1/2">
+            <select name="backgroundColor" id="backgroundColor" className="w-11/12 rounded-lg bg-slate-800 p-5 text-white lg:w-1/2">
                 <option value="dark">Fond sombre</option>
                 <option value="white">Fond blanc</option>
                 <option value="pink">Fond rose</option>
             </select>
 
-            <select name="ambiance" id="ambiance" className="bg-slate-800 text-white p-5 rounded-lg w-11/12 lg:w-1/2">
+            <select name="ambiance" id="ambiance" className="w-11/12 rounded-lg bg-slate-800 p-5 text-white lg:w-1/2">
                 <option value="normal">Normal</option>
                 <option value="confetti">Confetti</option>
                 <option value="love">Love</option>
@@ -111,23 +111,23 @@ export default function Index() {
 
             <button
                 type="submit"
-                className={`${isLoading ? "opacity-50" : "hover:bg-green-700 "} bg-green-500 text-white font-bold rounded-lg flex items-center justify-center gap-2 p-4`}
+                className={`${isLoading ? "opacity-50" : "hover:bg-green-700 "} flex items-center justify-center gap-2 rounded-lg bg-green-500 p-4 font-bold text-white`}
                 disabled={isLoading}
             >
-                <Loader className={`${isLoading ? "block" : "hidden"} w-5 h-5`}></Loader>
+                <Loader className={`${isLoading ? "block" : "hidden"} h-5 w-5`}></Loader>
                 
                 <MdSend size={20} className={`${isLoading ? "hidden" : "block"}`} />
 
                 Envoyer
             </button>
-            <div className="flex items-center justify-center flex-col">
+            <div className="flex flex-col items-center justify-center">
                 {result?.success ? <p className="text-green-500">{result.message}</p> : null}
                 {result?.id ?
-                    <div className="flex items-center justify-center flex-col lg:flex-row gap-6 lg:gap-2">
+                    <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-2">
                         <p className="text-green-500">ID: {result.id}</p>
 
                         <button 
-                            className="text-green-500 flex flex-row gap-2"
+                            className="flex flex-row gap-2 text-green-500"
                             onClick={() => copy(`${window.location.origin}/secretMessage/${result.id}`)}
                             type="button"
                         >
@@ -136,7 +136,7 @@ export default function Index() {
                         </button>
 
                         <a
-                            className="text-green-500 flex flex-row gap-2"
+                            className="flex flex-row gap-2 text-green-500"
                             href={`/secretMessage/${result.id}`}
                             target="_blank"
                             rel="noreferrer"
@@ -146,7 +146,7 @@ export default function Index() {
                         </a>
                     </div>
                     : null}
-                {result?.error ? <p className="text-red-500 text-center">{result.message}</p> : null}
+                {result?.error ? <p className="text-center text-red-500">{result.message}</p> : null}
             </div>
         </Form>
     )

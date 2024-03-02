@@ -19,17 +19,17 @@ export default function NameCard() {
     return (
         <Card>
             <div className="flex flex-col items-center justify-center">
-                <h1 className="dark:text-white font-bold text-3xl text-center">Alexandre RENARD</h1>
+                <h1 className="text-center text-3xl font-bold dark:text-white">Alexandre RENARD</h1>
             </div>
             <div className="flex flex-col items-center justify-center">
-                <p className="dark:text-white text-center">{t("description")}</p>
+                <p className="text-center dark:text-white">{t("description")}</p>
 
                 <YearsOld
-                    className="dark:text-white dark:hover:text-main-color hover:text-main-color"
+                    className="hover:text-main-color dark:text-white dark:hover:text-main-color"
                     startDate={information.birthDate}
                 />
 
-                <p className="dark:text-white text-center">{t("born")} {formatDate(information.birthDate, options)}</p>
+                <p className="text-center dark:text-white">{t("born")} {formatDate(information.birthDate, options)}</p>
             </div>
         </Card>
     )

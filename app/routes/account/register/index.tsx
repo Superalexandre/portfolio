@@ -2,11 +2,11 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node"
 import { Form } from "@remix-run/react"
 import { useState } from "react"
-import { FieldErrors } from "react-hook-form"
 import { MdAdd, MdBadge, MdCalendarMonth, MdEmail, MdPassword, MdVisibility, MdVisibilityOff } from "react-icons/md"
 import { getValidatedFormData, useRemixForm } from "remix-hook-form"
 import * as zod from "zod"
 
+import type { FieldErrors } from "@/types/forms/FieldErrors"
 import { InputForm } from "~/Components/Input"
 import Loader from "~/Components/Loader"
 
@@ -102,9 +102,9 @@ export default function Index() {
             action="/account/register"
             method="post"
             onSubmit={handleSubmit}
-            className="bg-slate-700 min-w-full h-full min-h-screen flex justify-center items-center flex-col gap-4"
+            className="flex h-full min-h-screen min-w-full flex-col items-center justify-center gap-4 bg-slate-700"
         >
-            <h1 className="text-white text-3xl font-bold text-center flex flex-row items-center justify-center gap-2">
+            <h1 className="flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold text-white">
                 <MdAdd size={30} />
 
                 Créer un compte
@@ -189,17 +189,17 @@ export default function Index() {
                 ShowButton={<ShowButton show={showPasswordConfirmation} setShow={setShowPasswordConfirmation} />}
             />
 
-            <a href="/account/login" className="text-white underline hover:text-slate-400 text-center">
+            <a href="/account/login" className="text-center text-white underline hover:text-slate-400">
                 Déjà un compte ? Connectez-vous
             </a>
 
             <button
                 type="submit"
-                className={`${isSubmitting ? "opacity-50" : "hover:bg-green-700"} bg-green-500 text-white p-4 rounded flex flex-row justify-center items-center gap-2`}
+                className={`${isSubmitting ? "opacity-50" : "hover:bg-green-700"} flex flex-row items-center justify-center gap-2 rounded bg-green-500 p-4 text-white`}
                 disabled={isSubmitting}
             >
                 <MdAdd size={20} className={`${isSubmitting ? "hidden" : "block"}`} />
-                <Loader className={`${isSubmitting ? "block" : "hidden"} w-5 h-5`}></Loader>
+                <Loader className={`${isSubmitting ? "block" : "hidden"} h-5 w-5`}></Loader>
 
                 Créer un compte
             </button>
@@ -212,7 +212,7 @@ const ShowButton = ({ show, setShow }: { show: boolean, setShow: (show: boolean)
         <button
             type="button"
             onClick={() => setShow(!show)}
-            className="text-white absolute right-0 top-0 bottom-0 mr-3 hover:text-slate-400"
+            className="absolute bottom-0 right-0 top-0 mr-3 text-white hover:text-slate-400"
             aria-label="Afficher le mot de passe"
         >
             <MdVisibility size={20} className={`${show ? "hidden" : "block"}`} />

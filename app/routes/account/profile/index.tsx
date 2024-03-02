@@ -15,17 +15,17 @@ export default function Index() {
     const location = useLocation()
 
     return (
-        <div className="bg-slate-700 min-w-full h-full min-h-screen flex flex-row">
+        <div className="flex h-full min-h-screen min-w-full flex-row bg-slate-700">
             <SideBar 
                 location={location.pathname}
             />
 
-            <div className={`${navigation.state === "loading" ? "block" : "hidden"} w-full min-h-full flex flex-col justify-center items-center gap-4`}>
+            <div className={`${navigation.state === "loading" ? "block" : "hidden"} flex min-h-full w-full flex-col items-center justify-center gap-4`}>
                 <div className="loader h-40 w-40" />
                 <p className="text-center text-white">Chargement...</p>
             </div>
 
-            <div className={`${navigation.state === "loading" ? "hidden" : "block"} w-full min-h-full`}>
+            <div className={`${navigation.state === "loading" ? "hidden" : "block"} min-h-full w-full`}>
                 <Outlet />
             </div>
         </div>
@@ -38,7 +38,7 @@ const SideBar = ({ location = "/account/profile/" }: { location: string | undefi
     return (
         <>
             <button
-                className={`absolute top-0 left-0 m-4 lg:hidden ${open ? "rotate-90" : ""} transition-all duration-150`}
+                className={`absolute left-0 top-0 m-4 lg:hidden ${open ? "rotate-90" : ""} transition-all duration-150`}
                 onClick={() => setOpen(!open)}
             >
                 <MdMenu 
@@ -47,16 +47,17 @@ const SideBar = ({ location = "/account/profile/" }: { location: string | undefi
                 />
             </button>
             <div
-                className={`absolute top-0 left-0 w-full h-full opacity-60 bg-black lg:hidden ${open ? "block" : "hidden"}`}
+                className={`absolute left-0 top-0 h-full w-full bg-black opacity-60 lg:hidden ${open ? "block" : "hidden"}`}
                 onClick={() => setOpen(false)}
+                aria-hidden="true"
             >
             </div>
 
-            <div className={`${open ? "translate-x-0" : "-translate-x-full"} bg-slate-800 min-w-52 h-full flex flex-col justify-between items-center py-4 lg:translate-x-0 fixed transition-all duration-150 z-10`}>
-                <div className="h-auto flex flex-col gap-4 items-center justify-center">
+            <div className={`${open ? "translate-x-0" : "-translate-x-full"} fixed z-10 flex h-full min-w-52 flex-col items-center justify-between bg-slate-800 py-4 transition-all duration-150 lg:translate-x-0`}>
+                <div className="flex h-auto flex-col items-center justify-center gap-4">
                     <Link
                         to={"/account/profile"}
-                        className={`${location === "/account/profile" ? "!text-slate-500" : ""} text-center text-white hover:text-slate-400 flex flex-row items-center justify-center gap-2`}
+                        className={`${location === "/account/profile" ? "!text-slate-500" : ""} flex flex-row items-center justify-center gap-2 text-center text-white hover:text-slate-400`}
                     >
                         <MdPerson />
 
@@ -65,7 +66,7 @@ const SideBar = ({ location = "/account/profile/" }: { location: string | undefi
                     
                     <Link 
                         to={"/account/profile/my-message"}
-                        className={`${location === "/account/profile/my-message" ? "!text-slate-500" : ""} text-center text-white hover:text-slate-400 flex flex-row items-center justify-center gap-2`}
+                        className={`${location === "/account/profile/my-message" ? "!text-slate-500" : ""} flex flex-row items-center justify-center gap-2 text-center text-white hover:text-slate-400`}
                     >
                         <MdSms />
 
@@ -74,7 +75,7 @@ const SideBar = ({ location = "/account/profile/" }: { location: string | undefi
 
                     <Link
                         to={"/account/profile/settings"}
-                        className={`${location === "/account/profile/settings" ? "!text-slate-500" : ""} text-center text-white hover:text-slate-400 flex flex-row items-center justify-center gap-2`}
+                        className={`${location === "/account/profile/settings" ? "!text-slate-500" : ""} flex flex-row items-center justify-center gap-2 text-center text-white hover:text-slate-400`}
                     >
                         <MdSettings />
 
@@ -82,7 +83,7 @@ const SideBar = ({ location = "/account/profile/" }: { location: string | undefi
                     </Link>
                 </div>
                 <Form action="/account/logout" method="post">
-                    <button type="submit" className="text-center text-white hover:text-slate-400 flex flex-row items-center justify-center gap-2">
+                    <button type="submit" className="flex flex-row items-center justify-center gap-2 text-center text-white hover:text-slate-400">
                         <MdLogout />
 
                         Déconnexion

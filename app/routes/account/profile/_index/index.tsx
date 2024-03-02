@@ -19,15 +19,15 @@ export default function Index() {
     const greeting = date.getHours() < 12 ? "Bonjour," : "Bonsoir,"
 
     return (
-        <div className="flex flex-row justify-center w-full" >
-            <div className="flex flex-col items-center gap-4 m-4">
+        <div className="flex w-full flex-row justify-center" >
+            <div className="m-4 flex flex-col items-center gap-4">
                 <img
                     src={`https://api.dicebear.com/7.x/bottts/png?seed=${profile.avatarSeed}`}
                     alt={`${profile.username} avatar`}
-                    className="w-24 h-24 rounded-full"
+                    className="h-24 w-24 rounded-full"
                 />
 
-                <h1 className="text-2xl text-center text-white">
+                <h1 className="text-center text-2xl text-white">
                     {greeting} {profile.username}
                 </h1>
 

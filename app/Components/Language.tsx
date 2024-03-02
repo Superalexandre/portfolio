@@ -29,17 +29,17 @@ export default function Language() {
             </button>
 
             <div 
-                className={`${isOpen ? "block" : "hidden"} group-hover:block absolute -top-1/2 right-full p-3 dark:bg-slate-900 bg-slate-300 rounded-lg border border-slate-900 dark:border-slate-500`}
+                className={`${isOpen ? "block" : "hidden"} absolute -top-1/2 right-full rounded-lg border border-slate-900 bg-slate-300 p-3 group-hover:block dark:border-slate-500 dark:bg-slate-900`}
             >
                 <button
-                    className="dark:text-white dark:hover:text-main-color hover:text-main-color"
+                    className="hover:text-main-color dark:text-white dark:hover:text-main-color"
                     onClick={() => setLanguage("fr-FR")}
                     aria-label="Français"
                 >
                     Français
                 </button>
                 <button
-                    className="dark:text-white dark:hover:text-main-color hover:text-main-color"
+                    className="hover:text-main-color dark:text-white dark:hover:text-main-color"
                     onClick={() => setLanguage("en-GB")}
                     aria-label="English"
                 >

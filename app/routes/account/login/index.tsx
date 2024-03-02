@@ -2,11 +2,11 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node"
 import { Form } from "@remix-run/react"
 import { useState } from "react"
-import { FieldErrors } from "react-hook-form"
 import { MdLogin, MdMail, MdPassword, MdVisibility, MdVisibilityOff } from "react-icons/md"
 import { getValidatedFormData, useRemixForm } from "remix-hook-form"
 import * as zod from "zod"
 
+import type { FieldErrors } from "@/types/forms/FieldErrors"
 import { InputForm } from "~/Components/Input"
 
 import login from "./login"
@@ -61,9 +61,9 @@ export default function Index() {
             action="/account/login"
             method="post"
             onSubmit={handleSubmit}
-            className="bg-slate-700 min-w-full h-full min-h-screen flex justify-center items-center flex-col gap-4"
+            className="flex h-full min-h-screen min-w-full flex-col items-center justify-center gap-4 bg-slate-700"
         >
-            <h1 className="text-white text-3xl font-bold text-center flex flex-row items-center justify-center gap-2">
+            <h1 className="flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold text-white">
                 <MdLogin size={30} />
 
                 Se connecter
@@ -92,18 +92,18 @@ export default function Index() {
                 ShowButton={<ShowButton show={showPassword} setShow={setShowPassword} />}
             />
 
-            <a href="/account/register" className="text-white underline hover:text-slate-400 text-center">
+            <a href="/account/register" className="text-center text-white underline hover:text-slate-400">
                 Pas encore de compte ? Inscrivez-vous !
             </a>
             {/* <a href="/account/forgot-password" className="text-white underline hover:text-slate-400 text-center">Mot de passe oublié ?</a> */}
 
             <button
                 type="submit"
-                className={`${isSubmitting ? "opacity-50" : "hover:bg-green-700"} bg-green-500 text-white p-4 rounded flex flex-row justify-center items-center gap-2`}
+                className={`${isSubmitting ? "opacity-50" : "hover:bg-green-700"} flex flex-row items-center justify-center gap-2 rounded bg-green-500 p-4 text-white`}
                 disabled={isSubmitting}
             >
                 <MdLogin size={20} className={`${isSubmitting ? "hidden" : "block"}`} />
-                <div className={`${isSubmitting ? "block" : "hidden"} loader w-5 h-5`}></div>
+                <div className={`${isSubmitting ? "block" : "hidden"} loader h-5 w-5`}></div>
 
                 Se connecter
             </button>
@@ -116,7 +116,7 @@ const ShowButton = ({ show, setShow }: { show: boolean, setShow: (show: boolean)
         <button
             type="button"
             onClick={() => setShow(!show)}
-            className="text-white absolute right-0 top-0 bottom-0 mr-3 hover:text-slate-400"
+            className="absolute bottom-0 right-0 top-0 mr-3 text-white hover:text-slate-400"
             aria-label="Afficher le mot de passe"
         >
             <MdVisibility size={20} className={`${show ? "hidden" : "block"}`} />

@@ -1,8 +1,7 @@
 import { HTMLInputTypeAttribute } from "react"
-import { FieldErrors } from "react-hook-form"
 import { IconType } from "react-icons"
-// import { MdMail } from "react-icons/md"
 
+import type { FieldErrors } from "@/types/forms/FieldErrors"
 interface InputProps {
     type: HTMLInputTypeAttribute
     placeholder: string | undefined
@@ -24,11 +23,7 @@ interface InputFormProps {
     id?: string | undefined
     name?: string | undefined
     Icon?: IconType
-    errors?: FieldErrors<{
-        [key: string]: {
-            message: string
-        }
-    }>
+    errors?: FieldErrors
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     register?: any
     ShowButton?: JSX.Element
@@ -43,15 +38,15 @@ export default function Input({ type = "text", placeholder, autoComplete, classN
             name={name}
             placeholder={placeholder}
             autoComplete={autoComplete}
-            className={`bg-slate-800 text-white p-2 rounded w-full ${className}`}
+            className={`w-full rounded bg-slate-800 p-2 text-white ${className}`}
         />
     )
 }
 
 export function InputForm({ parentClass, errorClass, type = "text", placeholder, autoComplete, className, id, name, Icon, errors, register, ShowButton }: InputFormProps) {
     return (
-        <div className={`flex flex-col justify-center items-start w-11/12 lg:w-1/2 ${parentClass}`}>
-            <label htmlFor={name} className="text-white flex flex-row items-center justify-center gap-2">
+        <div className={`flex w-11/12 flex-col items-start justify-center lg:w-1/2 ${parentClass}`}>
+            <label htmlFor={name} className="flex flex-row items-center justify-center gap-2 text-white">
                 {Icon ? <Icon size={20} /> : null}
 
                 {placeholder}
@@ -72,7 +67,7 @@ export function InputForm({ parentClass, errorClass, type = "text", placeholder,
             </div>
 
             {errors && name && errors[name] ?
-                <span className={`text-red-500 text-center lg:text-left w-full ${errorClass}`}>
+                <span className={`w-full text-center text-red-500 lg:text-left ${errorClass}`}>
                     {errors[name]?.message?.toString()}
                 </span>
                 : null}

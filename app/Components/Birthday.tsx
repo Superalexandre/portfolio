@@ -18,7 +18,7 @@ export default function Birthday({ children }: { children: React.ReactNode }) {
                     height={height || 0}
                     recycle={false}
                     numberOfPieces={2_000}
-                    className="-z-10 overflow-hidden !fixed"
+                    className="!fixed -z-10 overflow-hidden"
                 >
                 </Confetti>
                 

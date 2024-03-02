@@ -44,7 +44,7 @@ export default function Index() {
         return (
             <button
                 onClick={() => handleCalculation(value)}
-                className={`bg-slate-600 ${explosion ? "opacity-50 cursor-default" : "hover:bg-slate-800"} text-white rounded-md p-4 flex items-center justify-center ${className}`}
+                className={`bg-slate-600 ${explosion ? "cursor-default opacity-50" : "hover:bg-slate-800"} flex items-center justify-center rounded-md p-4 text-white ${className}`}
             >
                 {displayValue ? displayValue : value}
             </button>
@@ -63,18 +63,18 @@ export default function Index() {
     })
 
     return (
-        <div className="bg-slate-700 min-w-full h-full min-h-screen flex justify-center items-center flex-col gap-4">
-            <h1 className="text-white text-3xl font-bold text-center flex flex-row items-center justify-center gap-2">
+        <div className="flex h-full min-h-screen min-w-full flex-col items-center justify-center gap-4 bg-slate-700">
+            <h1 className="flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold text-white">
                 <MdCalculate size={30} />
 
                 Calculatrice
             </h1>
 
-            <div className="flex flex-col gap-4 w-80">
+            <div className="flex w-80 flex-col gap-4">
                 <div className="flex flex-col">
-                    <h2 className="text-white text-bold text-2xl text-center w-full">Résultat : </h2>
-                    <p className="text-white break-words">{result}</p>
-                    {error ? <p className="text-red-500 text-sm">{error}</p> : null}
+                    <h2 className="text-bold w-full text-center text-2xl text-white">Résultat : </h2>
+                    <p className="break-words text-white">{result}</p>
+                    {error ? <p className="text-sm text-red-500">{error}</p> : null}
                 </div>
 
                 <div className="grid grid-cols-4 gap-4">
@@ -112,7 +112,7 @@ export default function Index() {
                         force={0.7}
                         duration={2_000}
                         particleCount={300}
-                        className="w-full h-full fixed top-1/2 left-1/2"
+                        className="fixed left-1/2 top-1/2 h-full w-full"
                         onComplete={() => setExplosion(false)}
                     /> : null}
             </div>

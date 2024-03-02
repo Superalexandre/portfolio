@@ -11,7 +11,7 @@ export default function ErrorBoundary() {
     if (isRouteErrorResponse(error) && error.status === 404) return <NotFound />
 
     return (
-        <html>
+        <html lang="fr-FR">
             <head>
                 <title>Oops!</title>
                 <Meta />

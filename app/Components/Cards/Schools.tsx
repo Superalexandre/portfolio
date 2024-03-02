@@ -37,19 +37,19 @@ export default function Schools() {
             </button> */}
 
 
-            <h1 className="dark:text-white font-bold text-3xl flex items-center justify-center gap-4">
+            <h1 className="flex items-center justify-center gap-4 text-3xl font-bold dark:text-white">
                 <MdSchool className="inline-block" />
 
                 {t("schools.title")}
             </h1>
 
 
-            <div className="min-h-96 relative">
-                <div className="w-full h-full flex justify-center items-center absolute">
-                    <div className="bg-main-color w-1 h-full"></div>
+            <div className="relative min-h-96">
+                <div className="absolute flex h-full w-full items-center justify-center">
+                    <div className="h-full w-1 bg-main-color"></div>
                 </div>
 
-                <div className="flex flex-col gap-6 relative z-10 justify-center items-center">
+                <div className="relative z-10 flex flex-col items-center justify-center gap-6">
                     {schools.map((school, index) => <School key={index} school={school} lang={i18n.language} t={t} />)}
                 </div>
 
@@ -73,9 +73,9 @@ const School = ({ school, lang, t }: { school: SchoolType, lang: string, t: TFun
     const formattedEndDate = formatDate(end, options)
 
     return (
-        <div className="flex flex-col items-center justify-center dark:bg-slate-900 bg-slate-300 rounded-lg gap-4 p-4 lg:w-3/6 w-5/6 hover:scale-110 transition-all duration-300">
-            <h2 className="dark:text-white font-bold text-2xl text-center">{name} {happeningNow ? t("happeningNow") : ""}</h2>
-            <p className="dark:text-white text-center">{formattedStartDate} -{">"} {formattedEndDate}</p>
+        <div className="flex w-5/6 flex-col items-center justify-center gap-4 rounded-lg bg-slate-300 p-4 transition-all duration-300 hover:scale-110 dark:bg-slate-900 lg:w-3/6">
+            <h2 className="text-center text-2xl font-bold dark:text-white">{name} {happeningNow ? t("happeningNow") : ""}</h2>
+            <p className="text-center dark:text-white">{formattedStartDate} -{">"} {formattedEndDate}</p>
             <Description code={code} t={t} />
         </div>
     )
@@ -97,7 +97,7 @@ const Description = ({ code, t }: { code: string, t: TFunction<"common", undefin
         updatedDescription = updatedDescription.replace(linkMatch[0], link({ href: linkHref, text: linkText }))
     }
 
-    return <p className="dark:text-white text-center" dangerouslySetInnerHTML={{ __html: updatedDescription }} />
+    return <p className="text-center dark:text-white" dangerouslySetInnerHTML={{ __html: updatedDescription }} />
 }
 
 const link = ({ href, text }: { href: string, text: string }) => {

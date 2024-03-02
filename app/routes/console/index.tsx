@@ -134,7 +134,7 @@ export default function Index() {
     })
 
     return (
-        <div className="bg-black min-w-full h-full min-h-screen flex flex-col gap-4 p-3">
+        <div className="flex h-full min-h-screen min-w-full flex-col gap-4 bg-black p-3">
 
             <div className="flex flex-col gap-4">
                 {history.map((line, i) => (

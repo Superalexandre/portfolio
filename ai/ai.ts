@@ -10,7 +10,7 @@ import AIMessage from "@/types/AIMessage"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// Mistral model : https://huggingface.co/TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF/tree/main
+// Mistral model : CapybaraHermes-2.5-Mistral-7B-GGUF
 const modelPath = path.join(__dirname, "models", "capybarahermes-2.5-mistral-7b.Q4_K_M.gguf")
 
 const model = new LlamaModel({

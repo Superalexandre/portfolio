@@ -83,7 +83,7 @@ export default function Index() {
     const color = colors[data.backgroundColor]
 
     const Message = () => (
-        <div className={`${displayMessage ? color.bg : "bg-slate-700"} min-w-full h-full min-h-screen flex justify-center items-center flex-col`}>
+        <div className={`${displayMessage ? color.bg : "bg-slate-700"} flex h-full min-h-screen min-w-full flex-col items-center justify-center`}>
             <Form
                 method="post"
                 action={`/secretMessage/${data.id}`}
@@ -93,21 +93,21 @@ export default function Index() {
                     type="submit"
                     name="_action"
                     value="view"
-                    className={`${displayMessage ? "hidden" : "block"} bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded`}
+                    className={`${displayMessage ? "hidden" : "block"} rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700`}
                 >
                     Voir votre message secret
                 </button>
             </Form>
 
-            <div className={`${displayMessage ? "block" : "hidden"} min-w-full h-full min-h-screen flex justify-center items-center flex-col gap-8 lg:gap-0`}>
-                <div className="w-11/12 lg:w-9/12 flex justify-center items-center flex-col z-10">
-                    <div className={`w-11/12 lg:w-9/12 min-h-96 ${color.secondBg} rounded-lg flex justify-center items-center mt-4 border ${color.border}`}>
-                        <p className={`${color.text} text-center m-4 break-all`}>{data.message}</p>
+            <div className={`${displayMessage ? "block" : "hidden"} flex h-full min-h-screen min-w-full flex-col items-center justify-center gap-8 lg:gap-0`}>
+                <div className="z-10 flex w-11/12 flex-col items-center justify-center lg:w-9/12">
+                    <div className={`min-h-96 w-11/12 lg:w-9/12 ${color.secondBg} mt-4 flex items-center justify-center rounded-lg border ${color.border}`}>
+                        <p className={`${color.text} m-4 break-all text-center`}>{data.message}</p>
                     </div>
-                    <p className={`w-11/12 lg:w-9/12 text-center lg:text-right ${color.text}`}>Écrit par {data.author} le {date}</p>
+                    <p className={`w-11/12 text-center lg:w-9/12 lg:text-right ${color.text}`}>Écrit par {data.author} le {date}</p>
 
                     <Form
-                        className={`${data.isQuestion ? "block" : "hidden"} flex flex-row gap-4 justify-center`}
+                        className={`${data.isQuestion ? "block" : "hidden"} flex flex-row justify-center gap-4`}
                         method="post"
                         fetcherKey={"reply"}
                     >
@@ -115,7 +115,7 @@ export default function Index() {
                             type="submit" 
                             value="yes" 
                             name="_action" 
-                            className="bg-green-500 hover:bg-green-700 text-white text-center font-bold py-2 px-4 rounded-lg mt-4"
+                            className="mt-4 rounded-lg bg-green-500 px-4 py-2 text-center font-bold text-white hover:bg-green-700"
                         >
                             Oui
                         </button>
@@ -123,13 +123,13 @@ export default function Index() {
                             type="submit" 
                             value="no" 
                             name="_action" 
-                            className="bg-red-500 hover:bg-red-700 text-white text-center font-bold py-2 px-4 rounded-lg mt-4"
+                            className="mt-4 rounded-lg bg-red-500 px-4 py-2 text-center font-bold text-white hover:bg-red-700"
                         >
                             Non
                         </button>
                     </Form>
                 </div>
-                <a href="/secretMessage" className="bg-green-500 hover:bg-green-700 text-white text-center font-bold py-2 px-4 rounded-lg mb-4 lg:absolute lg:right-0 lg:bottom-0 lg:m-4 z-10">Créer un message secret</a>
+                <a href="/secretMessage" className="z-10 mb-4 rounded-lg bg-green-500 px-4 py-2 text-center font-bold text-white hover:bg-green-700 lg:absolute lg:bottom-0 lg:right-0 lg:m-4">Créer un message secret</a>
             </div>
         </div>
     )
@@ -159,9 +159,9 @@ export default function Index() {
 
 const NotFound = () => {
     return (
-        <div className="bg-slate-700 min-w-full h-full min-h-screen flex justify-center items-center flex-col gap-2">
-            <h1 className="text-white text-center text-2xl">Message secret introuvable</h1>
-            <a className="text-white hover:text-main-color underline" href="/secretMessage">Créer un message secret</a>
+        <div className="flex h-full min-h-screen min-w-full flex-col items-center justify-center gap-2 bg-slate-700">
+            <h1 className="text-center text-2xl text-white">Message secret introuvable</h1>
+            <a className="text-white underline hover:text-main-color" href="/secretMessage">Créer un message secret</a>
         </div>
     )
 }
@@ -174,7 +174,7 @@ const ConfettiComponent = ({ children }: { children: React.ReactNode }) => {
             <Confetti
                 width={width || 0}
                 height={height || 0}
-                className="-z-10 overflow-hidden !fixed"
+                className="!fixed -z-10 overflow-hidden"
             >
             </Confetti>
 
@@ -191,7 +191,7 @@ const HeartComponent = ({ children, number = 50 }: { children: React.ReactNode, 
             {hearts.map((heart) => (
                 <div
                     key={heart.id}
-                    className="absolute heart"
+                    className="heart absolute"
                     style={{
                         left: heart.style.left,
                         animationDuration: heart.style.animationDuration,
@@ -213,7 +213,7 @@ const RainComponent = ({ children, number = 50 }: { children: React.ReactNode, n
             {rains.map((rain) => (
                 <div
                     key={rain.id}
-                    className="absolute rain"
+                    className="rain absolute"
                     style={{
                         left: rain.style.left,
                         animationDuration: rain.style.animationDuration,

@@ -27,14 +27,14 @@ export default function App() {
     const { i18n } = useTranslation()
 
     return (
-        <html lang={i18n.language} dir={i18n.dir()} className="min-w-full h-full min-h-full">
+        <html lang={i18n.language} dir={i18n.dir()} className="h-full min-h-full min-w-full">
             <head>
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <Meta />
                 <Links />
             </head>
-            <body className="min-w-full min-h-full">
+            <body className="min-h-full min-w-full">
                 <Birthday>
                     <Outlet />
                 </Birthday>

@@ -10,7 +10,7 @@ export default function PersonalProjects() {
 
     return (
         <Card>
-            <h1 className="dark:text-white font-bold text-3xl flex items-center justify-center gap-4 text-center">
+            <h1 className="flex items-center justify-center gap-4 text-center text-3xl font-bold dark:text-white">
                 <MdComputer className="inline-block" />
 
                 Projet personnels

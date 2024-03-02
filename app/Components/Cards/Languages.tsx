@@ -13,7 +13,7 @@ export default function Languages() {
 
     return (
         <Card>
-            <h1 className="dark:text-white font-bold text-3xl flex items-center justify-center gap-4">
+            <h1 className="flex items-center justify-center gap-4 text-3xl font-bold dark:text-white">
                 <MdLanguage className="inline-block" />
 
                 {t("languages.title")}
@@ -29,7 +29,7 @@ export default function Languages() {
 const Language = ({ language, t }: { language: LanguageType, t: TFunction<"common", undefined> }) => {
     return (
         <div className="flex flex-row items-center justify-center gap-2">
-            <img src={language.image} alt={language.name} className="w-8 h-8" />
+            <img src={language.image} alt={language.name} className="h-8 w-8" />
 
             <p className="dark:text-white">{t(`languages.${language.code}`)}</p>
         </div>
