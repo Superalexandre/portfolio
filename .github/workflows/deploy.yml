@@ -31,10 +31,17 @@ jobs:
         #   ftp-post-sync-commands: |
         #     npm run deploy
         #     echo "Deployed"
-        uses: "SamKirkland/FTP-Deploy-Action@v4.3.5"
+        # uses: "SamKirkland/FTP-Deploy-Action@v4.3.5"
+        # with:
+        #   protocol: "sftp"
+        #   server: ${{ secrets.FTP_SERVER }}
+        #   username: ${{ secrets.FTP_USERNAME }}
+        #   password: ${{ secrets.FTP_PASSWORD }}
+        #   server-dir: "/home/pi/portfolio/"
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          protocol: "sftp"
-          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
+          server: ${{ secrets.FTP_SERVER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: "/home/pi/portfolio/"
+          remote_path: "/home/pi/portfolio"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
