@@ -25,7 +25,8 @@ jobs:
           remote-protocol: "sftp"
           remote-host: ${{ secrets.FTP_SERVER }}
           remote-user: ${{ secrets.FTP_USERNAME }}
-          remote-password: ${{ secrets.FTP_PASSWORD }}
+          # remote-password: ${{ secrets.FTP_PASSWORD }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           remote-port: 22
           remote-path: "/home/pi/portfolio"
           ftp-post-sync-commands: |
