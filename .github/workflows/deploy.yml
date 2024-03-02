@@ -2,7 +2,7 @@ name: "🚀 Deploy on server"
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
     inputs:
       sync:
@@ -12,7 +12,7 @@ on:
 jobs:
   deploy:
     name: 🚀 Deploy on server
-    if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout"
