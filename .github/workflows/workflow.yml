@@ -1,9 +1,9 @@
-name: 🚀 Deploy
+name: 🚀 Check if valid
 on:
   - push
 jobs:
-  install:
-    name: 📦 Install
+  checking:
+    name: 🔍 Checking
     runs-on: ubuntu-latest
     steps:
       - name: 🔄 Checkout repo
@@ -49,6 +49,6 @@ jobs:
   timeline:
     name: 🕒 Timeline
     runs-on: ubuntu-latest
-    needs: [install]
+    needs: [checking]
     steps:
       - uses: Kesin11/actions-timeline@v2

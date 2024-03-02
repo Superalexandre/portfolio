@@ -1,0 +1,33 @@
+name: "🚀 Deploy on server"
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+    inputs:
+      sync:
+        description: "File synchronization"
+        required: true
+        default: "delta"
+jobs:
+  deploy:
+    name: 🚀 Deploy on server
+    if: ${{ github.ref == 'refs/heads/master' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: "Deploy"
+        uses: milanmk/actions-file-deployer@master
+        with:
+          remote-protocol: "sftp"
+          remote-host: ${{ secrets.FTP_SERVER }}
+          remote-user: ${{ secrets.FTP_USERNAME }}
+          remote-password: ${{ secrets.FTP_PASSWORD }}
+          remote-port: "22"
+          remote-path: "/home/pi/portfolio"
+          ftp-post-sync-commands: |
+            npm run deploy
+            echo "Deployed"
