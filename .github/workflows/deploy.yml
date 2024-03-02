@@ -20,28 +20,15 @@ jobs:
         with:
           fetch-depth: 0
       - name: "📂 Synchronize files"
-        # uses: milanmk/actions-file-deployer@master
-        # with:
-        #   remote-protocol: "sftp"
-        #   remote-host: ${{ secrets.FTP_SERVER }}
-        #   remote-user: ${{ secrets.FTP_USERNAME }}
-        #   remote-password: ${{ secrets.FTP_PASSWORD }}
-        #   remote-port: "22"
-        #   remote-path: "/home/pi/portfolio"
-        #   ftp-post-sync-commands: |
-        #     npm run deploy
-        #     echo "Deployed"
-        # uses: "SamKirkland/FTP-Deploy-Action@v4.3.5"
-        # with:
-        #   protocol: "sftp"
-        #   server: ${{ secrets.FTP_SERVER }}
-        #   username: ${{ secrets.FTP_USERNAME }}
-        #   password: ${{ secrets.FTP_PASSWORD }}
-        #   server-dir: "/home/pi/portfolio/"
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        uses: milanmk/actions-file-deployer@master
         with:
-          username: ${{ secrets.FTP_USERNAME }}
-          server: ${{ secrets.FTP_SERVER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          remote_path: "/home/pi/portfolio"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          remote-protocol: "sftp"
+          remote-host: ${{ secrets.FTP_SERVER }}
+          remote-user: ${{ secrets.FTP_USERNAME }}
+          remote-password: ${{ secrets.FTP_PASSWORD }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          remote-port: "22"
+          remote-path: "/home/pi/portfolio-main"
+          ftp-post-sync-commands: |
+            npm run deploy
+            echo "Deployed"
