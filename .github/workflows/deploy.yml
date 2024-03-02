@@ -15,19 +15,25 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout"
+      - name: "🚚 Checkout"
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: "Deploy"
-        uses: milanmk/actions-file-deployer@master
+      - name: "📂 Synchronize files"
+        # uses: milanmk/actions-file-deployer@master
+        # with:
+        #   remote-protocol: "sftp"
+        #   remote-host: ${{ secrets.FTP_SERVER }}
+        #   remote-user: ${{ secrets.FTP_USERNAME }}
+        #   remote-password: ${{ secrets.FTP_PASSWORD }}
+        #   remote-port: "22"
+        #   remote-path: "/home/pi/portfolio"
+        #   ftp-post-sync-commands: |
+        #     npm run deploy
+        #     echo "Deployed"
+        uses: "SamKirkland/FTP-Deploy-Action@v4.3.5"
         with:
-          remote-protocol: "sftp"
-          remote-host: ${{ secrets.FTP_SERVER }}
-          remote-user: ${{ secrets.FTP_USERNAME }}
-          remote-password: ${{ secrets.FTP_PASSWORD }}
-          remote-port: "22"
-          remote-path: "/home/pi/portfolio"
-          ftp-post-sync-commands: |
-            npm run deploy
-            echo "Deployed"
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: "/home/pi/portfolio/"
