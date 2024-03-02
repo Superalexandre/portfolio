@@ -3,9 +3,8 @@ import { redirect } from "@remix-run/node"
 import Database from "better-sqlite3"
 import { eq } from "drizzle-orm"
 import { drizzle } from "drizzle-orm/better-sqlite3"
-import { migrate } from "drizzle-orm/better-sqlite3/migrator"
 
-import { databasePath, migrationsFolder } from "@/database/path"
+import { databasePath } from "@/database/path"
 import { accounts } from "@/database/schema/accounts"
 import User from "@/types/User"
 
@@ -73,8 +72,6 @@ export async function getUser(request: Request) {
 
     const sqlite = new Database(databasePath, { fileMustExist: true })
     const db = drizzle(sqlite)
-
-    migrate(db, { migrationsFolder: migrationsFolder })
 
     const users = await db
         .select()

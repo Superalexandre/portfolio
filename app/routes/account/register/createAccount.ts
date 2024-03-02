@@ -3,14 +3,13 @@ import { createHmac } from "crypto"
 import { json } from "@remix-run/node"
 import bcrypt from "bcryptjs"
 import Database from "better-sqlite3"
+import { eq, sql } from "drizzle-orm"
 import { drizzle } from "drizzle-orm/better-sqlite3"
-import { migrate } from "drizzle-orm/better-sqlite3/migrator"
 import { v4 as uuid } from "uuid"
 
-import { databasePath, migrationsFolder } from "@/database/path"
+import { databasePath } from "@/database/path"
 import { accounts } from "@/database/schema/accounts"
 import { createUserSession } from "~/session.server"
-
 
 interface FormData {
     request: Request,
@@ -26,14 +25,52 @@ export default async function createAccount({ request, name, firstName, username
     const sqlite = new Database(databasePath, { fileMustExist: true })
     const db = drizzle(sqlite)
 
-    migrate(db, { migrationsFolder: migrationsFolder })
-
     const id = uuid()
     const token = genToken()
 
     const saltRounds = 10
     const salt = await bcrypt.genSalt(saltRounds)
     const hashedPassword = await bcrypt.hash(password, salt)
+
+    // Find if the mail or username already exists
+    const mailExists = await db
+        .select()
+        .from(accounts)
+        .where(
+            eq(
+                sql<string>`lower(${accounts.mail})`,
+                mail
+            )
+        )
+
+    const usernameExists = await db
+        .select()
+        .from(accounts)
+        .where(
+            eq(
+                sql<string>`lower(${accounts.username})`,
+                username.toLowerCase()
+            )
+        )
+
+    if (mailExists.length > 0 || usernameExists.length > 0) {
+        const errors: { [key: string]: { message: string } } = {}
+
+        if (mailExists.length > 0) {
+            errors.mail = { message: "Un utilisateur possède deja cette adresse mail" }
+        }
+
+        if (usernameExists.length > 0) {
+            errors.username = { message: "Un utilisateur possède deja ce nom d'utilisateur" }
+        }
+
+        return json({
+            success: false,
+            error: true,
+            errors,
+            message: "Une erreur est survenue lors de la création du compte !"
+        }, { status: 500 })
+    }
 
     try {
         db.insert(accounts).values({

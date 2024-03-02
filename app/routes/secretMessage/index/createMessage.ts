@@ -1,9 +1,8 @@
 import Database from "better-sqlite3"
 import { drizzle } from "drizzle-orm/better-sqlite3"
-import { migrate } from "drizzle-orm/better-sqlite3/migrator"
 import { v4 as uuid } from "uuid"
 
-import { databasePath, migrationsFolder } from "@/database/path"
+import { databasePath } from "@/database/path"
 import { secretMessages } from "@/database/schema/secretMessages"
 import User from "@/types/User"
 
@@ -19,8 +18,6 @@ interface Params {
 export default function createMessage(message: string, author: string, account: User | null, { isQuestion, ambiance, backgroundColor }: Params = { isQuestion: false, ambiance: "normal", backgroundColor: "dark" }) {
     const sqlite = new Database(databasePath, { fileMustExist: true })
     const db = drizzle(sqlite)
-
-    migrate(db, { migrationsFolder: migrationsFolder })
 
     const id = uuid()
     const secretCode = Math.random().toString(36).substring(2, 6)

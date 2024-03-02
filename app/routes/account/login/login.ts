@@ -1,11 +1,10 @@
 import { json } from "@remix-run/node"
 import bcrypt from "bcryptjs"
 import Database from "better-sqlite3"
-import { eq, or } from "drizzle-orm"
+import { eq, or, sql } from "drizzle-orm"
 import { drizzle } from "drizzle-orm/better-sqlite3"
-import { migrate } from "drizzle-orm/better-sqlite3/migrator"
 
-import { databasePath, migrationsFolder } from "@/database/path"
+import { databasePath } from "@/database/path"
 import { accounts } from "@/database/schema/accounts"
 import { createUserSession } from "~/session.server"
 
@@ -13,15 +12,19 @@ export default async function login({ request, mailOrUsername, password }: { req
     const sqlite = new Database(databasePath, { fileMustExist: true })
     const db = drizzle(sqlite)
 
-    migrate(db, { migrationsFolder: migrationsFolder })
-
     const users = await db
         .select()
         .from(accounts)
         .where(
             or(
-                eq(accounts.username, mailOrUsername),
-                eq(accounts.mail, mailOrUsername)
+                eq(
+                    sql<string>`lower(${accounts.username})`, 
+                    mailOrUsername.toLowerCase()
+                ),
+                eq(
+                    sql<string>`lower(${accounts.mail})`, 
+                    mailOrUsername.toLowerCase()
+                )
             )
         )
         .execute()

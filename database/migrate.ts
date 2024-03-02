@@ -5,6 +5,8 @@ import { migrate } from "drizzle-orm/better-sqlite3/migrator"
 import { databasePath, migrationsFolder } from "./path"
 
 function migrateDatabase() {
+    console.log("\nMigrating database...")
+
     const sqlite = new Database(databasePath, { fileMustExist: true })
     const db = drizzle(sqlite)
 
@@ -12,7 +14,7 @@ function migrateDatabase() {
 
     sqlite.close()
 
-    console.log("Database migrated")
+    console.log("\nDatabase migrated")
 
     return true
 }
