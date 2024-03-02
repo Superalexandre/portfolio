@@ -6,7 +6,7 @@ import { Server } from "socket.io"
 import "dotenv/config"
 import { v4 as uuid } from "uuid"
 
-import reply from "./ai/ai"
+// import reply from "./ai/ai"
 import AIMessage from "./types/AIMessage"
 
 const BUILD_PATH = "./build/index.js"
@@ -14,7 +14,12 @@ const app = new Hono()
 
 app.use("/*", serveStatic({ root: "./public" }))
 app.use("/build/*", serveStatic({ root: "./public/build" }))
-app.use("*", remix({ build: await import(BUILD_PATH), mode: process.env.NODE_ENV }))
+app.use("*", remix({ 
+    build: () => {
+        return import(BUILD_PATH)
+    }, 
+    mode: process.env.NODE_ENV 
+}))
 
 const server = serve({
     fetch: app.fetch,
@@ -30,11 +35,11 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
     console.log("New connection")
 
-    socket.on("message", async(data) => {
+    socket.on("message", (data) => {
         socket.emit("message", data)
 
         if (process.env.IA_ACTIVE === "true") {
-            await reply({ socket, message: data.content })
+            // await reply({ socket, message: data.content })
         } else {
             socket.emit("message", {
                 id: uuid(),

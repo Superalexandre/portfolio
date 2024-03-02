@@ -70,10 +70,7 @@ export default function Index() {
     )
 
     return (
-        <div
-            // flex justify-center items-center flex-col gap-4
-            className="bg-slate-700 min-w-full h-full min-h-screen flex flex-col justify-between"
-        >
+        <div className="bg-slate-700 min-w-full h-full min-h-screen flex flex-col justify-between">
             <div className="m-4 max-h-[85vh] min-h-[85vh] overflow-auto border-slate-600 border-2 rounded-lg flex flex-col gap-4">
                 {messages.length === 0 ?
                     <div className="min-h-fit flex flex-col justify-center items-center">
