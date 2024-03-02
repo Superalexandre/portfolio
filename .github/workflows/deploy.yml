@@ -29,6 +29,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           remote-port: 22
           remote-path: "/home/pi/portfolio"
+          debug: true
           ftp-post-sync-commands: |
             npm run deploy
             echo "Deployed"
