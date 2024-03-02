@@ -12,7 +12,8 @@ on:
 jobs:
   deploy:
     name: 🚀 Deploy on server
-    if: ${{ github.ref == 'refs/heads/main' }}
+    # if: ${{ github.ref == 'refs/heads/main' }}
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: "🚚 Checkout"
