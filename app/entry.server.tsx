@@ -25,7 +25,7 @@ export default async function handleRequest(
     // loadContext: AppLoadContext,
 ) {
     const instance = createInstance()
-    const lng = await i18next.getLocale(request)
+    // const lng = await i18next.getLocale(request)
     const ns = i18next.getRouteNamespaces(remixContext)
 
     await instance
@@ -33,7 +33,6 @@ export default async function handleRequest(
         .use(Backend) // Setup our backend
         .init({
             ...i18n, // spread the configuration
-            lng, // The locale we detected above
             ns, // The namespaces the routes about to render wants to use
             backend: { loadPath: resolvePath("./public/locales/{{lng}}/{{ns}}.json") },
         })

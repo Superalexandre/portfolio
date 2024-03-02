@@ -1,28 +1,26 @@
-import { MetaFunction } from "@remix-run/node"
 import { Form, Link, Outlet, useLocation, useNavigation } from "@remix-run/react"
+import { TFunction } from "i18next"
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { MdLogout, MdMenu, MdPerson, MdSettings, MdSms } from "react-icons/md"
 
-export const meta: MetaFunction = () => {
-    return [
-        { title: "Votre profile" },
-        { name: "description", content: "Votre profile" },
-    ]
-}
-
+export const handle = { i18n: "common" }
 export default function Index() {
     const navigation = useNavigation()
     const location = useLocation()
 
+    const { t } = useTranslation("common")
+
     return (
         <div className="flex h-full min-h-screen min-w-full flex-row bg-slate-700">
             <SideBar 
+                t={t}
                 location={location.pathname}
             />
 
             <div className={`${navigation.state === "loading" ? "block" : "hidden"} flex min-h-full w-full flex-col items-center justify-center gap-4`}>
                 <div className="loader h-40 w-40" />
-                <p className="text-center text-white">Chargement...</p>
+                <p className="text-center text-white">{t("loading")}</p>
             </div>
 
             <div className={`${navigation.state === "loading" ? "hidden" : "block"} min-h-full w-full`}>
@@ -32,7 +30,7 @@ export default function Index() {
     )
 }
 
-const SideBar = ({ location = "/account/profile/" }: { location: string | undefined }) => {
+const SideBar = ({ location = "/account/profile/", t }: { location: string | undefined, t: TFunction<"common", undefined> }) => {
     const [open, setOpen] = useState(false)
 
     return (
@@ -61,7 +59,7 @@ const SideBar = ({ location = "/account/profile/" }: { location: string | undefi
                     >
                         <MdPerson />
 
-                        Mon profile
+                        {t("profile.myProfile")}
                     </Link>
                     
                     <Link 
@@ -70,7 +68,7 @@ const SideBar = ({ location = "/account/profile/" }: { location: string | undefi
                     >
                         <MdSms />
 
-                        Mes messages
+                        {t("profile.myMessages.title")}
                     </Link>
 
                     <Link
@@ -79,14 +77,14 @@ const SideBar = ({ location = "/account/profile/" }: { location: string | undefi
                     >
                         <MdSettings />
 
-                        Paramètres
+                        {t("profile.settings.title")}
                     </Link>
                 </div>
                 <Form action="/account/logout" method="post">
                     <button type="submit" className="flex flex-row items-center justify-center gap-2 text-center text-white hover:text-slate-400">
                         <MdLogout />
 
-                        Déconnexion
+                        {t("profile.logout")}
                     </button>
                 </Form>
             </div>

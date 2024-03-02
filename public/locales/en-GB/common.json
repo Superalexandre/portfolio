@@ -74,5 +74,85 @@
     },
     "personalProjects": {
         "title": "Personal projects"
+    },
+    "error": {
+        "unknownError": "Unknown error",
+        "notFound": "The page you are looking for does not exist",
+        "errorOccurred": "An error has occurred :",
+        "backHome": "Back to Home"
+    },
+    "calculator": {
+        "title": "Calculator",
+        "result": "Result",
+        "invalidCalc": "The calculation is invalid.",
+        "divisionImpossible": "Division by zero impossible.",
+        "meta": {
+            "description": "Online calculator",
+            "title": "Calculator"
+        }
+    },
+    "loading": "Loading...",
+    "profile": {
+        "greetings": {
+            "day": "Good morning",
+            "night": "Good evening"
+        },
+        "logout": "Logout",
+        "myMessages": {
+            "createMessage": "Create a secret message",
+            "messageList": "List of your messages",
+            "title": "My messages",
+            "viewMessage": "View post",
+            "views": "views",
+            "meta": {
+                "description": "List of your messages",
+                "title": "My messages"
+            }
+        },
+        "myProfile": "My profile",
+        "settings": {
+            "title": "Settings",
+            "profileSettings": "Your profile settings",
+            "meta": {
+                "description": "Manage your settings",
+                "title": "Settings"
+            }
+        },
+        "meta": {
+            "description": "Manage your profile",
+            "title": "My profile"
+        }
+    },
+    "register": {
+        "alreadyHaveAnAccount": "Already have an account? Log in",
+        "birthDate": "Date of birth",
+        "confirmPassword": "Password Confirmation",
+        "createAccount": "Create an account",
+        "firstName": "First name",
+        "mail": "Mail",
+        "name": "Name",
+        "password": "Password",
+        "passwordNotMatch": "Passwords do not match",
+        "title": "Create an account",
+        "username": "Username",
+        "meta": {
+            "description": "Create an account to access more features",
+            "title": "Create an account"
+        }
+    },
+    "login": {
+        "connection": "Login",
+        "mailOrPassword": "Mail or username",
+        "noAccount": "No account yet? Sign up!",
+        "password": "Password",
+        "title": "Login",
+        "meta": {
+            "description": "Log in to access more features",
+            "title": "Log in"
+        }
+    },
+    "meta": {
+        "title": "Portfolio - Alexandre Renard",
+        "description": "Portfolio of Alexandre Renard, computer science student"
     }
 }

@@ -1,14 +1,18 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node"
+import { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction, json } from "@remix-run/node"
 import { Form } from "@remix-run/react"
 import { useState } from "react"
-import { MdAdd, MdBadge, MdCalendarMonth, MdEmail, MdPassword, MdVisibility, MdVisibilityOff } from "react-icons/md"
+import { useTranslation } from "react-i18next"
+import { MdAdd, MdBadge, MdCalendarMonth, MdEmail, MdPassword } from "react-icons/md"
 import { getValidatedFormData, useRemixForm } from "remix-hook-form"
 import * as zod from "zod"
 
 import type { FieldErrors } from "@/types/forms/FieldErrors"
 import { InputForm } from "~/Components/Input"
 import Loader from "~/Components/Loader"
+import ShowButton from "~/Components/ShowHiddenButton"
+import i18next from "~/i18next.server"
+import getLanguage from "~/utils/getLanguage"
 
 import createAccount from "./createAccount"
 
@@ -53,11 +57,22 @@ type FormData = zod.infer<typeof schema>
 
 const resolver = zodResolver(schema)
 
-export const meta: MetaFunction = () => {
+export const handle = { i18n: "common" }
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return [
-        { title: "Créer un compte" },
-        { name: "description", content: "Créer un compte" },
+        { title: data?.title },
+        { name: "description", content: data?.description },
     ]
+}
+
+export async function loader({ request }: LoaderFunctionArgs) {
+    const language = getLanguage(request)
+    const t = await i18next.getFixedT(language, null, "common")
+
+    const title = t("register.meta.title")
+    const description = t("register.meta.description")
+
+    return { title, description }
 }
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -85,6 +100,7 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function Index() {
+    const { t } = useTranslation("common")
     const {
         handleSubmit,
         formState: { errors, isSubmitting },
@@ -107,14 +123,14 @@ export default function Index() {
             <h1 className="flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold text-white">
                 <MdAdd size={30} />
 
-                Créer un compte
+                {t("register.title")}
             </h1>
 
             <InputForm
                 type="text"
                 name="name"
                 id="name"
-                placeholder="Nom"
+                placeholder={t("register.name")}
                 autoComplete="name"
                 errors={errors as FieldErrors}
                 register={register}
@@ -125,7 +141,7 @@ export default function Index() {
                 type="text"
                 name="firstName"
                 id="firstName"
-                placeholder="Prénom"
+                placeholder={t("register.firstName")}
                 autoComplete="given-name"
                 errors={errors as FieldErrors}
                 register={register}
@@ -136,7 +152,7 @@ export default function Index() {
                 type="text"
                 name="username"
                 id="username"
-                placeholder="Pseudo"
+                placeholder={t("register.username")}
                 autoComplete="username"
                 errors={errors as FieldErrors}
                 register={register}
@@ -147,7 +163,7 @@ export default function Index() {
                 type="date"
                 name="birthDate"
                 id="birthDate"
-                placeholder="Date de naissance"
+                placeholder={t("register.birthDate")}
                 autoComplete="bday-day bday-month bday-year"
                 errors={errors as FieldErrors}
                 register={register}
@@ -158,7 +174,7 @@ export default function Index() {
                 type="mail"
                 name="mail"
                 id="mail"
-                placeholder="Email"
+                placeholder={t("register.mail")}
                 autoComplete="email"
                 errors={errors as FieldErrors}
                 register={register}
@@ -169,7 +185,7 @@ export default function Index() {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 id="password"
-                placeholder="Mot de passe"
+                placeholder={t("register.password")}
                 autoComplete="new-password"
                 errors={errors as FieldErrors}
                 register={register}
@@ -181,7 +197,7 @@ export default function Index() {
                 type={showPasswordConfirmation ? "text" : "password"}
                 name="passwordConfirmation"
                 id="passwordConfirmation"
-                placeholder="Confirmation du mot de passe"
+                placeholder={t("register.confirmPassword")}
                 autoComplete="new-password"
                 errors={errors as FieldErrors}
                 register={register}
@@ -190,7 +206,7 @@ export default function Index() {
             />
 
             <a href="/account/login" className="text-center text-white underline hover:text-slate-400">
-                Déjà un compte ? Connectez-vous
+                {t("register.alreadyHaveAnAccount")}
             </a>
 
             <button
@@ -201,22 +217,8 @@ export default function Index() {
                 <MdAdd size={20} className={`${isSubmitting ? "hidden" : "block"}`} />
                 <Loader className={`${isSubmitting ? "block" : "hidden"} h-5 w-5`}></Loader>
 
-                Créer un compte
+                {t("register.createAccount")}
             </button>
         </Form>
-    )
-}
-
-const ShowButton = ({ show, setShow }: { show: boolean, setShow: (show: boolean) => void }) => {
-    return (
-        <button
-            type="button"
-            onClick={() => setShow(!show)}
-            className="absolute bottom-0 right-0 top-0 mr-3 text-white hover:text-slate-400"
-            aria-label="Afficher le mot de passe"
-        >
-            <MdVisibility size={20} className={`${show ? "hidden" : "block"}`} />
-            <MdVisibilityOff size={20} className={`${show ? "block" : "hidden"}`} />
-        </button>
     )
 }

@@ -1,3 +1,4 @@
+import { MetaFunction } from "@remix-run/node"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { MdSend } from "react-icons/md"
 import Markdown from "react-markdown"
@@ -6,6 +7,14 @@ import { io } from "socket.io-client"
 import { v4 as uuid } from "uuid"
 
 import AIMessage from "@/types/AIMessage"
+
+export const handle = { i18n: "common" }
+export const meta: MetaFunction = () => {
+    return [
+        { title: "AI Chat" },
+        { name: "description", content: "Discuter avec une intelligence artificielle" },
+    ]
+}
 
 export default function Index() {
     const [messages, setMessages] = useState<AIMessage[]>([])

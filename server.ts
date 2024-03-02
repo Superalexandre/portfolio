@@ -17,8 +17,8 @@ app.use("/build/*", serveStatic({ root: "./public/build" }))
 app.use("*", remix({ 
     build: () => {
         return import(BUILD_PATH)
-    }, 
-    mode: process.env.NODE_ENV 
+    },
+    mode: process.env.NODE_ENV as "production" | "development",
 }))
 
 const server = serve({

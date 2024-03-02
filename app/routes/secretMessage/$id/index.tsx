@@ -9,6 +9,7 @@ import { formatDate } from "~/utils/date"
 import addView from "./addView"
 import getMessage from "./getMessage"
 
+export const handle = { i18n: "common" }
 export const meta: MetaFunction = () => {
     return [
         { title: "Voir votre message secret" },

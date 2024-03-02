@@ -1,9 +1,33 @@
 import { useKeyboardEvent } from "@react-hookz/web"
+import { LoaderFunctionArgs, MetaFunction } from "@remix-run/node"
 import { useState } from "react"
 import ConfettiExplosion from "react-confetti-explosion"
+import { useTranslation } from "react-i18next"
 import { MdBackspace, MdCalculate, MdDelete } from "react-icons/md"
 
+import i18next from "~/i18next.server"
+import getLanguage from "~/utils/getLanguage"
+
+export const handle = { i18n: "common" }
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+    return [
+        { title: data?.title },
+        { name: "description", content: data?.description },
+    ]
+}
+
+export async function loader({ request }: LoaderFunctionArgs) {
+    const language = getLanguage(request)
+    const t = await i18next.getFixedT(language, null, "common")
+
+    const title = t("calculator.meta.title")
+    const description = t("calculator.meta.description")
+
+    return { title, description }
+}
+
 export default function Index() {
+    const { t } = useTranslation("common")
     const [result, setResult] = useState("0")
     const [error, setError] = useState("")
     const [explosion, setExplosion] = useState(false)
@@ -22,9 +46,9 @@ export default function Index() {
             try {
                 const evalResult = eval(result)
 
-                if (isNaN(evalResult)) throw new Error("Le calcul n'est invalide.")
+                if (isNaN(evalResult)) throw new Error(t("calculator.invalidCalc"))
 
-                if (evalResult === Infinity) return setError("Division par zéro impossible.")
+                if (evalResult === Infinity) return setError(t("calculator.divisionImpossible"))
 
                 setExplosion(true)
 
@@ -32,7 +56,7 @@ export default function Index() {
 
                 return
             } catch (errorCalc) {
-                return setError("Le calcul n'est invalide.")
+                return setError(t("calculator.invalidCalc"))
             }
         }
 
@@ -67,12 +91,12 @@ export default function Index() {
             <h1 className="flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold text-white">
                 <MdCalculate size={30} />
 
-                Calculatrice
+                {t("calculator.title")}
             </h1>
 
             <div className="flex w-80 flex-col gap-4">
                 <div className="flex flex-col">
-                    <h2 className="text-bold w-full text-center text-2xl text-white">Résultat : </h2>
+                    <h2 className="text-bold w-full text-center text-2xl text-white">{t("calculator.result")} : </h2>
                     <p className="break-words text-white">{result}</p>
                     {error ? <p className="text-sm text-red-500">{error}</p> : null}
                 </div>

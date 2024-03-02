@@ -1,8 +1,13 @@
 import { Links, Meta, Scripts } from "@remix-run/react"
+import { t } from "i18next"
+import { useTranslation } from "react-i18next"
 
+export const handle = { i18n: "common" }
 export default function NotFound() {
+    const { i18n } = useTranslation("common")
+
     return (
-        <html lang="fr-FR" className="h-full min-h-full min-w-full">
+        <html lang={i18n.language} dir={i18n.dir()} className="h-full min-h-full min-w-full">
             <head>
                 <title>Oops!</title>
                 <Meta />
@@ -17,11 +22,11 @@ export default function NotFound() {
                 />
 
                 <h1 className="text-2xl font-bold text-white">
-                    {"La page que vous cherchez n'existe pas"}
+                    {t("error.notFound")}
                 </h1>
 
                 <a href="/" className="text-white underline hover:text-main-color">
-                    {"Retour à l'accueil"}
+                    {t("error.backHome")}
                 </a>
 
                 <Scripts />

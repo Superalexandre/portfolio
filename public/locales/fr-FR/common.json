@@ -1,4 +1,8 @@
 {
+    "meta": {
+        "title": "Portfolio - Alexandre Renard",
+        "description": "Portfolio d'Alexandre Renard, étudiant en informatique"
+    },
     "description": "Étudiant en Informatique",
     "happeningNow": "(en cours)",
     "born": "Né le",
@@ -74,5 +78,81 @@
     },
     "personalProjects": {
         "title": "Projet personnels"
-    }
+    },
+    "calculator": {
+        "meta": {
+            "title": "Calculatrice",
+            "description": "Calculatrice en ligne"
+        },
+        "invalidCalc": "Le calcul n'est invalide.",
+        "divisionImpossible": "Division par zéro impossible.",
+        "title": "Calculatrice",
+        "result": "Résultat"
+    },
+    "error": {
+        "errorOccurred": "Une erreur est survenue :",
+        "unknownError": "Erreur inconnue",
+        "notFound": "La page que vous cherchez n'existe pas",
+        "backHome": "Retour à l'accueil"
+    },
+    "register": {
+        "meta": {
+            "title": "Créer un compte",
+            "description": "Créez un compte pour accéder à plus de fonctionnalités"
+        },
+        "passwordNotMatch": "Les mots de passe ne correspondent pas",
+        "title": "Créer un compte",
+        "name": "Nom",
+        "firstName": "Prénom",
+        "username": "Pseudo",
+        "birthDate": "Date de naissance",
+        "mail": "Email",
+        "password": "Mot de passe",
+        "confirmPassword": "Confirmation du mot de passe",
+        "alreadyHaveAnAccount": "Déjà un compte ? Connectez-vous",
+        "createAccount": "Créer un compte"
+    },
+    "profile": {
+        "meta": {
+            "title": "Mon profile",
+            "description": "Gérez votre profile"
+        },
+        "myProfile": "Mon profile",
+        "myMessages": {
+            "meta": {
+                "title": "Mes messages",
+                "description": "Liste de vos messages"
+            },
+            "title": "Mes messages",
+            "messageList": "Liste de vos messages",
+            "views": "vues",
+            "viewMessage": "Voir le message",
+            "createMessage": "Créer un message secret"
+        },
+        "settings": {
+            "meta": {
+                "title": "Paramètres",
+                "description": "Gérez vos paramètres"
+            },
+            "title": "Paramètres",
+            "profileSettings": "Paramètres de votre profile"
+        },
+        "logout": "Déconnexion",
+        "greetings": {
+            "day": "Bonjour",
+            "night": "Bonsoir"
+        }
+    },
+    "login": {
+        "meta": {
+            "title": "Se connecter",
+            "description": "Connectez-vous pour accéder à plus de fonctionnalités"
+        },
+        "title": "Se connecter",
+        "noAccount": "Pas encore de compte ? Inscrivez-vous !",
+        "password": "Mot de passe",
+        "mailOrPassword": "Email ou pseudo",
+        "connection": "Se connecter"
+    },
+    "loading": "Chargement..."
 }

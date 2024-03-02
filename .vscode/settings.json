@@ -42,5 +42,13 @@
         "common.languages.fr",
         "common.languages.en",
         "common.languages.es",
+    ],
+    "i18n-ally.refactor.templates": [
+        {
+            "template": "t(\"{key}\")",
+        },
+        {
+            "template": "{t(\"{key}\")}"
+        },
     ]
 }

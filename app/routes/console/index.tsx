@@ -5,11 +5,11 @@ import { TFunction, i18n as i18nType } from "i18next"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 
-
 import information from "@/informations/informations"
 import schools from "@/informations/schools"
 import useChangeLanguage from "~/hooks/useChangeLanguage"
 
+export const handle = { i18n: "common" }
 export const meta: MetaFunction = () => {
     return [
         { title: "Mode Console - Alexandre Renard" },

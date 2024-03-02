@@ -2,6 +2,7 @@ import { MetaFunction } from "@remix-run/node"
 
 import Background from "~/Components/Background"
 
+export const handle = { i18n: "common" }
 export const meta: MetaFunction = () => {
     return [
         { title: "Ambin Informatique - Alexandre Renard" },

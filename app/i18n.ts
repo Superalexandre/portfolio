@@ -1,3 +1,5 @@
+import { InitOptions } from "i18next"
+
 const i18n = {
     supportedLngs: ["en-GB", "fr-FR"],
     fallbackLng: "fr-FR",
@@ -6,7 +8,7 @@ const i18n = {
         escapeValue: false,
     },
     react: { useSuspense: false },
-}
+} satisfies InitOptions
 
 
 export default i18n

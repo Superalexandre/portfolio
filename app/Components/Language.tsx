@@ -1,19 +1,18 @@
-import { useLocalStorageValue } from "@react-hookz/web"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { MdLanguage } from "react-icons/md"
-
-import useChangeLanguage from "../hooks/useChangeLanguage"
+import Cookies from "universal-cookie"
 
 export default function Language() {
+    const [isOpen, setIsOpen] = useState(false)
     const { i18n } = useTranslation()
 
-    const cachedLanguage = useLocalStorageValue("language")
+    const setLanguage = (locale: string) => {
+        const cookies = new Cookies(null, { path: "/" })
 
-    const [language, setLanguage] = useState(cachedLanguage.value as string || i18n.language)
-    const [isOpen, setIsOpen] = useState(false)
-
-    useChangeLanguage(language)
+        i18n.changeLanguage(locale)
+        cookies.set("language", locale)
+    }
 
     return (
         <div className="group">

@@ -9,6 +9,7 @@ import { getUser } from "~/session.server"
 import createMessage from "./createMessage"
 import type { Ambiance, BackgroundColor } from "./createMessage"
 
+export const handle = { i18n: "common" }
 export const meta: MetaFunction = () => {
     return [
         { title: "Créer un message secret" },
