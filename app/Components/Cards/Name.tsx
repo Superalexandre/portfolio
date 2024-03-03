@@ -19,7 +19,9 @@ export default function NameCard() {
     return (
         <Card>
             <div className="flex flex-col items-center justify-center">
-                <h1 className="text-center text-3xl font-bold dark:text-white">Alexandre RENARD</h1>
+                <h1 className="text-center text-3xl font-bold dark:text-white">
+                    Alexandre RENARD
+                </h1>
             </div>
             <div className="flex flex-col items-center justify-center">
                 <p className="text-center dark:text-white">{t("description")}</p>

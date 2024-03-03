@@ -12,8 +12,8 @@ export default function ProgrammingLanguages() {
 
     return (
         <Card>
-            <h1 className="flex items-center justify-center gap-4 text-center text-3xl font-bold dark:text-white">
-                <MdComputer className="inline-block" />
+            <h1 className="flex flex-col items-center gap-4 text-center text-3xl font-bold dark:text-white lg:flex-row">
+                <MdComputer />
 
                 {t("programmingLanguages.title")}
             </h1>

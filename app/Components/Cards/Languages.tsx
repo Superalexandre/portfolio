@@ -13,8 +13,8 @@ export default function Languages() {
 
     return (
         <Card>
-            <h1 className="flex items-center justify-center gap-4 text-3xl font-bold dark:text-white">
-                <MdLanguage className="inline-block" />
+            <h1 className="flex flex-col items-center gap-4 text-center text-3xl font-bold dark:text-white lg:flex-row">
+                <MdLanguage />
 
                 {t("languages.title")}
             </h1>

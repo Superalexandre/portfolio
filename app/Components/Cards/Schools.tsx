@@ -36,9 +36,8 @@ export default function Schools() {
                 {sorted === "asc" ? "Trier par date de fin" : "Trier par date de début"}
             </button> */}
 
-
-            <h1 className="flex items-center justify-center gap-4 text-3xl font-bold dark:text-white">
-                <MdSchool className="inline-block" />
+            <h1 className="flex flex-col items-center gap-4 text-center text-3xl font-bold dark:text-white lg:flex-row">
+                <MdSchool />
 
                 {t("schools.title")}
             </h1>
@@ -103,6 +102,6 @@ const Description = ({ code, t }: { code: string, t: TFunction<"common", undefin
 const link = ({ href, text }: { href: string, text: string }) => {
     const className = "dark:text-white hover:text-main-color dark:hover:text-main-color underline decoration-main-color"
     const linkTag = `<a href=${href} rel="noreferrer" class="${className}">${text}</a>`
-    
+
     return linkTag
 }
