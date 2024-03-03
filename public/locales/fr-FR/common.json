@@ -154,5 +154,39 @@
         "mailOrPassword": "Email ou pseudo",
         "connection": "Se connecter"
     },
-    "loading": "Chargement..."
+    "loading": "Chargement...",
+    "secretMessage": {
+        "meta": {
+            "title": "Message secret",
+            "description": "Créez un message secret"
+        },
+        "id": {
+            "meta": {
+                "title": "Message secret",
+                "description": "Voir votre message secret"
+            }
+        },
+        "darkTheme": "Fond sombre",
+        "lightTheme": "Fond blanc",
+        "pinkTheme": "Fond rose",
+        "normalAmbiance": "Normal",
+        "confettiAmbiance": "Confetti",
+        "loveAmbiance": "Love",
+        "rainAmbiance": "Pluie",
+        "send": "Envoyer",
+        "copy": "Copié",
+        "openLink": "Ouvrir le lien",
+        "viewSecretMessage": "Voir votre message secret",
+        "writeBy": "Écrit par",
+        "yes": "Oui",
+        "no": "Non",
+        "createMessage": "Créer un message secret",
+        "notFound": "Message secret introuvable",
+        "namePlaceholder": "Entrez votre nom (vide si Anonyme)",
+        "messagePlaceholder": "Entrez votre message secret",
+        "writeMessage": "Merci d'écrire un message",
+        "anonymous": "Anonyme",
+        "tooShort": "Message trop court",
+        "tooLong": "Message trop long"
+    }
 }

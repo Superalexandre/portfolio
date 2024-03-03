@@ -1,26 +1,38 @@
 import { useWindowSize } from "@react-hookz/web"
-import { ActionFunctionArgs, MetaFunction } from "@remix-run/node"
+import { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction, json } from "@remix-run/node"
 import { Form, useActionData, useLoaderData } from "@remix-run/react"
+import { TFunction } from "i18next"
 import React from "react"
 import Confetti from "react-confetti"
+import { useTranslation } from "react-i18next"
 
+import i18next from "~/i18next.server"
 import { formatDate } from "~/utils/date"
+import getLanguage from "~/utils/getLanguage"
 
 import addView from "./addView"
 import getMessage from "./getMessage"
 
 export const handle = { i18n: "common" }
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return [
-        { title: "Voir votre message secret" },
-        { name: "description", content: "Vous avez reçu un message secret" },
+        { title: data?.title },
+        { name: "description", content: data?.description },
     ]
 }
 
-export async function loader({ params }: { params: { id: string } }) {
+export async function loader({ request, params }: LoaderFunctionArgs) {
+    const language = getLanguage(request)
+    const t = await i18next.getFixedT(language, null, "common")
+
+    const title = t("secretMessage.id.meta.title")
+    const description = t("secretMessage.id.meta.description")
+
+    if (!params.id) return json({ message: null, title, description })
+    
     const message = await getMessage(params.id)
 
-    return message
+    return { message, title, description}
 }
 
 export async function action({ request, params }: ActionFunctionArgs) {
@@ -51,9 +63,10 @@ export async function action({ request, params }: ActionFunctionArgs) {
 }
 
 export default function Index() {
-    const data = useLoaderData<typeof loader>()
+    const { t } = useTranslation("common")
+    const { message: data } = useLoaderData<typeof loader>()
 
-    if (!data) return <NotFound />
+    if (!data) return <NotFound t={t} />
 
     const result = useActionData<typeof action>()
 
@@ -96,7 +109,7 @@ export default function Index() {
                     value="view"
                     className={`${displayMessage ? "hidden" : "block"} rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700`}
                 >
-                    Voir votre message secret
+                    {t("secretMessage.viewSecretMessage")}
                 </button>
             </Form>
 
@@ -105,7 +118,7 @@ export default function Index() {
                     <div className={`min-h-96 w-11/12 lg:w-9/12 ${color.secondBg} mt-4 flex items-center justify-center rounded-lg border ${color.border}`}>
                         <p className={`${color.text} m-4 break-all text-center`}>{data.message}</p>
                     </div>
-                    <p className={`w-11/12 text-center lg:w-9/12 lg:text-right ${color.text}`}>Écrit par {data.author} le {date}</p>
+                    <p className={`w-11/12 text-center lg:w-9/12 lg:text-right ${color.text}`}>{t("secretMessage.writeBy")} {data.author} le {date}</p>
 
                     <Form
                         className={`${data.isQuestion ? "block" : "hidden"} flex flex-row justify-center gap-4`}
@@ -118,7 +131,7 @@ export default function Index() {
                             name="_action" 
                             className="mt-4 rounded-lg bg-green-500 px-4 py-2 text-center font-bold text-white hover:bg-green-700"
                         >
-                            Oui
+                            {t("secretMessage.yes")}
                         </button>
                         <button 
                             type="submit" 
@@ -126,11 +139,11 @@ export default function Index() {
                             name="_action" 
                             className="mt-4 rounded-lg bg-red-500 px-4 py-2 text-center font-bold text-white hover:bg-red-700"
                         >
-                            Non
+                            {t("secretMessage.no")}
                         </button>
                     </Form>
                 </div>
-                <a href="/secretMessage" className="z-10 mb-4 rounded-lg bg-green-500 px-4 py-2 text-center font-bold text-white hover:bg-green-700 lg:absolute lg:bottom-0 lg:right-0 lg:m-4">Créer un message secret</a>
+                <a href="/secretMessage" className="z-10 mb-4 rounded-lg bg-green-500 px-4 py-2 text-center font-bold text-white hover:bg-green-700 lg:absolute lg:bottom-0 lg:right-0 lg:m-4">{t("secretMessage.createMessage")}</a>
             </div>
         </div>
     )
@@ -158,11 +171,11 @@ export default function Index() {
     return <Message />
 }
 
-const NotFound = () => {
+const NotFound = ({ t }: { t: TFunction }) => {
     return (
         <div className="flex h-full min-h-screen min-w-full flex-col items-center justify-center gap-2 bg-slate-700">
-            <h1 className="text-center text-2xl text-white">Message secret introuvable</h1>
-            <a className="text-white underline hover:text-main-color" href="/secretMessage">Créer un message secret</a>
+            <h1 className="text-center text-2xl text-white">{t("secretMessage.notFound")}</h1>
+            <a className="text-white underline hover:text-main-color" href="/secretMessage">{t("secretMessage.createMessage")}</a>
         </div>
     )
 }

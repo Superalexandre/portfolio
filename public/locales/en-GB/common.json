@@ -154,5 +154,39 @@
     "meta": {
         "title": "Portfolio - Alexandre Renard",
         "description": "Portfolio of Alexandre Renard, computer science student"
+    },
+    "secretMessage": {
+        "confettiAmbiance": "Confetti",
+        "copy": "Copy",
+        "createMessage": "Create a secret message",
+        "darkTheme": "Dark background",
+        "id": {
+            "meta": {
+                "description": "See your secret message",
+                "title": "Secret message"
+            }
+        },
+        "lightTheme": "White background",
+        "loveAmbiance": "Love",
+        "meta": {
+            "description": "Create a secret message",
+            "title": "Secret message"
+        },
+        "no": "No",
+        "normalAmbiance": "Normal",
+        "notFound": "Secret message not found",
+        "openLink": "Open link",
+        "pinkTheme": "Pink background",
+        "rainAmbiance": "Rain",
+        "send": "Send",
+        "viewSecretMessage": "See your secret message",
+        "writeBy": "Written by",
+        "yes": "Yes",
+        "namePlaceholder": "Enter your name (blank if Anonymous)",
+        "messagePlaceholder": "Enter your secret message",
+        "anonymous": "Anonymous",
+        "tooLong": "Message too long",
+        "tooShort": "Message too short",
+        "writeMessage": "Please write a message"
     }
 }

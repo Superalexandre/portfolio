@@ -1,23 +1,39 @@
-import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node"
+import { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction, json } from "@remix-run/node"
 import { Form, useActionData, useNavigation } from "@remix-run/react"
+import { useTranslation } from "react-i18next"
 import { MdContentCopy, MdOpenInNew, MdSend } from "react-icons/md"
 
 import Loader from "~/Components/Loader"
 import { useCopyToClipboard } from "~/hooks/useCopyToClipboard"
+import i18next from "~/i18next.server"
 import { getUser } from "~/session.server"
+import getLanguage from "~/utils/getLanguage"
 
 import createMessage from "./createMessage"
 import type { Ambiance, BackgroundColor } from "./createMessage"
 
 export const handle = { i18n: "common" }
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return [
-        { title: "Créer un message secret" },
-        { name: "description", content: "Créer votre propre message secret !" },
+        { title: data?.title },
+        { name: "description", content: data?.description },
     ]
 }
 
+export async function loader({ request }: LoaderFunctionArgs)  {
+    const language = getLanguage(request)
+    const t = await i18next.getFixedT(language, null, "common")
+
+    const title = t("secretMessage.meta.title")
+    const description = t("secretMessage.meta.description")
+
+    return { title, description }
+}
+
 export async function action({ request }: ActionFunctionArgs) {
+    const language = getLanguage(request)
+    const t = await i18next.getFixedT(language, null, "common")
+
     const body = await request.formData()
     const message = body.get("message")
     const author = body.get("author")
@@ -25,12 +41,12 @@ export async function action({ request }: ActionFunctionArgs) {
     if (!message) return json({
         success: false,
         error: true,
-        message: "Merci d'écrire un message",
+        message: t("secretMessage.writeMessage"),
         id: null
     })
 
     const stringMessage = message.toString()
-    const stringAuthor = author?.toString() || "Anonyme"
+    const stringAuthor = author?.toString() || t("secretMessage.anonymous")
 
     const bodyBackgroundColor = body.get("backgroundColor")?.toString() as BackgroundColor
     const backgroundColor: BackgroundColor = bodyBackgroundColor || "dark"
@@ -43,14 +59,14 @@ export async function action({ request }: ActionFunctionArgs) {
     if (stringMessage.length <= 0) return json({
         success: false,
         error: true,
-        message: "Message trop court",
+        message: t("secretMessage.tooShort"),
         id: null
     })
 
     if (stringMessage.length > 2048) return json({
         success: false,
         error: true,
-        message: "Message trop long",
+        message: t("secretMessage.tooLong"),
         id: null
     })
 
@@ -66,6 +82,7 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function Index() {
+    const { t } = useTranslation("common")
     const result = useActionData<typeof action>()
     const navigation = useNavigation()
 
@@ -83,23 +100,23 @@ export default function Index() {
                 name="message"
                 id="message"
                 className="h-96 w-11/12 rounded-lg bg-slate-800 p-5 text-white lg:w-1/2"
-                placeholder="Entrez votre message secret"
+                placeholder={t("secretMessage.messagePlaceholder")}
             >
             </textarea>
 
-            <input type="text" name="author" id="author" className="w-11/12 rounded-lg bg-slate-800 p-5 text-white lg:w-1/2" placeholder="Entrez votre nom (vide si Anonyme)" />
+            <input type="text" name="author" id="author" className="w-11/12 rounded-lg bg-slate-800 p-5 text-white lg:w-1/2" placeholder={t("secretMessage.namePlaceholder")} />
 
             <select name="backgroundColor" id="backgroundColor" className="w-11/12 rounded-lg bg-slate-800 p-5 text-white lg:w-1/2">
-                <option value="dark">Fond sombre</option>
-                <option value="white">Fond blanc</option>
-                <option value="pink">Fond rose</option>
+                <option value="dark">{t("secretMessage.darkTheme")}</option>
+                <option value="white">{t("secretMessage.lightTheme")}</option>
+                <option value="pink">{t("secretMessage.pinkTheme")}</option>
             </select>
 
             <select name="ambiance" id="ambiance" className="w-11/12 rounded-lg bg-slate-800 p-5 text-white lg:w-1/2">
-                <option value="normal">Normal</option>
-                <option value="confetti">Confetti</option>
-                <option value="love">Love</option>
-                <option value="rain">Pluie</option>
+                <option value="normal">{t("secretMessage.normalAmbiance")}</option>
+                <option value="confetti">{t("secretMessage.confettiAmbiance")}</option>
+                <option value="love">{t("secretMessage.loveAmbiance")}</option>
+                <option value="rain">{t("secretMessage.rainAmbiance")}</option>
             </select>
 
 
@@ -119,7 +136,7 @@ export default function Index() {
                 
                 <MdSend size={20} className={`${isLoading ? "hidden" : "block"}`} />
 
-                Envoyer
+                {t("secretMessage.send")}
             </button>
             <div className="flex flex-col items-center justify-center">
                 {result?.success ? <p className="text-green-500">{result.message}</p> : null}
@@ -132,7 +149,7 @@ export default function Index() {
                             onClick={() => copy(`${window.location.origin}/secretMessage/${result.id}`)}
                             type="button"
                         >
-                            <p className="block lg:hidden">Copié</p>
+                            <p className="block lg:hidden">{t("secretMessage.copy")}</p>
                             <MdContentCopy size={20} />
                         </button>
 
@@ -142,7 +159,7 @@ export default function Index() {
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <p className="block lg:hidden">Ouvrir le lien</p>
+                            <p className="block lg:hidden">{t("secretMessage.openLink")}</p>
                             <MdOpenInNew size={20} />
                         </a>
                     </div>
