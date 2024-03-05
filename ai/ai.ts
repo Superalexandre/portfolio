@@ -13,17 +13,23 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // Mistral model : CapybaraHermes-2.5-Mistral-7B-GGUF
 const modelPath = path.join(__dirname, "models", "capybarahermes-2.5-mistral-7b.Q4_K_M.gguf")
 
-const model = new LlamaModel({
-    modelPath: modelPath,
-    vocabOnly: false
-})
-
-const context = new LlamaContext({ model })
-const session = new LlamaChatSession({ context, promptWrapper: undefined })
+let model: LlamaModel
+let context: LlamaContext
+let session: LlamaChatSession
 
 type SocketParams = Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, unknown>
 
 async function reply({ socket, message }: { socket: SocketParams, message: string }) {
+    if (!model) {
+        model = new LlamaModel({
+            modelPath: modelPath,
+            vocabOnly: false
+        })
+    }
+
+    if (!context) context = new LlamaContext({ model })
+    if (!session) session = new LlamaChatSession({ context, promptWrapper: undefined })
+
     const signal = new AbortController()
     const id = uuid()
     
