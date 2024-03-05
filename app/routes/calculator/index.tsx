@@ -31,8 +31,11 @@ export default function Index() {
     const [result, setResult] = useState("0")
     const [error, setError] = useState("")
     const [explosion, setExplosion] = useState(false)
+    const [lastKey, setLastKey] = useState<null | string>(null)
 
     const handleCalculation = (value: string) => {
+        if (explosion) return
+
         setError("")
 
         if (value === "C") return setResult("0")
@@ -51,8 +54,8 @@ export default function Index() {
                 if (evalResult === Infinity) return setError(t("calculator.divisionImpossible"))
 
                 setExplosion(true)
-
                 setResult(evalResult.toString())
+                setLastKey(value)
 
                 return
             } catch (errorCalc) {
@@ -61,7 +64,11 @@ export default function Index() {
         }
 
         const signs = ["+", "-", "*", "/", ","]
-        return setResult(result === "0" && !signs.includes(value) ? value : result + value)
+
+        setResult((result === "0" || lastKey === "=") && !signs.includes(value) ? value : result + value)
+
+        setLastKey(value)
+        return
     }
 
     const CalcButton = ({ value, displayValue, className = "" }: { value: string, displayValue?: string | JSX.Element, className?: string }) => {
