@@ -6,19 +6,41 @@ import { Server } from "socket.io"
 import "dotenv/config"
 import { v4 as uuid } from "uuid"
 
-// import reply from "./ai/ai"
+import reply from "./ai/ai"
 import AIMessage from "./types/AIMessage"
 
 const BUILD_PATH = "./build/index.js"
 const app = new Hono()
 
+/*
+Issue #35
+const viteDevServer = process.env.NODE_ENV === "development" ?
+    await import("vite").then((vite) => vite.createServer({
+        server: {
+            middlewareMode: true
+        }
+    }))
+    : undefined
+
+const remixHandler = remix({
+    build: viteDevServer ? () => viteDevServer.ssrLoadModule("virtual:remix/server-build") : await import(BUILD_PATH),
+    mode: process.env.NODE_ENV as "production" | "development",
+})
+
+if (viteDevServer) {
+    console.log(viteDevServer)
+
+    app.use(viteDevServer.middlewares as any)
+} else {
+    app.use(remixHandler)
+}
+*/
+
 app.use("/*", serveStatic({ root: "./public" }))
 app.use("/build/*", serveStatic({ root: "./public/build" }))
-app.use("*", remix({ 
-    build: () => {
-        return import(BUILD_PATH)
-    },
-    mode: process.env.NODE_ENV as "production" | "development",
+app.use("*", remix({
+    build: await import(BUILD_PATH),
+    mode: process.env.NODE_ENV as "production" | "development"
 }))
 
 const server = serve({
@@ -35,11 +57,11 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
     console.log("New connection")
 
-    socket.on("message", (data) => {
+    socket.on("message", async (data) => {
         socket.emit("message", data)
 
         if (process.env.IA_ACTIVE === "true") {
-            // await reply({ socket, message: data.content })
+            await reply({ socket, message: data.content })
         } else {
             socket.emit("message", {
                 id: uuid(),
@@ -56,3 +78,5 @@ io.on("connection", (socket) => {
         console.log("Connection closed")
     })
 })
+
+export default app
