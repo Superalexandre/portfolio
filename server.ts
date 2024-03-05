@@ -1,6 +1,7 @@
 import { serve } from "@hono/node-server"
 import { serveStatic } from "@hono/node-server/serve-static"
 import { Hono } from "hono"
+import { compress } from "hono/compress"
 import { remix } from "remix-hono/handler"
 import { Server } from "socket.io"
 import "dotenv/config"
@@ -36,6 +37,7 @@ if (viteDevServer) {
 }
 */
 
+app.use(compress())
 app.use("/*", serveStatic({ root: "./public" }))
 app.use("/build/*", serveStatic({ root: "./public/build" }))
 app.use("*", remix({
