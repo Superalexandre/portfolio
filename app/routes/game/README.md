@@ -7,6 +7,9 @@ TODO:
 - [X] Create random stations	
 - [X] Connect stations
     - [ ] Delete stations
+    - [ ] Add the posibility to cancel
 - [ ] Create a train
 - [ ] Move the train
 - [ ] Create random passengers
+- [ ] Add the zoom feature
+- [ ] Split function and all
