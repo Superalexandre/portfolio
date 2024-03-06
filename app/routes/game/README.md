@@ -12,15 +12,15 @@ TODO:
         - [ ] Star  	
 - [X] Connect stations
     - [ ] Improve the connection with only straight line
-    - [ ] Delete stations
-    - [ ] Add the posibility to cancel
+    - [ ] Delete lines
+    - [X] Add the possibility to cancel
 - [ ] Create a train
 - [ ] Move the train
 - [ ] Create random passengers
 - [ ] Add the zoom feature
-- [ ] Improve structure
-    - [ ] Rename "point(s)" in "station(s)" 
-    - [ ] Better function
-        - [ ] drawLine, drawPoint should only draw
-        - [ ] drawRandomPoints should call drawPoint to draw and only generate coord
-    - [ ] Split function into files (line.ts, station.ts, train.ts)
+- [X] Improve structure
+    - [X] Rename "point(s)" in "station(s)" 
+    - [X] Better function
+        - [x] drawLine, drawPoint should only draw
+        - [x] drawRandomPoints should call drawPoint to draw and only generate coord
+    - [X] Split function into files (line.ts, station.ts, train.ts)
