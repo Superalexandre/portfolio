@@ -18,4 +18,9 @@ TODO:
 - [ ] Move the train
 - [ ] Create random passengers
 - [ ] Add the zoom feature
-- [ ] Split function and all
+- [ ] Improve structure
+    - [ ] Rename "point(s)" in "station(s)" 
+    - [ ] Better function
+        - [ ] drawLine, drawPoint should only draw
+        - [ ] drawRandomPoints should call drawPoint to draw and only generate coord
+    - [ ] Split function into files (line.ts, station.ts, train.ts)
