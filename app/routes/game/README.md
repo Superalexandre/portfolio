@@ -11,6 +11,7 @@ TODO:
         - [ ] Triangle
         - [ ] Star  	
 - [X] Connect stations
+    - [ ] Improve the connection with only straight line
     - [ ] Delete stations
     - [ ] Add the posibility to cancel
 - [ ] Create a train
