@@ -1,0 +1,442 @@
+{
+    "questions": [
+        {
+            "question": "Quelle est ta boisson préférée ?",
+            "options": [
+                {
+                    "option": "Bière",
+                    "points": 3
+                },
+                {
+                    "option": "Café",
+                    "points": 2
+                },
+                {
+                    "option": "Soda",
+                    "points": 4
+                },
+                {
+                    "option": "Jus d'orange",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton passe-temps favori ?",
+            "options": [
+                {
+                    "option": "Regarder la télévision",
+                    "points": 3
+                },
+                {
+                    "option": "Lire des bandes dessinées",
+                    "points": 2
+                },
+                {
+                    "option": "Faire des farces",
+                    "points": 4
+                },
+                {
+                    "option": "Jouer à des jeux vidéo",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton plat préféré ?",
+            "options": [
+                {
+                    "option": "Donuts",
+                    "points": 1
+                },
+                {
+                    "option": "Hot-dog",
+                    "points": 4
+                },
+                {
+                    "option": "Pizza",
+                    "points": 3
+                },
+                {
+                    "option": "Salade",
+                    "points": 2
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton lieu préféré à Springfield ?",
+            "options": [
+                {
+                    "option": "Maison des Simpson",
+                    "points": 3
+                },
+                {
+                    "option": "Bar de Moe",
+                    "points": 4
+                },
+                {
+                    "option": "Kwik-E-Mart",
+                    "points": 2
+                },
+                {
+                    "option": "Centrale nucléaire",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta phrase préférée ?",
+            "options": [
+                {
+                    "option": "D'oh!",
+                    "points": 1
+                },
+                {
+                    "option": "Ay caramba!",
+                    "points": 4
+                },
+                {
+                    "option": "Eat my shorts!",
+                    "points": 3
+                },
+                {
+                    "option": "Hi-diddly-ho, neighborino!",
+                    "points": 2
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton animal de compagnie idéal ?",
+            "options": [
+                {
+                    "option": "Chien",
+                    "points": 3
+                },
+                {
+                    "option": "Chat",
+                    "points": 2
+                },
+                {
+                    "option": "Serpent",
+                    "points": 4
+                },
+                {
+                    "option": "Hamster",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton emploi rêvé à Springfield ?",
+            "options": [
+                {
+                    "option": "Travail à la centrale nucléaire",
+                    "points": 1
+                },
+                {
+                    "option": "Propriétaire du Kwik-E-Mart",
+                    "points": 2
+                },
+                {
+                    "option": "Acteur à Krustyland",
+                    "points": 4
+                },
+                {
+                    "option": "Membre de la police",
+                    "points": 3
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton personnage secondaire préféré ?",
+            "options": [
+                {
+                    "option": "Milhouse",
+                    "points": 2
+                },
+                {
+                    "option": "Nelson",
+                    "points": 4
+                },
+                {
+                    "option": "Apu",
+                    "points": 3
+                },
+                {
+                    "option": "Sideshow Bob",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta saison préférée des Simpsons ?",
+            "options": [
+                {
+                    "option": "Saison 1-10",
+                    "points": 3
+                },
+                {
+                    "option": "Saison 11-20",
+                    "points": 1
+                },
+                {
+                    "option": "Saison 21-30",
+                    "points": 2
+                },
+                {
+                    "option": "Saison 31 et plus",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta matière scolaire préférée ?",
+            "options": [
+                {
+                    "option": "Mathématiques",
+                    "points": 1
+                },
+                {
+                    "option": "Éducation physique",
+                    "points": 3
+                },
+                {
+                    "option": "Arts plastiques",
+                    "points": 2
+                },
+                {
+                    "option": "Aucune, l'école est ennuyeuse",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton moyen de transport préféré ?",
+            "options": [
+                {
+                    "option": "Voiture",
+                    "points": 2
+                },
+                {
+                    "option": "Vélo",
+                    "points": 3
+                },
+                {
+                    "option": "Skateboard",
+                    "points": 4
+                },
+                {
+                    "option": "Marcher à pied",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton hobby du dimanche après-midi ?",
+            "options": [
+                {
+                    "option": "Faire la sieste",
+                    "points": 1
+                },
+                {
+                    "option": "Aller au bowling",
+                    "points": 2
+                },
+                {
+                    "option": "Regarder la télévision",
+                    "points": 3
+                },
+                {
+                    "option": "Faire des farces téléphoniques",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta couleur de cheveux idéale ?",
+            "options": [
+                {
+                    "option": "Brun",
+                    "points": 2
+                },
+                {
+                    "option": "Blond",
+                    "points": 3
+                },
+                {
+                    "option": "Chauve",
+                    "points": 4
+                },
+                {
+                    "option": "Roux",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta saison préférée de l'année ?",
+            "options": [
+                {
+                    "option": "Printemps",
+                    "points": 3
+                },
+                {
+                    "option": "Été",
+                    "points": 1
+                },
+                {
+                    "option": "Automne",
+                    "points": 2
+                },
+                {
+                    "option": "Hiver",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton jeu de société préféré ?",
+            "options": [
+                {
+                    "option": "Monopoly",
+                    "points": 1
+                },
+                {
+                    "option": "Twister",
+                    "points": 4
+                },
+                {
+                    "option": "Scrabble",
+                    "points": 3
+                },
+                {
+                    "option": "Cluedo",
+                    "points": 2
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta coiffure idéale ?",
+            "options": [
+                {
+                    "option": "Coupe en brosse",
+                    "points": 3
+                },
+                {
+                    "option": "Chauve avec une casquette",
+                    "points": 4
+                },
+                {
+                    "option": "Queue de cheval",
+                    "points": 2
+                },
+                {
+                    "option": "Cheveux longs et ébouriffés",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton super-héros préféré dans l'univers des Simpsons ?",
+            "options": [
+                {
+                    "option": "Radioactive Man",
+                    "points": 2
+                },
+                {
+                    "option": "Bartman",
+                    "points": 4
+                },
+                {
+                    "option": "Crimson Avenger",
+                    "points": 3
+                },
+                {
+                    "option": "Stretch Dude",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta célébrité préférée invitée dans les Simpsons ?",
+            "options": [
+                {
+                    "option": "Michael Jackson",
+                    "points": 3
+                },
+                {
+                    "option": "Johnny Cash",
+                    "points": 1
+                },
+                {
+                    "option": "Katy Perry",
+                    "points": 2
+                },
+                {
+                    "option": "Lady Gaga",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton épisode des Simpsons préféré ?",
+            "options": [
+                {
+                    "option": "Marge contre le monorail",
+                    "points": 2
+                },
+                {
+                    "option": "Homer at the Bat",
+                    "points": 4
+                },
+                {
+                    "option": "Le Pinceau qui tue",
+                    "points": 3
+                },
+                {
+                    "option": "Bart Gets an F",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à l'école ?",
+            "options": [
+                {
+                    "option": "Excitation",
+                    "points": 3
+                },
+                {
+                    "option": "Indifférence",
+                    "points": 2
+                },
+                {
+                    "option": "Hostilité",
+                    "points": 4
+                },
+                {
+                    "option": "Ennui",
+                    "points": 1
+                }
+            ]
+        }
+    ],
+    "results": {
+        "Homer Simpson": {
+            "minPoints": 20,
+            "maxPoints": 30
+        },
+        "Bart Simpson": {
+            "minPoints": 31,
+            "maxPoints": 40
+        },
+        "Lisa Simpson": {
+            "minPoints": 41,
+            "maxPoints": 50
+        },
+        "Marge Simpson": {
+            "minPoints": 51,
+            "maxPoints": 60
+        }
+    }
+}

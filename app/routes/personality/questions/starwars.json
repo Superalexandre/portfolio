@@ -1,0 +1,421 @@
+{
+    "questions": [
+        {
+            "question": "Quel est ton sabre laser idéal ?",
+            "options": [
+                {
+                    "option": "Bleu",
+                    "points": 3
+                },
+                {
+                    "option": "Vert",
+                    "points": 2
+                },
+                {
+                    "option": "Rouge",
+                    "points": 4
+                },
+                {
+                    "option": "Violet",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta planète préférée de Star Wars ?",
+            "options": [
+                {
+                    "option": "Tatooine",
+                    "points": 1
+                },
+                {
+                    "option": "Coruscant",
+                    "points": 3
+                },
+                {
+                    "option": "Endor",
+                    "points": 4
+                },
+                {
+                    "option": "Naboo",
+                    "points": 2
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta faction préférée ?",
+            "options": [
+                {
+                    "option": "République",
+                    "points": 2
+                },
+                {
+                    "option": "Empire",
+                    "points": 4
+                },
+                {
+                    "option": "Résistance",
+                    "points": 3
+                },
+                {
+                    "option": "Séparatistes",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton personnage secondaire préféré ?",
+            "options": [
+                {
+                    "option": "Chewbacca",
+                    "points": 3
+                },
+                {
+                    "option": "R2-D2",
+                    "points": 1
+                },
+                {
+                    "option": "C-3PO",
+                    "points": 2
+                },
+                {
+                    "option": "Yoda",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta profession idéale dans l'univers Star Wars ?",
+            "options": [
+                {
+                    "option": "Jedi",
+                    "points": 3
+                },
+                {
+                    "option": "Sith",
+                    "points": 4
+                },
+                {
+                    "option": "Contrebandier",
+                    "points": 2
+                },
+                {
+                    "option": "Pilote de chasse",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel vaisseau spatial préfères-tu ?",
+            "options": [
+                {
+                    "option": "Millennium Falcon",
+                    "points": 2
+                },
+                {
+                    "option": "X-wing",
+                    "points": 1
+                },
+                {
+                    "option": "TIE Fighter",
+                    "points": 4
+                },
+                {
+                    "option": "Slave I",
+                    "points": 3
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton épisode préféré de Star Wars ?",
+            "options": [
+                {
+                    "option": "Épisode IV: Un Nouvel Espoir",
+                    "points": 3
+                },
+                {
+                    "option": "Épisode V: L'Empire contre-attaque",
+                    "points": 4
+                },
+                {
+                    "option": "Épisode VI: Le Retour du Jedi",
+                    "points": 2
+                },
+                {
+                    "option": "Épisode VII: Le Réveil de la Force",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta créature préférée ?",
+            "options": [
+                {
+                    "option": "Wookiee",
+                    "points": 3
+                },
+                {
+                    "option": "Ewok",
+                    "points": 1
+                },
+                {
+                    "option": "Tauntaun",
+                    "points": 2
+                },
+                {
+                    "option": "Bantha",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quel côté de la Force choisirais-tu ?",
+            "options": [
+                {
+                    "option": "Côté Lumineux",
+                    "points": 2
+                },
+                {
+                    "option": "Côté Obscur",
+                    "points": 4
+                },
+                {
+                    "option": "Équilibre",
+                    "points": 3
+                },
+                {
+                    "option": "Neutre",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton droïde préféré ?",
+            "options": [
+                {
+                    "option": "BB-8",
+                    "points": 1
+                },
+                {
+                    "option": "HK-47",
+                    "points": 4
+                },
+                {
+                    "option": "IG-88",
+                    "points": 3
+                },
+                {
+                    "option": "Droïde de protocole",
+                    "points": 2
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta citation préférée de Star Wars ?",
+            "options": [
+                {
+                    "option": "Que la Force soit avec toi",
+                    "points": 2
+                },
+                {
+                    "option": "Je suis ton père",
+                    "points": 4
+                },
+                {
+                    "option": "Que les Porgs soient avec toi",
+                    "points": 1
+                },
+                {
+                    "option": "Il ne peut y avoir que deux : un maître et un apprenti",
+                    "points": 3
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton talent spécial ?",
+            "options": [
+                {
+                    "option": "Maîtrise du sabre laser",
+                    "points": 3
+                },
+                {
+                    "option": "Manipulation de la Force",
+                    "points": 4
+                },
+                {
+                    "option": "Pilote exceptionnel",
+                    "points": 2
+                },
+                {
+                    "option": "Ingénieur doué",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta couleur de peau préférée pour un extraterrestre ?",
+            "options": [
+                {
+                    "option": "Vert",
+                    "points": 2
+                },
+                {
+                    "option": "Bleu",
+                    "points": 4
+                },
+                {
+                    "option": "Rouge",
+                    "points": 3
+                },
+                {
+                    "option": "Jaune",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton lieu emblématique préféré dans Star Wars ?",
+            "options": [
+                {
+                    "option": "La Cantina de Mos Eisley",
+                    "points": 3
+                },
+                {
+                    "option": "Le Temple Jedi",
+                    "points": 2
+                },
+                {
+                    "option": "La salle du trône de l'Empereur",
+                    "points": 4
+                },
+                {
+                    "option": "La Forêt d'Endor",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton style vestimentaire idéal dans l'univers Star Wars ?",
+            "options": [
+                {
+                    "option": "Robes de Jedi",
+                    "points": 2
+                },
+                {
+                    "option": "Armure de Mandalorien",
+                    "points": 4
+                },
+                {
+                    "option": "Tenue décontractée de contrebandier",
+                    "points": 1
+                },
+                {
+                    "option": "Uniforme impérial",
+                    "points": 3
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta préférence en termes de vaisseau spatial ?",
+            "options": [
+                {
+                    "option": "Chasseur léger",
+                    "points": 3
+                },
+                {
+                    "option": "Destroyer stellaire",
+                    "points": 4
+                },
+                {
+                    "option": "Cargo spatial",
+                    "points": 1
+                },
+                {
+                    "option": "Navette Lambda",
+                    "points": 2
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta relation avec la technologie ?",
+            "options": [
+                {
+                    "option": "Technophobe",
+                    "points": 1
+                },
+                {
+                    "option": "Technophile",
+                    "points": 3
+                },
+                {
+                    "option": "Utilitaire",
+                    "points": 2
+                },
+                {
+                    "option": "Créateur de nouvelles technologies",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta motivation principale ?",
+            "options": [
+                {
+                    "option": "Vengeance",
+                    "points": 4
+                },
+                {
+                    "option": "Paix dans la galaxie",
+                    "points": 2
+                },
+                {
+                    "option": "Liberté personnelle",
+                    "points": 1
+                },
+                {
+                    "option": "Connaissance et sagesse",
+                    "points": 3
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton ennemi emblématique préféré ?",
+            "options": [
+                {
+                    "option": "Dark Maul",
+                    "points": 4
+                },
+                {
+                    "option": "Dark Vador",
+                    "points": 3
+                },
+                {
+                    "option": "Empereur Palpatine",
+                    "points": 2
+                },
+                {
+                    "option": "Général Grievous",
+                    "points": 1
+                }
+            ]
+        }
+    ],
+    "results": {
+        "Luke Skywalker": {
+            "minPoints": 20,
+            "maxPoints": 30
+        },
+        "Darth Vader": {
+            "minPoints": 31,
+            "maxPoints": 40
+        },
+        "Princesse Leia": {
+            "minPoints": 41,
+            "maxPoints": 50
+        },
+        "Yoda": {
+            "minPoints": 51,
+            "maxPoints": 60
+        }
+    }
+}

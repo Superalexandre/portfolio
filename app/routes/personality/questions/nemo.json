@@ -1,0 +1,442 @@
+{
+    "questions": [
+        {
+            "question": "Quel est ton habitat marin préféré ?",
+            "options": [
+                {
+                    "option": "Récif de corail coloré",
+                    "points": 3
+                },
+                {
+                    "option": "Abîmes mystérieuses",
+                    "points": 2
+                },
+                {
+                    "option": "Plage ensoleillée",
+                    "points": 4
+                },
+                {
+                    "option": "Eaux froides et profondes",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta couleur préférée parmi celles des poissons tropicaux ?",
+            "options": [
+                {
+                    "option": "Bleu vif",
+                    "points": 3
+                },
+                {
+                    "option": "Jaune éclatant",
+                    "points": 2
+                },
+                {
+                    "option": "Rouge brillant",
+                    "points": 4
+                },
+                {
+                    "option": "Vert chatoyant",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel type de poisson serais-tu ?",
+            "options": [
+                {
+                    "option": "Clown jovial",
+                    "points": 4
+                },
+                {
+                    "option": "Poisson chirurgien curieux",
+                    "points": 3
+                },
+                {
+                    "option": "Requin impressionnant",
+                    "points": 1
+                },
+                {
+                    "option": "Dory étourdie",
+                    "points": 2
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton endroit préféré pour explorer dans l'océan ?",
+            "options": [
+                {
+                    "option": "Épaves mystérieuses",
+                    "points": 1
+                },
+                {
+                    "option": "Grottes cachées",
+                    "points": 2
+                },
+                {
+                    "option": "Courants rapides",
+                    "points": 3
+                },
+                {
+                    "option": "Jardins de méduses",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Comment réagirais-tu face à un danger marin inattendu ?",
+            "options": [
+                {
+                    "option": "Fuir rapidement",
+                    "points": 2
+                },
+                {
+                    "option": "Analyser la situation calmement",
+                    "points": 3
+                },
+                {
+                    "option": "Confronter la menace courageusement",
+                    "points": 4
+                },
+                {
+                    "option": "Se cacher et attendre que ça passe",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton plat de fruits de mer préféré ?",
+            "options": [
+                {
+                    "option": "Sushi frais",
+                    "points": 3
+                },
+                {
+                    "option": "Paella aux fruits de mer",
+                    "points": 4
+                },
+                {
+                    "option": "Fish and chips",
+                    "points": 2
+                },
+                {
+                    "option": "Plateau de fruits de mer varié",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à une nouvelle rencontre océanique ?",
+            "options": [
+                {
+                    "option": "Être amical et accueillant",
+                    "points": 4
+                },
+                {
+                    "option": "Observer de loin avant d'approcher",
+                    "points": 3
+                },
+                {
+                    "option": "Se montrer curieux et tenter d'interagir",
+                    "points": 2
+                },
+                {
+                    "option": "Se méfier et rester sur ses gardes",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ton aventure marine idéale ?",
+            "options": [
+                {
+                    "option": "Explorer un ancien navire naufragé",
+                    "points": 1
+                },
+                {
+                    "option": "Nager avec des dauphins joueurs",
+                    "points": 4
+                },
+                {
+                    "option": "Participer à une course de tortues de mer",
+                    "points": 2
+                },
+                {
+                    "option": "Traverser un labyrinthe de récifs coralliens",
+                    "points": 3
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton rêve le plus fou dans l'océan ?",
+            "options": [
+                {
+                    "option": "Devenir le roi des océans",
+                    "points": 4
+                },
+                {
+                    "option": "Parler à toutes les créatures marines",
+                    "points": 3
+                },
+                {
+                    "option": "Découvrir une cité sous-marine secrète",
+                    "points": 2
+                },
+                {
+                    "option": "Naviguer autour du monde en suivant les courants océaniques",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton talent spécial dans l'océan ?",
+            "options": [
+                {
+                    "option": "Changer de couleur pour se camoufler",
+                    "points": 2
+                },
+                {
+                    "option": "Avoir une mémoire exceptionnelle",
+                    "points": 4
+                },
+                {
+                    "option": "Nager à des vitesses incroyables",
+                    "points": 1
+                },
+                {
+                    "option": "Créer des bulles en forme de cœurs",
+                    "points": 3
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu te retrouvais dans un aquarium ?",
+            "options": [
+                {
+                    "option": "S'amuser et interagir avec les visiteurs",
+                    "points": 3
+                },
+                {
+                    "option": "Essayer de trouver un moyen de s'échapper",
+                    "points": 2
+                },
+                {
+                    "option": "Se relaxer et profiter de l'environnement contrôlé",
+                    "points": 4
+                },
+                {
+                    "option": "Être intrigué par les autres créatures de l'aquarium",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton niveau d'indépendance dans l'océan ?",
+            "options": [
+                {
+                    "option": "Préférer nager en groupe",
+                    "points": 3
+                },
+                {
+                    "option": "Explorer en solitaire",
+                    "points": 1
+                },
+                {
+                    "option": "Rejoindre des communautés marines",
+                    "points": 2
+                },
+                {
+                    "option": "Avoir un équilibre entre solitude et compagnie",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Comment réagirais-tu face à la pollution marine ?",
+            "options": [
+                {
+                    "option": "Se battre activement contre la pollution",
+                    "points": 4
+                },
+                {
+                    "option": "Chercher des solutions pour s'adapter",
+                    "points": 3
+                },
+                {
+                    "option": "Essayer de fuir les zones polluées",
+                    "points": 2
+                },
+                {
+                    "option": "Ignorer et continuer comme si de rien n'était",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un tsunami ?",
+            "options": [
+                {
+                    "option": "Nager en profondeur pour l'éviter",
+                    "points": 2
+                },
+                {
+                    "option": "Rejoindre d'autres créatures marines pour se protéger",
+                    "points": 3
+                },
+                {
+                    "option": "Trouver un abri sûr dans un récif ou une grotte",
+                    "points": 4
+                },
+                {
+                    "option": "Essayer de surfer sur la vague du tsunami",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta chanson préférée parmi les sons de l'océan ?",
+            "options": [
+                {
+                    "option": "Chants des baleines",
+                    "points": 4
+                },
+                {
+                    "option": "Bruit des vagues sur la plage",
+                    "points": 3
+                },
+                {
+                    "option": "Cris des mouettes",
+                    "points": 2
+                },
+                {
+                    "option": "Bulles d'air qui remontent à la surface",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel serait ton moyen de communication préféré sous l'eau ?",
+            "options": [
+                {
+                    "option": "Signaux visuels avec des nageoires",
+                    "points": 2
+                },
+                {
+                    "option": "Chants et bruits spécifiques",
+                    "points": 4
+                },
+                {
+                    "option": "Échanges de courants marins",
+                    "points": 3
+                },
+                {
+                    "option": "Messages écrits avec des bulles",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta philosophie de vie dans l'océan ?",
+            "options": [
+                {
+                    "option": "Profiter de chaque instant",
+                    "points": 3
+                },
+                {
+                    "option": "Explorer et apprendre sans cesse",
+                    "points": 4
+                },
+                {
+                    "option": "S'adapter aux changements constants",
+                    "points": 2
+                },
+                {
+                    "option": "Préserver la beauté naturelle de l'océan",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment réagirais-tu face à une étrange créature marine inconnue ?",
+            "options": [
+                {
+                    "option": "S'en méfier et rester à distance",
+                    "points": 1
+                },
+                {
+                    "option": "L'observer avec curiosité",
+                    "points": 2
+                },
+                {
+                    "option": "Tenter de devenir ami avec elle",
+                    "points": 3
+                },
+                {
+                    "option": "Chercher à en apprendre davantage sur elle",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta destination de voyage sous-marin de rêve ?",
+            "options": [
+                {
+                    "option": "La Grande Barrière de Corail",
+                    "points": 3
+                },
+                {
+                    "option": "Les abysses inexplorés",
+                    "points": 1
+                },
+                {
+                    "option": "Les îles Galápagos",
+                    "points": 2
+                },
+                {
+                    "option": "Les fjords sous-marins de Norvège",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quel serait ton passe-temps favori parmi les activités aquatiques ?",
+            "options": [
+                {
+                    "option": "Faire des bulles en forme de figures amusantes",
+                    "points": 3
+                },
+                {
+                    "option": "Explorer des épaves sous-marines",
+                    "points": 2
+                },
+                {
+                    "option": "Nager avec d'autres poissons tropicaux",
+                    "points": 4
+                },
+                {
+                    "option": "Participer à des courses de tortues de mer",
+                    "points": 1
+                }
+            ]
+        }
+    ],
+    "results": {
+        "Nemo": {
+            "minPoints": 20,
+            "maxPoints": 30
+        },
+        "Dory": {
+            "minPoints": 31,
+            "maxPoints": 40
+        },
+        "Marlin": {
+            "minPoints": 41,
+            "maxPoints": 50
+        },
+        "Crush": {
+            "minPoints": 51,
+            "maxPoints": 60
+        }
+    }
+}

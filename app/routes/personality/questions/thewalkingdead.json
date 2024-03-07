@@ -1,0 +1,442 @@
+{
+    "questions": [
+        {
+            "question": "Quel serait ton arme de prédilection en cas d'apocalypse zombie ?",
+            "options": [
+                {
+                    "option": "Pistolet",
+                    "points": 3
+                },
+                {
+                    "option": "Arc",
+                    "points": 2
+                },
+                {
+                    "option": "Machette",
+                    "points": 4
+                },
+                {
+                    "option": "Batte de baseball",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment préfères-tu voyager dans un monde post-apocalyptique ?",
+            "options": [
+                {
+                    "option": "À pied",
+                    "points": 3
+                },
+                {
+                    "option": "À cheval",
+                    "points": 2
+                },
+                {
+                    "option": "En moto",
+                    "points": 4
+                },
+                {
+                    "option": "En voiture",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta tactique pour éviter les zombies ?",
+            "options": [
+                {
+                    "option": "Se fondre dans la masse",
+                    "points": 2
+                },
+                {
+                    "option": "Marcher silencieusement",
+                    "points": 4
+                },
+                {
+                    "option": "Foncer en courant",
+                    "points": 1
+                },
+                {
+                    "option": "Utiliser des leurres",
+                    "points": 3
+                }
+            ]
+        },
+        {
+            "question": "Quel type de refuge préfères-tu ?",
+            "options": [
+                {
+                    "option": "Une ferme isolée",
+                    "points": 1
+                },
+                {
+                    "option": "Une prison sécurisée",
+                    "points": 4
+                },
+                {
+                    "option": "Un campement mobile",
+                    "points": 2
+                },
+                {
+                    "option": "Une petite communauté fortifiée",
+                    "points": 3
+                }
+            ]
+        },
+        {
+            "question": "Comment réagirais-tu face à un autre groupe de survivants menaçants ?",
+            "options": [
+                {
+                    "option": "Éviter le conflit autant que possible",
+                    "points": 2
+                },
+                {
+                    "option": "Négocier pour trouver un compromis",
+                    "points": 3
+                },
+                {
+                    "option": "Attaquer en premier pour éliminer la menace",
+                    "points": 4
+                },
+                {
+                    "option": "Se méfier, mais observer d'abord",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel serait ton rôle au sein d'un groupe de survivants ?",
+            "options": [
+                {
+                    "option": "Leader stratégique",
+                    "points": 4
+                },
+                {
+                    "option": "Médecin ou soigneur",
+                    "points": 3
+                },
+                {
+                    "option": "Éclaireur",
+                    "points": 2
+                },
+                {
+                    "option": "Cuisinier et fournisseur de ressources",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton état d'esprit face à l'apocalypse ?",
+            "options": [
+                {
+                    "option": "Optimiste, en espérant un avenir meilleur",
+                    "points": 3
+                },
+                {
+                    "option": "Réaliste, en faisant face à la situation actuelle",
+                    "points": 2
+                },
+                {
+                    "option": "Pessimiste, en pensant que tout est perdu",
+                    "points": 1
+                },
+                {
+                    "option": "Déterminé, prêt à tout pour survivre",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quel serait ton code moral en temps d'apocalypse ?",
+            "options": [
+                {
+                    "option": "Toujours aider les autres, quel qu'en soit le coût",
+                    "points": 3
+                },
+                {
+                    "option": "Prioriser la survie personnelle avant tout",
+                    "points": 1
+                },
+                {
+                    "option": "Suivre un code éthique strict même dans l'adversité",
+                    "points": 4
+                },
+                {
+                    "option": "Prendre des décisions pragmatiques pour maximiser les chances de survie",
+                    "points": 2
+                }
+            ]
+        },
+        {
+            "question": "Comment prendrais-tu la perte d'un proche dans ce monde post-apocalyptique ?",
+            "options": [
+                {
+                    "option": "Je m'effondrerais émotionnellement",
+                    "points": 1
+                },
+                {
+                    "option": "J'utiliserais ma douleur pour renforcer ma détermination à survivre",
+                    "points": 4
+                },
+                {
+                    "option": "Je chercherais du réconfort auprès des autres membres du groupe",
+                    "points": 3
+                },
+                {
+                    "option": "Je garderais mes émotions pour moi-même et continuerais à avancer",
+                    "points": 2
+                }
+            ]
+        },
+        {
+            "question": "Quel serait ton animal de compagnie idéal dans cet environnement hostile ?",
+            "options": [
+                {
+                    "option": "Chien de garde",
+                    "points": 3
+                },
+                {
+                    "option": "Chat discret",
+                    "points": 2
+                },
+                {
+                    "option": "Oiseau de compagnie",
+                    "points": 1
+                },
+                {
+                    "option": "Aucun, les animaux sont des contraintes",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quel serait ton moyen de communication privilégié avec d'autres survivants ?",
+            "options": [
+                {
+                    "option": "Talkie-walkie",
+                    "points": 2
+                },
+                {
+                    "option": "Signaux visuels discrets",
+                    "points": 3
+                },
+                {
+                    "option": "Messages écrits ou dessinés",
+                    "points": 1
+                },
+                {
+                    "option": "Communication silencieuse par gestes",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un membre du groupe montrant des signes d'infection zombie ?",
+            "options": [
+                {
+                    "option": "Essayer de le sauver à tout prix",
+                    "points": 3
+                },
+                {
+                    "option": "L'éloigner du groupe et le surveiller de près",
+                    "points": 2
+                },
+                {
+                    "option": "L'isoler immédiatement et prendre des mesures drastiques si nécessaire",
+                    "points": 4
+                },
+                {
+                    "option": "Éliminer la menace rapidement pour protéger le reste du groupe",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un groupe hostile de zombies approchant votre refuge ?",
+            "options": [
+                {
+                    "option": "Organiser une défense stratégique",
+                    "points": 4
+                },
+                {
+                    "option": "Tenter de négocier avec eux",
+                    "points": 3
+                },
+                {
+                    "option": "Tenter une sortie discrète pour éviter le conflit",
+                    "points": 2
+                },
+                {
+                    "option": "Attaquer en premier pour éliminer la menace",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel type de leader préfères-tu suivre dans un monde post-apocalyptique ?",
+            "options": [
+                {
+                    "option": "Un leader charismatique inspirant la confiance",
+                    "points": 3
+                },
+                {
+                    "option": "Un leader stratégique prenant des décisions pragmatiques",
+                    "points": 4
+                },
+                {
+                    "option": "Un leader protecteur et attentionné envers le groupe",
+                    "points": 2
+                },
+                {
+                    "option": "Aucun, je préfère être indépendant",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel serait ton moyen de préserver un semblant de normalité dans ce monde chaotique ?",
+            "options": [
+                {
+                    "option": "Organiser des événements sociaux pour le moral du groupe",
+                    "points": 3
+                },
+                {
+                    "option": "Collecter des souvenirs pour conserver des traces du passé",
+                    "points": 2
+                },
+                {
+                    "option": "Maintenir des traditions même en situation difficile",
+                    "points": 4
+                },
+                {
+                    "option": "Se concentrer uniquement sur la survie, sans préoccupations de normalité",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à la découverte d'un autre groupe de survivants amical ?",
+            "options": [
+                {
+                    "option": "Se lier d'amitié et former une alliance",
+                    "points": 3
+                },
+                {
+                    "option": "Être méfiant au début, mais établir des relations avec le temps",
+                    "points": 2
+                },
+                {
+                    "option": "Accueillir chaleureusement et partager ressources et compétences",
+                    "points": 4
+                },
+                {
+                    "option": "Les observer discrètement avant de prendre une décision",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à la découverte d'un groupe de survivants hostile ?",
+            "options": [
+                {
+                    "option": "Éviter le conflit autant que possible",
+                    "points": 2
+                },
+                {
+                    "option": "Négocier pour trouver un compromis",
+                    "points": 3
+                },
+                {
+                    "option": "Attaquer en premier pour éliminer la menace",
+                    "points": 4
+                },
+                {
+                    "option": "Se méfier, mais observer d'abord",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel type d'apocalypse préférerais-tu affronter ?",
+            "options": [
+                {
+                    "option": "Zombies lents mais en grand nombre",
+                    "points": 1
+                },
+                {
+                    "option": "Zombies rapides mais en petit nombre",
+                    "points": 2
+                },
+                {
+                    "option": "Autre catastrophe (virus, aliens, etc.)",
+                    "points": 3
+                },
+                {
+                    "option": "Je préférerais ne pas vivre une apocalypse du tout",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quel serait ton état physique idéal pour survivre à l'apocalypse ?",
+            "options": [
+                {
+                    "option": "Endurance et agilité",
+                    "points": 3
+                },
+                {
+                    "option": "Force physique et résistance",
+                    "points": 4
+                },
+                {
+                    "option": "Intelligence et ruse",
+                    "points": 2
+                },
+                {
+                    "option": "Rapidité et réflexes rapides",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment gérerais-tu la pression et le stress dans ce monde hostile ?",
+            "options": [
+                {
+                    "option": "Je resterais calme et rationnel en toutes circonstances",
+                    "points": 4
+                },
+                {
+                    "option": "Je me concentrerais sur des tâches pratiques pour rester occupé",
+                    "points": 3
+                },
+                {
+                    "option": "Je ferais preuve d'humour pour alléger l'atmosphère",
+                    "points": 2
+                },
+                {
+                    "option": "Je préférerais éviter les situations stressantes autant que possible",
+                    "points": 1
+                }
+            ]
+        }
+    ],
+    "results": {
+        "Rick Grimes": {
+            "minPoints": 20,
+            "maxPoints": 30
+        },
+        "Michonne": {
+            "minPoints": 31,
+            "maxPoints": 40
+        },
+        "Daryl Dixon": {
+            "minPoints": 41,
+            "maxPoints": 50
+        },
+        "Carol Peletier": {
+            "minPoints": 51,
+            "maxPoints": 60
+        }
+    }
+}

@@ -1,0 +1,442 @@
+{
+    "questions": [
+        {
+            "question": "Quelle est ta couleur préférée parmi les teintes pastel ?",
+            "options": [
+                {
+                    "option": "Rose",
+                    "points": 3
+                },
+                {
+                    "option": "Bleu ciel",
+                    "points": 2
+                },
+                {
+                    "option": "Violet lavande",
+                    "points": 4
+                },
+                {
+                    "option": "Vert menthe",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton style vestimentaire préféré ?",
+            "options": [
+                {
+                    "option": "Élégant et sophistiqué",
+                    "points": 4
+                },
+                {
+                    "option": "Décontracté et confortable",
+                    "points": 1
+                },
+                {
+                    "option": "Chic et à la mode",
+                    "points": 3
+                },
+                {
+                    "option": "Sportif et décontracté",
+                    "points": 2
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta passion principale ?",
+            "options": [
+                {
+                    "option": "Mode et design",
+                    "points": 3
+                },
+                {
+                    "option": "Voyages et découvertes",
+                    "points": 2
+                },
+                {
+                    "option": "Arts créatifs et DIY",
+                    "points": 4
+                },
+                {
+                    "option": "Activités sportives",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel animal de compagnie préfères-tu parmi les animaux mignons ?",
+            "options": [
+                {
+                    "option": "Chien",
+                    "points": 2
+                },
+                {
+                    "option": "Chat",
+                    "points": 3
+                },
+                {
+                    "option": "Lapin",
+                    "points": 1
+                },
+                {
+                    "option": "Oiseau exotique",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta destination de rêve pour des vacances glamour ?",
+            "options": [
+                {
+                    "option": "Paris, la capitale de la mode",
+                    "points": 3
+                },
+                {
+                    "option": "Les plages ensoleillées de Saint-Tropez",
+                    "points": 4
+                },
+                {
+                    "option": "Les montagnes élégantes des Alpes suisses",
+                    "points": 2
+                },
+                {
+                    "option": "Les boutiques branchées de New York",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment réagis-tu face aux défis et aux obstacles ?",
+            "options": [
+                {
+                    "option": "Avec grâce et résilience",
+                    "points": 4
+                },
+                {
+                    "option": "Avec détermination et persévérance",
+                    "points": 3
+                },
+                {
+                    "option": "En restant positive et optimiste",
+                    "points": 2
+                },
+                {
+                    "option": "En faisant preuve d'ingéniosité et de créativité",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton accessoire préféré parmi les bijoux scintillants ?",
+            "options": [
+                {
+                    "option": "Collier de perles",
+                    "points": 3
+                },
+                {
+                    "option": "Bracelet étincelant",
+                    "points": 4
+                },
+                {
+                    "option": "Boucles d'oreilles élégantes",
+                    "points": 2
+                },
+                {
+                    "option": "Bague glamour",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton plat préféré lors d'un dîner chic ?",
+            "options": [
+                {
+                    "option": "Homard grillé avec des accompagnements délicats",
+                    "points": 4
+                },
+                {
+                    "option": "Pâtes fraîches truffées",
+                    "points": 3
+                },
+                {
+                    "option": "Sushi et sashimi élaborés",
+                    "points": 2
+                },
+                {
+                    "option": "Filet mignon avec une sauce raffinée",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton film préféré parmi les contes de fées enchanteurs ?",
+            "options": [
+                {
+                    "option": "Cendrillon",
+                    "points": 2
+                },
+                {
+                    "option": "La Belle et la Bête",
+                    "points": 3
+                },
+                {
+                    "option": "La Petite Sirène",
+                    "points": 4
+                },
+                {
+                    "option": "Blanche-Neige",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta chanson préférée pour une soirée dansante ?",
+            "options": [
+                {
+                    "option": "Pop entraînante",
+                    "points": 3
+                },
+                {
+                    "option": "Rythmes de danse électro",
+                    "points": 4
+                },
+                {
+                    "option": "Classiques intemporels",
+                    "points": 2
+                },
+                {
+                    "option": "Morceaux R&B à la mode",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton hobby créatif favori ?",
+            "options": [
+                {
+                    "option": "Peinture et art visuel",
+                    "points": 4
+                },
+                {
+                    "option": "Couture et création de vêtements",
+                    "points": 3
+                },
+                {
+                    "option": "Écriture de poésie ou de nouvelles",
+                    "points": 2
+                },
+                {
+                    "option": "Décoration intérieure élégante",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton moyen de transport préféré pour une escapade romantique ?",
+            "options": [
+                {
+                    "option": "Limousine élégante",
+                    "points": 2
+                },
+                {
+                    "option": "Voiture décapotable sportive",
+                    "points": 1
+                },
+                {
+                    "option": "Jet privé luxueux",
+                    "points": 4
+                },
+                {
+                    "option": "Yacht exclusif",
+                    "points": 3
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta devise de vie ?",
+            "options": [
+                {
+                    "option": "Rêve grand, travaille dur",
+                    "points": 4
+                },
+                {
+                    "option": "La vie est une fête continue",
+                    "points": 3
+                },
+                {
+                    "option": "La gentillesse est la clé de l'élégance",
+                    "points": 2
+                },
+                {
+                    "option": "Chaque jour est une nouvelle aventure",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton événement social préféré ?",
+            "options": [
+                {
+                    "option": "Gala de charité élégant",
+                    "points": 4
+                },
+                {
+                    "option": "Soirée glamour sur le tapis rouge",
+                    "points": 3
+                },
+                {
+                    "option": "Fête exquise dans un château",
+                    "points": 2
+                },
+                {
+                    "option": "Dîner intime avec des amis proches",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment préfères-tu passer une journée de détente ?",
+            "options": [
+                {
+                    "option": "Dans un spa de luxe",
+                    "points": 2
+                },
+                {
+                    "option": "En flânant dans des boutiques chics",
+                    "points": 3
+                },
+                {
+                    "option": "En pratiquant des activités artistiques",
+                    "points": 4
+                },
+                {
+                    "option": "En profitant d'une journée en plein air dans la nature",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta saison préférée pour la mode ?",
+            "options": [
+                {
+                    "option": "Printemps, avec des couleurs pastel",
+                    "points": 3
+                },
+                {
+                    "option": "Été, pour les tenues légères et élégantes",
+                    "points": 4
+                },
+                {
+                    "option": "Automne, avec des tons riches et chauds",
+                    "points": 2
+                },
+                {
+                    "option": "Hiver, pour les accessoires luxueux",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton type de chaussures préféré ?",
+            "options": [
+                {
+                    "option": "Talons hauts étincelants",
+                    "points": 3
+                },
+                {
+                    "option": "Baskets confortables et chics",
+                    "points": 2
+                },
+                {
+                    "option": "Bottes élégantes",
+                    "points": 4
+                },
+                {
+                    "option": "Sandales légères et sophistiquées",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta citation préférée sur la vie ?",
+            "options": [
+                {
+                    "option": "« La vie est une aventure audacieuse ou rien du tout. » - Helen Keller",
+                    "points": 4
+                },
+                {
+                    "option": "« Soyez la meilleure version de vous-même. » - Audrey Hepburn",
+                    "points": 3
+                },
+                {
+                    "option": "« La vie est courte, habillez-vous avec élégance. » - Coco Chanel",
+                    "points": 2
+                },
+                {
+                    "option": "« La gentillesse est la vraie beauté. » - Marilyn Monroe",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton dessert préféré parmi les pâtisseries raffinées ?",
+            "options": [
+                {
+                    "option": "Macarons délicats",
+                    "points": 3
+                },
+                {
+                    "option": "Tarte aux fruits frais",
+                    "points": 4
+                },
+                {
+                    "option": "Éclair au chocolat élégant",
+                    "points": 2
+                },
+                {
+                    "option": "Crème brûlée exquise",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta tenue idéale pour un défilé de mode glamour ?",
+            "options": [
+                {
+                    "option": "Robe de soirée longue et étincelante",
+                    "points": 3
+                },
+                {
+                    "option": "Ensemble pantalon chic et audacieux",
+                    "points": 2
+                },
+                {
+                    "option": "Combinaison élégante et moderne",
+                    "points": 4
+                },
+                {
+                    "option": "Jupe volumineuse avec un haut assorti",
+                    "points": 1
+                }
+            ]
+        }
+    ],
+    "results": {
+        "Barbie": {
+            "minPoints": 20,
+            "maxPoints": 30
+        },
+        "Ken": {
+            "minPoints": 31,
+            "maxPoints": 40
+        },
+        "Skipper": {
+            "minPoints": 41,
+            "maxPoints": 50
+        },
+        "Stacie": {
+            "minPoints": 51,
+            "maxPoints": 60
+        }
+    }
+}
