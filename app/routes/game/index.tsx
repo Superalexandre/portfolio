@@ -1,10 +1,14 @@
-import { MouseEvent, useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 // import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch"
 import { Toaster, toast } from "sonner"
 
 import { CANVAS_HEIGHT, CANVAS_WIDTH, STATIONS_NUMBER } from "./config"
-import { Line, checkIfLineExists, clearTempLine, drawLine, drawTempLine } from "./utils/line"
-import { Station, coordHasStation, drawRandomStations } from "./utils/station"
+import { handleCanvasClick } from "./events/handleCanvasClick"
+import { handleContextMenu } from "./events/handleContextMenu"
+import { handleMouseMove } from "./events/handleMouseMove"
+import { Line, checkIfLineExists, clearTempLine, drawLine } from "./utils/line"
+import { Station, drawRandomStations } from "./utils/station"
+import { Train, genTrain, handleTrain } from "./utils/train"
 import { changeTheme, getTheme } from "./utils/utils"
 
 export default function Index() {
@@ -12,69 +16,10 @@ export default function Index() {
 
     const stationsRef = useRef<Station[]>([])
     const linesRef = useRef<Line[]>([])
+    const trainsRef = useRef<Train[]>([])
 
     const [clickedStations, setClickedStations] = useState<Station[]>([])
     const [theme, setTheme] = useState<"light" | "dark">("light")
-
-    const handleCanvasClick = useCallback((event: MouseEvent<HTMLCanvasElement>) => {
-        const canvas = canvasRef.current
-        const context = canvas?.getContext("2d")
-
-        if (!context || !canvas) return
-
-        const clickedStation = coordHasStation({ event, stations: stationsRef.current, canvas })
-        if (clickedStation) {
-            const isAlreadyClicked = clickedStations.some(station => station.id === clickedStation.id)
-            if (isAlreadyClicked) return
-    
-            setClickedStations((prev) => [...prev, clickedStation])
-        }
-
-    }, [canvasRef, setClickedStations, clickedStations])
-
-    const handleMouseMove = useCallback((event: MouseEvent<HTMLCanvasElement>) => {
-        const canvas = canvasRef.current
-        const context = canvas?.getContext("2d")
-
-        if (!context || !canvas) return
-
-        const { x: canvasX, y: canvasY } = canvas.getBoundingClientRect()
-
-        const x = event.clientX - canvasX
-        const y = event.clientY - canvasY
-
-        const hoveredStation = coordHasStation({ event, stations: stationsRef.current, canvas })
-
-        canvas.style.cursor = (hoveredStation) ? "pointer" : "default"
-
-        // If the user is creating a line
-        if (clickedStations.length === 1) {
-            console.log("Creating line")
-
-            // Find the temp line and remove it
-            const tempLine = linesRef.current.find(line => line.id === "temp")
-            if (tempLine) linesRef.current = clearTempLine({ context, stations: stationsRef.current, lines: linesRef.current })
-
-            const clickedStation = clickedStations[0]
-
-            const lines = drawTempLine({ from: clickedStation, to: { x, y }, context })
-            linesRef.current.push(lines)
-        }
-    }, [canvasRef, clickedStations])
-
-    const handleContextMenu = useCallback((event: MouseEvent<HTMLCanvasElement>) => {
-        const canvas = canvasRef.current
-        const context = canvas?.getContext("2d")
-
-        if (!context || !canvas) return
-
-        event.preventDefault()
-    
-        const tempLine = linesRef.current.find(line => line.id === "temp")
-        if (tempLine) linesRef.current = clearTempLine({ context, stations: stationsRef.current, lines: linesRef.current })
-
-        setClickedStations([])
-    }, [])
 
     useEffect(() => {
         const canvas = canvasRef.current
@@ -124,6 +69,27 @@ export default function Index() {
         }
     }, [clickedStations])
 
+    useEffect(() => {
+        const canvas = canvasRef.current
+        const context = canvas?.getContext("2d")
+
+        if (!context || !canvas) return
+
+        if (linesRef.current.length > 0) {
+            const cachedTrains: Train[] = []
+            linesRef.current.forEach(line => {
+                const train = genTrain({ fromTo: [line], context })
+
+                cachedTrains.push(train)
+            })
+
+            trainsRef.current = cachedTrains
+        }
+
+        handleTrain({ trains: trainsRef.current, context, lines: linesRef.current, stations: stationsRef.current, canvas: canvasRef.current })
+
+    }, [linesRef.current.length])
+
     return (
         <>
             <div className="fixed right-0 top-0 m-3">
@@ -150,9 +116,9 @@ export default function Index() {
                 width={CANVAS_WIDTH}
                 height={CANVAS_HEIGHT}
                 ref={canvasRef}
-                onClick={handleCanvasClick}
-                onContextMenu={handleContextMenu}
-                onMouseMove={handleMouseMove}
+                onClick={(event) => handleCanvasClick({ event, canvasRef, stationsRef, clickedStations, setClickedStations })}
+                onContextMenu={(event) => handleContextMenu({ event, canvasRef, linesRef, stationsRef, setClickedStations })}
+                onMouseMove={(event) => handleMouseMove({ event, canvasRef, stationsRef, linesRef, clickedStations })}
             />
             <Toaster
                 position="bottom-right"

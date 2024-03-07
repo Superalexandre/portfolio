@@ -15,19 +15,14 @@ interface Station {
 
 const drawStations = ({ stations, context }: { stations: Station[], context: CanvasRenderingContext2D }) => {
     const { height, width, getColor } = styles.stations
-    
+
     stations.forEach(station => {
         const { shape, x, y } = station
 
-        context.fillStyle = getColor()
-        context.beginPath()
-
-        if (shape === "circle") circle({ x, y, width, height, context })
-        if (shape === "square") square({ x, y, width, height, context })
-        if (shape === "triangle") triangle({ x, y, width, height, context })
-        if (shape === "star") star({ x, y, width, height, context })
-        
-        context.fill()
+        if (shape === "circle") circle({ x, y, width, height, context, color: getColor() })
+        if (shape === "square") square({ x, y, width, height, context, color: getColor() })
+        if (shape === "triangle") triangle({ x, y, width, height, context, color: getColor() })
+        if (shape === "star") star({ x, y, width, height, context, branches: 5, color: getColor() })
     })
 }
 

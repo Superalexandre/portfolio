@@ -1,10 +1,10 @@
 const MARGIN = 200
-const STATIONS_NUMBER = 100
+const STATIONS_NUMBER = 50
 
 const CANVAS_WIDTH = 2_000
 const CANVAS_HEIGHT = 1_000
 
-const SHAPES = ["square"/*, "circle", "triangle", "star"*/]
+const SHAPES = ["square", "circle", "triangle", "star"]
 
 const config = {
     MARGIN,

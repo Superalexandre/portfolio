@@ -2,20 +2,21 @@ import { MouseEvent } from "react"
 import { v4 as uuid } from "uuid"
 
 import { Station, drawStations } from "./station"
-import styles from "../style"
+import styles, { LineColor } from "../style"
 
 interface Line {
     id: string
     from: Station
     to: Station
+    color: LineColor
 }
 
 const drawLines = ({ lines, context }: { lines: Line[], context: CanvasRenderingContext2D }) => {
-    const { lineWidth, getColor } = styles.lines
+    const { lineWidth } = styles.lines
     const { width: stationWidth } = styles.stations
 
     lines.forEach(line => {
-        context.strokeStyle = getColor()
+        context.strokeStyle = line.color
         context.lineWidth = lineWidth
 
         const stationMiddle = stationWidth / 2
@@ -29,11 +30,13 @@ const drawLines = ({ lines, context }: { lines: Line[], context: CanvasRendering
 
 const drawLine = ({ from, to, context }: { from: Station, to: Station, context: CanvasRenderingContext2D }): Line => {
     const id = uuid()
+    const { getColor } = styles.lines
 
-    const line = {
+    const line: Line = {
         id,
         from,
-        to
+        to,
+        color: getColor()
     }
 
     drawLines({ lines: [line], context })
@@ -42,8 +45,11 @@ const drawLine = ({ from, to, context }: { from: Station, to: Station, context: 
 }
 
 const drawTempLine = ({ from, to, context }: { from: Station, to: { x: number, y: number }, context: CanvasRenderingContext2D }) => {
+    const { getColor } = styles.lines
+
     const line: Line = {
         id: "temp",
+        color: getColor(true),
         from,
         to: {
             id: "cursor",
