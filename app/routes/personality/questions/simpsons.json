@@ -1,0 +1,447 @@
+{
+    "name": "simpsons",
+    "questions": [
+        {
+            "question": "Quelle est ta boisson préférée ?",
+            "answers": [
+                {
+                    "answer": "Duff Beer",
+                    "points": 4
+                },
+                {
+                    "answer": "Soda",
+                    "points": 2
+                },
+                {
+                    "answer": "Café",
+                    "points": 1
+                },
+                {
+                    "answer": "Jus de fruits",
+                    "points": 3
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton passe-temps favori ?",
+            "answers": [
+                {
+                    "answer": "Regarder la télévision",
+                    "points": 3
+                },
+                {
+                    "answer": "Faire des blagues",
+                    "points": 4
+                },
+                {
+                    "answer": "Jouer à des jeux vidéo",
+                    "points": 2
+                },
+                {
+                    "answer": "Lire des bandes dessinées",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton plat préféré ?",
+            "answers": [
+                {
+                    "answer": "Donuts",
+                    "points": 4
+                },
+                {
+                    "answer": "Pizza",
+                    "points": 3
+                },
+                {
+                    "answer": "Hamburgers",
+                    "points": 2
+                },
+                {
+                    "answer": "Salade",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton trait de personnalité dominant ?",
+            "answers": [
+                {
+                    "answer": "Paresseux",
+                    "points": 4
+                },
+                {
+                    "answer": "Farceur",
+                    "points": 3
+                },
+                {
+                    "answer": "Responsable",
+                    "points": 2
+                },
+                {
+                    "answer": "Intelligent",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton animal de compagnie idéal ?",
+            "answers": [
+                {
+                    "answer": "Chien",
+                    "points": 2
+                },
+                {
+                    "answer": "Chat",
+                    "points": 1
+                },
+                {
+                    "answer": "Aucun, je ne veux pas de responsabilités",
+                    "points": 4
+                },
+                {
+                    "answer": "Un poisson rouge",
+                    "points": 3
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta couleur préférée ?",
+            "answers": [
+                {
+                    "answer": "Jaune",
+                    "points": 4
+                },
+                {
+                    "answer": "Bleu",
+                    "points": 2
+                },
+                {
+                    "answer": "Vert",
+                    "points": 3
+                },
+                {
+                    "answer": "Rouge",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton film préféré parmi les choix suivants ?",
+            "answers": [
+                {
+                    "answer": "Retour vers le futur",
+                    "points": 3
+                },
+                {
+                    "answer": "Star Wars",
+                    "points": 2
+                },
+                {
+                    "answer": "Toy Story",
+                    "points": 1
+                },
+                {
+                    "answer": "Aucun, je préfère la télévision",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton moyen de transport préféré ?",
+            "answers": [
+                {
+                    "answer": "Voiture",
+                    "points": 3
+                },
+                {
+                    "answer": "Skateboard",
+                    "points": 4
+                },
+                {
+                    "answer": "Vélo",
+                    "points": 2
+                },
+                {
+                    "answer": "Marcher à pied",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta matière scolaire préférée ?",
+            "answers": [
+                {
+                    "answer": "Gym",
+                    "points": 4
+                },
+                {
+                    "answer": "Art",
+                    "points": 3
+                },
+                {
+                    "answer": "Mathématiques",
+                    "points": 2
+                },
+                {
+                    "answer": "Science",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton style musical préféré ?",
+            "answers": [
+                {
+                    "answer": "Rock",
+                    "points": 3
+                },
+                {
+                    "answer": "Pop",
+                    "points": 2
+                },
+                {
+                    "answer": "Rap",
+                    "points": 4
+                },
+                {
+                    "answer": "Classique",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta saison préférée ?",
+            "answers": [
+                {
+                    "answer": "Été",
+                    "points": 4
+                },
+                {
+                    "answer": "Automne",
+                    "points": 3
+                },
+                {
+                    "answer": "Hiver",
+                    "points": 2
+                },
+                {
+                    "answer": "Printemps",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton super-héros préféré ?",
+            "answers": [
+                {
+                    "answer": "Spider-Man",
+                    "points": 3
+                },
+                {
+                    "answer": "Batman",
+                    "points": 2
+                },
+                {
+                    "answer": "Deadpool",
+                    "points": 4
+                },
+                {
+                    "answer": "Wonder Woman",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton hobby principal ?",
+            "answers": [
+                {
+                    "answer": "Collectionner des objets étranges",
+                    "points": 4
+                },
+                {
+                    "answer": "Faire du sport",
+                    "points": 3
+                },
+                {
+                    "answer": "Lire des livres",
+                    "points": 2
+                },
+                {
+                    "answer": "Jouer à des jeux vidéo",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton endroit préféré pour passer du temps libre ?",
+            "answers": [
+                {
+                    "answer": "À la maison",
+                    "points": 4
+                },
+                {
+                    "answer": "Au parc",
+                    "points": 3
+                },
+                {
+                    "answer": "Dans un café",
+                    "points": 2
+                },
+                {
+                    "answer": "À la bibliothèque",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta citation préférée parmi les suivantes ?",
+            "answers": [
+                {
+                    "answer": "D'oh!",
+                    "points": 4
+                },
+                {
+                    "answer": "Eat my shorts!",
+                    "points": 3
+                },
+                {
+                    "answer": "Don't have a cow, man!",
+                    "points": 2
+                },
+                {
+                    "answer": "Excellent!",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton instrument de musique préféré ?",
+            "answers": [
+                {
+                    "answer": "Guitare",
+                    "points": 3
+                },
+                {
+                    "answer": "Batterie",
+                    "points": 4
+                },
+                {
+                    "answer": "Piano",
+                    "points": 2
+                },
+                {
+                    "answer": "Aucun, je ne suis pas musicien",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton objet fétiche parmi les suivants ?",
+            "answers": [
+                {
+                    "answer": "Télécommande",
+                    "points": 4
+                },
+                {
+                    "answer": "Tablette électronique",
+                    "points": 3
+                },
+                {
+                    "answer": "Livre de bande dessinée",
+                    "points": 2
+                },
+                {
+                    "answer": "Appareil photo",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton rêve le plus fou ?",
+            "answers": [
+                {
+                    "answer": "Devenir célèbre sans rien faire",
+                    "points": 4
+                },
+                {
+                    "answer": "Voyager dans l'espace",
+                    "points": 3
+                },
+                {
+                    "answer": "Réaliser une grande invention",
+                    "points": 2
+                },
+                {
+                    "answer": "Vivre une vie tranquille à la campagne",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta série télévisée préférée parmi les suivantes ?",
+            "answers": [
+                {
+                    "answer": "Les Simpsons",
+                    "points": 4
+                },
+                {
+                    "answer": "Breaking Bad",
+                    "points": 3
+                },
+                {
+                    "answer": "Stranger Things",
+                    "points": 2
+                },
+                {
+                    "answer": "Game of Thrones",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta matière scolaire détestée ?",
+            "answers": [
+                {
+                    "answer": "Gym",
+                    "points": 1
+                },
+                {
+                    "answer": "Mathématiques",
+                    "points": 4
+                },
+                {
+                    "answer": "Histoire",
+                    "points": 2
+                },
+                {
+                    "answer": "Sciences",
+                    "points": 3
+                }
+            ]
+        }
+    ],
+    "results": [
+        {
+            "personnage": "Homer Simpson",
+            "minPoints": 60,
+            "maxPoints": 80
+        },
+        {
+            "personnage": "Bart Simpson",
+            "minPoints": 45,
+            "maxPoints": 59
+        },
+        {
+            "personnage": "Marge Simpson",
+            "minPoints": 30,
+            "maxPoints": 44
+        },
+        {
+            "personnage": "Lisa Simpson",
+            "minPoints": 20,
+            "maxPoints": 29
+        }
+    ]
+}

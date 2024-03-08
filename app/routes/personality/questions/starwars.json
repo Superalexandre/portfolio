@@ -1,421 +1,447 @@
 {
+    "name": "starwars",
     "questions": [
         {
-            "question": "Quel est ton sabre laser idéal ?",
-            "options": [
+            "question": "Quelle Force de l'univers Star Wars préfères-tu ?",
+            "answers": [
                 {
-                    "option": "Bleu",
-                    "points": 3
-                },
-                {
-                    "option": "Vert",
-                    "points": 2
-                },
-                {
-                    "option": "Rouge",
+                    "answer": "Côté Lumineux de la Force",
                     "points": 4
                 },
                 {
-                    "option": "Violet",
+                    "answer": "Côté Obscur de la Force",
+                    "points": 3
+                },
+                {
+                    "answer": "Équilibre entre le Côté Lumineux et Obscur",
+                    "points": 2
+                },
+                {
+                    "answer": "Je ne crois pas à la Force",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta planète préférée de Star Wars ?",
-            "options": [
+            "question": "Quel sabre laser choisiras-tu ?",
+            "answers": [
                 {
-                    "option": "Tatooine",
-                    "points": 1
-                },
-                {
-                    "option": "Coruscant",
-                    "points": 3
-                },
-                {
-                    "option": "Endor",
+                    "answer": "Sabre laser bleu",
                     "points": 4
                 },
                 {
-                    "option": "Naboo",
-                    "points": 2
-                }
-            ]
-        },
-        {
-            "question": "Quelle est ta faction préférée ?",
-            "options": [
-                {
-                    "option": "République",
-                    "points": 2
-                },
-                {
-                    "option": "Empire",
-                    "points": 4
-                },
-                {
-                    "option": "Résistance",
+                    "answer": "Sabre laser rouge",
                     "points": 3
                 },
                 {
-                    "option": "Séparatistes",
+                    "answer": "Sabre laser vert",
+                    "points": 2
+                },
+                {
+                    "answer": "Sabre laser violet",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel est ton personnage secondaire préféré ?",
-            "options": [
+            "question": "Quel personnage Sith admires-tu le plus ?",
+            "answers": [
                 {
-                    "option": "Chewbacca",
-                    "points": 3
-                },
-                {
-                    "option": "R2-D2",
-                    "points": 1
-                },
-                {
-                    "option": "C-3PO",
-                    "points": 2
-                },
-                {
-                    "option": "Yoda",
-                    "points": 4
-                }
-            ]
-        },
-        {
-            "question": "Quelle est ta profession idéale dans l'univers Star Wars ?",
-            "options": [
-                {
-                    "option": "Jedi",
-                    "points": 3
-                },
-                {
-                    "option": "Sith",
+                    "answer": "Darth Vader",
                     "points": 4
                 },
                 {
-                    "option": "Contrebandier",
+                    "answer": "Darth Sidious",
+                    "points": 3
+                },
+                {
+                    "answer": "Darth Maul",
                     "points": 2
                 },
                 {
-                    "option": "Pilote de chasse",
+                    "answer": "Kylo Ren",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel vaisseau spatial préfères-tu ?",
-            "options": [
+            "question": "Quelle planète de Star Wars serait ton lieu de vacances idéal ?",
+            "answers": [
                 {
-                    "option": "Millennium Falcon",
-                    "points": 2
-                },
-                {
-                    "option": "X-wing",
-                    "points": 1
-                },
-                {
-                    "option": "TIE Fighter",
+                    "answer": "Tatooine",
                     "points": 4
                 },
                 {
-                    "option": "Slave I",
-                    "points": 3
-                }
-            ]
-        },
-        {
-            "question": "Quel est ton épisode préféré de Star Wars ?",
-            "options": [
-                {
-                    "option": "Épisode IV: Un Nouvel Espoir",
+                    "answer": "Coruscant",
                     "points": 3
                 },
                 {
-                    "option": "Épisode V: L'Empire contre-attaque",
-                    "points": 4
-                },
-                {
-                    "option": "Épisode VI: Le Retour du Jedi",
+                    "answer": "Endor",
                     "points": 2
                 },
                 {
-                    "option": "Épisode VII: Le Réveil de la Force",
+                    "answer": "Naboo",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta créature préférée ?",
-            "options": [
+            "question": "Quel vaisseau spatial préfères-tu piloter ?",
+            "answers": [
                 {
-                    "option": "Wookiee",
-                    "points": 3
-                },
-                {
-                    "option": "Ewok",
-                    "points": 1
-                },
-                {
-                    "option": "Tauntaun",
-                    "points": 2
-                },
-                {
-                    "option": "Bantha",
-                    "points": 4
-                }
-            ]
-        },
-        {
-            "question": "Quel côté de la Force choisirais-tu ?",
-            "options": [
-                {
-                    "option": "Côté Lumineux",
-                    "points": 2
-                },
-                {
-                    "option": "Côté Obscur",
+                    "answer": "Faucon Millenium",
                     "points": 4
                 },
                 {
-                    "option": "Équilibre",
+                    "answer": "Chasseur X-wing",
                     "points": 3
                 },
                 {
-                    "option": "Neutre",
+                    "answer": "Destroyer Stellaire",
+                    "points": 2
+                },
+                {
+                    "answer": "Slave I",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel est ton droïde préféré ?",
-            "options": [
+            "question": "Quel maître Jedi voudrais-tu avoir comme mentor ?",
+            "answers": [
                 {
-                    "option": "BB-8",
-                    "points": 1
-                },
-                {
-                    "option": "HK-47",
+                    "answer": "Yoda",
                     "points": 4
                 },
                 {
-                    "option": "IG-88",
+                    "answer": "Obi-Wan Kenobi",
                     "points": 3
                 },
                 {
-                    "option": "Droïde de protocole",
-                    "points": 2
-                }
-            ]
-        },
-        {
-            "question": "Quelle est ta citation préférée de Star Wars ?",
-            "options": [
-                {
-                    "option": "Que la Force soit avec toi",
+                    "answer": "Mace Windu",
                     "points": 2
                 },
                 {
-                    "option": "Je suis ton père",
-                    "points": 4
-                },
-                {
-                    "option": "Que les Porgs soient avec toi",
-                    "points": 1
-                },
-                {
-                    "option": "Il ne peut y avoir que deux : un maître et un apprenti",
-                    "points": 3
-                }
-            ]
-        },
-        {
-            "question": "Quel est ton talent spécial ?",
-            "options": [
-                {
-                    "option": "Maîtrise du sabre laser",
-                    "points": 3
-                },
-                {
-                    "option": "Manipulation de la Force",
-                    "points": 4
-                },
-                {
-                    "option": "Pilote exceptionnel",
-                    "points": 2
-                },
-                {
-                    "option": "Ingénieur doué",
+                    "answer": "Qui-Gon Jinn",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta couleur de peau préférée pour un extraterrestre ?",
-            "options": [
+            "question": "Quel vaisseau spatial redoutable aimerais-tu piloter ?",
+            "answers": [
                 {
-                    "option": "Vert",
-                    "points": 2
-                },
-                {
-                    "option": "Bleu",
+                    "answer": "Star Destroyer Impérial",
                     "points": 4
                 },
                 {
-                    "option": "Rouge",
+                    "answer": "Chasseur TIE Advanced",
                     "points": 3
                 },
                 {
-                    "option": "Jaune",
+                    "answer": "Croiseur Mon Calamari",
+                    "points": 2
+                },
+                {
+                    "answer": "Interceptor Jedi Eta-2",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel est ton lieu emblématique préféré dans Star Wars ?",
-            "options": [
+            "question": "Quel mentor Sith choisirais-tu pour perfectionner tes compétences dans le Côté Obscur ?",
+            "answers": [
                 {
-                    "option": "La Cantina de Mos Eisley",
-                    "points": 3
-                },
-                {
-                    "option": "Le Temple Jedi",
-                    "points": 2
-                },
-                {
-                    "option": "La salle du trône de l'Empereur",
+                    "answer": "Darth Sidious",
                     "points": 4
                 },
                 {
-                    "option": "La Forêt d'Endor",
+                    "answer": "Darth Tyranus (Count Dooku)",
+                    "points": 3
+                },
+                {
+                    "answer": "Dark Plagueis",
+                    "points": 2
+                },
+                {
+                    "answer": "Asajj Ventress",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel est ton style vestimentaire idéal dans l'univers Star Wars ?",
-            "options": [
+            "question": "Quelle est ta réaction face à l'Ordre 66 (Exécution des Jedi) ?",
+            "answers": [
                 {
-                    "option": "Robes de Jedi",
-                    "points": 2
-                },
-                {
-                    "option": "Armure de Mandalorien",
+                    "answer": "Je le soutiens et obéis aux ordres",
                     "points": 4
                 },
                 {
-                    "option": "Tenue décontractée de contrebandier",
-                    "points": 1
+                    "answer": "Je me rebelle contre l'ordre et protège les Jedi",
+                    "points": 3
                 },
                 {
-                    "option": "Uniforme impérial",
-                    "points": 3
+                    "answer": "Je reste neutre et me retire de la galaxie",
+                    "points": 2
+                },
+                {
+                    "answer": "Je suis indifférent, cela ne me concerne pas",
+                    "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta préférence en termes de vaisseau spatial ?",
-            "options": [
+            "question": "Quelle est ta préférence en matière de combat au sabre laser ?",
+            "answers": [
                 {
-                    "option": "Chasseur léger",
-                    "points": 3
-                },
-                {
-                    "option": "Destroyer stellaire",
+                    "answer": "Style de combat acrobatique et rapide",
                     "points": 4
                 },
                 {
-                    "option": "Cargo spatial",
-                    "points": 1
+                    "answer": "Style de combat équilibré entre défense et attaque",
+                    "points": 3
                 },
                 {
-                    "option": "Navette Lambda",
+                    "answer": "Style de combat agressif et puissant",
                     "points": 2
+                },
+                {
+                    "answer": "Je préfère utiliser d'autres armes",
+                    "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta relation avec la technologie ?",
-            "options": [
+            "question": "Quelle est ta vision de l'Étoile de la Mort (station spatiale destructrice) ?",
+            "answers": [
                 {
-                    "option": "Technophobe",
-                    "points": 1
+                    "answer": "Une arme ultime pour maintenir l'ordre",
+                    "points": 4
                 },
                 {
-                    "option": "Technophile",
+                    "answer": "Un symbole de tyrannie et de peur",
                     "points": 3
                 },
                 {
-                    "option": "Utilitaire",
+                    "answer": "Un outil de dissuasion contre les ennemis",
                     "points": 2
                 },
                 {
-                    "option": "Créateur de nouvelles technologies",
-                    "points": 4
+                    "answer": "Une création technologique impressionnante",
+                    "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta motivation principale ?",
-            "options": [
+            "question": "Quelle espèce alien de Star Wars serait ton alliée naturelle ?",
+            "answers": [
                 {
-                    "option": "Vengeance",
+                    "answer": "Wookiee",
                     "points": 4
                 },
                 {
-                    "option": "Paix dans la galaxie",
+                    "answer": "Ewok",
+                    "points": 3
+                },
+                {
+                    "answer": "Mon Calamari",
                     "points": 2
                 },
                 {
-                    "option": "Liberté personnelle",
+                    "answer": "Twi'lek",
                     "points": 1
-                },
-                {
-                    "option": "Connaissance et sagesse",
-                    "points": 3
                 }
             ]
         },
         {
-            "question": "Quel est ton ennemi emblématique préféré ?",
-            "options": [
+            "question": "Quelle est ta réaction face aux Marchands du Bordure Extérieure ?",
+            "answers": [
                 {
-                    "option": "Dark Maul",
+                    "answer": "Je négocie habilement pour obtenir le meilleur prix",
                     "points": 4
                 },
                 {
-                    "option": "Dark Vador",
+                    "answer": "Je pirate les cargaisons pour mon profit personnel",
                     "points": 3
                 },
                 {
-                    "option": "Empereur Palpatine",
+                    "answer": "Je commerce légalement en respectant les règles",
                     "points": 2
                 },
                 {
-                    "option": "Général Grievous",
+                    "answer": "Je ne m'implique pas dans les affaires commerciales",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta spécialité en tant que contrebandier dans la galaxie ?",
+            "answers": [
+                {
+                    "answer": "Contrebande d'armes et de technologies",
+                    "points": 4
+                },
+                {
+                    "answer": "Trafic d'épices et de substances illégales",
+                    "points": 3
+                },
+                {
+                    "answer": "Transport de marchandises en toute discrétion",
+                    "points": 2
+                },
+                {
+                    "answer": "Services de passage clandestin pour fugitifs",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel Jedi historique aimerais-tu rencontrer dans un holocron ?",
+            "answers": [
+                {
+                    "answer": "Anakin Skywalker (avant sa conversion)",
+                    "points": 4
+                },
+                {
+                    "answer": "Qui-Gon Jinn",
+                    "points": 3
+                },
+                {
+                    "answer": "Aayla Secura",
+                    "points": 2
+                },
+                {
+                    "answer": "Plo Koon",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à la trahison d'un proche dans l'univers Star Wars ?",
+            "answers": [
+                {
+                    "answer": "Je ressens une profonde tristesse mais reste loyal",
+                    "points": 4
+                },
+                {
+                    "answer": "Je cherche la vengeance et la justice",
+                    "points": 3
+                },
+                {
+                    "answer": "Je pardonne et essaie de rétablir la confiance",
+                    "points": 2
+                },
+                {
+                    "answer": "Je suis indifférent, la trahison fait partie de la vie",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel rôle préfères-tu dans la galaxie Star Wars ?",
+            "answers": [
+                {
+                    "answer": "Chevalier Jedi",
+                    "points": 4
+                },
+                {
+                    "answer": "Sénateur ou politicien",
+                    "points": 3
+                },
+                {
+                    "answer": "Contrebandier ou mercenaire",
+                    "points": 2
+                },
+                {
+                    "answer": "Maître Sith",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à l'Élu de la Force ?",
+            "answers": [
+                {
+                    "answer": "Je le considère comme un sauveur de la galaxie",
+                    "points": 4
+                },
+                {
+                    "answer": "Je suis sceptique quant à son destin exceptionnel",
+                    "points": 3
+                },
+                {
+                    "answer": "Je veux utiliser son pouvoir à mon avantage",
+                    "points": 2
+                },
+                {
+                    "answer": "Je pense que cela ne change rien à la situation actuelle",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel environnement préfères-tu explorer dans Star Wars ?",
+            "answers": [
+                {
+                    "answer": "Forêts luxuriantes",
+                    "points": 4
+                },
+                {
+                    "answer": "Déserts arides",
+                    "points": 3
+                },
+                {
+                    "answer": "Cités futuristes",
+                    "points": 2
+                },
+                {
+                    "answer": "Planètes glacées",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta position face à la construction d'une nouvelle Étoile de la Mort ?",
+            "answers": [
+                {
+                    "answer": "Je m'oppose fermement à une telle arme",
+                    "points": 4
+                },
+                {
+                    "answer": "Je considère cela comme un moyen de dissuasion nécessaire",
+                    "points": 3
+                },
+                {
+                    "answer": "Je suis indifférent, cela dépend du contexte",
+                    "points": 2
+                },
+                {
+                    "answer": "Je soutiens la construction pour maintenir l'ordre",
                     "points": 1
                 }
             ]
         }
     ],
-    "results": {
-        "Luke Skywalker": {
+    "results": [
+        {
+            "personnage": "Luke Skywalker",
+            "minPoints": 70,
+            "maxPoints": 80
+        },
+        {
+            "personnage": "Dark Vador",
+            "minPoints": 55,
+            "maxPoints": 69
+        },
+        {
+            "personnage": "Han Solo",
+            "minPoints": 40,
+            "maxPoints": 54
+        },
+        {
+            "personnage": "Ahsoka Tano",
             "minPoints": 20,
-            "maxPoints": 30
-        },
-        "Darth Vader": {
-            "minPoints": 31,
-            "maxPoints": 40
-        },
-        "Princesse Leia": {
-            "minPoints": 41,
-            "maxPoints": 50
-        },
-        "Yoda": {
-            "minPoints": 51,
-            "maxPoints": 60
+            "maxPoints": 39
         }
-    }
+    ]
 }

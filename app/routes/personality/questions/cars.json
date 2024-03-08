@@ -1,442 +1,447 @@
 {
+    "name": "cars",
     "questions": [
         {
-            "question": "Quelle serait ta voiture idéale ?",
-            "options": [
-                {
-                    "option": "Voiture de course rapide",
-                    "points": 4
-                },
-                {
-                    "option": "Coupé élégant",
-                    "points": 3
-                },
-                {
-                    "option": "4x4 tout-terrain robuste",
-                    "points": 2
-                },
-                {
-                    "option": "Vieille voiture classique",
-                    "points": 1
-                }
-            ]
-        },
-        {
-            "question": "Comment préfères-tu voyager sur de longues distances ?",
-            "options": [
-                {
-                    "option": "À toute vitesse sur l'autoroute",
-                    "points": 4
-                },
-                {
-                    "option": "En profitant du paysage sur les petites routes",
-                    "points": 3
-                },
-                {
-                    "option": "En empruntant des chemins hors route aventureux",
-                    "points": 2
-                },
-                {
-                    "option": "À une vitesse modérée avec des pauses fréquentes",
-                    "points": 1
-                }
-            ]
-        },
-        {
-            "question": "Quel serait ton type de carburant préféré ?",
-            "options": [
-                {
-                    "option": "Essence haute performance",
-                    "points": 4
-                },
-                {
-                    "option": "Électrique, pour être écologique",
-                    "points": 3
-                },
-                {
-                    "option": "Diesel robuste",
-                    "points": 2
-                },
-                {
-                    "option": "Carburant biologique et durable",
-                    "points": 1
-                }
-            ]
-        },
-        {
             "question": "Quelle est ta couleur de voiture préférée ?",
-            "options": [
+            "answers": [
                 {
-                    "option": "Rouge vif",
+                    "answer": "Rouge",
                     "points": 4
                 },
                 {
-                    "option": "Bleu élégant",
+                    "answer": "Bleue",
                     "points": 3
                 },
                 {
-                    "option": "Vert foncé",
+                    "answer": "Verte",
                     "points": 2
                 },
                 {
-                    "option": "Jaune éclatant",
+                    "answer": "Jaune",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Comment réagis-tu face à une panne mécanique soudaine ?",
-            "options": [
+            "question": "Quel type de route préfères-tu conduire ?",
+            "answers": [
                 {
-                    "option": "Réparer soi-même avec ingéniosité",
-                    "points": 4
-                },
-                {
-                    "option": "Demander de l'aide à des experts",
-                    "points": 3
-                },
-                {
-                    "option": "Essayer de dépanner et continuer",
+                    "answer": "Autoroute",
                     "points": 2
                 },
                 {
-                    "option": "Appeler une dépanneuse immédiatement",
+                    "answer": "Route de montagne sinueuse",
+                    "points": 4
+                },
+                {
+                    "answer": "Route côtière avec vue sur la mer",
+                    "points": 3
+                },
+                {
+                    "answer": "Route à travers la campagne",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta musique préférée pour un road trip ?",
-            "options": [
+            "question": "Quelle est ta vitesse de conduite idéale ?",
+            "answers": [
                 {
-                    "option": "Rock énergique",
+                    "answer": "À toute vitesse !",
                     "points": 4
                 },
                 {
-                    "option": "Country relaxant",
+                    "answer": "Modérée et sûre",
                     "points": 3
                 },
                 {
-                    "option": "Hip-hop dynamique",
+                    "answer": "Plutôt lentement",
                     "points": 2
                 },
                 {
-                    "option": "Pop entraînante",
+                    "answer": "Je préfère conduire tranquillement",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel est ton accessoire de voiture essentiel ?",
-            "options": [
+            "question": "Quel type de musique préfères-tu écouter en conduisant ?",
+            "answers": [
                 {
-                    "option": "Stickers personnalisés",
-                    "points": 4
-                },
-                {
-                    "option": "Siège auto confortable",
+                    "answer": "Rock",
                     "points": 3
                 },
                 {
-                    "option": "Porte-bagages pour les voyages",
+                    "answer": "Country",
                     "points": 2
                 },
                 {
-                    "option": "Parfum d'ambiance automobile",
+                    "answer": "Musique classique",
+                    "points": 1
+                },
+                {
+                    "answer": "Pop",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton genre de film préféré ?",
+            "answers": [
+                {
+                    "answer": "Action",
+                    "points": 4
+                },
+                {
+                    "answer": "Comédie",
+                    "points": 3
+                },
+                {
+                    "answer": "Drame",
+                    "points": 2
+                },
+                {
+                    "answer": "Animation",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle serait ta destination de road trip de rêve ?",
-            "options": [
+            "question": "Quelle est ta destination de voyage idéale ?",
+            "answers": [
                 {
-                    "option": "Route 66 emblématique",
-                    "points": 4
-                },
-                {
-                    "option": "Côte californienne pittoresque",
+                    "answer": "Ville animée",
                     "points": 3
                 },
                 {
-                    "option": "Montagnes majestueuses",
+                    "answer": "Parc national",
+                    "points": 4
+                },
+                {
+                    "answer": "Plage tropicale",
                     "points": 2
                 },
                 {
-                    "option": "Désert étendu",
+                    "answer": "Circuit automobile célèbre",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Comment te comportes-tu sur la route ?",
-            "options": [
+            "question": "Quel est ton plat préféré à emporter lors d'un road trip ?",
+            "answers": [
                 {
-                    "option": "Conduite rapide et audacieuse",
+                    "answer": "Hamburgers et frites",
                     "points": 4
                 },
                 {
-                    "option": "Respect des règles de conduite",
+                    "answer": "Pizza",
                     "points": 3
                 },
                 {
-                    "option": "Exploration de nouvelles routes",
+                    "answer": "Sandwiches faits maison",
                     "points": 2
                 },
                 {
-                    "option": "Conduite décontractée et détendue",
+                    "answer": "Salade fraîche",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta réaction face à une compétition de course ?",
-            "options": [
+            "question": "Quel est ton style de conduite ?",
+            "answers": [
                 {
-                    "option": "Participer avec détermination pour gagner",
+                    "answer": "Agressif et rapide",
                     "points": 4
                 },
                 {
-                    "option": "Prendre plaisir à la compétition sans trop se stresser",
+                    "answer": "Décontracté et relax",
                     "points": 3
                 },
                 {
-                    "option": "Analyser les stratégies des autres participants",
+                    "answer": "Prudent et attentif",
                     "points": 2
                 },
                 {
-                    "option": "Éviter la compétition, cela ne t'intéresse pas",
+                    "answer": "Économique en carburant",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel serait ton rôle dans un film de course automobile ?",
-            "options": [
+            "question": "Quel est ton modèle de voiture de rêve ?",
+            "answers": [
                 {
-                    "option": "Le héros audacieux qui remporte la victoire",
+                    "answer": "Voiture de sport élégante",
                     "points": 4
                 },
                 {
-                    "option": "Le mentor expérimenté qui guide les autres",
+                    "answer": "VUS robuste",
                     "points": 3
                 },
                 {
-                    "option": "L'ingénieur talentueux qui améliore les voitures",
+                    "answer": "Voiture classique vintage",
                     "points": 2
                 },
                 {
-                    "option": "Le personnage décontracté qui profite du voyage",
+                    "answer": "Voiture écoénergétique",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta préférence en matière de design automobile ?",
-            "options": [
+            "question": "Quelle est ta réaction en cas de panne sur la route ?",
+            "answers": [
                 {
-                    "option": "Classique et intemporel",
-                    "points": 3
-                },
-                {
-                    "option": "Futuriste et innovant",
+                    "answer": "Je répare moi-même",
                     "points": 4
                 },
                 {
-                    "option": "Rétro avec une touche moderne",
+                    "answer": "J'appelle une dépanneuse",
+                    "points": 3
+                },
+                {
+                    "answer": "Je demande de l'aide à un ami",
                     "points": 2
                 },
                 {
-                    "option": "Robuste et fonctionnel",
+                    "answer": "Je panique un peu",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel type de pneus préfères-tu pour une conduite optimale ?",
-            "options": [
+            "question": "Quel est ton type de station-service préféré ?",
+            "answers": [
                 {
-                    "option": "Pneus de course haute performance",
+                    "answer": "Grande station-service avec des options de restauration",
                     "points": 4
                 },
                 {
-                    "option": "Pneus tout-terrain robustes",
+                    "answer": "Petite station-service locale",
                     "points": 3
                 },
                 {
-                    "option": "Pneus économiques et écoénergétiques",
+                    "answer": "Station-service avec une belle vue",
                     "points": 2
                 },
                 {
-                    "option": "Pneus confortables pour une conduite lisse",
+                    "answer": "Station-service bon marché",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta réaction face à un virage serré sur la route ?",
-            "options": [
+            "question": "Quel est ton niveau d'intérêt pour les voitures de collection ?",
+            "answers": [
                 {
-                    "option": "Accélérer et prendre le virage avec précision",
+                    "answer": "Très intéressé, j'en possède peut-être une",
                     "points": 4
                 },
                 {
-                    "option": "Ralentir et négocier le virage en toute sécurité",
+                    "answer": "J'aime les voir, mais je n'en possède pas",
                     "points": 3
                 },
                 {
-                    "option": "Chercher des itinéraires alternatifs pour éviter le virage",
+                    "answer": "Pas très intéressé",
                     "points": 2
                 },
                 {
-                    "option": "Trouver un point de vue panoramique pour apprécier la vue",
+                    "answer": "Je préfère les voitures modernes",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel serait ton rêve automobile ultime ?",
-            "options": [
+            "question": "Quelle est ta couleur de carrosserie préférée pour une voiture ?",
+            "answers": [
                 {
-                    "option": "Posséder une voiture de course professionnelle",
-                    "points": 4
-                },
-                {
-                    "option": "Conduire une voiture de luxe emblématique",
-                    "points": 3
-                },
-                {
-                    "option": "Restaurer une ancienne voiture classique",
+                    "answer": "Noir",
                     "points": 2
                 },
                 {
-                    "option": "Personnaliser une voiture unique et originale",
+                    "answer": "Blanc",
+                    "points": 1
+                },
+                {
+                    "answer": "Argent",
+                    "points": 3
+                },
+                {
+                    "answer": "Bleu",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton type de parking préféré ?",
+            "answers": [
+                {
+                    "answer": "Parking couvert sécurisé",
+                    "points": 3
+                },
+                {
+                    "answer": "Parking en plein air avec de l'espace",
+                    "points": 4
+                },
+                {
+                    "answer": "Parking avec service de voiturier",
+                    "points": 2
+                },
+                {
+                    "answer": "Je ne me soucie pas vraiment du parking",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta philosophie de conduite ?",
-            "options": [
+            "question": "Quel est ton accessoire de voiture indispensable ?",
+            "answers": [
                 {
-                    "option": "La vitesse est la clé de l'excitation",
-                    "points": 4
+                    "answer": "Coussin de siège confortable",
+                    "points": 1
                 },
                 {
-                    "option": "Savourer chaque instant de la route",
+                    "answer": "Support de téléphone pour GPS",
                     "points": 3
                 },
                 {
-                    "option": "Explorer de nouvelles destinations régulièrement",
+                    "answer": "Parfum pour la voiture",
                     "points": 2
                 },
                 {
-                    "option": "La conduite doit être relaxante et sans stress",
+                    "answer": "Ensemble de nettoyage auto",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton type de voiture préféré parmi les choix suivants ?",
+            "answers": [
+                {
+                    "answer": "SUV spacieux",
+                    "points": 2
+                },
+                {
+                    "answer": "Cabriolet sportif",
+                    "points": 4
+                },
+                {
+                    "answer": "Berline élégante",
+                    "points": 3
+                },
+                {
+                    "answer": "Camion robuste",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta boisson préférée pour rester éveillé lors de longs trajets ?",
-            "options": [
+            "question": "Quelle est ta réaction face à un embouteillage ?",
+            "answers": [
                 {
-                    "option": "Café fort et noir",
+                    "answer": "Je suis impatient(e) et frustré(e)",
                     "points": 4
                 },
                 {
-                    "option": "Thé énergisant",
+                    "answer": "Je reste calme et écoute de la musique",
                     "points": 3
                 },
                 {
-                    "option": "Boissons énergétiques",
+                    "answer": "Je cherche des itinéraires alternatifs",
                     "points": 2
                 },
                 {
-                    "option": "Smoothie rafraîchissant",
+                    "answer": "Je prends cela comme une pause bienvenue",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Comment entretiens-tu ta voiture pour assurer des performances optimales ?",
-            "options": [
+            "question": "Quel est ton style de conduite par temps pluvieux ?",
+            "answers": [
                 {
-                    "option": "Programme d'entretien régulier et professionnel",
-                    "points": 4
-                },
-                {
-                    "option": "Entretien bricolage fréquent",
+                    "answer": "Je conduis prudemment et lentement",
                     "points": 3
                 },
                 {
-                    "option": "Nettoyage méticuleux de l'intérieur et de l'extérieur",
+                    "answer": "Je continue comme d'habitude",
+                    "points": 4
+                },
+                {
+                    "answer": "Je n'aime pas conduire sous la pluie",
                     "points": 2
                 },
                 {
-                    "option": "Réparations au fur et à mesure des besoins",
+                    "answer": "Je prends les transports en commun",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta réaction face à une belle voiture classique croisée sur la route ?",
-            "options": [
+            "question": "Quelle est ta réaction face à un dépassement dangereux sur la route ?",
+            "answers": [
                 {
-                    "option": "Admiration et respect pour la beauté intemporelle",
+                    "answer": "Je klaxonne et montre mon mécontentement",
                     "points": 4
                 },
                 {
-                    "option": "Envie de la posséder et de la conduire",
+                    "answer": "Je laisse passer en restant calme",
                     "points": 3
                 },
                 {
-                    "option": "Curiosité pour son histoire et son origine",
+                    "answer": "Je m'éloigne prudemment",
                     "points": 2
                 },
                 {
-                    "option": "Indifférence, ce n'est pas ton style",
+                    "answer": "Je signale l'incident aux autorités",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel serait ton endroit préféré pour une pause pendant un road trip ?",
-            "options": [
+            "question": "Quelle est ta stratégie lors d'une course de voitures ?",
+            "answers": [
                 {
-                    "option": "Station-service animée avec des activités",
+                    "answer": "Prendre la tête dès le départ et maintenir la vitesse",
                     "points": 4
                 },
                 {
-                    "option": "Vue panoramique sur une colline isolée",
+                    "answer": "Observer la compétition et choisir le moment opportun pour accélérer",
                     "points": 3
                 },
                 {
-                    "option": "Parc naturel paisible au bord de la route",
+                    "answer": "Dépasser progressivement en utilisant une stratégie tactique",
                     "points": 2
                 },
                 {
-                    "option": "Café pittoresque dans une petite ville",
+                    "answer": "Conduire de manière constante sans se préoccuper des autres concurrents",
                     "points": 1
                 }
             ]
         }
     ],
-    "results": {
-        "Flash McQueen": {
+    "results": [
+        {
+            "personnage": "Flash McQueen",
+            "minPoints": 60,
+            "maxPoints": 80
+        },
+        {
+            "personnage": "Martin",
+            "minPoints": 45,
+            "maxPoints": 59
+        },
+        {
+            "personnage": "Sally Carrera",
+            "minPoints": 30,
+            "maxPoints": 44
+        },
+        {
+            "personnage": "Guido",
             "minPoints": 20,
-            "maxPoints": 30
-        },
-        "Doc Hudson": {
-            "minPoints": 31,
-            "maxPoints": 40
-        },
-        "Mater": {
-            "minPoints": 41,
-            "maxPoints": 50
-        },
-        "Sally Carrera": {
-            "minPoints": 51,
-            "maxPoints": 60
+            "maxPoints": 29
         }
-    }
+    ]
 }

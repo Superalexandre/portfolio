@@ -1,442 +1,447 @@
 {
+    "name": "barbie",
     "questions": [
         {
-            "question": "Quelle est ta couleur préférée parmi les teintes pastel ?",
-            "options": [
+            "question": "Quelle est ta couleur préférée ?",
+            "answers": [
                 {
-                    "option": "Rose",
-                    "points": 3
-                },
-                {
-                    "option": "Bleu ciel",
-                    "points": 2
-                },
-                {
-                    "option": "Violet lavande",
+                    "answer": "Rose",
                     "points": 4
                 },
                 {
-                    "option": "Vert menthe",
+                    "answer": "Bleu",
+                    "points": 2
+                },
+                {
+                    "answer": "Jaune",
+                    "points": 3
+                },
+                {
+                    "answer": "Vert",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel est ton style vestimentaire préféré ?",
-            "options": [
+            "question": "Quel est ton animal préféré ?",
+            "answers": [
                 {
-                    "option": "Élégant et sophistiqué",
-                    "points": 4
-                },
-                {
-                    "option": "Décontracté et confortable",
-                    "points": 1
-                },
-                {
-                    "option": "Chic et à la mode",
+                    "answer": "Chat",
                     "points": 3
                 },
                 {
-                    "option": "Sportif et décontracté",
-                    "points": 2
-                }
-            ]
-        },
-        {
-            "question": "Quelle est ta passion principale ?",
-            "options": [
-                {
-                    "option": "Mode et design",
-                    "points": 3
-                },
-                {
-                    "option": "Voyages et découvertes",
-                    "points": 2
-                },
-                {
-                    "option": "Arts créatifs et DIY",
+                    "answer": "Chien",
                     "points": 4
                 },
                 {
-                    "option": "Activités sportives",
+                    "answer": "Cheval",
+                    "points": 2
+                },
+                {
+                    "answer": "Dauphin",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel animal de compagnie préfères-tu parmi les animaux mignons ?",
-            "options": [
+            "question": "Quelle est ta tenue idéale pour une soirée ?",
+            "answers": [
                 {
-                    "option": "Chien",
-                    "points": 2
-                },
-                {
-                    "option": "Chat",
-                    "points": 3
-                },
-                {
-                    "option": "Lapin",
-                    "points": 1
-                },
-                {
-                    "option": "Oiseau exotique",
-                    "points": 4
-                }
-            ]
-        },
-        {
-            "question": "Quelle est ta destination de rêve pour des vacances glamour ?",
-            "options": [
-                {
-                    "option": "Paris, la capitale de la mode",
-                    "points": 3
-                },
-                {
-                    "option": "Les plages ensoleillées de Saint-Tropez",
+                    "answer": "Robe de princesse",
                     "points": 4
                 },
                 {
-                    "option": "Les montagnes élégantes des Alpes suisses",
+                    "answer": "Pantalon élégant",
                     "points": 2
                 },
                 {
-                    "option": "Les boutiques branchées de New York",
+                    "answer": "Jupe et top assortis",
+                    "points": 3
+                },
+                {
+                    "answer": "Short et t-shirt décontractés",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Comment réagis-tu face aux défis et aux obstacles ?",
-            "options": [
+            "question": "Quel est ton passe-temps préféré ?",
+            "answers": [
                 {
-                    "option": "Avec grâce et résilience",
-                    "points": 4
-                },
-                {
-                    "option": "Avec détermination et persévérance",
+                    "answer": "Dessiner",
                     "points": 3
                 },
                 {
-                    "option": "En restant positive et optimiste",
+                    "answer": "Danser",
+                    "points": 4
+                },
+                {
+                    "answer": "Lire",
                     "points": 2
                 },
                 {
-                    "option": "En faisant preuve d'ingéniosité et de créativité",
+                    "answer": "Jouer aux jeux vidéo",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel est ton accessoire préféré parmi les bijoux scintillants ?",
-            "options": [
+            "question": "Quel est ton plat préféré ?",
+            "answers": [
                 {
-                    "option": "Collier de perles",
+                    "answer": "Salade légère",
+                    "points": 1
+                },
+                {
+                    "answer": "Pizza",
                     "points": 3
                 },
                 {
-                    "option": "Bracelet étincelant",
-                    "points": 4
-                },
-                {
-                    "option": "Boucles d'oreilles élégantes",
+                    "answer": "Sushi",
                     "points": 2
                 },
                 {
-                    "option": "Bague glamour",
+                    "answer": "Gâteau au chocolat",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton film préféré parmi les choix suivants ?",
+            "answers": [
+                {
+                    "answer": "Barbie et le Lac des cygnes",
+                    "points": 4
+                },
+                {
+                    "answer": "La Reine des neiges",
+                    "points": 3
+                },
+                {
+                    "answer": "Toy Story",
+                    "points": 2
+                },
+                {
+                    "answer": "Le Roi Lion",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel est ton plat préféré lors d'un dîner chic ?",
-            "options": [
+            "question": "Quel est ton style musical préféré ?",
+            "answers": [
                 {
-                    "option": "Homard grillé avec des accompagnements délicats",
+                    "answer": "Pop",
                     "points": 4
                 },
                 {
-                    "option": "Pâtes fraîches truffées",
-                    "points": 3
-                },
-                {
-                    "option": "Sushi et sashimi élaborés",
+                    "answer": "Classique",
                     "points": 2
                 },
                 {
-                    "option": "Filet mignon avec une sauce raffinée",
+                    "answer": "Rock",
+                    "points": 3
+                },
+                {
+                    "answer": "Hip-hop",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel est ton film préféré parmi les contes de fées enchanteurs ?",
-            "options": [
+            "question": "Quel est ton animal en peluche préféré ?",
+            "answers": [
                 {
-                    "option": "Cendrillon",
+                    "answer": "Ourson",
                     "points": 2
                 },
                 {
-                    "option": "La Belle et la Bête",
-                    "points": 3
-                },
-                {
-                    "option": "La Petite Sirène",
+                    "answer": "Licorne",
                     "points": 4
                 },
                 {
-                    "option": "Blanche-Neige",
-                    "points": 1
-                }
-            ]
-        },
-        {
-            "question": "Quelle est ta chanson préférée pour une soirée dansante ?",
-            "options": [
-                {
-                    "option": "Pop entraînante",
-                    "points": 3
-                },
-                {
-                    "option": "Rythmes de danse électro",
-                    "points": 4
-                },
-                {
-                    "option": "Classiques intemporels",
-                    "points": 2
-                },
-                {
-                    "option": "Morceaux R&B à la mode",
-                    "points": 1
-                }
-            ]
-        },
-        {
-            "question": "Quel est ton hobby créatif favori ?",
-            "options": [
-                {
-                    "option": "Peinture et art visuel",
-                    "points": 4
-                },
-                {
-                    "option": "Couture et création de vêtements",
-                    "points": 3
-                },
-                {
-                    "option": "Écriture de poésie ou de nouvelles",
-                    "points": 2
-                },
-                {
-                    "option": "Décoration intérieure élégante",
-                    "points": 1
-                }
-            ]
-        },
-        {
-            "question": "Quel est ton moyen de transport préféré pour une escapade romantique ?",
-            "options": [
-                {
-                    "option": "Limousine élégante",
-                    "points": 2
-                },
-                {
-                    "option": "Voiture décapotable sportive",
+                    "answer": "Chaton",
                     "points": 1
                 },
                 {
-                    "option": "Jet privé luxueux",
-                    "points": 4
-                },
-                {
-                    "option": "Yacht exclusif",
+                    "answer": "Chiot",
                     "points": 3
                 }
             ]
         },
         {
-            "question": "Quelle est ta devise de vie ?",
-            "options": [
+            "question": "Quel est ton endroit préféré pour passer des vacances ?",
+            "answers": [
                 {
-                    "option": "Rêve grand, travaille dur",
+                    "answer": "Plage tropicale",
                     "points": 4
                 },
                 {
-                    "option": "La vie est une fête continue",
+                    "answer": "Montagnes enneigées",
                     "points": 3
                 },
                 {
-                    "option": "La gentillesse est la clé de l'élégance",
+                    "answer": "Ville animée",
                     "points": 2
                 },
                 {
-                    "option": "Chaque jour est une nouvelle aventure",
+                    "answer": "Camping dans la nature",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel est ton événement social préféré ?",
-            "options": [
+            "question": "Quel est ton accessoire préféré ?",
+            "answers": [
                 {
-                    "option": "Gala de charité élégant",
+                    "answer": "Collier de perles",
                     "points": 4
                 },
                 {
-                    "option": "Soirée glamour sur le tapis rouge",
-                    "points": 3
-                },
-                {
-                    "option": "Fête exquise dans un château",
+                    "answer": "Bandeau coloré",
                     "points": 2
                 },
                 {
-                    "option": "Dîner intime avec des amis proches",
+                    "answer": "Sac à main élégant",
+                    "points": 3
+                },
+                {
+                    "answer": "Casquette décontractée",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Comment préfères-tu passer une journée de détente ?",
-            "options": [
+            "question": "Quel est ton animal fantastique préféré ?",
+            "answers": [
                 {
-                    "option": "Dans un spa de luxe",
-                    "points": 2
-                },
-                {
-                    "option": "En flânant dans des boutiques chics",
-                    "points": 3
-                },
-                {
-                    "option": "En pratiquant des activités artistiques",
+                    "answer": "Licorne",
                     "points": 4
                 },
                 {
-                    "option": "En profitant d'une journée en plein air dans la nature",
+                    "answer": "Dragon",
+                    "points": 3
+                },
+                {
+                    "answer": "Sirène",
+                    "points": 2
+                },
+                {
+                    "answer": "Phénix",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta saison préférée pour la mode ?",
-            "options": [
+            "question": "Quel est ton rêve le plus fou ?",
+            "answers": [
                 {
-                    "option": "Printemps, avec des couleurs pastel",
-                    "points": 3
-                },
-                {
-                    "option": "Été, pour les tenues légères et élégantes",
+                    "answer": "Devenir une princesse",
                     "points": 4
                 },
                 {
-                    "option": "Automne, avec des tons riches et chauds",
+                    "answer": "Voyager autour du monde",
+                    "points": 3
+                },
+                {
+                    "answer": "Devenir une célèbre artiste",
                     "points": 2
                 },
                 {
-                    "option": "Hiver, pour les accessoires luxueux",
+                    "answer": "Avoir une grande famille",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel est ton type de chaussures préféré ?",
-            "options": [
+            "question": "Quelle est ta saison préférée ?",
+            "answers": [
                 {
-                    "option": "Talons hauts étincelants",
+                    "answer": "Printemps",
                     "points": 3
                 },
                 {
-                    "option": "Baskets confortables et chics",
-                    "points": 2
-                },
-                {
-                    "option": "Bottes élégantes",
+                    "answer": "Été",
                     "points": 4
                 },
                 {
-                    "option": "Sandales légères et sophistiquées",
+                    "answer": "Automne",
+                    "points": 2
+                },
+                {
+                    "answer": "Hiver",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle est ta citation préférée sur la vie ?",
-            "options": [
+            "question": "Quelle est ta matière scolaire préférée ?",
+            "answers": [
                 {
-                    "option": "« La vie est une aventure audacieuse ou rien du tout. » - Helen Keller",
+                    "answer": "Art",
                     "points": 4
                 },
                 {
-                    "option": "« Soyez la meilleure version de vous-même. » - Audrey Hepburn",
+                    "answer": "Mathématiques",
                     "points": 3
                 },
                 {
-                    "option": "« La vie est courte, habillez-vous avec élégance. » - Coco Chanel",
+                    "answer": "Français",
                     "points": 2
                 },
                 {
-                    "option": "« La gentillesse est la vraie beauté. » - Marilyn Monroe",
+                    "answer": "Éducation physique",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quel est ton dessert préféré parmi les pâtisseries raffinées ?",
-            "options": [
+            "question": "Quel est ton héros préféré parmi les choix suivants ?",
+            "answers": [
                 {
-                    "option": "Macarons délicats",
-                    "points": 3
-                },
-                {
-                    "option": "Tarte aux fruits frais",
+                    "answer": "Barbie",
                     "points": 4
                 },
                 {
-                    "option": "Éclair au chocolat élégant",
+                    "answer": "Cendrillon",
+                    "points": 3
+                },
+                {
+                    "answer": "Spider-Man",
                     "points": 2
                 },
                 {
-                    "option": "Crème brûlée exquise",
+                    "answer": "Batman",
                     "points": 1
                 }
             ]
         },
         {
-            "question": "Quelle serait ta tenue idéale pour un défilé de mode glamour ?",
-            "options": [
+            "question": "Quel est ton moyen de transport préféré ?",
+            "answers": [
                 {
-                    "option": "Robe de soirée longue et étincelante",
-                    "points": 3
-                },
-                {
-                    "option": "Ensemble pantalon chic et audacieux",
-                    "points": 2
-                },
-                {
-                    "option": "Combinaison élégante et moderne",
+                    "answer": "Cabriolet rose",
                     "points": 4
                 },
                 {
-                    "option": "Jupe volumineuse avec un haut assorti",
+                    "answer": "Vélo avec un panier de fleurs",
+                    "points": 3
+                },
+                {
+                    "answer": "Patins à roulettes",
+                    "points": 2
+                },
+                {
+                    "answer": "Marcher à pied",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton plat sucré préféré ?",
+            "answers": [
+                {
+                    "answer": "Gâteau à la fraise",
+                    "points": 4
+                },
+                {
+                    "answer": "Cupcakes colorés",
+                    "points": 3
+                },
+                {
+                    "answer": "Tarte au citron meringuée",
+                    "points": 2
+                },
+                {
+                    "answer": "Barbe à papa",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton jeu de société préféré ?",
+            "answers": [
+                {
+                    "answer": "Jeu de l'oie",
+                    "points": 1
+                },
+                {
+                    "answer": "Monopoly",
+                    "points": 3
+                },
+                {
+                    "answer": "Twister",
+                    "points": 2
+                },
+                {
+                    "answer": "Puissance 4",
+                    "points": 4
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta fleur préférée ?",
+            "answers": [
+                {
+                    "answer": "Rose",
+                    "points": 4
+                },
+                {
+                    "answer": "Tulipe",
+                    "points": 3
+                },
+                {
+                    "answer": "Lys",
+                    "points": 2
+                },
+                {
+                    "answer": "Marguerite",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton vêtement de nuit préféré ?",
+            "answers": [
+                {
+                    "answer": "Chemise de nuit en satin",
+                    "points": 4
+                },
+                {
+                    "answer": "Pyjama confortable",
+                    "points": 3
+                },
+                {
+                    "answer": "Nuisette légère",
+                    "points": 2
+                },
+                {
+                    "answer": "T-shirt oversized",
                     "points": 1
                 }
             ]
         }
     ],
-    "results": {
-        "Barbie": {
+    "results": [
+        {
+            "personnage": "Barbie",
+            "minPoints": 60,
+            "maxPoints": 80
+        },
+        {
+            "personnage": "Ken",
+            "minPoints": 45,
+            "maxPoints": 59
+        },
+        {
+            "personnage": "Skipper",
+            "minPoints": 30,
+            "maxPoints": 44
+        },
+        {
+            "personnage": "Chelsea",
             "minPoints": 20,
-            "maxPoints": 30
-        },
-        "Ken": {
-            "minPoints": 31,
-            "maxPoints": 40
-        },
-        "Skipper": {
-            "minPoints": 41,
-            "maxPoints": 50
-        },
-        "Stacie": {
-            "minPoints": 51,
-            "maxPoints": 60
+            "maxPoints": 29
         }
-    }
+    ]
 }
