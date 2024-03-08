@@ -7,7 +7,7 @@ import { Server } from "socket.io"
 import "dotenv/config"
 import { v4 as uuid } from "uuid"
 
-import reply from "./ai/ai"
+import reply from "./ai/ai.js"
 import AIMessage from "./types/AIMessage"
 
 const BUILD_PATH = "./build/index.js"
