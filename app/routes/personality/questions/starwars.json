@@ -1,5 +1,6 @@
 {
     "name": "starwars",
+    "prettyName": "Star Wars",
     "questions": [
         {
             "question": "Quelle Force de l'univers Star Wars préfères-tu ?",

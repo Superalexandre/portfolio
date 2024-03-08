@@ -49,7 +49,7 @@ export default function Index() {
                 </label>
                 <select name="personality" className="rounded-md bg-slate-800 p-2 text-white">
                     {personalities.map(personality => (
-                        <option key={personality} value={personality}>{personality}</option>
+                        <option key={personality.name} value={personality.name}>{personality.prettyName}</option>
                     ))}
                     {/* <option value="barbie">Barbie</option>
                     <option value="cars">Cars</option>

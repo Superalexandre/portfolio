@@ -4,6 +4,7 @@ import { fileURLToPath } from "url"
 
 interface QuestionFile {
     name: string
+    prettyName: string
     questions: {
         question: string
         answers: {

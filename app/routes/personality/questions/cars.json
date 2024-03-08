@@ -1,5 +1,6 @@
 {
     "name": "cars",
+    "prettyName": "Cars",
     "questions": [
         {
             "question": "Quelle est ta couleur de voiture préférée ?",

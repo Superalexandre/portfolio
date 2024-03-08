@@ -1,5 +1,6 @@
 {
     "name": "simpsons",
+    "prettyName": "Simpsons",
     "questions": [
         {
             "question": "Quelle est ta boisson préférée ?",
