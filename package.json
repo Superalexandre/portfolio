@@ -13,7 +13,7 @@
         "depcheck": "depcheck --ignores '~,ts-node,@typescript-eslint/eslint-plugin'",
         "deploy": "npm i && npm run tailwind:css && npm run build && npm run db:migration && tsc --p tsconfigServer.json",
         "tailwind:css": "npx tailwindcss -o ./app/tailwind-minify.css --minify",
-        "db:migration": "drizzle-kit generate:sqlite --out ./database/migrations --schema ./database/schema/schemas.ts",
+        "db:migration": "drizzle-kit generate:sqlite",
         "db:revert": "drizzle-kit drop",
         "duplicate": "npx jscpd ./app"
     },
