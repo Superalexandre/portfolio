@@ -8,9 +8,8 @@
 */
 
 import { ActionFunctionArgs } from "@remix-run/node"
-import { Form, json, useLoaderData } from "@remix-run/react"
+import { Form, json, useLoaderData, redirect } from "@remix-run/react"
 import { MdArrowForward } from "react-icons/md"
-import { redirect } from "react-router"
 
 import { getPersonalities } from "./getPersonalities"
 
