@@ -11,10 +11,9 @@
         "typecheck": "tsc",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
         "depcheck": "depcheck --ignores '~,ts-node,@typescript-eslint/eslint-plugin'",
-        "deploy": "npm i && npm run tailwind:css && npm run build && npm run db:migration:full && tsc --p tsconfigServer.json",
+        "deploy": "npm i && npm run tailwind:css && npm run build && npm run db:migration && tsc --p tsconfigServer.json",
         "tailwind:css": "npx tailwindcss -o ./app/tailwind-minify.css --minify",
-        "db:migration": "drizzle-kit generate:sqlite",
-        "db:migration:full": "npm run db:migration && node --no-warnings --loader ts-node/esm ./database/migrate.ts",
+        "db:migration": "drizzle-kit generate:sqlite --out ./database/migrations --schema ./database/schema/schemas.ts",
         "db:revert": "drizzle-kit drop",
         "duplicate": "npx jscpd ./app"
     },
@@ -32,11 +31,10 @@
         "@typescript-eslint/parser": "^7.0.0",
         "bcryptjs": "^2.4.3",
         "better-sqlite3": "^9.4.1",
-        "cookie": "^0.6.0",
         "date-fns": "^3.3.1",
         "depcheck": "^1.4.7",
         "dotenv": "^16.4.4",
-        "drizzle-orm": "^0.30.0",
+        "drizzle-orm": "^0.29.3",
         "eslint-import-resolver-typescript": "^3.6.1",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-react": "^7.33.2",
@@ -45,7 +43,6 @@
         "i18next-browser-languagedetector": "^7.2.0",
         "i18next-fs-backend": "^2.3.1",
         "i18next-http-backend": "^2.4.3",
-        "intl-parse-accept-language": "^1.0.0",
         "isbot": "^5.0.0",
         "node-llama-cpp": "^2.8.8",
         "react": "^18.2.0",
@@ -64,11 +61,9 @@
         "ts-node": "^10.9.2",
         "universal-cookie": "^7.1.0",
         "uuid": "^9.0.1",
-        "vite-tsconfig-paths": "^4.3.1",
         "zod": "^3.22.4"
     },
     "devDependencies": {
-        "@hono/vite-dev-server": "^0.8.2",
         "@remix-run/dev": "^2.6.0",
         "@remix-run/eslint-config": "^2.6.0",
         "@types/bcryptjs": "^2.4.6",
@@ -84,8 +79,7 @@
         "remix-flat-routes": "^0.6.4",
         "remix-hono": "^0.0.15",
         "tailwindcss": "^3.4.1",
-        "typescript": "^5.3.3",
-        "vite": "^5.1.5"
+        "typescript": "^5.3.3"
     },
     "engines": {
         "node": ">=18.0.0"
