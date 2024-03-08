@@ -77,4 +77,4 @@ This project is using:
 * **TypeScript** [📚 Docs](https://www.typescriptlang.org/)
 * **Tailwind CSS** [📚 Docs](https://tailwindcss.com/)
 * **Hono** [📚 Docs](https://hono.dev/)
-* **Drizzle** [📚 Docs](https://drizzle.dev/)
+* **Drizzle** [📚 Docs](https://orm.drizzle.team/)
