@@ -1,5 +1,5 @@
 import { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction, json } from "@remix-run/node"
-import { Form, useActionData, useLoaderData, useNavigation } from "@remix-run/react"
+import { Form, Link, useActionData, useLoaderData, useNavigation } from "@remix-run/react"
 import { TFunction } from "i18next"
 import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -216,15 +216,15 @@ const InputForm = ({ t, isLoading, result }: InputFormProps) => {
                             }
                         </button>
 
-                        <a
+                        <Link
                             className="flex flex-row items-center justify-center gap-2 text-green-500"
-                            href={`/secretMessage/${result.id}`}
+                            to={`/secretMessage/${result.id}`}
                             target="_blank"
                             rel="noreferrer"
                         >
                             <p className="block lg:hidden">{t("secretMessage.openLink")}</p>
                             <MdOpenInNew size={20} />
-                        </a>
+                        </Link>
                     </div>
                     : null}
                 {result?.error ? <p className="text-center text-red-500">{result.message}</p> : null}

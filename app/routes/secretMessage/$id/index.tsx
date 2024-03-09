@@ -175,7 +175,7 @@ const NotFound = ({ t }: { t: TFunction }) => {
     return (
         <div className="flex h-full min-h-screen min-w-full flex-col items-center justify-center gap-2 bg-slate-700">
             <h1 className="text-center text-2xl text-white">{t("secretMessage.notFound")}</h1>
-            <a className="text-white underline hover:text-main-color" href="/secretMessage">{t("secretMessage.createMessage")}</a>
+            <Link className="text-white underline hover:text-main-color" to="/secretMessage">{t("secretMessage.createMessage")}</Link>
         </div>
     )
 }

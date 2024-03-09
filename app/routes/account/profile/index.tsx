@@ -2,7 +2,7 @@ import { Form, Link, Outlet, useLocation, useNavigation } from "@remix-run/react
 import { TFunction } from "i18next"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
-import { MdLogout, MdMenu, MdPerson, MdSettings, MdSms } from "react-icons/md"
+import { MdGroup, MdLogout, MdMenu, MdPerson, MdSettings, MdSms } from "react-icons/md"
 
 export const handle = { i18n: "common" }
 export default function Index() {
@@ -33,6 +33,30 @@ export default function Index() {
 const SideBar = ({ location = "/account/profile/", t }: { location: string | undefined, t: TFunction<"common", undefined> }) => {
     const [open, setOpen] = useState(false)
 
+    const links = [
+        {
+            to: "/account/profile",
+            icon: MdPerson,
+            text: t("profile.myProfile")
+        },
+        {
+            to: "/account/profile/my-message",
+            icon: MdSms,
+            text: t("profile.myMessages.title")
+        },
+        {
+            to: "/account/profile/personality",
+            icon: MdGroup,
+            // text: t("profile.personality.title")
+            text: "Liste des personnalités"
+        },
+        {
+            to: "/account/profile/settings",
+            icon: MdSettings,
+            text: t("profile.settings.title")
+        }
+    ]
+
     return (
         <>
             <button
@@ -53,32 +77,17 @@ const SideBar = ({ location = "/account/profile/", t }: { location: string | und
 
             <div className={`${open ? "translate-x-0" : "-translate-x-full"} fixed z-10 flex h-full min-w-52 flex-col items-center justify-between bg-slate-800 py-4 transition-all duration-150 lg:translate-x-0`}>
                 <div className="flex h-auto flex-col items-center justify-center gap-4">
-                    <Link
-                        to={"/account/profile"}
-                        className={`${location === "/account/profile" ? "!text-slate-500" : ""} flex flex-row items-center justify-center gap-2 text-center text-white hover:text-slate-400`}
-                    >
-                        <MdPerson />
+                    {links.map((link) => (
+                        <Link
+                            key={link.to}
+                            to={link.to}
+                            className={`${location === link.to ? "!text-slate-500" : ""} flex flex-row items-center justify-center gap-2 text-center text-white hover:text-slate-400`}
+                        >
+                            <link.icon />
 
-                        {t("profile.myProfile")}
-                    </Link>
-                    
-                    <Link 
-                        to={"/account/profile/my-message"}
-                        className={`${location === "/account/profile/my-message" ? "!text-slate-500" : ""} flex flex-row items-center justify-center gap-2 text-center text-white hover:text-slate-400`}
-                    >
-                        <MdSms />
-
-                        {t("profile.myMessages.title")}
-                    </Link>
-
-                    <Link
-                        to={"/account/profile/settings"}
-                        className={`${location === "/account/profile/settings" ? "!text-slate-500" : ""} flex flex-row items-center justify-center gap-2 text-center text-white hover:text-slate-400`}
-                    >
-                        <MdSettings />
-
-                        {t("profile.settings.title")}
-                    </Link>
+                            {link.text}
+                        </Link>
+                    ))}
                 </div>
                 <Form action="/account/logout" method="post">
                     <button type="submit" className="flex flex-row items-center justify-center gap-2 text-center text-white hover:text-slate-400">
