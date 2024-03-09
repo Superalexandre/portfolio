@@ -8,55 +8,82 @@
 */
 
 import { ActionFunctionArgs } from "@remix-run/node"
-import { Form, json, useLoaderData, redirect } from "@remix-run/react"
+import { json, useLoaderData, useNavigate } from "@remix-run/react"
+import { useState } from "react"
 import { MdArrowForward } from "react-icons/md"
+
+import QuestionFile from "@/types/personality/QuestionFile"
+import User from "@/types/User"
+import { PopupAccount } from "~/Components/PopupAccount"
+import { getUser } from "~/session.server"
 
 import { getPersonalities } from "./getPersonalities"
 
-export function loader() {
+export const handle = { i18n: "common" }
+export async function loader({ request }: ActionFunctionArgs) {
     const personalities = getPersonalities()
-    
+    const user = await getUser(request)
+
     return json({
-        personalities
+        personalities,
+        user
     })
-}
-
-export async function action({ request }: ActionFunctionArgs) {
-    const body = await request.formData()
-    const personality = body.get("personality")
-
-    if (!personality) return json({
-        success: false,
-        error: true,
-        message: "Tu dois choisir un univers"
-    })
-
-    return redirect(`/personality/${personality}`)
 }
 
 export default function Index() {
-    const { personalities } = useLoaderData<typeof loader>()
+    const { personalities, user } = useLoaderData<typeof loader>()
+
+    const [popupAccountHidden, setPopupAccountHidden] = useState(true)
+    const [personality, setPersonality] = useState(personalities[0].name)
+
+    const navigate = useNavigate()
+    const redirect = `/personality/${personality}`
 
     return (
-        <Form
-            method="post"
-            action="/personality"
+        <>
+            <PopupAccount 
+                hidden={popupAccountHidden} 
+                setHidden={() => setPopupAccountHidden(!popupAccountHidden)} 
+                title={"Crée ton compte pour sauvegarder tes résultats"}
+                redirect={redirect}
+            />
+
+            <FormPersonalities 
+                personalities={personalities} 
+                setPersonality={setPersonality}
+                setPopupAccountHidden={setPopupAccountHidden}
+                user={user}
+                navigate={() => navigate(redirect)}
+            />
+        </>
+    )
+}
+
+interface FormPersonalitiesProps {
+    personalities: QuestionFile[]
+    setPersonality: (personality: string) => void
+    setPopupAccountHidden: (hidden: boolean) => void
+    user: User | null
+    navigate: () => void
+}
+
+const FormPersonalities = ({ personalities, setPersonality, setPopupAccountHidden, user, navigate }: FormPersonalitiesProps) => {
+    return (
+        <div
             className="flex h-full min-h-screen min-w-full flex-col items-center justify-center gap-64 bg-slate-700"
         >
             <div className="flex flex-col items-center justify-center gap-4">
                 <label htmlFor="personality" className="text-white">
                     Choisis l’univers ou tu veux découvrir qui tu es
                 </label>
-                <select name="personality" className="rounded-md bg-slate-800 p-2 text-white">
+                <select 
+                    name="personality" 
+                    className="rounded-md bg-slate-800 p-2 text-white"
+                    onChange={e => setPersonality(e.target.value)}
+                >
                     {personalities.map(personality => (
                         <option key={personality.name} value={personality.name}>{personality.prettyName}</option>
                     ))}
-                    {/* <option value="barbie">Barbie</option>
-                    <option value="cars">Cars</option>
-                    <option value="nemo">Nemo</option>
-                    <option value="simpsons">Simpsons</option>
-                    <option value="starwars">Star Wars</option>
-                    <option value="thewalkingdead">The Walking Dead</option> */}
                 </select>
             </div>
             <div className="flex flex-col items-center justify-center gap-4">
@@ -69,15 +96,18 @@ export default function Index() {
                     </p>
                 </div>
                 <button
-                    type="submit"
+                    onClick={() => {
+                        if (!user) return setPopupAccountHidden(false)
+
+                        navigate()
+                    }}
                     className={"flex flex-row items-center justify-center gap-2 rounded-lg bg-green-500 p-4 text-white hover:bg-green-800"}
                 >
                     Commencer
 
                     <MdArrowForward />
                 </button>
-
             </div>
-        </Form>
+        </div>
     )
 }

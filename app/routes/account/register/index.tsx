@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction, json } from "@remix-run/node"
-import { Form } from "@remix-run/react"
+import { Form, Link, useSearchParams } from "@remix-run/react"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { MdAdd, MdBadge, MdCalendarMonth, MdEmail, MdPassword } from "react-icons/md"
@@ -101,6 +101,8 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export default function Index() {
     const { t } = useTranslation("common")
+    const [params,] = useSearchParams()
+
     const {
         handleSubmit,
         formState: { errors, isSubmitting },
@@ -205,9 +207,15 @@ export default function Index() {
                 ShowButton={<ShowButton show={showPasswordConfirmation} setShow={setShowPasswordConfirmation} />}
             />
 
-            <a href="/account/login" className="text-center text-white underline hover:text-slate-400">
+            <Link 
+                to={{
+                    pathname: "/account/login",
+                    search: params.get("redirect") ? `?redirect=${params.get("redirect")}` : ""
+                }}
+                className="text-center text-white underline hover:text-slate-400"
+            >
                 {t("register.alreadyHaveAnAccount")}
-            </a>
+            </Link>
 
             <button
                 type="submit"

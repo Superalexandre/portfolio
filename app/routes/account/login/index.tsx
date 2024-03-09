@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction, json } from "@remix-run/node"
-import { Form } from "@remix-run/react"
+import { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction, json, redirect } from "@remix-run/node"
+import { Form, Link, useSearchParams } from "@remix-run/react"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { MdLogin, MdMail, MdPassword } from "react-icons/md"
@@ -11,6 +11,7 @@ import type { FieldErrors } from "@/types/forms/FieldErrors"
 import { InputForm } from "~/Components/Input"
 import ShowButton from "~/Components/ShowHiddenButton"
 import i18next from "~/i18next.server"
+import { getUser } from "~/session.server"
 import getLanguage from "~/utils/getLanguage"
 
 import login from "./login"
@@ -40,6 +41,10 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
+    const user = await getUser(request)
+
+    if (user) return redirect("/account/profile")
+
     const language = getLanguage(request)
     const t = await i18next.getFixedT(language, null, "common")
 
@@ -59,6 +64,9 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function Index() {
+    const { t } = useTranslation("common")
+    const [params,] = useSearchParams()
+
     const {
         handleSubmit,
         formState: { errors, isSubmitting },
@@ -69,8 +77,6 @@ export default function Index() {
     })
 
     const [showPassword, setShowPassword] = useState(false)
-
-    const { t } = useTranslation("common")
 
     return (
         <Form
@@ -101,17 +107,23 @@ export default function Index() {
                 name="password"
                 id="password"
                 placeholder={t("login.password")}
-                autoComplete="new-password"
+                autoComplete="password"
                 errors={errors as FieldErrors}
                 register={register}
                 Icon={MdPassword}
                 ShowButton={<ShowButton show={showPassword} setShow={setShowPassword} />}
             />
 
-            <a href="/account/register" className="text-center text-white underline hover:text-slate-400">
+            <Link 
+                to={{
+                    pathname: "/account/register",
+                    search: params.get("redirect") ? `?redirect=${params.get("redirect")}` : ""
+                }}
+                className="text-center text-white underline hover:text-slate-400"
+            >
                 {t("login.noAccount")}
-            </a>
-            {/* <a href="/account/forgot-password" className="text-white underline hover:text-slate-400 text-center">Mot de passe oublié ?</a> */}
+            </Link>
+            {/* <Link to="/account/forgot-password" className="text-white underline hover:text-slate-400 text-center">Mot de passe oublié ?</Link> */}
 
             <button
                 type="submit"

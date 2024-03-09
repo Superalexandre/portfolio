@@ -54,9 +54,15 @@ export default async function login({ request, mailOrUsername, password }: { req
         }, { status: 401 })
     }
 
+    // Check if the url have a redirect parameter
+    const url = new URL(request.url)
+    const redirectUrl = url.searchParams.get("redirect")
+
+    const redirectUrlString = redirectUrl ? redirectUrl : "/account/profile"
+
     return createUserSession({
         request,
         token: user.token,
-        redirectUrl: "/account/profile",
+        redirectUrl: redirectUrlString,
     })
 }

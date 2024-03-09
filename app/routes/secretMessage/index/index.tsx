@@ -71,7 +71,7 @@ export async function action({ request }: ActionFunctionArgs) {
     })
 
     const account = await getUser(request)
-    const result = createMessage(stringMessage, stringAuthor, account, { isQuestion, ambiance, backgroundColor })
+    const result = await createMessage(stringMessage, stringAuthor, account, { isQuestion, ambiance, backgroundColor })
 
     return json({
         success: true,

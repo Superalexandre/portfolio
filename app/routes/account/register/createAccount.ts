@@ -110,10 +110,16 @@ export default async function createAccount({ request, name, firstName, username
         }, { status: 500 })
     }
 
+    // Check if the url have a redirect parameter
+    const url = new URL(request.url)
+    const redirectUrl = url.searchParams.get("redirect")
+
+    const redirectUrlString = redirectUrl ? redirectUrl : "/account/profile"
+
     return createUserSession({
         request,
         token: token,
-        redirectUrl: "/account/profile",
+        redirectUrl: redirectUrlString,
     })
 }
 

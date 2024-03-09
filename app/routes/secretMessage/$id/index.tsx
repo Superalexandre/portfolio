@@ -1,6 +1,6 @@
 import { useWindowSize } from "@react-hookz/web"
 import { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction, json } from "@remix-run/node"
-import { Form, useActionData, useLoaderData } from "@remix-run/react"
+import { Form, Link, useActionData, useLoaderData } from "@remix-run/react"
 import { TFunction } from "i18next"
 import React from "react"
 import Confetti from "react-confetti"
@@ -46,7 +46,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
     }
 
     if (values._action === "view") {
-        addView(params.id)
+        await addView(params.id)
 
         return {
             success: true,
@@ -143,7 +143,7 @@ export default function Index() {
                         </button>
                     </Form>
                 </div>
-                <a href="/secretMessage" className="z-10 mb-4 rounded-lg bg-green-500 px-4 py-2 text-center font-bold text-white hover:bg-green-700 lg:absolute lg:bottom-0 lg:right-0 lg:m-4">{t("secretMessage.createMessage")}</a>
+                <Link to="/secretMessage" className="z-10 mb-4 rounded-lg bg-green-500 px-4 py-2 text-center font-bold text-white hover:bg-green-700 lg:absolute lg:bottom-0 lg:right-0 lg:m-4">{t("secretMessage.createMessage")}</Link>
             </div>
         </div>
     )

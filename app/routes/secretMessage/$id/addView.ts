@@ -5,14 +5,18 @@ import { drizzle } from "drizzle-orm/better-sqlite3"
 import { databasePath } from "@/database/path"
 import { secretMessages } from "@/database/schema/secretMessages"
 
-export default function addView(id: string, views = 1) {
+export default async function addView(id: string, views = 1) {
     const sqlite = new Database(databasePath, { fileMustExist: true })
     const db = drizzle(sqlite)
 
-    db.update(secretMessages)
-        .set({ views: sql`${secretMessages.views} + ${views}` })
-        .where(eq(secretMessages.id, id))
-        .run()
+    await db
+        .update(secretMessages)
+        .set({ 
+            views: sql`${secretMessages.views} + ${views}` 
+        })
+        .where(
+            eq(secretMessages.id, id)
+        )
 
     return true
 }

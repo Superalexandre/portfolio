@@ -9,7 +9,12 @@ export default async function getMessage(id: string) {
     const sqlite = new Database(databasePath, { fileMustExist: true })
     const db = drizzle(sqlite)
 
-    const message = await db.select().from(secretMessages).where(eq(secretMessages.id, id))
+    const message = await db
+        .select()
+        .from(secretMessages)
+        .where(
+            eq(secretMessages.id, id)
+        )
 
     return message[0] || null
 }

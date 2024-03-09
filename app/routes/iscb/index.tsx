@@ -1,4 +1,5 @@
 import { MetaFunction } from "@remix-run/node"
+import { Link } from "@remix-run/react"
 
 import Background from "~/Components/Background"
 
@@ -16,7 +17,7 @@ export default function Index() {
         <Background className="h-full min-h-screen min-w-full p-5">
             <div>
                 <h1>ISCB</h1>
-                <a href="/" className="text-main-color">Home</a>
+                <Link to="/" className="text-main-color">Home</Link>
             </div>
         </Background>
     )

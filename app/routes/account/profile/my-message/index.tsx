@@ -1,5 +1,5 @@
 import { ActionFunctionArgs, MetaFunction, json, redirect } from "@remix-run/node"
-import { useLoaderData } from "@remix-run/react"
+import { Link, useLoaderData } from "@remix-run/react"
 import { useTranslation } from "react-i18next"
 
 import User from "@/types/User"
@@ -58,9 +58,9 @@ export default function Index() {
                         <p>{message.id}</p>
                         <p>{message.author}</p>
                         <p>{message.views} {t("profile.myMessages.views")}</p>
-                        <a href={`/secretMessage/${message.id}`}>
+                        <Link to={`/secretMessage/${message.id}`}>
                             {t("profile.myMessages.viewMessage")}
-                        </a>
+                        </Link>
                     </div>
                 ))}
             </div>

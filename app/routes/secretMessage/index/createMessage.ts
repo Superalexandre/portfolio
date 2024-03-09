@@ -15,24 +15,26 @@ interface Params {
     backgroundColor: BackgroundColor
 }
 
-export default function createMessage(message: string, author: string, account: User | null, { isQuestion, ambiance, backgroundColor }: Params = { isQuestion: false, ambiance: "normal", backgroundColor: "dark" }) {
+export default async function createMessage(message: string, author: string, account: User | null, { isQuestion, ambiance, backgroundColor }: Params = { isQuestion: false, ambiance: "normal", backgroundColor: "dark" }) {
     const sqlite = new Database(databasePath, { fileMustExist: true })
     const db = drizzle(sqlite)
 
     const id = uuid()
     const secretCode = Math.random().toString(36).substring(2, 6)
 
-    db.insert(secretMessages).values({
-        id: id,
-        secretCode: secretCode,
-        message,
-        author,
-        createdAt: new Date().toISOString(),
-        isQuestion: isQuestion,
-        ambiance,
-        backgroundColor,
-        userId: account?.id || null
-    }).run()
+    await db
+        .insert(secretMessages)
+        .values({
+            id: id,
+            secretCode: secretCode,
+            message,
+            author,
+            createdAt: new Date().toISOString(),
+            isQuestion: isQuestion,
+            ambiance,
+            backgroundColor,
+            userId: account?.id || null
+        })
 
     return {
         success: true,

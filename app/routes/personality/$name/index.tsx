@@ -1,9 +1,10 @@
 import { LoaderFunctionArgs, redirect, json, ActionFunctionArgs } from "@remix-run/node"
-import { Form, useActionData, useLoaderData, useNavigate, useSubmit } from "@remix-run/react"
+import { Form, Link, useActionData, useLoaderData, useNavigate, useSubmit } from "@remix-run/react"
 import { Dispatch, SetStateAction, useState } from "react"
 import { MdArrowBack, MdDone } from "react-icons/md"
 
 import { getQuestions } from "./getQuestions"
+import { getResults } from "./getResults"
 
 export function loader({ params }: LoaderFunctionArgs) {
     if (!params || !params.name) return redirect("/personality")
@@ -18,29 +19,13 @@ export function loader({ params }: LoaderFunctionArgs) {
 export async function action({ request, params }: ActionFunctionArgs) {
     if (!params || !params.name) return redirect("/personality")
 
-    // Get form data
-    const body = await request.formData()
-    const repliesString = body.get("replies")
-
-    if (!repliesString) return redirect(`/personality/${params.name}`)
-
-    const replies = JSON.parse(repliesString as string)
-
-    const questions = getQuestions(params.name)
-    if (!questions) return redirect("/personality")
-
-    const results = questions.results
-    const totalPoints = replies.reduce((acc: number, curr: { points: number, reply: number }) => acc + curr.points, 0)
-
-    // Find the personality based on the total points
-    const personality = results.find(result => {
-        return totalPoints >= result.minPoints && totalPoints <= result.maxPoints
-    })
+    const personality = await getResults({ request, name: params.name})
+    if (!personality) return redirect("/personality")
 
     return {
         success: true,
         error: false,
-        personality: personality?.personnage || "Personnalité inconnue"
+        personality: personality.personnage || "Personnalité inconnue"
     }
 }
 
@@ -175,8 +160,8 @@ const Result = ({ name, personality }: { name: string, personality: string }) =>
             </div>
 
             <div className="flex flex-col items-center justify-center gap-2">
-                <a href="/personality" className="text-white hover:text-black">Faire un autre test</a>
-                <a href={`/personality/${name}`} className="text-white hover:text-black">Refaire ce test</a>
+                <Link to="/personality" className="text-white hover:text-black">Faire un autre test</Link>
+                <Link to={`/personality/${name}`} className="text-white hover:text-black">Refaire ce test</Link>
             </div>
         </div>
     )

@@ -1,10 +1,10 @@
+import { Link } from "@remix-run/react"
 import { useTranslation } from "react-i18next"
 import { MdComputer } from "react-icons/md"
 
 import { personalProjects, type PersonalProject as PersonalProjectType } from "@/informations/personalProject"
 
 import Card from "../Card"
-
 
 export default function PersonalProjects() {
     const { t } = useTranslation("common")
@@ -26,6 +26,6 @@ export default function PersonalProjects() {
 
 const PersonalProject = ({ project }: { project: PersonalProjectType }) => {
     return (
-        <a href={`/project/${project.id}`} className="dark:text-white">{project.name}</a>
+        <Link to={`/project/${project.id}`} className="dark:text-white">{project.name}</Link>
     )
 }

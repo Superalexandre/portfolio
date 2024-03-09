@@ -1,4 +1,4 @@
-import { Links, Meta, Scripts } from "@remix-run/react"
+import { Link, Links, Meta, Scripts } from "@remix-run/react"
 import { t } from "i18next"
 import { useTranslation } from "react-i18next"
 
@@ -25,9 +25,9 @@ export default function NotFound() {
                     {t("error.notFound")}
                 </h1>
 
-                <a href="/" className="text-white underline hover:text-main-color">
+                <Link to="/" className="text-white underline hover:text-main-color">
                     {t("error.backHome")}
-                </a>
+                </Link>
 
                 <Scripts />
             </body>
