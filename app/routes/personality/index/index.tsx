@@ -46,6 +46,7 @@ export default function Index() {
                 setHidden={() => setPopupAccountHidden(!popupAccountHidden)} 
                 title={"Crée ton compte pour sauvegarder tes résultats"}
                 redirect={redirect}
+                redirectOnClose={true}
             />
 
             <FormPersonalities 

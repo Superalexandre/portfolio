@@ -17,6 +17,7 @@ interface PopupAccountProps {
     setHidden: () => void
     title: string,
     redirect?: string
+    redirectOnClose?: boolean
 }
 
 const schema = zod.object({
@@ -36,7 +37,7 @@ type FormData = zod.infer<typeof schema>
 const resolver = zodResolver(schema)
 
 export const handle = { i18n: "common" }
-export function PopupAccount({ hidden, setHidden, title, redirect }: PopupAccountProps) {
+export function PopupAccount({ hidden, setHidden, title, redirect, redirectOnClose }: PopupAccountProps) {
     const [wantLogin, setWantLogin] = useState(false)
 
     const form = useRemixForm<FormData>({
@@ -44,7 +45,7 @@ export function PopupAccount({ hidden, setHidden, title, redirect }: PopupAccoun
         resolver,
         submitConfig: {
             action: `/account/login?redirect=${redirect || ""}`,
-            method: "post",
+            method: "post"
         }
     })
     
@@ -58,30 +59,31 @@ export function PopupAccount({ hidden, setHidden, title, redirect }: PopupAccoun
             <PopupWantLogin 
                 hidden={!wantLogin} 
                 setHidden={() => setWantLogin(false)} 
+                setFormHidden={setHidden}
                 t={t}
                 form={form}
                 redirect={redirect}
             />
 
             <div
-                className="flex flex-col items-center justify-center gap-8 rounded-md bg-slate-700 p-8"
+                className="m-8 flex flex-col items-center justify-center gap-8 rounded-md bg-slate-700 p-8 lg:m-0"
             >
                 <h1 className="text-center text-2xl font-bold text-white">
                     {title}
                 </h1>
-                <div className="flex flex-row items-center justify-center gap-4">
+                <div className="flex flex-col items-center justify-center gap-4 lg:flex-row">
                     <button
                         type="button"
                         onClick={() => {
                             setHidden()
 
-                            navigate(redirect || "/")
+                            if (redirectOnClose && redirect) navigate(redirect)
                         }}
                         className="flex items-center justify-center gap-2 rounded-md bg-slate-800 p-4 text-white hover:text-black"
                     >
                         Continuer sans compte
                      
-                        <MdArrowForward />
+                        <MdArrowForward size={20} />
                     </button>
                     <button
                         type="button"
@@ -90,7 +92,7 @@ export function PopupAccount({ hidden, setHidden, title, redirect }: PopupAccoun
                     >
                         {"J'ai déjà un compte"}
 
-                        <MdLogin />
+                        <MdLogin size={20} />
                     </button>
                 </div>
             </div>
@@ -104,9 +106,10 @@ interface PopupHaveAccountProps {
     t: TFunction
     form: ReturnType<typeof useRemixForm<FormData>>
     redirect?: string
+    setFormHidden: () => void
 }
 
-const PopupWantLogin = ({ hidden = true, setHidden, form, t, redirect }: PopupHaveAccountProps) => {
+const PopupWantLogin = ({ hidden = true, setHidden, setFormHidden, form, t, redirect }: PopupHaveAccountProps) => {
     const [showPassword, setShowPassword] = useState(false)
     const { handleSubmit, formState: { errors, isSubmitting }, register } = form
 
@@ -114,8 +117,13 @@ const PopupWantLogin = ({ hidden = true, setHidden, form, t, redirect }: PopupHa
         <Form
             action="/account/login"
             method="post"
-            onSubmit={handleSubmit}
-            className={`fixed flex flex-col items-center justify-center gap-4 rounded-md bg-slate-800 p-8 ${hidden ? "hidden" : ""} w-1/2`}
+            onSubmit={() => {
+                handleSubmit()
+
+                setHidden()
+                setFormHidden()
+            }}
+            className={`fixed m-8 flex flex-col items-center justify-center gap-4 rounded-md bg-slate-700 p-8 lg:m-0 ${hidden ? "hidden" : ""} w-auto lg:w-1/2`}
         >
             <h1 className="flex flex-row items-center justify-center gap-2 text-center text-3xl font-bold text-white">
                 <MdLogin size={30} />
@@ -157,7 +165,7 @@ const PopupWantLogin = ({ hidden = true, setHidden, form, t, redirect }: PopupHa
             </Link>
             {/* <Link to="/account/forgot-password" className="text-white underline hover:text-slate-400 text-center">Mot de passe oublié ?</Link> */}
 
-            <div className="flex flex-row items-center justify-center gap-4">
+            <div className="flex flex-col items-center justify-center gap-4 lg:flex-row">
                 <button
                     type="submit"
                     className={`${isSubmitting ? "opacity-50" : "hover:bg-green-700"} flex flex-row items-center justify-center gap-2 rounded bg-green-500 p-4 text-white`}

@@ -1,9 +1,12 @@
 import { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction, json } from "@remix-run/node"
-import { Form, useActionData, useNavigation } from "@remix-run/react"
+import { Form, useActionData, useLoaderData, useNavigation } from "@remix-run/react"
+import { TFunction } from "i18next"
+import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { MdContentCopy, MdOpenInNew, MdSend } from "react-icons/md"
+import { MdContentCopy, MdDone, MdOpenInNew, MdSend } from "react-icons/md"
 
 import Loader from "~/Components/Loader"
+import { PopupAccount } from "~/Components/PopupAccount"
 import { useCopyToClipboard } from "~/hooks/useCopyToClipboard"
 import i18next from "~/i18next.server"
 import { getUser } from "~/session.server"
@@ -20,14 +23,16 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     ]
 }
 
-export async function loader({ request }: LoaderFunctionArgs)  {
+export async function loader({ request }: LoaderFunctionArgs) {
+    const user = await getUser(request)
+
     const language = getLanguage(request)
     const t = await i18next.getFixedT(language, null, "common")
 
     const title = t("secretMessage.meta.title")
     const description = t("secretMessage.meta.description")
 
-    return { title, description }
+    return { user, title, description }
 }
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -41,7 +46,7 @@ export async function action({ request }: ActionFunctionArgs) {
     if (!message) return json({
         success: false,
         error: true,
-        message: t("secretMessage.writeMessage"),
+        message: t("secretMessage.writeMessage") as string,
         id: null
     })
 
@@ -59,14 +64,14 @@ export async function action({ request }: ActionFunctionArgs) {
     if (stringMessage.length <= 0) return json({
         success: false,
         error: true,
-        message: t("secretMessage.tooShort"),
+        message: t("secretMessage.tooShort") as string,
         id: null
     })
 
     if (stringMessage.length > 2048) return json({
         success: false,
         error: true,
-        message: t("secretMessage.tooLong"),
+        message: t("secretMessage.tooLong") as string,
         id: null
     })
 
@@ -83,18 +88,73 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export default function Index() {
     const { t } = useTranslation("common")
+    const { user } = useLoaderData<typeof loader>()
     const result = useActionData<typeof action>()
     const navigation = useNavigation()
 
     const isLoading = navigation.state === "submitting"
 
+    const [popupAccountHidden, setPopupAccountHidden] = useState(true)
+
+    useEffect(() => {
+        if (!user) setPopupAccountHidden(false)
+    }, [])
+
+    return (
+        <>
+            <PopupAccount
+                hidden={popupAccountHidden}
+                setHidden={() => setPopupAccountHidden(!popupAccountHidden)}
+                title="Crée ton compte pour sauvegarder tes messages secrets"
+                redirect="/secretMessage"
+                redirectOnClose={false}
+            />
+
+            <InputForm
+                t={t}
+                isLoading={isLoading}
+                result={result as Result}
+            />
+        </>
+    )
+}
+
+
+type Result = {
+    success: boolean,
+    error: boolean,
+    message: string,
+    id: string | null
+}
+interface InputFormProps {
+    t: TFunction,
+    isLoading: boolean,
+    result: Result | undefined
+}
+
+const InputForm = ({ t, isLoading, result }: InputFormProps) => {
     const [, copy] = useCopyToClipboard()
+    const [isCopied, setIsCopied] = useState(false)
+
+    const handleCopy = () => {
+        if (!result?.id) return
+
+        copy(`${window.location.origin}/secretMessage/${result.id}`).then((success) => {
+            if (success) {
+                setIsCopied(true)
+
+                setTimeout(() => {
+                    setIsCopied(false)
+                }, 3000)
+            }
+        })
+    }
 
     return (
         <Form
             method="post"
             action="/secretMessage"
-            className="flex h-full min-h-screen min-w-full flex-col items-center justify-center gap-4 bg-slate-700"
+            className="flex h-full min-h-screen min-w-full flex-col items-center justify-center gap-4 bg-slate-700 py-4 lg:p-0"
         >
             <textarea
                 name="message"
@@ -119,7 +179,6 @@ export default function Index() {
                 <option value="rain">{t("secretMessage.rainAmbiance")}</option>
             </select>
 
-
             {/* 
             <div className="flex justify-center items-center gap-2 flex-row w-11/12 lg:w-1/2">
                 <input type="checkbox" name="isQuestion" id="isQuestion" className="bg-slate-800 text-white p-5 rounded-lg" />
@@ -133,7 +192,7 @@ export default function Index() {
                 disabled={isLoading}
             >
                 <Loader className={`${isLoading ? "block" : "hidden"} h-5 w-5`}></Loader>
-                
+
                 <MdSend size={20} className={`${isLoading ? "hidden" : "block"}`} />
 
                 {t("secretMessage.send")}
@@ -144,17 +203,21 @@ export default function Index() {
                     <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-2">
                         <p className="text-green-500">ID: {result.id}</p>
 
-                        <button 
-                            className="flex flex-row gap-2 text-green-500"
-                            onClick={() => copy(`${window.location.origin}/secretMessage/${result.id}`)}
+                        <button
+                            className="flex flex-row items-center justify-center gap-2 text-green-500"
+                            onClick={handleCopy}
                             type="button"
                         >
                             <p className="block lg:hidden">{t("secretMessage.copy")}</p>
-                            <MdContentCopy size={20} />
+
+                            {isCopied ?
+                                <MdDone size={20} /> :
+                                <MdContentCopy size={20} />
+                            }
                         </button>
 
                         <a
-                            className="flex flex-row gap-2 text-green-500"
+                            className="flex flex-row items-center justify-center gap-2 text-green-500"
                             href={`/secretMessage/${result.id}`}
                             target="_blank"
                             rel="noreferrer"
