@@ -161,6 +161,7 @@
         "public/",
         "server.js",
         "app.js",
-        "logger/*.js"
+        "logger/*.js",
+        "ai/*.js"
     ]
 }
