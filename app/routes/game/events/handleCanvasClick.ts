@@ -4,14 +4,14 @@ import { Station, coordHasStation } from "../utils/station"
 
 interface handleCanvasClickProps {
     event: MouseEvent<HTMLCanvasElement>
-    canvasRef: RefObject<HTMLCanvasElement>
+    mainLayer: RefObject<HTMLCanvasElement>
     stationsRef: MutableRefObject<Station[]>
     clickedStations: Station[]
     setClickedStations: Dispatch<SetStateAction<Station[]>>
 }
 
-const handleCanvasClick = ({ event, canvasRef, stationsRef, clickedStations, setClickedStations }: handleCanvasClickProps) => {
-    const canvas = canvasRef.current
+const handleCanvasClick = ({ event, mainLayer, stationsRef, clickedStations, setClickedStations }: handleCanvasClickProps) => {
+    const canvas = mainLayer.current
     const context = canvas?.getContext("2d")
 
     if (!context || !canvas) return

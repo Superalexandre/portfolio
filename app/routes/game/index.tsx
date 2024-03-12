@@ -12,17 +12,24 @@ import { Train, genTrain, handleTrain } from "./utils/train"
 import { changeTheme, getTheme } from "./utils/utils"
 
 export default function Index() {
-    const canvasRef = useRef<HTMLCanvasElement>(null)
+    const mainLayer = useRef<HTMLCanvasElement>(null)
+    const trainLayer = useRef<HTMLCanvasElement>(null)
 
     const stationsRef = useRef<Station[]>([])
     const linesRef = useRef<Line[]>([])
     const trainsRef = useRef<Train[]>([])
 
+    const intervalRef = useRef<NodeJS.Timeout>()
+
     const [clickedStations, setClickedStations] = useState<Station[]>([])
+    const [speed,] = useState(1)
+    
     const [theme, setTheme] = useState<"light" | "dark">("light")
 
+    const realLines = linesRef.current.filter(line => line.id !== "temp")
+
     useEffect(() => {
-        const canvas = canvasRef.current
+        const canvas = mainLayer.current
         const context = canvas?.getContext("2d")
 
         getTheme().then(themeValue => setTheme(themeValue))
@@ -38,7 +45,7 @@ export default function Index() {
     }, [])
 
     useEffect(() => {
-        const canvas = canvasRef.current
+        const canvas = mainLayer.current
         const context = canvas?.getContext("2d")
 
         if (!context || !canvas) return
@@ -70,25 +77,32 @@ export default function Index() {
     }, [clickedStations])
 
     useEffect(() => {
-        const canvas = canvasRef.current
+        const canvas = mainLayer.current
         const context = canvas?.getContext("2d")
 
-        if (!context || !canvas) return
+        const trainCanvas = trainLayer.current
+        const trainContext = trainCanvas?.getContext("2d")
 
-        if (linesRef.current.length > 0) {
-            const cachedTrains: Train[] = []
-            linesRef.current.forEach(line => {
-                const train = genTrain({ fromTo: [line], context })
+        if (!context || !canvas || !trainCanvas || !trainContext) return
 
-                cachedTrains.push(train)
-            })
+        if (realLines.length > 0) {
+            // Get the new line
+            const newLine = realLines[realLines.length - 1]
+            const newTrain = genTrain({ fromTo: [newLine] })
 
-            trainsRef.current = cachedTrains
+            trainsRef.current.push(newTrain)
         }
 
-        handleTrain({ trains: trainsRef.current, context, lines: linesRef.current, stations: stationsRef.current, canvas: canvasRef.current })
+        if (trainsRef.current.length === 0) return
+        if (intervalRef.current) clearInterval(intervalRef.current)
+        
+        const { interval } = handleTrain({ trains: trainsRef, context: trainContext, speed })
+        intervalRef.current = interval
 
-    }, [linesRef.current.length])
+        return () => {
+            clearInterval(intervalRef.current)
+        }
+    }, [realLines.length])
 
     return (
         <>
@@ -97,14 +111,14 @@ export default function Index() {
                 <p className="dark:text-white">Canvas : {CANVAS_WIDTH} x {CANVAS_HEIGHT}</p>
                 <p className="dark:text-white">Nombre de lignes : {linesRef.current.length}</p>
                 <div className="flex flex-row items-center justify-center gap-2">
-                    <input 
-                        type="checkbox" 
-                        id="theme" 
-                        name="theme" 
+                    <input
+                        type="checkbox"
+                        id="theme"
+                        name="theme"
                         defaultChecked={theme === "dark"}
-                        onChange={async() => {
+                        onChange={async () => {
                             const newTheme = await changeTheme()
-                        
+
                             setTheme(newTheme)
                         }}
                     />
@@ -115,10 +129,20 @@ export default function Index() {
                 className="bg-[#EBEBEB] dark:bg-[#070F2B]"
                 width={CANVAS_WIDTH}
                 height={CANVAS_HEIGHT}
-                ref={canvasRef}
-                onClick={(event) => handleCanvasClick({ event, canvasRef, stationsRef, clickedStations, setClickedStations })}
-                onContextMenu={(event) => handleContextMenu({ event, canvasRef, linesRef, stationsRef, setClickedStations })}
-                onMouseMove={(event) => handleMouseMove({ event, canvasRef, stationsRef, linesRef, clickedStations })}
+                ref={mainLayer}
+                onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, clickedStations, setClickedStations })}
+                onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
+                onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations })}
+            />
+
+            <canvas
+                className="absolute left-0 top-0 z-10 bg-transparent"
+                width={CANVAS_WIDTH}
+                height={CANVAS_HEIGHT}
+                ref={trainLayer}
+                onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, clickedStations, setClickedStations })}
+                onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
+                onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations })}
             />
             <Toaster
                 position="bottom-right"

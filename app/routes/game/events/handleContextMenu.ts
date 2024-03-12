@@ -5,14 +5,14 @@ import { Station } from "../utils/station"
 
 interface handleContextMenuProps {
     event: MouseEvent<HTMLCanvasElement>
-    canvasRef: RefObject<HTMLCanvasElement>
+    mainLayer: RefObject<HTMLCanvasElement>
     stationsRef: MutableRefObject<Station[]>
     linesRef: MutableRefObject<Line[]>
     setClickedStations: Dispatch<SetStateAction<Station[]>>
 }
 
-const handleContextMenu = ({ event, canvasRef, linesRef, stationsRef, setClickedStations }: handleContextMenuProps) => {
-    const canvas = canvasRef.current
+const handleContextMenu = ({ event, mainLayer, linesRef, stationsRef, setClickedStations }: handleContextMenuProps) => {
+    const canvas = mainLayer.current
     const context = canvas?.getContext("2d")
 
     if (!context || !canvas) return

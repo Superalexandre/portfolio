@@ -5,17 +5,20 @@ import { Station, coordHasStation } from "../utils/station"
 
 interface handleMouseMoveProps {
     event: MouseEvent<HTMLCanvasElement>
-    canvasRef: React.RefObject<HTMLCanvasElement>
+    mainLayer: React.RefObject<HTMLCanvasElement>
+    trainLayer: React.RefObject<HTMLCanvasElement>
     stationsRef: React.MutableRefObject<Station[]>
     linesRef: React.MutableRefObject<Line[]>
     clickedStations: Station[]
 }
 
-const handleMouseMove = ({ event, canvasRef, stationsRef, linesRef, clickedStations }: handleMouseMoveProps) => {
-    const canvas = canvasRef.current
+const handleMouseMove = ({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations }: handleMouseMoveProps) => {
+    const canvas = mainLayer.current
+    const trainCanvas = trainLayer.current
+
     const context = canvas?.getContext("2d")
 
-    if (!context || !canvas) return
+    if (!context || !canvas || !trainCanvas) return
 
     const { x: canvasX, y: canvasY } = canvas.getBoundingClientRect()
 
@@ -25,10 +28,11 @@ const handleMouseMove = ({ event, canvasRef, stationsRef, linesRef, clickedStati
     const hoveredStation = coordHasStation({ event, stations: stationsRef.current, canvas })
 
     canvas.style.cursor = (hoveredStation) ? "pointer" : "default"
+    trainCanvas.style.cursor = (hoveredStation) ? "pointer" : "default"
 
     // If the user is creating a line
     if (clickedStations.length === 1) {
-        console.log("Creating line")
+        console.log("Creating temp line")
 
         // Find the temp line and remove it
         const tempLine = linesRef.current.find(line => line.id === "temp")

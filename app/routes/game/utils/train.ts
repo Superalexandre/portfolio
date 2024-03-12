@@ -1,11 +1,9 @@
+import { MutableRefObject } from "react"
 import { v4 as uuid } from "uuid"
 
-import { Line, drawLines } from "./line"
-import { Station, drawStations } from "./station"
+import { Line } from "./line"
+import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../config"
 import styles from "../style"
-
-// TODO: Should be handled by a useState
-const speed = 1
 
 interface Train {
     id: string
@@ -13,10 +11,11 @@ interface Train {
     x: number
     y: number
 
+    station: number
     fromTo: Line[]
 }
 
-const genTrain = ({ fromTo, context }: { fromTo: Line[], context: CanvasRenderingContext2D }): Train => {
+const genTrain = ({ fromTo }: { fromTo: Line[] }): Train => {
     const id = uuid()
 
     const [from] = fromTo
@@ -28,10 +27,9 @@ const genTrain = ({ fromTo, context }: { fromTo: Line[], context: CanvasRenderin
         id,
         x,
         y,
+        station: 0,
         fromTo
     }
-
-    drawTrain({ train: train, context })
 
     return train
 }
@@ -39,63 +37,58 @@ const genTrain = ({ fromTo, context }: { fromTo: Line[], context: CanvasRenderin
 const drawTrain = ({ train, context }: { train: Train, context: CanvasRenderingContext2D }) => {
     const { x, y } = train
 
-    context.fillStyle = "black"
+    context.fillStyle = "red"
     context.beginPath()
-    context.arc(x, y, 5, 0, Math.PI * 2)
+    context.arc(x, y, 10, 0, Math.PI * 2)
     context.fill()
 }
 
 interface handleTrainProps {
     context: CanvasRenderingContext2D
-    trains: Train[]
-    canvas: HTMLCanvasElement
-    stations: Station[]
-    lines: Line[]
+    trains: MutableRefObject<Train[]>,
+    speed: number
 }
 
-const handleTrain = ({ trains, stations, lines, context, canvas }: handleTrainProps) => {
+const handleTrain = ({ trains, context, speed }: handleTrainProps) => {
     const stationMiddle = styles.stations.width / 2
 
-    trains.forEach(train => {
-        const interval = setInterval(() => {
-            context.clearRect(0, 0, canvas.height, canvas.width)
+    const interval = setInterval(() => {
+        context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+        
+        const newTrains: Train[] = trains.current.map((train) => {
+            const stationNumber = train.station
+            const { to } = train.fromTo[stationNumber]
 
-            drawLines({ lines, context })
-            drawStations({ stations, context })
+            drawTrain({ train, context })
 
-            const [, to] = train.fromTo
-            const goTo = to.to
+            let newX = train.x
+            let newY = train.y
 
-            context.fillStyle = "blue"
-            context.beginPath()
-            context.arc(train.x, train.y, 10, 0, 2 * Math.PI)
-            context.fill()
-
-            if (train.y - stationMiddle < goTo.y) {
+            if (train.y - stationMiddle < to.y) {
                 // console.log("Moving down")
 
-
-                train.y += speed
-            } else if (train.y - stationMiddle > goTo.y) {
+                newY += speed
+            } else if (train.y - stationMiddle > to.y) {
                 // console.log("Moving up")
 
-
-                train.y -= speed
-            } else if (train.x - stationMiddle < goTo.x) {
+                newY -= speed
+            } else if (train.x - stationMiddle < to.x) {
                 // console.log("Moving right")
 
-
-                train.x += speed
-            } else if (train.x - stationMiddle > goTo.x) {
+                newX += speed
+            } else if (train.x - stationMiddle > to.x) {
                 // console.log("Moving left")
 
-
-                train.x -= speed
-            } else {
-                clearInterval(interval)
+                newX -= speed
             }
+
+            return { ...train, x: newX, y: newY }
         })
+
+        trains.current = newTrains
     }, 1000 / 60)
+
+    return { interval }
 }
 
 export {
