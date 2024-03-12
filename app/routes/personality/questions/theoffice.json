@@ -1,0 +1,448 @@
+{
+    "name": "theoffice",
+    "prettyName": "The Office",
+    "questions": [
+        {
+            "question": "Quelle serait ta réaction face à un collègue qui t'envoie des blagues par e-mail toute la journée ?",
+            "answers": [
+                {
+                    "answer": "Je rirais et répondrais avec d'autres blagues",
+                    "points": 4
+                },
+                {
+                    "answer": "Je répondrais poliment, mais cela pourrait devenir gênant",
+                    "points": 3
+                },
+                {
+                    "answer": "Je désactiverais les notifications, cela m'agace",
+                    "points": 2
+                },
+                {
+                    "answer": "Je lui demanderais de cesser, je veux rester concentré au travail",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel personnage de The Office te ressemble le plus ?",
+            "answers": [
+                {
+                    "answer": "Michael Scott - Excentrique et gaffeur",
+                    "points": 4
+                },
+                {
+                    "answer": "Jim Halpert - Drôle et sarcastique",
+                    "points": 3
+                },
+                {
+                    "answer": "Pam Beesly - Douce et aimable",
+                    "points": 2
+                },
+                {
+                    "answer": "Dwight Schrute - Sérieux et obsédé par le travail",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment réagirais-tu si un collègue organise une fête au bureau et t'invite à faire un discours impromptu ?",
+            "answers": [
+                {
+                    "answer": "J'accepterais avec enthousiasme et ferais un discours mémorable",
+                    "points": 4
+                },
+                {
+                    "answer": "Je refuserais poliment, je ne suis pas à l'aise pour parler en public",
+                    "points": 3
+                },
+                {
+                    "answer": "Je ferais un discours sarcastique et humoristique",
+                    "points": 2
+                },
+                {
+                    "answer": "Je refuserais catégoriquement, je ne veux pas être au centre de l'attention",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un collègue t'envoie une invitation à un événement social en dehors des heures de travail ?",
+            "answers": [
+                {
+                    "answer": "J'accepterais avec joie, c'est l'occasion de mieux connaître mes collègues",
+                    "points": 4
+                },
+                {
+                    "answer": "Je vérifierais mon emploi du temps, mais je pourrais décliner si je suis occupé",
+                    "points": 3
+                },
+                {
+                    "answer": "Je refuserais poliment, je préfère séparer le travail et la vie personnelle",
+                    "points": 2
+                },
+                {
+                    "answer": "Je l'ignorerais, je ne veux pas mêler vie professionnelle et vie sociale",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un collègue te joue un tour au bureau ?",
+            "answers": [
+                {
+                    "answer": "Je rirais et lui rendrais la pareille avec un tour encore plus créatif",
+                    "points": 4
+                },
+                {
+                    "answer": "Je trouverais cela amusant, mais je ne prendrais pas de revanche",
+                    "points": 3
+                },
+                {
+                    "answer": "Je lui ferais comprendre que ce n'est pas professionnel",
+                    "points": 2
+                },
+                {
+                    "answer": "Je me fâcherais et demanderais à ce que cela cesse immédiatement",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un collègue qui monopolise la conversation pendant les réunions ?",
+            "answers": [
+                {
+                    "answer": "Je trouverais cela amusant et encouragerais ses anecdotes",
+                    "points": 4
+                },
+                {
+                    "answer": "Je m'efforcerais de l'interrompre poliment pour laisser place à d'autres",
+                    "points": 3
+                },
+                {
+                    "answer": "Je lui ferais savoir que cela peut être ennuyeux pour les autres participants",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'agacerais et demanderais au responsable de la réunion d'intervenir",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un collègue qui dévoile des informations confidentielles sur le lieu de travail ?",
+            "answers": [
+                {
+                    "answer": "Je lui ferais comprendre que c'est inapproprié et que cela peut nuire à tous",
+                    "points": 4
+                },
+                {
+                    "answer": "Je ne réagirais pas immédiatement, mais je pourrais en discuter avec lui en privé",
+                    "points": 3
+                },
+                {
+                    "answer": "Je rapporterais immédiatement à la direction",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'en ficherais, l'information ne me concerne pas directement",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un collègue prend du crédit pour ton idée pendant une réunion ?",
+            "answers": [
+                {
+                    "answer": "Je le laisserais, ce n'est pas si important",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui ferais remarquer discrètement que c'était mon idée",
+                    "points": 3
+                },
+                {
+                    "answer": "Je le confronterais ouvertement devant tout le monde",
+                    "points": 2
+                },
+                {
+                    "answer": "Je garderais le silence mais me sentirais frustré à l'intérieur",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un collègue t'invite à participer à un club de loisirs après le travail ?",
+            "answers": [
+                {
+                    "answer": "J'accepterais avec enthousiasme, c'est l'occasion de tisser des liens",
+                    "points": 4
+                },
+                {
+                    "answer": "Je vérifierais si cela correspond à mes centres d'intérêt avant de décider",
+                    "points": 3
+                },
+                {
+                    "answer": "Je refuserais poliment, je préfère mes loisirs personnels",
+                    "points": 2
+                },
+                {
+                    "answer": "Je l'ignorerais, je n'ai pas de temps pour des activités sociales après le travail",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment réagirais-tu si un collègue te demande de le couvrir pour une erreur qu'il a commise au travail ?",
+            "answers": [
+                {
+                    "answer": "Je refuserais, l'intégrité est importante même au travail",
+                    "points": 4
+                },
+                {
+                    "answer": "Je discuterais avec lui pour comprendre les circonstances avant de décider",
+                    "points": 3
+                },
+                {
+                    "answer": "Je pourrais accepter, tant que cela ne compromet pas ma position",
+                    "points": 2
+                },
+                {
+                    "answer": "Je le couvrirais sans poser de questions, la solidarité avant tout",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un collègue te prête un objet, mais tu l'endommages accidentellement ?",
+            "answers": [
+                {
+                    "answer": "Je m'excuserais sincèrement et proposerais de le remplacer ou de le réparer",
+                    "points": 4
+                },
+                {
+                    "answer": "Je m'excuserais et lui rembourserais la valeur de l'objet",
+                    "points": 3
+                },
+                {
+                    "answer": "Je m'excuserais, mais minimiserais l'importance de l'objet",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'enfuirais discrètement sans rien dire",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un collègue qui se plaint constamment de son travail et de l'environnement professionnel ?",
+            "answers": [
+                {
+                    "answer": "Je l'écouterais et lui offrirais mon soutien si possible",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui donnerais des conseils pour améliorer sa situation",
+                    "points": 3
+                },
+                {
+                    "answer": "Je lui suggérerais de parler à la direction pour résoudre ses problèmes",
+                    "points": 2
+                },
+                {
+                    "answer": "Je l'ignorerais, je ne veux pas être impliqué dans des problèmes professionnels",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un collègue te propose une collaboration sur un projet professionnel en dehors des heures de travail ?",
+            "answers": [
+                {
+                    "answer": "J'accepterais avec enthousiasme, c'est une opportunité de croissance professionnelle",
+                    "points": 4
+                },
+                {
+                    "answer": "Je vérifierais mes disponibilités avant de prendre une décision",
+                    "points": 3
+                },
+                {
+                    "answer": "Je refuserais poliment, je préfère séparer vie professionnelle et vie personnelle",
+                    "points": 2
+                },
+                {
+                    "answer": "Je l'ignorerais, je n'ai pas de temps pour des projets supplémentaires",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un collègue qui critique ouvertement la direction de l'entreprise ?",
+            "answers": [
+                {
+                    "answer": "Je lui ferais comprendre que la critique publique n'est pas constructive",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui donnerais raison discrètement, mais éviterais de m'exprimer ouvertement",
+                    "points": 3
+                },
+                {
+                    "answer": "Je me joindrais à lui dans la critique, exprimant mes propres frustrations",
+                    "points": 2
+                },
+                {
+                    "answer": "Je l'ignorerais, je ne veux pas être associé à des critiques négatives",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un collègue t'invite à participer à un tournoi de jeux vidéo après le travail ?",
+            "answers": [
+                {
+                    "answer": "J'accepterais avec enthousiasme, c'est une excellente occasion de s'amuser",
+                    "points": 4
+                },
+                {
+                    "answer": "Je vérifierais le jeu et mes compétences avant de prendre une décision",
+                    "points": 3
+                },
+                {
+                    "answer": "Je refuserais poliment, je ne suis pas intéressé par les jeux vidéo",
+                    "points": 2
+                },
+                {
+                    "answer": "Je l'ignorerais, je ne veux pas perdre de temps sur des loisirs après le travail",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un collègue organise une séance de team-building impliquant des activités physiques ?",
+            "answers": [
+                {
+                    "answer": "J'apprécierais l'initiative et participerais activement",
+                    "points": 4
+                },
+                {
+                    "answer": "Je participerais, mais je préférerais des activités moins physiques",
+                    "points": 3
+                },
+                {
+                    "answer": "Je refuserais poliment, je ne suis pas à l'aise avec des activités physiques en groupe",
+                    "points": 2
+                },
+                {
+                    "answer": "Je l'ignorerais, je ne vois pas l'utilité de telles activités au travail",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un collègue te demande de l'aide pour un projet important, mais tu es déjà surchargé de travail ?",
+            "answers": [
+                {
+                    "answer": "J'essaierais de trouver du temps et lui apporterais mon soutien",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui expliquerais honnêtement ma situation et proposerais des solutions alternatives",
+                    "points": 3
+                },
+                {
+                    "answer": "Je lui promettrais de l'aider, mais je ne trouverais jamais le temps",
+                    "points": 2
+                },
+                {
+                    "answer": "Je refuserais catégoriquement, mes priorités actuelles sont plus importantes",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un collègue qui utilise fréquemment des expressions ou des références de The Office dans la vie de tous les jours ?",
+            "answers": [
+                {
+                    "answer": "Je trouverais cela hilarant et participerais volontiers",
+                    "points": 4
+                },
+                {
+                    "answer": "Je comprendrais les références, mais je ne les utiliserais pas moi-même",
+                    "points": 3
+                },
+                {
+                    "answer": "Je trouverais cela agaçant, cela devient trop répétitif",
+                    "points": 2
+                },
+                {
+                    "answer": "Je ne comprendrais pas les références, je ne suis pas un fan de The Office",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un collègue propose de jouer à un jeu de rôle inspiré de The Office lors d'une pause déjeuner ?",
+            "answers": [
+                {
+                    "answer": "J'accepterais avec enthousiasme, c'est une idée amusante",
+                    "points": 4
+                },
+                {
+                    "answer": "Je participerais, mais je ne prendrais pas cela trop au sérieux",
+                    "points": 3
+                },
+                {
+                    "answer": "Je déclinerais poliment, je préfère utiliser ma pause pour me détendre autrement",
+                    "points": 2
+                },
+                {
+                    "answer": "Je l'ignorerais, je ne suis pas intéressé par ce genre d'activités",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment réagirais-tu si tu te trouves accidentellement dans une situation digne d'une blague de The Office au travail ?",
+            "answers": [
+                {
+                    "answer": "Je jouerais le jeu et participerais à la comédie",
+                    "points": 4
+                },
+                {
+                    "answer": "Je trouverais cela amusant, mais je ne m'impliquerais pas activement",
+                    "points": 3
+                },
+                {
+                    "answer": "Je ferais une blague sarcastique pour détendre l'atmosphère",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'éloignerais discrètement de la situation, je ne veux pas être impliqué",
+                    "points": 1
+                }
+            ]
+        }
+    ],
+    "results": [
+        {
+            "personnage": "Michael Scott",
+            "minPoints": 70,
+            "maxPoints": 80
+        },
+        {
+            "personnage": "Jim Halpert",
+            "minPoints": 55,
+            "maxPoints": 69
+        },
+        {
+            "personnage": "Pam Beesly",
+            "minPoints": 40,
+            "maxPoints": 54
+        },
+        {
+            "personnage": "Dwight Schrute",
+            "minPoints": 20,
+            "maxPoints": 39
+        }
+    ]
+}

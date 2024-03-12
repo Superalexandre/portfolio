@@ -1,0 +1,448 @@
+{
+    "name": "toystory",
+    "prettyName": "Toy Story",
+    "questions": [
+        {
+            "question": "Quelle est ta réaction si tes jouets prenaient soudainement vie lorsque personne ne te regarde ?",
+            "answers": [
+                {
+                    "answer": "Je serais excité et voudrais jouer avec eux",
+                    "points": 4
+                },
+                {
+                    "answer": "Je serais effrayé et chercherais une explication rationnelle",
+                    "points": 3
+                },
+                {
+                    "answer": "Je ne crois pas que cela puisse arriver, les jouets restent inanimés",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'en ficherais, ce ne sont que des objets",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si ton jouet préféré était accidentellement donné à un autre enfant ?",
+            "answers": [
+                {
+                    "answer": "Je serais très triste et essayerais de le récupérer",
+                    "points": 4
+                },
+                {
+                    "answer": "Je m'en remettrais rapidement, ce ne sont que des objets matériels",
+                    "points": 3
+                },
+                {
+                    "answer": "Je demanderais à l'autre enfant de me le rendre",
+                    "points": 2
+                },
+                {
+                    "answer": "Je n'ai pas de jouet préféré, je les aime tous de la même manière",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta stratégie pour gagner une partie de Monopoly avec des jouets comme adversaires ?",
+            "answers": [
+                {
+                    "answer": "Je ferais équipe avec mes jouets pour remporter la partie",
+                    "points": 4
+                },
+                {
+                    "answer": "Je jouerais sérieusement pour montrer ma compétence",
+                    "points": 3
+                },
+                {
+                    "answer": "Je ne participerais pas, les jouets ne devraient pas jouer à des jeux de société",
+                    "points": 2
+                },
+                {
+                    "answer": "Je laisserais les jouets gagner pour le plaisir",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel personnage de Toy Story te ressemble le plus ?",
+            "answers": [
+                {
+                    "answer": "Woody - Leader et protecteur",
+                    "points": 4
+                },
+                {
+                    "answer": "Buzz l'Éclair - Aventureux et intrépide",
+                    "points": 3
+                },
+                {
+                    "answer": "Jessie - Énergique et déterminée",
+                    "points": 2
+                },
+                {
+                    "answer": "Hamm - Détendu et sarcastique",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta première réaction si tu découvrais que tes jouets ont une vie secrète ?",
+            "answers": [
+                {
+                    "answer": "Je serais curieux et observerais discrètement leurs activités",
+                    "points": 4
+                },
+                {
+                    "answer": "Je serais effrayé et chercherais à prouver que cela n'est pas vrai",
+                    "points": 3
+                },
+                {
+                    "answer": "Je ne le croirais pas, les jouets restent inanimés",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'en ficherais, tant qu'ils ne me dérangent pas",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tes jouets organisaient une fête surprise dans ta chambre ?",
+            "answers": [
+                {
+                    "answer": "Je serais ravi et me joindrais à la fête",
+                    "points": 4
+                },
+                {
+                    "answer": "Je serais agacé, ma chambre n'est pas l'endroit pour des fêtes",
+                    "points": 3
+                },
+                {
+                    "answer": "Je ne le croirais pas, les jouets ne peuvent pas organiser de fêtes",
+                    "points": 2
+                },
+                {
+                    "answer": "Je serais indifférent, tant qu'ils rangent après",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel type de jouet préfères-tu parmi les suivants ?",
+            "answers": [
+                {
+                    "answer": "Poupée ou action figure",
+                    "points": 4
+                },
+                {
+                    "answer": "Jeu de construction (LEGO, Mega Bloks)",
+                    "points": 3
+                },
+                {
+                    "answer": "Jouet interactif (robots, animaux électroniques)",
+                    "points": 2
+                },
+                {
+                    "answer": "Je n'ai pas de préférence, j'aime tous les types de jouets",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu découvrais qu'un de tes jouets avait des pouvoirs magiques ?",
+            "answers": [
+                {
+                    "answer": "Je serais excité et explorerais les possibilités avec le jouet",
+                    "points": 4
+                },
+                {
+                    "answer": "Je ne le croirais pas, les jouets ne peuvent pas avoir de pouvoirs magiques",
+                    "points": 3
+                },
+                {
+                    "answer": "Je serais méfiant et garderais mes distances",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'en ficherais, les pouvoirs magiques ne m'intéressent pas",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta principale préoccupation si tu étais un jouet dans l'univers de Toy Story ?",
+            "answers": [
+                {
+                    "answer": "Être aimé et apprécié par mon propriétaire",
+                    "points": 4
+                },
+                {
+                    "answer": "Éviter d'être oublié ou abandonné",
+                    "points": 3
+                },
+                {
+                    "answer": "Vivre des aventures passionnantes avec d'autres jouets",
+                    "points": 2
+                },
+                {
+                    "answer": "Ne pas être endommagé ou cassé",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu découvrais qu'un de tes jouets avait des sentiments et des émotions ?",
+            "answers": [
+                {
+                    "answer": "Je serais empathique et ferais attention à ses sentiments",
+                    "points": 4
+                },
+                {
+                    "answer": "Je ne le croirais pas, les jouets ne peuvent pas avoir de sentiments",
+                    "points": 3
+                },
+                {
+                    "answer": "Je serais intrigué et observerais son comportement de près",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'en ficherais, les jouets sont des objets inanimés",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un jouet te demandait de l'emmener avec toi partout où tu vas ?",
+            "answers": [
+                {
+                    "answer": "Je serais d'accord, les jouets font partie de ma vie",
+                    "points": 4
+                },
+                {
+                    "answer": "Je refuserais, je n'ai pas besoin d'un jouet tout le temps avec moi",
+                    "points": 3
+                },
+                {
+                    "answer": "Je ne le croirais pas, les jouets ne peuvent pas parler",
+                    "points": 2
+                },
+                {
+                    "answer": "Je serais indifférent, chacun fait ce qu'il veut",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel jouet imagines-tu être le plus proche de ta personnalité ?",
+            "answers": [
+                {
+                    "answer": "Slinky le ressort - Flexible et amusant",
+                    "points": 4
+                },
+                {
+                    "answer": "Mr. Patate - Polyvalent et toujours prêt à changer",
+                    "points": 3
+                },
+                {
+                    "answer": "Rex le dinosaure - Timide mais loyal",
+                    "points": 2
+                },
+                {
+                    "answer": "M. l'Alien - Excité et toujours prêt à découvrir",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu découvrais que tes jouets discutent de toi lorsque tu n'es pas là ?",
+            "answers": [
+                {
+                    "answer": "Je serais curieux et voudrais écouter leurs discussions",
+                    "points": 4
+                },
+                {
+                    "answer": "Je ne le croirais pas, les jouets ne peuvent pas parler",
+                    "points": 3
+                },
+                {
+                    "answer": "Je serais gêné et essaierais d'être plus discret",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'en ficherais, chacun a le droit d'avoir des secrets",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu découvrais que tes jouets organisent des compétitions sportives la nuit ?",
+            "answers": [
+                {
+                    "answer": "Je serais enthousiaste et voudrais participer",
+                    "points": 4
+                },
+                {
+                    "answer": "Je ne le croirais pas, les jouets ne peuvent pas se déplacer",
+                    "points": 3
+                },
+                {
+                    "answer": "Je serais indifférent, les compétitions sportives ne m'intéressent pas",
+                    "points": 2
+                },
+                {
+                    "answer": "Je serais inquiet, cela pourrait endommager mes jouets",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu découvrais que tes jouets ont des talents cachés que tu ignorais ?",
+            "answers": [
+                {
+                    "answer": "Je serais surpris mais fier de leurs talents",
+                    "points": 4
+                },
+                {
+                    "answer": "Je ne le croirais pas, les jouets ne peuvent pas avoir de talents",
+                    "points": 3
+                },
+                {
+                    "answer": "Je serais curieux et voudrais les voir en action",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'en ficherais, tant qu'ils ne me dérangent pas",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu découvrais que tes jouets ont une hiérarchie sociale entre eux ?",
+            "answers": [
+                {
+                    "answer": "Je ne tolérerais pas la hiérarchie et encouragerais l'égalité entre les jouets",
+                    "points": 4
+                },
+                {
+                    "answer": "Je ne le croirais pas, les jouets sont tous égaux",
+                    "points": 3
+                },
+                {
+                    "answer": "Je serais indifférent, chaque groupe a sa propre dynamique",
+                    "points": 2
+                },
+                {
+                    "answer": "Je serais curieux et observateur de leur structure sociale",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu découvrais que tes jouets ont des opinions sur ta façon de les utiliser ?",
+            "answers": [
+                {
+                    "answer": "Je serais attentif à leurs opinions et ajusterais ma manière de jouer",
+                    "points": 4
+                },
+                {
+                    "answer": "Je ne le croirais pas, les jouets n'ont pas d'opinions",
+                    "points": 3
+                },
+                {
+                    "answer": "Je serais indifférent, je joue avec mes jouets comme bon me semble",
+                    "points": 2
+                },
+                {
+                    "answer": "Je serais agacé, les jouets sont faits pour être utilisés de certaines façons",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu découvrais que tes jouets ont des clubs ou des groupes sociaux parmi eux ?",
+            "answers": [
+                {
+                    "answer": "Je serais curieux et voudrais participer à leurs activités sociales",
+                    "points": 4
+                },
+                {
+                    "answer": "Je ne le croirais pas, les jouets ne peuvent pas former de groupes",
+                    "points": 3
+                },
+                {
+                    "answer": "Je serais indifférent, chacun a le droit d'avoir ses propres amis",
+                    "points": 2
+                },
+                {
+                    "answer": "Je serais inquiet, cela pourrait créer des tensions entre mes jouets",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu découvrais que tes jouets organisent des spectacles et des pièces de théâtre la nuit ?",
+            "answers": [
+                {
+                    "answer": "Je serais impressionné et encouragerais leur créativité",
+                    "points": 4
+                },
+                {
+                    "answer": "Je ne le croirais pas, les jouets ne peuvent pas se déplacer",
+                    "points": 3
+                },
+                {
+                    "answer": "Je serais indifférent, les spectacles ne m'intéressent pas",
+                    "points": 2
+                },
+                {
+                    "answer": "Je serais inquiet, cela pourrait les abîmer",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu découvrais que tes jouets ont des compétences spéciales que tu ignorais ?",
+            "answers": [
+                {
+                    "answer": "Je serais impressionné et encouragerais l'utilisation de leurs compétences",
+                    "points": 4
+                },
+                {
+                    "answer": "Je ne le croirais pas, les jouets n'ont pas de compétences spéciales",
+                    "points": 3
+                },
+                {
+                    "answer": "Je serais curieux et voudrais voir ces compétences en action",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'en ficherais, tant qu'ils ne me dérangent pas",
+                    "points": 1
+                }
+            ]
+        }
+    ],
+    "results": [
+        {
+            "personnage": "Woody",
+            "minPoints": 70,
+            "maxPoints": 80
+        },
+        {
+            "personnage": "Buzz l'Éclair",
+            "minPoints": 55,
+            "maxPoints": 69
+        },
+        {
+            "personnage": "Jessie",
+            "minPoints": 40,
+            "maxPoints": 54
+        },
+        {
+            "personnage": "M. Patate",
+            "minPoints": 20,
+            "maxPoints": 39
+        }
+    ]
+}

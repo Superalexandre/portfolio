@@ -1,0 +1,448 @@
+{
+    "name": "harrypotter",
+    "prettyName": "Harry Potter",
+    "questions": [
+        {
+            "question": "Quelle maison de Poudlard préférerais-tu rejoindre ?",
+            "answers": [
+                {
+                    "answer": "Gryffondor",
+                    "points": 4
+                },
+                {
+                    "answer": "Serdaigle",
+                    "points": 3
+                },
+                {
+                    "answer": "Poufsouffle",
+                    "points": 2
+                },
+                {
+                    "answer": "Serpentard",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel sortilège préférerais-tu maîtriser parfaitement ?",
+            "answers": [
+                {
+                    "answer": "Expecto Patronum",
+                    "points": 4
+                },
+                {
+                    "answer": "Accio",
+                    "points": 3
+                },
+                {
+                    "answer": "Lumos",
+                    "points": 2
+                },
+                {
+                    "answer": "Expelliarmus",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel animal de compagnie magique aimerais-tu avoir à Poudlard ?",
+            "answers": [
+                {
+                    "answer": "Hibou",
+                    "points": 4
+                },
+                {
+                    "answer": "Chat",
+                    "points": 3
+                },
+                {
+                    "answer": "Rat",
+                    "points": 2
+                },
+                {
+                    "answer": "Chien à trois têtes",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle matière à Poudlard te passionnerait le plus ?",
+            "answers": [
+                {
+                    "answer": "Défense contre les forces du Mal",
+                    "points": 4
+                },
+                {
+                    "answer": "Métamorphose",
+                    "points": 3
+                },
+                {
+                    "answer": "Potions",
+                    "points": 2
+                },
+                {
+                    "answer": "Divination",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel objet magique te serait le plus utile au quotidien ?",
+            "answers": [
+                {
+                    "answer": "La cape d'invisibilité",
+                    "points": 4
+                },
+                {
+                    "answer": "La baguette magique",
+                    "points": 3
+                },
+                {
+                    "answer": "Le Retourneur de Temps",
+                    "points": 2
+                },
+                {
+                    "answer": "La carte du Maraudeur",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu découvrais que tu es un sorcier ou une sorcière ?",
+            "answers": [
+                {
+                    "answer": "Excitation et émerveillement",
+                    "points": 4
+                },
+                {
+                    "answer": "Incrédulité et scepticisme",
+                    "points": 3
+                },
+                {
+                    "answer": "Peur et appréhension",
+                    "points": 2
+                },
+                {
+                    "answer": "Indifférence, la magie n'est pas importante",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel cours à Poudlard éviterais-tu autant que possible ?",
+            "answers": [
+                {
+                    "answer": "Divination",
+                    "points": 4
+                },
+                {
+                    "answer": "Soins aux créatures magiques",
+                    "points": 3
+                },
+                {
+                    "answer": "Histoire de la magie",
+                    "points": 2
+                },
+                {
+                    "answer": "Botanique",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton sortilège préféré pour impressionner les autres sorciers ?",
+            "answers": [
+                {
+                    "answer": "Patronus corporeal",
+                    "points": 4
+                },
+                {
+                    "answer": "Stupéfix",
+                    "points": 3
+                },
+                {
+                    "answer": "Serpensortia",
+                    "points": 2
+                },
+                {
+                    "answer": "Riddikulus",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment réagirais-tu face à un Moldu qui découvre l'existence de la magie ?",
+            "answers": [
+                {
+                    "answer": "Je lui expliquerais calmement et montrerais quelques tours inoffensifs",
+                    "points": 4
+                },
+                {
+                    "answer": "Je m'efforcerais de le convaincre qu'il a mal vu",
+                    "points": 3
+                },
+                {
+                    "answer": "Je m'éloignerais rapidement, évitant tout contact",
+                    "points": 2
+                },
+                {
+                    "answer": "Je ne me soucierais pas de ce que les Moldus pensent",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton endroit préféré à Poudlard pour passer du temps libre ?",
+            "answers": [
+                {
+                    "answer": "La bibliothèque",
+                    "points": 4
+                },
+                {
+                    "answer": "La Salle sur Demande",
+                    "points": 3
+                },
+                {
+                    "answer": "Les Trois Balais",
+                    "points": 2
+                },
+                {
+                    "answer": "Le terrain de Quidditch",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel sortilège utiliserais-tu pour te sortir d'une situation délicate ?",
+            "answers": [
+                {
+                    "answer": "Obliviate - Effacer la mémoire",
+                    "points": 4
+                },
+                {
+                    "answer": "Accio - Rappeler un objet à soi",
+                    "points": 3
+                },
+                {
+                    "answer": "Protego - Sort de protection",
+                    "points": 2
+                },
+                {
+                    "answer": "Expelliarmus - Désarmer l'adversaire",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel objet magique aimerais-tu posséder en dehors de Poudlard ?",
+            "answers": [
+                {
+                    "answer": "Une baguette de sureau",
+                    "points": 4
+                },
+                {
+                    "answer": "La pierre de résurrection",
+                    "points": 3
+                },
+                {
+                    "answer": "Le vif d'or",
+                    "points": 2
+                },
+                {
+                    "answer": "Les lunettes de l'invisibilité",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel professeur à Poudlard préférerais-tu avoir comme mentor ?",
+            "answers": [
+                {
+                    "answer": "Albus Dumbledore",
+                    "points": 4
+                },
+                {
+                    "answer": "Minerva McGonagall",
+                    "points": 3
+                },
+                {
+                    "answer": "Severus Rogue",
+                    "points": 2
+                },
+                {
+                    "answer": "Remus Lupin",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton Quidditch préféré ?",
+            "answers": [
+                {
+                    "answer": "Attrapeur",
+                    "points": 4
+                },
+                {
+                    "answer": "Poursuiveur",
+                    "points": 3
+                },
+                {
+                    "answer": "Batteur",
+                    "points": 2
+                },
+                {
+                    "answer": "Gardien",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à une créature magique blessée ?",
+            "answers": [
+                {
+                    "answer": "Je chercherais immédiatement de l'aide pour la soigner",
+                    "points": 4
+                },
+                {
+                    "answer": "Je tenterais moi-même de la soigner avec des sorts basiques",
+                    "points": 3
+                },
+                {
+                    "answer": "Je m'éloignerais, je ne veux pas être impliqué",
+                    "points": 2
+                },
+                {
+                    "answer": "Je l'ignorerais, les créatures magiques ne m'intéressent pas",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un élève à Poudlard qui se moque de toi ?",
+            "answers": [
+                {
+                    "answer": "Je l'ignore, je ne veux pas créer de conflit",
+                    "points": 4
+                },
+                {
+                    "answer": "Je riposte avec des commentaires sarcastiques",
+                    "points": 3
+                },
+                {
+                    "answer": "Je lui fais comprendre que ses moqueries ne m'atteignent pas",
+                    "points": 2
+                },
+                {
+                    "answer": "Je me venge en utilisant des sorts mineurs",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un élève à Poudlard qui triche pendant un examen ?",
+            "answers": [
+                {
+                    "answer": "Je le dénoncerais aux professeurs",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui ferais remarquer discrètement qu'il devrait arrêter",
+                    "points": 3
+                },
+                {
+                    "answer": "Je ne dis rien, chacun est responsable de ses actes",
+                    "points": 2
+                },
+                {
+                    "answer": "Je le menace de le dénoncer s'il ne partage pas ses réponses",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un sortilège que tu ne connais pas lancé sur toi ?",
+            "answers": [
+                {
+                    "answer": "J'essaierais de contrer le sortilège avec ce que je connais",
+                    "points": 4
+                },
+                {
+                    "answer": "Je tenterais de l'éviter en esquivant ou en me protégeant",
+                    "points": 3
+                },
+                {
+                    "answer": "Je me figerais sur place, ne sachant pas comment réagir",
+                    "points": 2
+                },
+                {
+                    "answer": "Je riposterais immédiatement avec un sortilège au hasard",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu découvrais un passage secret à Poudlard ?",
+            "answers": [
+                {
+                    "answer": "Je l'explorerais avec enthousiasme, avide de découvertes",
+                    "points": 4
+                },
+                {
+                    "answer": "Je le noterais, mais je ne l'explorerais pas tout de suite",
+                    "points": 3
+                },
+                {
+                    "answer": "Je le signalerais aux professeurs pour des raisons de sécurité",
+                    "points": 2
+                },
+                {
+                    "answer": "Je l'ignorerais, les secrets ne m'intéressent pas",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à une prophétie qui prédit ton destin ?",
+            "answers": [
+                {
+                    "answer": "Je ferais tout en mon pouvoir pour changer le destin prédit",
+                    "points": 4
+                },
+                {
+                    "answer": "Je prendrais la prophétie avec détachement, ne croyant pas en sa validité",
+                    "points": 3
+                },
+                {
+                    "answer": "Je la prendrais au sérieux et m'efforcerais de comprendre son sens",
+                    "points": 2
+                },
+                {
+                    "answer": "Je l'ignorerais, je ne crois pas au destin tout tracé",
+                    "points": 1
+                }
+            ]
+        }
+    ],
+    "results": [
+        {
+            "personnage": "Harry Potter",
+            "minPoints": 70,
+            "maxPoints": 80
+        },
+        {
+            "personnage": "Hermione Granger",
+            "minPoints": 55,
+            "maxPoints": 69
+        },
+        {
+            "personnage": "Ron Weasley",
+            "minPoints": 40,
+            "maxPoints": 54
+        },
+        {
+            "personnage": "Draco Malfoy",
+            "minPoints": 20,
+            "maxPoints": 39
+        }
+    ]
+}

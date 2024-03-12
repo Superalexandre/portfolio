@@ -1,12 +1,3 @@
-/*
-    TODO: Add the next personage
-    - Shrek
-    - Toy Story
-    - Friends
-    - Harry Potter
-    - The office
-*/
-
 import { ActionFunctionArgs } from "@remix-run/node"
 import { json, useLoaderData, useNavigate } from "@remix-run/react"
 import { useState } from "react"

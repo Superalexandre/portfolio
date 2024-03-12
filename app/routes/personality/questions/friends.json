@@ -1,0 +1,448 @@
+{
+    "name": "friends",
+    "prettyName": "Friends",
+    "questions": [
+        {
+            "question": "Quelle est ta boisson préférée lors d'une soirée entre amis ?",
+            "answers": [
+                {
+                    "answer": "Café",
+                    "points": 4
+                },
+                {
+                    "answer": "Thé",
+                    "points": 3
+                },
+                {
+                    "answer": "Vin",
+                    "points": 2
+                },
+                {
+                    "answer": "Soda",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton plat favori pour un dîner entre amis ?",
+            "answers": [
+                {
+                    "answer": "Pizza",
+                    "points": 4
+                },
+                {
+                    "answer": "Sushi",
+                    "points": 3
+                },
+                {
+                    "answer": "Pâtes",
+                    "points": 2
+                },
+                {
+                    "answer": "Salade",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment réagirais-tu si un ami te fait une blague embarrassante en public ?",
+            "answers": [
+                {
+                    "answer": "Je rirais avec tout le monde",
+                    "points": 4
+                },
+                {
+                    "answer": "Je ferais une blague pour détourner l'attention",
+                    "points": 3
+                },
+                {
+                    "answer": "Je lui ferais une blague en retour",
+                    "points": 2
+                },
+                {
+                    "answer": "Je serais gêné, mais je le prendrais avec humour",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel rôle joues-tu habituellement lors des sorties entre amis ?",
+            "answers": [
+                {
+                    "answer": "Le blagueur de la bande",
+                    "points": 4
+                },
+                {
+                    "answer": "L'organisateur des événements",
+                    "points": 3
+                },
+                {
+                    "answer": "Le confident qui écoute les autres",
+                    "points": 2
+                },
+                {
+                    "answer": "Le planificateur pragmatique",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à un ami qui annule des plans au dernier moment ?",
+            "answers": [
+                {
+                    "answer": "Je comprends et trouve une autre activité",
+                    "points": 4
+                },
+                {
+                    "answer": "Je suis déçu, mais je ne lui en veux pas",
+                    "points": 3
+                },
+                {
+                    "answer": "Je lui fais comprendre que c'est ennuyeux",
+                    "points": 2
+                },
+                {
+                    "answer": "Je suis contrarié et lui fais savoir mon mécontentement",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel personnage de Friends te ressemble le plus ?",
+            "answers": [
+                {
+                    "answer": "Ross - Intelligent et un peu maladroit",
+                    "points": 4
+                },
+                {
+                    "answer": "Rachel - À la mode et ambitieux",
+                    "points": 3
+                },
+                {
+                    "answer": "Chandler - Drôle et sarcastique",
+                    "points": 2
+                },
+                {
+                    "answer": "Phoebe - Excentrique et spirituel",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment réagirais-tu si un ami te cache quelque chose important ?",
+            "answers": [
+                {
+                    "answer": "Je lui ferais confiance pour me le dire en temps voulu",
+                    "points": 4
+                },
+                {
+                    "answer": "Je serais curieux et lui poserais des questions",
+                    "points": 3
+                },
+                {
+                    "answer": "Je serais déçu, mais je respecterais sa vie privée",
+                    "points": 2
+                },
+                {
+                    "answer": "Je serais contrarié et lui demanderais des explications",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un ami qui critique constamment tes choix de vie ?",
+            "answers": [
+                {
+                    "answer": "Je l'ignore, chacun a le droit de vivre sa vie comme il le souhaite",
+                    "points": 4
+                },
+                {
+                    "answer": "Je discute avec lui pour comprendre son point de vue",
+                    "points": 3
+                },
+                {
+                    "answer": "Je lui fais savoir que ses critiques ne sont pas les bienvenues",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'éloigne de lui, je n'ai pas besoin de jugements constants",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à un ami qui emprunte régulièrement tes affaires sans demander ?",
+            "answers": [
+                {
+                    "answer": "Je ne dis rien, cela ne me dérange pas",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui en parle directement et lui demande de demander la prochaine fois",
+                    "points": 3
+                },
+                {
+                    "answer": "Je cache mes affaires pour éviter qu'il les emprunte",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'énerve et lui interdis de toucher à mes affaires",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un ami qui parle de toi dans ton dos ?",
+            "answers": [
+                {
+                    "answer": "Je lui en parle directement et demande des explications",
+                    "points": 4
+                },
+                {
+                    "answer": "Je suis déçu, mais je laisse passer",
+                    "points": 3
+                },
+                {
+                    "answer": "Je m'éloigne de lui, je n'ai pas besoin d'amis qui parlent dans mon dos",
+                    "points": 2
+                },
+                {
+                    "answer": "Je me venge en parlant de lui à d'autres amis",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à un ami qui partage constamment des photos de vos sorties sur les réseaux sociaux sans te demander ?",
+            "answers": [
+                {
+                    "answer": "Je m'en fiche, partager des souvenirs est une bonne chose",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui demande de me demander la prochaine fois avant de publier",
+                    "points": 3
+                },
+                {
+                    "answer": "Je deviens gêné, je n'aime pas être exposé sur les réseaux sociaux",
+                    "points": 2
+                },
+                {
+                    "answer": "Je suis en colère et lui demande de supprimer les photos",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à un ami qui t'offre un cadeau qui ne te plaît pas du tout ?",
+            "answers": [
+                {
+                    "answer": "Je le remercie sincèrement et apprécie le geste",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui dis honnêtement que le cadeau ne me plaît pas",
+                    "points": 3
+                },
+                {
+                    "answer": "Je cache mes vrais sentiments et fais semblant d'aimer le cadeau",
+                    "points": 2
+                },
+                {
+                    "answer": "Je suis déçu et lui montre clairement mon mécontentement",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un ami qui te demande de garder un secret, mais tu penses que c'est important de le partager avec d'autres amis ?",
+            "answers": [
+                {
+                    "answer": "Je respecte sa confiance et garde le secret",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui demande si je peux partager avec une personne de confiance",
+                    "points": 3
+                },
+                {
+                    "answer": "Je partage le secret avec d'autres amis sans demander",
+                    "points": 2
+                },
+                {
+                    "answer": "Je ne peux pas m'empêcher de partager, même si cela va à l'encontre de sa demande",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un ami te prête de l'argent et te demande de le rembourser rapidement, mais tu as des difficultés financières ?",
+            "answers": [
+                {
+                    "answer": "Je lui explique honnêtement ma situation et essaie de trouver un plan de remboursement",
+                    "points": 4
+                },
+                {
+                    "answer": "Je fais de mon mieux pour rembourser rapidement, même si cela crée des difficultés",
+                    "points": 3
+                },
+                {
+                    "answer": "Je lui promets de rembourser, mais je retarde le remboursement autant que possible",
+                    "points": 2
+                },
+                {
+                    "answer": "Je l'évite et ne lui parle pas tant que je ne peux pas rembourser",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un ami qui ne respecte pas les limites que tu as fixées dans votre amitié ?",
+            "answers": [
+                {
+                    "answer": "Je lui en parle directement et réaffirme mes limites",
+                    "points": 4
+                },
+                {
+                    "answer": "Je m'éloigne progressivement pour protéger mes limites",
+                    "points": 3
+                },
+                {
+                    "answer": "Je ne dis rien, je ne veux pas créer de conflit",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'énerve et m'éloigne brusquement de lui",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à un ami qui réussit dans un domaine où tu as toujours voulu exceller ?",
+            "answers": [
+                {
+                    "answer": "Je suis sincèrement heureux pour lui et le félicite",
+                    "points": 4
+                },
+                {
+                    "answer": "Je ressens une pointe de jalousie, mais je cache mes sentiments",
+                    "points": 3
+                },
+                {
+                    "answer": "Je me sens dévalorisé et essaie de minimiser ses réalisations",
+                    "points": 2
+                },
+                {
+                    "answer": "Je ne suis pas content et cherche des défauts dans ses réalisations",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à un ami qui prend toutes les décisions sans consulter le groupe ?",
+            "answers": [
+                {
+                    "answer": "Je lui fais confiance et le laisse prendre les décisions",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui demande de consulter le groupe avant de prendre des décisions importantes",
+                    "points": 3
+                },
+                {
+                    "answer": "Je m'énerve, je veux être impliqué dans toutes les décisions",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'éloigne du groupe si mes opinions ne sont pas prises en compte",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un ami te demande de l'aider à déménager, mais tu as d'autres projets ce jour-là ?",
+            "answers": [
+                {
+                    "answer": "Je change mes plans pour l'aider, l'amitié passe avant tout",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui explique honnêtement ma situation et propose une autre date",
+                    "points": 3
+                },
+                {
+                    "answer": "Je lui dis que je suis occupé sans donner de détails",
+                    "points": 2
+                },
+                {
+                    "answer": "Je refuse catégoriquement, mes projets sont plus importants",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à un ami qui se montre souvent trop critique envers lui-même ?",
+            "answers": [
+                {
+                    "answer": "Je lui fais des compliments et essaie de lui remonter le moral",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui donne des conseils pour améliorer la situation",
+                    "points": 3
+                },
+                {
+                    "answer": "Je le laisse exprimer ses sentiments sans intervenir",
+                    "points": 2
+                },
+                {
+                    "answer": "Je suis d'accord avec ses critiques, même si je ne le pense pas vraiment",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment réagirais-tu si un ami révèle un secret que tu lui as confié à d'autres personnes sans ton consentement ?",
+            "answers": [
+                {
+                    "answer": "Je lui ferais part de ma déception et de ma colère",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui ferais remarquer discrètement que cela n'était pas acceptable",
+                    "points": 3
+                },
+                {
+                    "answer": "Je minimiserais l'importance du secret et ne ferais pas de scandale",
+                    "points": 2
+                },
+                {
+                    "answer": "Je ne réagirais pas, les secrets ne sont pas si importants",
+                    "points": 1
+                }
+            ]
+        }
+    ],
+    "results": [
+        {
+            "personnage": "Ross",
+            "minPoints": 70,
+            "maxPoints": 80
+        },
+        {
+            "personnage": "Rachel",
+            "minPoints": 55,
+            "maxPoints": 69
+        },
+        {
+            "personnage": "Chandler",
+            "minPoints": 40,
+            "maxPoints": 54
+        },
+        {
+            "personnage": "Phoebe",
+            "minPoints": 20,
+            "maxPoints": 39
+        }
+    ]
+}

@@ -1,0 +1,448 @@
+{
+    "name": "shrek",
+    "prettyName": "Shrek",
+    "questions": [
+        {
+            "question": "Quelle est ta réaction face à un ogre vivant dans le marécage voisin de ta maison ?",
+            "answers": [
+                {
+                    "answer": "Je m'enfuis terrifié",
+                    "points": 4
+                },
+                {
+                    "answer": "Je tente de devenir ami avec lui",
+                    "points": 3
+                },
+                {
+                    "answer": "Je le considère comme une menace à éliminer",
+                    "points": 2
+                },
+                {
+                    "answer": "Je l'ignore, chacun a le droit de vivre où il veut",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta chanson préférée pour te mettre de bonne humeur ?",
+            "answers": [
+                {
+                    "answer": "All Star - Smash Mouth",
+                    "points": 4
+                },
+                {
+                    "answer": "I'm a Believer - The Monkees",
+                    "points": 3
+                },
+                {
+                    "answer": "Hallelujah - Rufus Wainwright",
+                    "points": 2
+                },
+                {
+                    "answer": "Livin' la Vida Loca - Ricky Martin",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment réagirais-tu face à un âne qui parle ?",
+            "answers": [
+                {
+                    "answer": "Je pense que c'est une illusion",
+                    "points": 4
+                },
+                {
+                    "answer": "Je suis curieux et engage la conversation",
+                    "points": 3
+                },
+                {
+                    "answer": "Je m'éloigne, pensant à une farce",
+                    "points": 2
+                },
+                {
+                    "answer": "Je n'y prête pas attention, les animaux ne parlent pas",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si un petit homme en pain d'épice venait te demander de l'aide ?",
+            "answers": [
+                {
+                    "answer": "Je l'aide avec plaisir",
+                    "points": 4
+                },
+                {
+                    "answer": "Je le mange (il est en pain d'épice après tout)",
+                    "points": 3
+                },
+                {
+                    "answer": "Je le fuis, c'est étrange",
+                    "points": 2
+                },
+                {
+                    "answer": "Je ne crois pas aux contes de fées, donc cela ne peut pas arriver",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel personnage de conte de fées serait ton meilleur ami ?",
+            "answers": [
+                {
+                    "answer": "Cendrillon",
+                    "points": 4
+                },
+                {
+                    "answer": "Le Petit Chaperon Rouge",
+                    "points": 3
+                },
+                {
+                    "answer": "Blanche-Neige",
+                    "points": 2
+                },
+                {
+                    "answer": "Le Chat Botté",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à un dragon gardant un trésor dans son repaire ?",
+            "answers": [
+                {
+                    "answer": "Je tente de négocier pour partager le trésor",
+                    "points": 4
+                },
+                {
+                    "answer": "Je défie le dragon pour obtenir le trésor",
+                    "points": 3
+                },
+                {
+                    "answer": "Je m'échappe discrètement sans déranger le dragon",
+                    "points": 2
+                },
+                {
+                    "answer": "Je n'y crois pas, les dragons n'existent pas",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel serait ton repas idéal dans un festin de contes de fées ?",
+            "answers": [
+                {
+                    "answer": "Tourte à la viande",
+                    "points": 4
+                },
+                {
+                    "answer": "Porridge chaud et réconfortant",
+                    "points": 3
+                },
+                {
+                    "answer": "Gâteau au chocolat",
+                    "points": 2
+                },
+                {
+                    "answer": "Salade fraîche et légère",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à un farfadet espiègle jouant des tours autour de toi ?",
+            "answers": [
+                {
+                    "answer": "Je ris et participe à la farce",
+                    "points": 4
+                },
+                {
+                    "answer": "Je tente de le capturer pour mettre fin à ses tours",
+                    "points": 3
+                },
+                {
+                    "answer": "Je l'ignore, les farfadets ne peuvent pas causer de problèmes",
+                    "points": 2
+                },
+                {
+                    "answer": "Les farfadets n'existent pas, donc cela ne peut pas arriver",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à un prince charmant tentant de te sauver d'un prétendu danger ?",
+            "answers": [
+                {
+                    "answer": "Je préfère me sauver moi-même, merci",
+                    "points": 4
+                },
+                {
+                    "answer": "Je le laisse jouer son rôle de héros",
+                    "points": 3
+                },
+                {
+                    "answer": "Je le remercie et accepte son aide avec gratitude",
+                    "points": 2
+                },
+                {
+                    "answer": "Les princes charmants n'existent pas, donc cela ne peut pas arriver",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel personnage maléfique des contes de fées te fascine le plus ?",
+            "answers": [
+                {
+                    "answer": "La Méchante Sorcière de l'Ouest (Le Magicien d'Oz)",
+                    "points": 4
+                },
+                {
+                    "answer": "Maléfique (La Belle au bois dormant)",
+                    "points": 3
+                },
+                {
+                    "answer": "La Reine de Cœur (Alice au pays des merveilles)",
+                    "points": 2
+                },
+                {
+                    "answer": "Le Grand Méchant Loup (Le Petit Chaperon Rouge)",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à un groupe de trois petits cochons construisant des maisons en paille, en bois et en briques ?",
+            "answers": [
+                {
+                    "answer": "Je les aide à renforcer leurs maisons",
+                    "points": 4
+                },
+                {
+                    "answer": "Je doute de leur choix de matériaux",
+                    "points": 3
+                },
+                {
+                    "answer": "Je les ignore, c'est leur affaire",
+                    "points": 2
+                },
+                {
+                    "answer": "Les contes de fées sont des histoires, donc cela ne peut pas arriver",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction si tu étais soudainement transporté dans un monde fantastique rempli de créatures magiques ?",
+            "answers": [
+                {
+                    "answer": "Je m'adapte rapidement et explore avec enthousiasme",
+                    "points": 4
+                },
+                {
+                    "answer": "Je cherche un moyen de revenir dans le monde réel",
+                    "points": 3
+                },
+                {
+                    "answer": "Je me méfie de l'inconnu et reste sur mes gardes",
+                    "points": 2
+                },
+                {
+                    "answer": "Les mondes fantastiques n'existent pas, donc cela ne peut pas arriver",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel genre de conte de fées préfères-tu ?",
+            "answers": [
+                {
+                    "answer": "Les contes de fées classiques avec des princes et princesses",
+                    "points": 4
+                },
+                {
+                    "answer": "Les contes de fées revisités avec des twists inattendus",
+                    "points": 3
+                },
+                {
+                    "answer": "Les contes de fées sombres et mystérieux",
+                    "points": 2
+                },
+                {
+                    "answer": "Je ne suis pas fan de contes de fées",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à une quête épique pour sauver un royaume en péril ?",
+            "answers": [
+                {
+                    "answer": "Je m'engage avec détermination pour sauver le royaume",
+                    "points": 4
+                },
+                {
+                    "answer": "Je préfère éviter les ennuis et rester en retrait",
+                    "points": 3
+                },
+                {
+                    "answer": "Je suis prêt à aider si cela sert mes intérêts personnels",
+                    "points": 2
+                },
+                {
+                    "answer": "Les quêtes épiques n'existent pas, donc cela ne peut pas arriver",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel personnage de conte de fées ressemble le plus à ta personnalité ?",
+            "answers": [
+                {
+                    "answer": "Peter Pan - Aventureux et jeune éternel",
+                    "points": 4
+                },
+                {
+                    "answer": "Belle - Intelligente et aimant la lecture",
+                    "points": 3
+                },
+                {
+                    "answer": "Le Chat Botté - Astucieux et débrouillard",
+                    "points": 2
+                },
+                {
+                    "answer": "Le Grinch - Un peu grincheux mais au cœur tendre",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel est ton opinion sur les oignons ?",
+            "answers": [
+                {
+                    "answer": "Je les adore, ils sont délicieux dans toutes les recettes",
+                    "points": 4
+                },
+                {
+                    "answer": "Ils sont corrects, mais je ne les utilise pas souvent",
+                    "points": 3
+                },
+                {
+                    "answer": "Je n'aime pas du tout, leur goût est trop fort",
+                    "points": 2
+                },
+                {
+                    "answer": "Je n'en mange pas, cela ne fait pas partie de mon alimentation",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Comment réagirais-tu si quelqu'un envahissait ton marécage privé ?",
+            "answers": [
+                {
+                    "answer": "Je le chasserais immédiatement, personne n'a le droit d'envahir ma zone",
+                    "points": 4
+                },
+                {
+                    "answer": "Je lui demanderais poliment de partir et expliquerais pourquoi le marécage est important pour moi",
+                    "points": 3
+                },
+                {
+                    "answer": "Je ferais des blagues pour le dissuader de rester",
+                    "points": 2
+                },
+                {
+                    "answer": "Je m'en ficherais, le marécage est ouvert à tous",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle est ta réaction face à une quête pour sauver une princesse emprisonnée ?",
+            "answers": [
+                {
+                    "answer": "Je m'engage immédiatement, prêt à affronter tous les dangers pour la sauver",
+                    "points": 4
+                },
+                {
+                    "answer": "Je demanderais des détails sur la récompense avant de prendre une décision",
+                    "points": 3
+                },
+                {
+                    "answer": "Je préfère laisser quelqu'un d'autre s'en charger, les quêtes ne sont pas mon truc",
+                    "points": 2
+                },
+                {
+                    "answer": "Les princesses n'ont pas besoin d'être sauvées, elles peuvent se débrouiller toutes seules",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quel animal serait ton compagnon idéal dans une aventure fantastique ?",
+            "answers": [
+                {
+                    "answer": "Dragon majestueux avec une personnalité amicale",
+                    "points": 4
+                },
+                {
+                    "answer": "Un chat rusé capable de parler",
+                    "points": 3
+                },
+                {
+                    "answer": "Un oiseau messager rapide et intelligent",
+                    "points": 2
+                },
+                {
+                    "answer": "Aucun animal, je préfère être seul dans mes aventures",
+                    "points": 1
+                }
+            ]
+        },
+        {
+            "question": "Quelle serait ta réaction face à une réunion de créatures fantastiques dans ton marécage ?",
+            "answers": [
+                {
+                    "answer": "Je les accueillerais chaleureusement et organiserais une fête",
+                    "points": 4
+                },
+                {
+                    "answer": "Je m'assurerais qu'ils respectent mon territoire avant de les autoriser à rester",
+                    "points": 3
+                },
+                {
+                    "answer": "Je les ignorerais, je n'aime pas les grandes réunions",
+                    "points": 2
+                },
+                {
+                    "answer": "Je les chasserais, le marécage est réservé aux créatures ogres uniquement",
+                    "points": 1
+                }
+            ]
+        }
+    ],
+    "results": [
+        {
+            "personnage": "Shrek",
+            "minPoints": 70,
+            "maxPoints": 80
+        },
+        {
+            "personnage": "Fiona",
+            "minPoints": 55,
+            "maxPoints": 69
+        },
+        {
+            "personnage": "L'Âne",
+            "minPoints": 40,
+            "maxPoints": 54
+        },
+        {
+            "personnage": "Le Chat Potté",
+            "minPoints": 20,
+            "maxPoints": 39
+        }
+    ]
+}
