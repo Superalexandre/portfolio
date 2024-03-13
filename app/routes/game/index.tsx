@@ -22,17 +22,24 @@ export default function Index() {
     const intervalRef = useRef<NodeJS.Timeout>()
 
     const [clickedStations, setClickedStations] = useState<Station[]>([])
-    const [speed,] = useState(1)
-    
+    const [speed, setSpeed] = useState(1)
+
     const [theme, setTheme] = useState<"light" | "dark">("light")
 
+    const ms = 1000 / (60 * speed)
     const realLines = linesRef.current.filter(line => line.id !== "temp")
 
+    const changeSpeed = (newSpeed: number) => {
+        setSpeed(newSpeed)
+    }
+
     useEffect(() => {
+        console.log("useEffect empty")
+
         const canvas = mainLayer.current
         const context = canvas?.getContext("2d")
 
-        getTheme().then(themeValue => setTheme(themeValue))
+        getTheme().then(themeValue => setTheme(() => themeValue))
 
         if (canvas && context) {
             const stations = drawRandomStations({ context })
@@ -45,6 +52,8 @@ export default function Index() {
     }, [])
 
     useEffect(() => {
+        console.log("useEffect clickedStations")
+
         const canvas = mainLayer.current
         const context = canvas?.getContext("2d")
 
@@ -77,6 +86,8 @@ export default function Index() {
     }, [clickedStations])
 
     useEffect(() => {
+        console.log("useEffect realLines")
+
         const canvas = mainLayer.current
         const context = canvas?.getContext("2d")
 
@@ -88,25 +99,44 @@ export default function Index() {
         if (realLines.length > 0) {
             // Get the new line
             const newLine = realLines[realLines.length - 1]
-            const newTrain = genTrain({ fromTo: [newLine] })
+            const newTrain = genTrain({
+                stations: [{
+                    station: newLine.from,
+                    line: newLine
+                }, {
+                    station: newLine.to,
+                    line: newLine
+                }],
+                lines: [newLine]
+            })
 
             trainsRef.current.push(newTrain)
         }
+    }, [realLines.length])
+
+    useEffect(() => {
+        console.log("useEffect trainsRef and ms")
+
+        const trainCanvas = trainLayer.current
+        const trainContext = trainCanvas?.getContext("2d")
+
+        if (!trainCanvas || !trainContext) return
 
         if (trainsRef.current.length === 0) return
         if (intervalRef.current) clearInterval(intervalRef.current)
-        
-        const { interval } = handleTrain({ trains: trainsRef, context: trainContext, speed })
+
+        const { interval } = handleTrain({ trains: trainsRef, context: trainContext, ms })
         intervalRef.current = interval
 
         return () => {
             clearInterval(intervalRef.current)
         }
-    }, [realLines.length])
+
+    }, [realLines.length, trainsRef.current.length, ms])
 
     return (
         <>
-            <div className="fixed right-0 top-0 m-3">
+            <div className="fixed right-0 top-0 z-50 m-3">
                 <p className="dark:text-white">Stations : {STATIONS_NUMBER}</p>
                 <p className="dark:text-white">Canvas : {CANVAS_WIDTH} x {CANVAS_HEIGHT}</p>
                 <p className="dark:text-white">Nombre de lignes : {linesRef.current.length}</p>
@@ -119,10 +149,25 @@ export default function Index() {
                         onChange={async () => {
                             const newTheme = await changeTheme()
 
-                            setTheme(newTheme)
+                            setTheme(() => newTheme)
                         }}
                     />
                     <label htmlFor="theme" className="dark:text-white">Thème sombre</label>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                    <p className="dark:text-white">Vitesse :</p>
+                    <div className="flex flex-row items-center gap-2">
+                        <input type="radio" id="slow" name="speed" value="slow" onChange={() => changeSpeed(0.5)} />
+                        <label htmlFor="slow" className="dark:text-white">Lent</label>
+                    </div>
+                    <div className="flex flex-row items-center gap-2">
+                        <input type="radio" id="normal" name="speed" value="normal" onChange={() => changeSpeed(1)} />
+                        <label htmlFor="normal" className="dark:text-white">Normal</label>
+                    </div>
+                    <div className="flex flex-row items-center gap-2">
+                        <input type="radio" id="fast" name="speed" value="fast" onChange={() => changeSpeed(1.5)} />
+                        <label htmlFor="fast" className="dark:text-white">Rapide</label>
+                    </div>
                 </div>
             </div>
             <canvas

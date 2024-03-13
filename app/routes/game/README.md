@@ -9,17 +9,18 @@ Inspired by [Mini Metro](https://store.steampowered.com/app/287980/Mini_Metro/),
     - [ ] Create a schema
 - [X] Create a game board
 - [X] Create random stations
-    - [ ] Add random shape stations
+    - [X] Add random shape stations
         - [X] Square
-        - [ ] Circle
-        - [ ] Triangle
-        - [ ] Star  	
+        - [X] Circle
+        - [X] Triangle
+        - [X] Star  	
 - [X] Connect stations
-    - [ ] Improve the connection with only straight line
+    - [X] Improve the connection with only straight line
     - [ ] Delete lines
     - [X] Add the possibility to cancel
-- [ ] Create a train
-- [ ] Move the train
+- [X] Create a train
+- [X] Move the train
+- [ ] Link multiple stations (create a big line)
 - [ ] Create random passengers
 - [ ] Add the zoom feature
 - [ ] Game time

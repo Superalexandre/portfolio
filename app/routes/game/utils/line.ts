@@ -1,6 +1,7 @@
 import { MouseEvent } from "react"
 import { v4 as uuid } from "uuid"
 
+import { getPathLine } from "./path"
 import { Station, drawStations } from "./station"
 import styles, { LineColor } from "../style"
 
@@ -13,17 +14,21 @@ interface Line {
 
 const drawLines = ({ lines, context }: { lines: Line[], context: CanvasRenderingContext2D }) => {
     const { lineWidth } = styles.lines
-    const { width: stationWidth } = styles.stations
 
     lines.forEach(line => {
         context.strokeStyle = line.color
         context.lineWidth = lineWidth
 
-        const stationMiddle = stationWidth / 2
+        const paths = getPathLine({ line })
 
         context.beginPath()
-        context.moveTo(line.from.x + stationMiddle, line.from.y + stationMiddle)
-        context.lineTo(line.to.x + stationMiddle, line.to.y + stationMiddle)
+
+        for (const path of paths) {
+            const { x, y, action } = path
+
+            context[action](x, y)
+        }
+
         context.stroke()
     })
 }
