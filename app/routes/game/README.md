@@ -16,19 +16,19 @@ Inspired by [Mini Metro](https://store.steampowered.com/app/287980/Mini_Metro/),
         - [X] Star  	
 - [X] Connect stations
     - [X] Improve the connection with only straight line
-    - [ ] Delete lines
+    - [ ] ❗ Delete lines
     - [X] Add the possibility to cancel
 - [X] Create a train
 - [X] Move the train
-- [ ] Link multiple stations (create a big line)
+- [ ] ❗ Link multiple stations (create a big line)
 - [ ] Create random passengers
 - [ ] Add the zoom feature
-- [ ] Game time
-    - [ ] Pause
-    - [ ] Speed
-        - [ ] Slow
-        - [ ] Normal    
-        - [ ] Fast
+- [X] Game time
+    - [X] Pause
+    - [X] Speed
+        - [X] Slow
+        - [X] Normal    
+        - [X] Fast
 - [X] Improve structure
     - [X] Rename "point(s)" in "station(s)" 
     - [X] Better function

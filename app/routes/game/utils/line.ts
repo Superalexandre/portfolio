@@ -33,15 +33,14 @@ const drawLines = ({ lines, context }: { lines: Line[], context: CanvasRendering
     })
 }
 
-const drawLine = ({ from, to, context }: { from: Station, to: Station, context: CanvasRenderingContext2D }): Line => {
+const drawLine = ({ from, to, context, color }: { from: Station, to: Station, context: CanvasRenderingContext2D, color: LineColor }): Line => {
     const id = uuid()
-    const { getColor } = styles.lines
 
     const line: Line = {
         id,
         from,
         to,
-        color: getColor()
+        color: color
     }
 
     drawLines({ lines: [line], context })

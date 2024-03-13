@@ -60,5 +60,6 @@ export {
 }
 
 export type {
-    LineColor
+    LineColor,
+    Colors
 }
