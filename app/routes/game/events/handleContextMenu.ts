@@ -1,7 +1,7 @@
 import { Dispatch, MouseEvent, MutableRefObject, RefObject, SetStateAction } from "react"
 
 import { Line, clearTempLine } from "../utils/line"
-import { Station } from "../utils/station"
+import { Station, removeHighlightedStations } from "../utils/station"
 
 interface handleContextMenuProps {
     event: MouseEvent<HTMLCanvasElement>
@@ -18,6 +18,8 @@ const handleContextMenu = ({ event, mainLayer, linesRef, stationsRef, setClicked
     if (!context || !canvas) return
 
     event.preventDefault()
+
+    stationsRef.current = removeHighlightedStations(stationsRef.current)
 
     const tempLine = linesRef.current.find(line => line.id === "temp")
     if (tempLine) linesRef.current = clearTempLine({ context, stations: stationsRef.current, lines: linesRef.current })
