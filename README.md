@@ -8,6 +8,7 @@ In this repository, you can find my portfolio and a collection of my personal pr
 * **✉️ Secret Messaging System:** A system for sending and receiving secret messages.
 * **👤 Account System:** A system for creating your own account.
 * **🤖 AI Chatbot:** A chatbot that can answer questions and hold conversations.
+* **🧠 Personality test:** Discover which personage you are in a lot of univers
 * **🎮 Upcoming Game:** A game that is currently in development.
 
 ## Side Projects
@@ -54,6 +55,25 @@ The chatbot also includes features for:
 * Providing information.
 
 <!-- [➡️ Read more]() -->
+
+### 🧠 Personality test
+
+This is a personality test that can help you discover which personage you are in a lot of univers.
+
+The test also includes features for:
+
+* Discovering your personage in:
+    - Barbie
+    - Cars
+    - Friends
+    - Harry Potter
+    - Nemo
+    - Shrek
+    - Simpsons
+    - Star Wars
+    - The office
+    - The walking dead
+    - Toy story
 
 ### 🎮 Upcoming Game
 
