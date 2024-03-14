@@ -154,7 +154,7 @@ export default function Index() {
                 width={CANVAS_WIDTH}
                 height={CANVAS_HEIGHT}
                 ref={mainLayer}
-                onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, clickedStations, setClickedStations })}
+                onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations })}
                 onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
                 onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations })}
             />
@@ -164,7 +164,7 @@ export default function Index() {
                 width={CANVAS_WIDTH}
                 height={CANVAS_HEIGHT}
                 ref={trainLayer}
-                onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, clickedStations, setClickedStations })}
+                onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations })}
                 onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
                 onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations })}
             />
@@ -183,7 +183,7 @@ const ThemeSelector = ({ theme, setTheme }: { theme: "light" | "dark", setTheme:
                 type="checkbox"
                 id="theme"
                 name="theme"
-                defaultChecked={theme === "dark"}
+                checked={theme === "dark"}
                 onChange={async () => {
                     const newTheme = await changeTheme()
 

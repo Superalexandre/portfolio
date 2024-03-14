@@ -99,16 +99,33 @@ const coordHasLine = ({ event, lines, canvas }: { event: MouseEvent | MouseEvent
     const x = event.clientX - canvasX
     const y = event.clientY - canvasY
 
-    const hasLine = lines.find(line => {
-        const { from, to } = line
+    let foundLine: Line | undefined
 
-        const isSameX = x >= from.x && x <= to.x
-        const isSameY = y >= from.y && y <= to.y
+    const hasLine = lines.some(line => {
+        const paths = getPathLine({ line })
 
-        return isSameX && isSameY
+        return paths.some((path, index) => {
+            const nextPath = index === paths.length - 1 ? paths[index - 1] : paths[index + 1]
+
+            const padding = styles.lines.lineWidth * 2
+
+            const isSameXUp = x >= path.x - padding && x <= nextPath.x + padding
+            const isSameXDown = x >= nextPath.x - padding && x <= path.x + padding
+
+            const isSameX = isSameXUp || isSameXDown
+
+            const isSameYUp = y >= path.y - padding && y <= nextPath.y + padding
+            const isSameYDown = y >= nextPath.y - padding && y <= path.y + padding
+
+            const isSameY = isSameYUp || isSameYDown
+
+            if (isSameX && isSameY && !foundLine) foundLine = line
+
+            return isSameX && isSameY
+        })
     })
 
-    return hasLine
+    return { hasLine, line: foundLine }
 }
 
 export {

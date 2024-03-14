@@ -112,10 +112,19 @@ const handleTrain = ({ trains, context, ms }: handleTrainProps) => {
     return { interval }
 }
 
+const deleteTrainFromLine = (trains: Train[], line: Line) => {
+    return trains.filter(train => {
+        const hasLine = train.lines.some(trainLine => trainLine.id === line.id)
+
+        return !hasLine
+    })
+}
+
 export {
     genTrain,
     drawTrain,
-    handleTrain
+    handleTrain,
+    deleteTrainFromLine
 }
 
 export type {

@@ -1,14 +1,14 @@
-import { MouseEvent } from "react"
+import { MouseEvent, MutableRefObject, RefObject } from "react"
 
-import { Line, clearTempLine, drawTempLine } from "../utils/line"
+import { Line, clearTempLine, coordHasLine, drawTempLine } from "../utils/line"
 import { Station, coordHasStation } from "../utils/station"
 
 interface handleMouseMoveProps {
     event: MouseEvent<HTMLCanvasElement>
-    mainLayer: React.RefObject<HTMLCanvasElement>
-    trainLayer: React.RefObject<HTMLCanvasElement>
-    stationsRef: React.MutableRefObject<Station[]>
-    linesRef: React.MutableRefObject<Line[]>
+    mainLayer: RefObject<HTMLCanvasElement>
+    trainLayer: RefObject<HTMLCanvasElement>
+    stationsRef: MutableRefObject<Station[]>
+    linesRef: MutableRefObject<Line[]>
     clickedStations: Station[]
 }
 
@@ -26,9 +26,12 @@ const handleMouseMove = ({ event, mainLayer, trainLayer, stationsRef, linesRef, 
     const y = event.clientY - canvasY
 
     const hoveredStation = coordHasStation({ event, stations: stationsRef.current, canvas })
+    const hoveredLine = coordHasLine({ event, lines: linesRef.current, canvas })
 
-    canvas.style.cursor = (hoveredStation) ? "pointer" : "default"
-    trainCanvas.style.cursor = (hoveredStation) ? "pointer" : "default"
+    const hovered = hoveredStation || hoveredLine.hasLine
+
+    canvas.style.cursor = (hovered) ? "pointer" : "default"
+    trainCanvas.style.cursor = (hovered) ? "pointer" : "default"
 
     // If the user is creating a line
     if (clickedStations.length === 1) {
