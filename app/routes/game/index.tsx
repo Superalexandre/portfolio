@@ -8,8 +8,8 @@ import { handleCanvasClick } from "./events/handleCanvasClick"
 import { handleContextMenu } from "./events/handleContextMenu"
 import { handleMouseMove } from "./events/handleMouseMove"
 import styles from "./style"
-import { Line, checkIfLineExists, clearTempLine, drawLine } from "./utils/line"
-import { Station, drawRandomStations, removeHighlightedStations } from "./utils/station"
+import { Line, checkIfLineExists, clearTempLine, drawLine, drawLines } from "./utils/line"
+import { Station, drawRandomStations, drawStations, removeHighlightedStations } from "./utils/station"
 import { Train, genTrain, handleTrain } from "./utils/train"
 import { changeTheme, getTheme } from "./utils/utils"
 
@@ -31,6 +31,8 @@ export default function Index() {
 
     const ms = speed === 0 ? 0 : 1000 / (60 * speed)
     const realLines = linesRef.current.filter(line => line.id !== "temp")
+
+    const smallScreen = false
 
     useEffect(() => {
         console.log("useEffect empty")
@@ -84,6 +86,11 @@ export default function Index() {
             linesRef.current.push(line)
 
             toast.success("Ligne créée avec succès")
+        } else {
+            context.clearRect(0, 0, context.canvas.width, context.canvas.height)
+    
+            drawStations({ stations: stationsRef.current, context })
+            drawLines({ lines: linesRef.current, context })
         }
     }, [clickedStations])
 
@@ -159,7 +166,7 @@ export default function Index() {
                 ref={mainLayer}
                 onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations })}
                 onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
-                onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations })}
+                onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations, smallScreen })}
             />
 
             <canvas
@@ -169,7 +176,7 @@ export default function Index() {
                 ref={trainLayer}
                 onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations })}
                 onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
-                onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations })}
+                onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations, smallScreen })}
             />
             <Toaster
                 position="bottom-right"
@@ -203,8 +210,8 @@ const SpeedSelector = ({ speed, setSpeed }: { speed: number, setSpeed: (speed: n
         <div className="flex flex-col items-center gap-2">
             <p className="dark:text-white">Vitesse :</p>
             <div className="flex flex-row items-center gap-2">
-                <input type="radio" id="slow" name="speed" value="slow" onChange={() => setSpeed(0)} defaultChecked={speed === 0} />
-                <label htmlFor="slow" className="dark:text-white">Pause</label>
+                <input type="radio" id="break" name="speed" value="break" onChange={() => setSpeed(0)} defaultChecked={speed === 0} />
+                <label htmlFor="break" className="dark:text-white">Pause</label>
             </div>
             <div className="flex flex-row items-center gap-2">
                 <input type="radio" id="slow" name="speed" value="slow" onChange={() => setSpeed(0.5)} defaultChecked={speed === 0.5} />

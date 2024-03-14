@@ -10,9 +10,10 @@ interface handleMouseMoveProps {
     stationsRef: MutableRefObject<Station[]>
     linesRef: MutableRefObject<Line[]>
     clickedStations: Station[]
+    smallScreen: boolean
 }
 
-const handleMouseMove = ({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations }: handleMouseMoveProps) => {
+const handleMouseMove = ({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations, smallScreen }: handleMouseMoveProps) => {
     const canvas = mainLayer.current
     const trainCanvas = trainLayer.current
 
@@ -34,7 +35,7 @@ const handleMouseMove = ({ event, mainLayer, trainLayer, stationsRef, linesRef, 
     trainCanvas.style.cursor = (hovered) ? "pointer" : "default"
 
     // If the user is creating a line
-    if (clickedStations.length === 1) {
+    if (clickedStations.length === 1 && !smallScreen) {
         console.log("Creating temp line")
 
         // Find the temp line and remove it
