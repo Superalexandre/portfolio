@@ -9,7 +9,7 @@ import { handleContextMenu } from "./events/handleContextMenu"
 import { handleMouseMove } from "./events/handleMouseMove"
 import styles from "./style"
 import { Line, checkIfLineExists, clearTempLine, drawLine } from "./utils/line"
-import { Station, drawRandomStations } from "./utils/station"
+import { Station, drawRandomStations, removeHighlightedStations } from "./utils/station"
 import { Train, genTrain, handleTrain } from "./utils/train"
 import { changeTheme, getTheme } from "./utils/utils"
 
@@ -59,9 +59,12 @@ export default function Index() {
         if (!context || !canvas) return
 
         if (clickedStations.length >= 2) {
+            stationsRef.current = removeHighlightedStations(stationsRef.current)
+            
             // Remove the temp line
             const tempLine = linesRef.current.find(line => line.id === "temp")
             if (tempLine) linesRef.current = clearTempLine({ context, stations: stationsRef.current, lines: linesRef.current })
+
 
             // Check if the line already exists
             const alreadyExists = checkIfLineExists(linesRef.current, clickedStations)
@@ -227,7 +230,7 @@ const LineSelector = ({ color, setColor }: { color: string, setColor: (color: st
         <div className="flex flex-row items-center gap-2">
             <p className="dark:text-white">Lignes :</p>
             {colorLines.map((colorLine, index) => (
-                <button 
+                <button
                     key={index} className={`bg-[${colorLine}] flex h-6 w-6 items-center justify-center rounded-full`}
                     onClick={() => setColor(colorLine)}
                 >

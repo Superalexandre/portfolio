@@ -11,6 +11,7 @@ interface Station {
     y: number
     id: string
     shape: string
+    highlighted: boolean
 }
 
 const drawStations = ({ stations, context }: { stations: Station[], context: CanvasRenderingContext2D }) => {
@@ -19,10 +20,12 @@ const drawStations = ({ stations, context }: { stations: Station[], context: Can
     stations.forEach(station => {
         const { shape, x, y } = station
 
-        if (shape === "circle") circle({ x, y, width, height, context, color: getColor() })
-        if (shape === "square") square({ x, y, width, height, context, color: getColor() })
-        if (shape === "triangle") triangle({ x, y, width, height, context, color: getColor() })
-        if (shape === "star") star({ x, y, width, height, context, branches: 5, color: getColor() })
+        const color = station.highlighted ? "red" : getColor()
+
+        if (shape === "circle") circle({ x, y, width, height, context, color })
+        if (shape === "square") square({ x, y, width, height, context, color })
+        if (shape === "triangle") triangle({ x, y, width, height, context, color })
+        if (shape === "star") star({ x, y, width, height, context, branches: 5, color })
     })
 }
 
@@ -36,7 +39,8 @@ const drawRandomStations = ({ number = STATIONS_NUMBER, context }: { number?: nu
             x,
             y,
             id,
-            shape
+            shape,
+            highlighted: false
         }
     })
 
@@ -63,10 +67,22 @@ const coordHasStation = ({ event, stations, canvas }: { event: MouseEvent | Mous
     return hasStation
 }
 
+const removeHighlightedStations = (stations: Station[]) => {
+    const newStations = stations.map(station => {
+        return {
+            ...station,
+            highlighted: false
+        }
+    })
+
+    return newStations
+}
+
 export {
     drawStations,
     drawRandomStations,
     coordHasStation,
+    removeHighlightedStations
 }
 
 export type {

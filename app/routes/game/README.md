@@ -16,7 +16,7 @@ Inspired by [Mini Metro](https://store.steampowered.com/app/287980/Mini_Metro/),
         - [X] Star  	
 - [X] Connect stations
     - [X] Improve the connection with only straight line
-    - [ ] ❗ Delete lines
+    - [X] ❗ Delete lines
     - [X] Add the possibility to cancel
 - [X] Create a train
 - [X] Move the train

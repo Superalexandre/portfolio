@@ -25,6 +25,8 @@ const handleCanvasClick = ({ event, mainLayer, stationsRef, linesRef, trainsRef,
         const isAlreadyClicked = clickedStations.some(station => station.id === clickedStation.id)
         if (isAlreadyClicked) return
 
+        if (clickedStation && clickedStations.length === 0) clickedStation.highlighted = true
+
         setClickedStations((prev) => [...prev, clickedStation])
     }
 

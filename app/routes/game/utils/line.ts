@@ -59,7 +59,8 @@ const drawTempLine = ({ from, to, context }: { from: Station, to: { x: number, y
             id: "cursor",
             x: to.x,
             y: to.y,
-            shape: "circle"
+            shape: "circle",
+            highlighted: false
         }
     }
 
