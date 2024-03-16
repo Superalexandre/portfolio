@@ -23,12 +23,9 @@ Inspired by [Mini Metro](https://store.steampowered.com/app/287980/Mini_Metro/),
 - [ ] ❗ Link multiple stations (create a big line)
     - [X] Optimize the path if not changed no need to recalculate
     - [ ] Drag and drop to move a line and connect it to another station
-- [ ] Bugs
+- [X] Bugs
     - [X] When building a station you can delete lines
     - [X] If the lines make a "circle" the train go back when it can go straight
-- [ ] Mobile (verify) 
-    - [ ] Station highlight weird
-    - [ ] Still can build a temporary line
 - [ ] Create random passengers
 - [ ] ❗ Add the zoom feature
 - [ ] Future features [Long term]

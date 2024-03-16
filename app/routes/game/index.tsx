@@ -1,18 +1,21 @@
 import { useEffect, useRef, useState } from "react"
 // import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch"
-import { MdCheck, MdClose, MdFastForward, MdForward10, MdForward30, MdForward5, MdPause, MdSettings } from "react-icons/md"
+import { MdSettings } from "react-icons/md"
 import { Toaster, toast } from "sonner"
 
-import { CANVAS_HEIGHT, CANVAS_WIDTH, STATIONS_NUMBER } from "./config"
+import { CANVAS_HEIGHT, CANVAS_WIDTH } from "./config"
 import { handleCanvasClick } from "./events/handleCanvasClick"
 import { handleContextMenu } from "./events/handleContextMenu"
 import { handleMouseMove } from "./events/handleMouseMove"
 import styles from "./style"
-import { Line, checkIfLineExists, clearTempLine, drawLine, drawLines } from "./utils/line"
-import { getTrainPath, reverseFromTo } from "./utils/path"
+import LineSelector from "./ui/LineSelector"
+import SettingsModal from "./ui/SettingsModal"
+import SpeedSelector from "./ui/SpeedSelector"
+import { Line, checkIfLineExists, clearTempLine, drawLine, drawLines, reverseFromTo } from "./utils/line"
+import { getTrainPath } from "./utils/path"
 import { Station, drawRandomStations, drawStations, highlightedStations, removeHighlightedStations } from "./utils/station"
 import { Train, canConnect, genTrain, handleTrain } from "./utils/train"
-import { changeTheme, getTheme } from "./utils/utils"
+import { getTheme } from "./utils/utils"
 
 export default function Index() {
     const mainLayer = useRef<HTMLCanvasElement>(null)
@@ -34,7 +37,7 @@ export default function Index() {
     const ms = speed === 0 ? 0 : 1000 / (60 * speed)
     const realLines = linesRef.current.filter(line => line.id !== "temp")
 
-    const smallScreen = false
+    const smallScreen = true
 
     useEffect(() => {
         // console.log("useEffect empty")
@@ -283,145 +286,5 @@ export default function Index() {
                 closeButton={true}
             />
         </>
-    )
-}
-
-interface SettingsModalProps {
-    hidden: boolean
-    setHidden: () => void
-
-    theme: "light" | "dark"
-    setTheme: (theme: "light" | "dark") => void
-
-    handleDownload: () => void
-
-    data: {
-        stations: Station[]
-        lines: Line[]
-        trains: Train[]
-    }
-}
-
-const SettingsModal = ({ hidden, setHidden, theme, setTheme, handleDownload, data }: SettingsModalProps) => {
-    return (
-        <div className={`${hidden ? "hidden" : "block"} fixed inset-0 z-40 flex items-center justify-center bg-black bg-opacity-80`}>
-            <div className="relative z-50 m-8 flex flex-col items-center justify-center gap-8 rounded-md bg-slate-400 p-8 dark:bg-slate-700 lg:m-0">
-                <button
-                    onClick={setHidden}
-                    className="absolute right-0 top-0 m-4 hover:text-white dark:text-white dark:hover:text-black"
-                >
-                    <MdClose size={16} />
-                </button>
-
-                <ThemeSelector
-                    theme={theme}
-                    setTheme={setTheme}
-                />
-
-                <div className="flex flex-col items-center justify-center">
-                    <p className="text-center dark:text-white">Data :</p>
-                    <p className="text-center dark:text-white">Stations : {STATIONS_NUMBER}</p>
-                    <p className="text-center dark:text-white">Canvas : {CANVAS_WIDTH} x {CANVAS_HEIGHT}</p>
-                    <p className="text-center dark:text-white">Nombre de lignes : {data.lines.length}</p>
-                    <p className="text-center dark:text-white">Nombre de trains : {data.trains.length}</p>
-                </div>
-
-                <button
-                    onClick={handleDownload}
-                    className="text-center hover:underline dark:text-white"
-                >
-                    Télécharger les données
-                </button>
-            </div>
-        </div>
-    )
-}
-
-interface ThemeSelectorProps {
-    theme: "light" | "dark"
-    setTheme: (theme: "light" | "dark") => void
-}
-
-const ThemeSelector = ({ theme, setTheme }: ThemeSelectorProps) => {
-    return (
-        <div className="flex flex-row items-center justify-center gap-2">
-            <input
-                type="checkbox"
-                id="theme"
-                name="theme"
-                checked={theme === "dark"}
-                onChange={async () => {
-                    const newTheme = await changeTheme()
-
-                    setTheme(newTheme)
-                }}
-            />
-            <label htmlFor="theme" className="dark:text-white">Thème sombre</label>
-        </div>
-    )
-}
-
-interface SpeedSelectorProps {
-    speed: number
-    setSpeed: (speed: number) => void
-}
-
-const SpeedSelector = ({ speed, setSpeed }: SpeedSelectorProps) => {
-    const speeds = [{
-        value: 0,
-        icon: MdPause
-    }, {
-        value: 0.5,
-        icon: MdForward5
-    }, {
-        value: 1,
-        icon: MdForward10
-    }, {
-        value: 1.5,
-        icon: MdForward30
-    }, {
-        value: 3,
-        icon: MdFastForward
-    }]
-
-    return (
-        <div className="flex flex-row items-center justify-start gap-2">
-
-            {speeds.map((speedValue, index) => (
-                <button
-                    key={index}
-                    onClick={() => setSpeed(speedValue.value)}
-                    className={`flex items-center justify-center ${speed === speedValue.value ? "text-green-500" : "text-black dark:text-white"}`}
-                >
-                    <speedValue.icon size={30} />
-                </button>
-            ))}
-        </div>
-    )
-
-}
-
-interface LineSelectorProps {
-    color: string
-    setColor: (color: string) => void
-}
-
-const LineSelector = ({ color, setColor }: LineSelectorProps) => {
-    const colorLines = Object.values(styles.colors)
-
-    return (
-        <div className="flex flex-row items-center gap-2">
-            <p className="dark:text-white">Lignes :</p>
-            {colorLines.map((colorLine, index) => (
-                <button
-                    key={index} className={`bg-[${colorLine}] flex h-6 w-6 items-center justify-center rounded-full`}
-                    onClick={() => setColor(colorLine)}
-                >
-                    {color === colorLine ? <MdCheck className="text-dark" /> : null}
-
-                    <span className="sr-only">{colorLine}</span>
-                </button>
-            ))}
-        </div>
     )
 }

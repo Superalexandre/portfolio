@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid"
 
 import { getPathLine } from "./path"
 import { Station, drawStations } from "./station"
+import { LineTrain } from "./train"
 import styles, { LineColor } from "../style"
 
 interface Line {
@@ -143,6 +144,14 @@ const deleteLines = (lines: Line[], deletedLine: Line[]) => {
     return newLines
 }
 
+function reverseFromTo(line: LineTrain | Line) {
+    return {
+        ...line,
+        from: line.to,
+        to: line.from
+    }
+}
+
 export {
     drawLines,
     drawLine,
@@ -150,7 +159,8 @@ export {
     checkIfLineExists,
     clearTempLine,
     coordHasLine,
-    deleteLines
+    deleteLines,
+    reverseFromTo
 }
 
 export type {

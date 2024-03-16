@@ -1,5 +1,5 @@
-import { Line } from "./line"
-import { LineTrain, Train } from "./train"
+import { Line, reverseFromTo } from "./line"
+import { Train } from "./train"
 import styles from "../style"
 
 interface Path {
@@ -47,8 +47,6 @@ function getTrainPath({ train }: { train: Train }) {
 
     const canLoop = lines[0].from.id === lines[lines.length - 1].to.id
 
-    console.log("getPath", { canLoop })
-
     // Get the path for each line in the order
     // Every positive order is after the start
     // Every negative order is before the start
@@ -73,30 +71,15 @@ function getTrainPath({ train }: { train: Train }) {
         pathBefore.push(...linePath)
     }
 
-    if (canLoop) {
-        // const linePath = getPathLine({ line: reverseFromTo(lines[0]) })
-
-        // pathBefore.push(...linePath)
-
-        return [...pathAfter, ...pathBefore.reverse()]
-    }
+    if (canLoop) return [...pathAfter, ...pathBefore.reverse()]
 
     return [...pathAfter, ...pathAfter.reverse(), ...pathBefore, ...pathBefore.reverse()]
-}
-
-function reverseFromTo(line: LineTrain | Line) {
-    return {
-        ...line,
-        from: line.to,
-        to: line.from
-    }
 }
 
 export { 
     getPath, 
     getTrainPath, 
-    getPathLine,
-    reverseFromTo
+    getPathLine
 }
 
 export type { Path }
