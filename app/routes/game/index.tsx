@@ -37,7 +37,7 @@ export default function Index() {
     const ms = speed === 0 ? 0 : 1000 / (60 * speed)
     const realLines = linesRef.current.filter(line => line.id !== "temp")
 
-    const smallScreen = true
+    const smallScreen = false
 
     useEffect(() => {
         // console.log("useEffect empty")
