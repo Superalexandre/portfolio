@@ -78,11 +78,25 @@ const removeHighlightedStations = (stations: Station[]) => {
     return newStations
 }
 
+const highlightedStations = (stations: Station[], station: Station) => {
+    const newStations = stations.map(s => {
+        const isSame = s.id === station.id
+
+        return {
+            ...s,
+            highlighted: isSame
+        }
+    })
+
+    return newStations
+}
+
 export {
     drawStations,
     drawRandomStations,
     coordHasStation,
-    removeHighlightedStations
+    removeHighlightedStations,
+    highlightedStations
 }
 
 export type {

@@ -1,8 +1,8 @@
 import { Dispatch, MouseEvent, MutableRefObject, RefObject, SetStateAction } from "react"
 
-import { Line, clearTempLine, coordHasLine, drawLines } from "../utils/line"
+import { Line, clearTempLine, coordHasLine, deleteLines, drawLines } from "../utils/line"
 import { Station, coordHasStation, drawStations } from "../utils/station"
-import { Train, deleteTrainFromLine } from "../utils/train"
+import { Train, deleteLineFromTrain } from "../utils/train"
 
 interface handleCanvasClickProps {
     event: MouseEvent<HTMLCanvasElement>
@@ -40,14 +40,17 @@ const handleCanvasClick = ({ event, mainLayer, stationsRef, linesRef, trainsRef,
     }
 
     const clickedLine = coordHasLine({ event, lines: linesRef.current, canvas })
-    if (clickedLine.hasLine) {
+    if (clickedLine.hasLine && clickedStations.length === 0) {
         if (!clickedLine.line) return
 
-        const newLines = linesRef.current.filter(line => line.id !== clickedLine.line?.id)
-        const newTrain = deleteTrainFromLine(trainsRef.current, clickedLine.line)
+        const { newTrains, removeLines } = deleteLineFromTrain(trainsRef.current, clickedLine.line)
+        // const newLines = linesRef.current.filter(line => line.id !== clickedLine.line?.id)
+        const newLines = deleteLines(linesRef.current, [...removeLines])
+
+        console.log("newTrain", newTrains)
 
         linesRef.current = newLines
-        trainsRef.current = newTrain
+        trainsRef.current = newTrains
 
         context.clearRect(0, 0, context.canvas.width, context.canvas.height)
 

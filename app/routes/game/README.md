@@ -5,7 +5,7 @@ Inspired by [Mini Metro](https://store.steampowered.com/app/287980/Mini_Metro/),
 # 📝 TODO : 
 
 - [ ] Save the game in the database
-    - [ ] Need to be log
+    - [ ] Need to be logged in
     - [ ] Create a schema
 - [X] Create a game board
 - [X] Create random stations
@@ -16,13 +16,41 @@ Inspired by [Mini Metro](https://store.steampowered.com/app/287980/Mini_Metro/),
         - [X] Star  	
 - [X] Connect stations
     - [X] Improve the connection with only straight line
-    - [X] ❗ Delete lines
+    - [X] Delete lines
     - [X] Add the possibility to cancel
 - [X] Create a train
 - [X] Move the train
 - [ ] ❗ Link multiple stations (create a big line)
+    - [X] Optimize the path if not changed no need to recalculate
+    - [ ] Drag and drop to move a line and connect it to another station
+- [ ] Bugs
+    - [X] When building a station you can delete lines
+    - [X] If the lines make a "circle" the train go back when it can go straight
+- [ ] Mobile (verify) 
+    - [ ] Station highlight weird
+    - [ ] Still can build a temporary line
 - [ ] Create random passengers
-- [ ] Add the zoom feature
+- [ ] ❗ Add the zoom feature
+- [ ] Future features [Long term]
+    - [ ] Add shortcuts
+        - [ ] Escape to undo
+        - [ ] Space to pause
+        - [ ] + and - to change the speed
+        - [ ] 1, 2, 3 game speed
+        - [ ] Custom shortcuts ?
+            - [ ] Z/W to go up
+            - [ ] S to go down
+            - [ ] Q/A to go left
+            - [ ] D to go right
+    - [ ] Add rivers
+    - [ ] Add mountains
+    - [ ] Add events
+        - [ ] Earthquake
+        - [ ] Big event
+            - [ ] Football match
+            - [ ] Concert
+            - [ ] Festival
+    - [ ] Add challenges
 - [X] Game time
     - [X] Pause
     - [X] Speed

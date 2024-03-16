@@ -69,7 +69,7 @@ const drawTempLine = ({ from, to, context }: { from: Station, to: { x: number, y
     return line
 }
 
-const checkIfLineExists = (lines: Line[], stations: Station[]) => {
+const checkIfLineExists = (lines: Line[], stations: Station[], color: string) => {
     return lines.some(line => {
         const isSameFrom0 = line.from.id === stations[0].id
         const isSameTo1 = line.to.id === stations[1].id
@@ -77,7 +77,9 @@ const checkIfLineExists = (lines: Line[], stations: Station[]) => {
         const isSameFrom1 = line.from.id === stations[1].id
         const isSameTo0 = line.to.id === stations[0].id
 
-        return (isSameFrom0 && isSameTo1) || (isSameFrom1 && isSameTo0)
+        const isSameColor = line.color === color
+
+        return (isSameFrom0 && isSameTo1 && isSameColor) || (isSameFrom1 && isSameTo0 && isSameColor)
     })
 }
 
@@ -129,13 +131,26 @@ const coordHasLine = ({ event, lines, canvas }: { event: MouseEvent | MouseEvent
     return { hasLine, line: foundLine }
 }
 
+const deleteLines = (lines: Line[], deletedLine: Line[]) => {
+    const newLines = []
+
+    for (const line of lines) {
+        const isDeleted = deletedLine.some(deleted => deleted.id === line.id)
+
+        if (!isDeleted) newLines.push(line)
+    }
+
+    return newLines
+}
+
 export {
     drawLines,
     drawLine,
     drawTempLine,
     checkIfLineExists,
     clearTempLine,
-    coordHasLine
+    coordHasLine,
+    deleteLines
 }
 
 export type {

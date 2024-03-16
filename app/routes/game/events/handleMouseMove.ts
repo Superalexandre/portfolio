@@ -36,7 +36,7 @@ const handleMouseMove = ({ event, mainLayer, trainLayer, stationsRef, linesRef, 
 
     // If the user is creating a line
     if (clickedStations.length === 1 && !smallScreen) {
-        console.log("Creating temp line")
+        // console.log("Creating temp line")
 
         // Find the temp line and remove it
         const tempLine = linesRef.current.find(line => line.id === "temp")
