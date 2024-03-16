@@ -81,6 +81,24 @@ export default function Index() {
                 return
             }
 
+            const lineColorHaveTrain = trainsRef.current.some(train => train.lines.some(line => line.color === color))
+            const canConnectToOtherTrain = canConnect({
+                trains: trainsRef.current, line: {
+                    id: "temp",
+                    from: clickedStations[0],
+                    to: clickedStations[1],
+                    color
+                }
+            })
+
+            if (lineColorHaveTrain && canConnectToOtherTrain.length === 0) {
+                toast.error("Votre ligne doit être connectée à une autre ligne existante pour créer un train.")
+
+                setClickedStations([])
+
+                return
+            }
+
             const [from, to] = clickedStations
             const line = drawLine({ from, to, context, color })
 
@@ -153,7 +171,6 @@ export default function Index() {
                 train.path = getTrainPath({ train })
 
                 trainsRef.current[trainsRef.current.indexOf(train)] = train
-                // TODO: Should check if a line with a train is already active
             } else {
                 // Check if the lastLine is already in a train
                 const lineInTrain = trainsRef.current.some(train => train.lines.some(line => line.id === lastLine.id))
@@ -275,7 +292,7 @@ interface SettingsModalProps {
 
     theme: "light" | "dark"
     setTheme: (theme: "light" | "dark") => void
-    
+
     handleDownload: () => void
 
     data: {
