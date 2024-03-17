@@ -16,6 +16,7 @@ interface SettingsModalProps {
     handleDownload: () => void
 
     data: {
+        smallScreen: boolean
         stations: Station[]
         lines: Line[]
         trains: Train[]
@@ -42,6 +43,7 @@ const SettingsModal = ({ hidden, setHidden, theme, setTheme, handleDownload, dat
                     <p className="text-center dark:text-white">Data :</p>
                     <p className="text-center dark:text-white">Stations : {STATIONS_NUMBER}</p>
                     <p className="text-center dark:text-white">Canvas : {CANVAS_WIDTH} x {CANVAS_HEIGHT}</p>
+                    <p className="text-center dark:text-white">Petit écran : {data.smallScreen ? "oui" : "non"}</p>
                     <p className="text-center dark:text-white">Nombre de lignes : {data.lines.length}</p>
                     <p className="text-center dark:text-white">Nombre de trains : {data.trains.length}</p>
                 </div>

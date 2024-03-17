@@ -26,8 +26,9 @@ Inspired by [Mini Metro](https://store.steampowered.com/app/287980/Mini_Metro/),
 - [X] Bugs
     - [X] When building a station you can delete lines
     - [X] If the lines make a "circle" the train go back when it can go straight
+    - [ ] Creating a lot of stations make the train disappear (loop ?)
 - [ ] Create random passengers
-- [ ] ❗ Add the zoom feature
+- [X] ❗ Add the zoom feature
 - [ ] Future features [Long term]
     - [ ] Add shortcuts
         - [ ] Escape to undo

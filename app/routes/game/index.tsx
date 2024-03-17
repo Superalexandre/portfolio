@@ -1,5 +1,5 @@
+import { useGesture } from "@use-gesture/react"
 import { useEffect, useRef, useState } from "react"
-// import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch"
 import { MdSettings } from "react-icons/md"
 import { Toaster, toast } from "sonner"
 
@@ -38,6 +38,10 @@ export default function Index() {
     const realLines = linesRef.current.filter(line => line.id !== "temp")
 
     const smallScreen = false
+
+    const scale = useRef(1)
+    const translate = useRef([0, 0])
+    const lastPosition = useRef<number[] | null>([0, 0])
 
     useEffect(() => {
         // console.log("useEffect empty")
@@ -219,6 +223,8 @@ export default function Index() {
                 width: CANVAS_WIDTH,
                 height: CANVAS_HEIGHT,
             },
+            scale: scale.current,
+            translate: translate.current,
             speed,
             theme,
             buildingStations: clickedStations,
@@ -238,6 +244,59 @@ export default function Index() {
         a.remove()
     }
 
+    const bind = useGesture({
+        onWheel: ({ delta: [, dy] }) => {
+            const minScale = 0.4
+            const maxScale = 1.5
+
+            const zoomFactor = smallScreen ? 0.01 : 0.009
+
+            const nextZoomOut = scale.current * (1 + zoomFactor)
+            const nextZoom = scale.current * (1 - zoomFactor)
+
+            if (dy < 0 && minScale < nextZoomOut && nextZoomOut < maxScale) {
+                // Dézoomer
+                scale.current = Math.max(minScale, scale.current * (1 + zoomFactor))
+            } else if (dy > 0 && minScale < nextZoom && nextZoom < maxScale) {
+                // Zoomer
+                scale.current = Math.min(maxScale, scale.current * (1 - zoomFactor))
+            }
+
+            if (mainLayer.current) mainLayer.current.style.transform = `scale(${scale.current}) translate(${translate.current[0]}px, ${translate.current[1]}px)`
+            if (trainLayer.current) trainLayer.current.style.transform = `scale(${scale.current}) translate(${translate.current[0]}px, ${translate.current[1]}px)`
+        },
+        onDragStart: ({ xy: [x, y] }) => {
+            lastPosition.current = [x, y]
+        },
+        onDrag: ({ movement: [mx, my] }) => {
+            const panFactor = smallScreen ? 0.09 : 0.009
+
+            if (!lastPosition.current) return
+
+            let translateX = translate.current[0] + mx * panFactor / scale.current
+            let translateY = translate.current[1] + my * panFactor / scale.current
+
+            // Prevent the canvas to be moved outside the screen
+            const canvasWidth = CANVAS_WIDTH * scale.current
+            const canvasHeight = CANVAS_HEIGHT * scale.current
+
+            if (translateX > 0) translateX = 0
+            if (translateY > 0) translateY = 0
+
+            if (translateX < -canvasWidth + window.innerWidth) translateX = -canvasWidth + window.innerWidth
+            if (translateY < -canvasHeight + window.innerHeight) translateY = -canvasHeight + window.innerHeight
+
+            translate.current[0] = translateX
+            translate.current[1] = translateY
+            
+            if (mainLayer.current) mainLayer.current.style.transform = `scale(${scale.current}) translate(${translate.current[0]}px, ${translate.current[1]}px)`
+            if (trainLayer.current) trainLayer.current.style.transform = `scale(${scale.current}) translate(${translate.current[0]}px, ${translate.current[1]}px)`
+        },
+        onDragEnd: () => {
+            lastPosition.current = null
+        }
+    })
+
     return (
         <>
             <SettingsModal
@@ -249,6 +308,7 @@ export default function Index() {
                 setTheme={setTheme}
                 handleDownload={handleDownload}
                 data={{
+                    smallScreen,
                     stations: stationsRef.current,
                     lines: linesRef.current,
                     trains: trainsRef.current,
@@ -262,25 +322,37 @@ export default function Index() {
 
                 <MdSettings size={30} className="cursor-pointer text-black dark:text-white" onClick={() => setSettingsHidden(!settingsHidden)} />
             </div>
-            <canvas
-                className="bg-[#EBEBEB] dark:bg-[#070F2B]"
-                width={CANVAS_WIDTH}
-                height={CANVAS_HEIGHT}
-                ref={mainLayer}
-                onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations })}
-                onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
-                onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations, smallScreen })}
-            />
+            <div {...bind()} className="absolute h-screen w-screen touch-none overflow-hidden">
+                <canvas
+                    className="overflow-hidden bg-[#EBEBEB] dark:bg-[#070F2B]"
+                    width={CANVAS_WIDTH}
+                    height={CANVAS_HEIGHT}
+                    ref={mainLayer}
+                    onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations, scale: scale.current })}
+                    onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
+                    onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations, smallScreen, scale: scale.current })}
 
-            <canvas
-                className="absolute left-0 top-0 z-10 bg-transparent"
-                width={CANVAS_WIDTH}
-                height={CANVAS_HEIGHT}
-                ref={trainLayer}
-                onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations })}
-                onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
-                onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations, smallScreen })}
-            />
+                    style={{
+                        transformOrigin: "0 0",
+                        transform: `scale(${scale.current}) translate(${translate.current[0]}px, ${translate.current[1]}px)`,
+                    }}
+                />
+                <canvas
+                    className="absolute left-0 top-0 z-10 bg-transparent"
+                    width={CANVAS_WIDTH}
+                    height={CANVAS_HEIGHT}
+                    ref={trainLayer}
+                    onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations, scale: scale.current })}
+                    onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
+                    onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations, smallScreen, scale: scale.current })}
+
+                    style={{
+                        transformOrigin: "0 0",
+                        transform: `scale(${scale.current}) translate(${translate.current[0]}px, ${translate.current[1]}px)`,
+                    }}
+                />
+            </div>
+
             <Toaster
                 position="bottom-right"
                 closeButton={true}

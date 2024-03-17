@@ -12,15 +12,16 @@ interface handleCanvasClickProps {
     trainsRef: MutableRefObject<Train[]>
     clickedStations: Station[]
     setClickedStations: Dispatch<SetStateAction<Station[]>>
+    scale: number
 }
 
-const handleCanvasClick = ({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations }: handleCanvasClickProps) => {
+const handleCanvasClick = ({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations, scale }: handleCanvasClickProps) => {
     const canvas = mainLayer.current
     const context = canvas?.getContext("2d")
 
     if (!context || !canvas) return
 
-    const clickedStation = coordHasStation({ event, stations: stationsRef.current, canvas })
+    const clickedStation = coordHasStation({ event, stations: stationsRef.current, canvas, scale })
     if (clickedStation) {
         const isAlreadyClicked = clickedStations.some(station => station.id === clickedStation.id)
         if (isAlreadyClicked) {
@@ -39,7 +40,7 @@ const handleCanvasClick = ({ event, mainLayer, stationsRef, linesRef, trainsRef,
         return
     }
 
-    const clickedLine = coordHasLine({ event, lines: linesRef.current, canvas })
+    const clickedLine = coordHasLine({ event, lines: linesRef.current, canvas, scale })
     if (clickedLine.hasLine && clickedStations.length === 0) {
         if (!clickedLine.line) return
 

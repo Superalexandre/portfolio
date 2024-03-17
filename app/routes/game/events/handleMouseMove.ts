@@ -11,9 +11,10 @@ interface handleMouseMoveProps {
     linesRef: MutableRefObject<Line[]>
     clickedStations: Station[]
     smallScreen: boolean
+    scale: number
 }
 
-const handleMouseMove = ({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations, smallScreen }: handleMouseMoveProps) => {
+const handleMouseMove = ({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations, smallScreen, scale }: handleMouseMoveProps) => {
     const canvas = mainLayer.current
     const trainCanvas = trainLayer.current
 
@@ -21,13 +22,8 @@ const handleMouseMove = ({ event, mainLayer, trainLayer, stationsRef, linesRef, 
 
     if (!context || !canvas || !trainCanvas) return
 
-    const { x: canvasX, y: canvasY } = canvas.getBoundingClientRect()
-
-    const x = event.clientX - canvasX
-    const y = event.clientY - canvasY
-
-    const hoveredStation = coordHasStation({ event, stations: stationsRef.current, canvas })
-    const hoveredLine = coordHasLine({ event, lines: linesRef.current, canvas })
+    const hoveredStation = coordHasStation({ event, stations: stationsRef.current, canvas, scale })
+    const hoveredLine = coordHasLine({ event, lines: linesRef.current, canvas, scale })
 
     const hovered = hoveredStation || hoveredLine.hasLine
 
@@ -36,13 +32,16 @@ const handleMouseMove = ({ event, mainLayer, trainLayer, stationsRef, linesRef, 
 
     // If the user is creating a line
     if (clickedStations.length === 1 && !smallScreen) {
-        // console.log("Creating temp line")
-
         // Find the temp line and remove it
         const tempLine = linesRef.current.find(line => line.id === "temp")
         if (tempLine) linesRef.current = clearTempLine({ context, stations: stationsRef.current, lines: linesRef.current })
 
         const clickedStation = clickedStations[0]
+
+        const { x: canvasX, y: canvasY } = canvas.getBoundingClientRect()
+
+        const x = (event.clientX - canvasX) / scale + 0.5
+        const y = (event.clientY - canvasY) / scale + 0.5
 
         const lines = drawTempLine({ from: clickedStation, to: { x, y }, context })
         linesRef.current.push(lines)

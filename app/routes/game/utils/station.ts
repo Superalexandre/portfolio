@@ -49,14 +49,15 @@ const drawRandomStations = ({ number = STATIONS_NUMBER, context }: { number?: nu
     return stations
 }
 
-const coordHasStation = ({ event, stations, canvas }: { event: MouseEvent | MouseEvent<HTMLCanvasElement>, stations: Station[], canvas: HTMLCanvasElement }) => {
+const coordHasStation = ({ event, stations, canvas, scale }: { event: MouseEvent | MouseEvent<HTMLCanvasElement>, stations: Station[], canvas: HTMLCanvasElement, scale: number }) => {
     const { x: canvasX, y: canvasY } = canvas.getBoundingClientRect()
 
     const x = event.clientX - canvasX
     const y = event.clientY - canvasY
 
     const hasStation = stations.find(station => {
-        const { x: stationX, y: stationY } = station
+        const stationX = station.x * scale
+        const stationY = station.y * scale
 
         const isSameX = x >= stationX && x <= stationX + styles.stations.width
         const isSameY = y >= stationY && y <= stationY + styles.stations.width

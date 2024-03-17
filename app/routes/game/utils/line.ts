@@ -97,11 +97,11 @@ const clearTempLine = ({ context, stations, lines }: { context: CanvasRenderingC
     return lines
 }
 
-const coordHasLine = ({ event, lines, canvas }: { event: MouseEvent | MouseEvent<HTMLCanvasElement>, lines: Line[], canvas: HTMLCanvasElement }) => {
+const coordHasLine = ({ event, lines, canvas, scale }: { event: MouseEvent | MouseEvent<HTMLCanvasElement> | MouseEvent<HTMLDivElement>, lines: Line[], canvas: HTMLCanvasElement, scale: number }) => {
     const { x: canvasX, y: canvasY } = canvas.getBoundingClientRect()
 
-    const x = event.clientX - canvasX
-    const y = event.clientY - canvasY
+    const x = (event.clientX - canvasX) / scale
+    const y = (event.clientY - canvasY) / scale
 
     let foundLine: Line | undefined
 
