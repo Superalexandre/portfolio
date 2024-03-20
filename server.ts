@@ -46,7 +46,7 @@ app.use(async (c, next) => {
 
 app.use(compress())
 app.use("/*", serveStatic({ root: "./build/client" }))
-// app.use("/build/*", serveStatic({ root: "./public/build" }))
+app.use("/build/*", serveStatic({ root: "./public/build" }))
 app.use("/assets/*", serveStatic({ root: "./build/client" }))
 
 /*

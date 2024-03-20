@@ -12,7 +12,7 @@ import {
 } from "@remix-run/react"
 import { useTranslation } from "react-i18next"
 
-import stylesheet from "~/tailwind.css"
+// import stylesheet from "~/tailwind.css"
 
 import Birthday from "./Components/Birthday"
 import ErrorBoundary from "./errors/error"
@@ -20,9 +20,11 @@ import useChangeLanguage from "./hooks/useChangeLanguage"
 import getLanguage from "./utils/getLanguage"
 import getTheme from "./utils/getTheme"
 
+import "~/tailwind.css"
+
 export const handle = { i18n: "common" }
 export const links: LinksFunction = () => [
-    { rel: "stylesheet", href: stylesheet },
+    // { rel: "stylesheet", href: stylesheet },
     ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ]
 
