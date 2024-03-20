@@ -1,57 +1,65 @@
-import { serve } from "@hono/node-server"
+// import { serve } from "@hono/node-server"
 import { serveStatic } from "@hono/node-server/serve-static"
+import { AppLoadContext, ServerBuild } from "@remix-run/node"
 import { Hono } from "hono"
 import { compress } from "hono/compress"
 import { remix } from "remix-hono/handler"
-import { Server } from "socket.io"
+// import { Server } from "socket.io"
 import "dotenv/config"
-import { v4 as uuid } from "uuid"
+// import { v4 as uuid } from "uuid"
 
-import reply from "./ai/ai.js"
-import AIMessage from "./types/AIMessage"
+// import reply from "./ai/ai.js"
+// import AIMessage from "./types/AIMessage"
 
-const BUILD_PATH = "./build/index.js"
+const isDev = ["test", "development"].includes(process.env.NODE_ENV)
+
 const app = new Hono()
 
-/*
-Issue #35
-const viteDevServer = process.env.NODE_ENV === "development" ?
-    await import("vite").then((vite) => vite.createServer({
+async function getDevBuild() {
+    if (!isDev) return
+
+    const viteDevServer = await import("vite").then((vite) => vite.createServer({
         server: {
             middlewareMode: true
         }
     }))
-    : undefined
 
-const remixHandler = remix({
-    build: viteDevServer ? () => viteDevServer.ssrLoadModule("virtual:remix/server-build") : await import(BUILD_PATH),
-    mode: process.env.NODE_ENV as "production" | "development",
-})
+    const module = await viteDevServer.ssrLoadModule(`virtual:remix/server-build?t=${Date.now()}`)
 
-if (viteDevServer) {
-    console.log(viteDevServer)
-
-    app.use(viteDevServer.middlewares as any)
-} else {
-    app.use(remixHandler)
+    return module
 }
-*/
+
+app.use(async (c, next) => {
+    // eslint-disable-next-line import/no-unresolved
+    const build = (isDev ? await getDevBuild() : await import("./build/index.js")) as unknown as ServerBuild
+
+    return remix({
+        build: () => build,
+        mode: process.env.NODE_ENV as "development" | "production",
+        getLoadContext: () => {
+            return {
+                appVersion: isDev ? build.assets.version : "dev"
+            } satisfies AppLoadContext
+        }
+    })(c, next)
+})
 
 app.use(compress())
-app.use("/*", serveStatic({ root: "./public" }))
-app.use("/build/*", serveStatic({ root: "./public/build" }))
-app.use("*", remix({
-    build: await import(BUILD_PATH),
-    mode: process.env.NODE_ENV as "production" | "development"
-}))
+app.use("/*", serveStatic({ root: "./build/client" }))
+// app.use("/build/*", serveStatic({ root: "./public/build" }))
+app.use("/assets/*", serveStatic({ root: "./build/client" }))
 
-const server = serve({
-    fetch: app.fetch,
-    port: Number(process.env.PORT) || 3000
-}, (info) => {
-    console.log(`Server listening on http://localhost:${info.port} in ${process.env.NODE_ENV} mode.`)
-})
-
+/*
+if (!isDev) {
+    serve({
+        ...app,
+        port: Number(process.env.PORT) || 3000
+    }, (info) => {
+        console.log(`Server listening on http://localhost:${info.port} in ${process.env.NODE_ENV} mode.`)
+    })
+}
+*/
+/*
 const io = new Server(server, {
     path: "/api/ws"
 })
@@ -80,5 +88,6 @@ io.on("connection", (socket) => {
         console.log("Connection closed")
     })
 })
+*/
 
 export default app

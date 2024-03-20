@@ -20,15 +20,17 @@ Inspired by [Mini Metro](https://store.steampowered.com/app/287980/Mini_Metro/),
     - [X] Add the possibility to cancel
 - [X] Create a train
 - [X] Move the train
-- [ ] ❗ Link multiple stations (create a big line)
+- [ ] Link multiple stations (create a big line)
     - [X] Optimize the path if not changed no need to recalculate
     - [ ] Drag and drop to move a line and connect it to another station
 - [X] Bugs
     - [X] When building a station you can delete lines
     - [X] If the lines make a "circle" the train go back when it can go straight
     - [ ] Creating a lot of stations make the train disappear (loop ?)
+    - [ ] If the train is in "reverse" and we create a line it goes back
+    - [ ] If two (or more) lines have the same path they overlap (+10 px ?)
 - [ ] Create random passengers
-- [X] ❗ Add the zoom feature
+- [X] Add the zoom feature
 - [ ] Future features [Long term]
     - [ ] Add shortcuts
         - [ ] Escape to undo
