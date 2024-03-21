@@ -2,7 +2,6 @@ import { cssBundleHref } from "@remix-run/css-bundle"
 import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node"
 import {
     Links,
-    LiveReload,
     Meta,
     Outlet,
     Scripts,
@@ -12,19 +11,16 @@ import {
 } from "@remix-run/react"
 import { useTranslation } from "react-i18next"
 
-// import stylesheet from "~/tailwind.css"
-
 import Birthday from "./Components/Birthday"
 import ErrorBoundary from "./errors/error"
 import useChangeLanguage from "./hooks/useChangeLanguage"
 import getLanguage from "./utils/getLanguage"
 import getTheme from "./utils/getTheme"
 
-import "~/tailwind.css"
+import "./tailwind.css"
 
 export const handle = { i18n: "common" }
 export const links: LinksFunction = () => [
-    // { rel: "stylesheet", href: stylesheet },
     ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ]
 
@@ -56,7 +52,6 @@ export default function App() {
 
                 <ScrollRestoration />
                 <Scripts />
-                <LiveReload />
             </body>
         </html>
     )

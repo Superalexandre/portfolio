@@ -31,6 +31,8 @@
         "@typescript-eslint/eslint-plugin": "^7.0.2",
         "@typescript-eslint/parser": "^7.0.0",
         "@use-gesture/react": "^10.3.0",
+        "@vitejs/plugin-react": "^4.2.1",
+        "autoprefixer": "^10.4.19",
         "bcryptjs": "^2.4.3",
         "better-sqlite3": "^9.4.1",
         "cookie": "^0.6.0",
