@@ -1,4 +1,5 @@
 import { serve } from "@hono/node-server"
+import { ServerType } from "@hono/node-server/dist/types.js"
 import { serveStatic } from "@hono/node-server/serve-static"
 import { AppLoadContext, ServerBuild } from "@remix-run/node"
 import { Hono } from "hono"
@@ -18,14 +19,16 @@ const app = new Hono()
 async function getDevBuild() {
     if (!isDev) return
 
-    const viteDevServer = await import("vite").then((vite) => vite.createServer({
+    const server = await import("vite").then((vite) => vite.createServer({
         server: {
             middlewareMode: true,
-            hmr: false
+            proxy: {
+                "/api/ws": "ws://localhost:3000/api/ws"
+            }
         }
     }))
 
-    const module = await viteDevServer.ssrLoadModule(`virtual:remix/server-build?t=${Date.now()}`)
+    const module = await server.ssrLoadModule(`virtual:remix/server-build?t=${Date.now()}`)
 
     return module
 }
@@ -55,16 +58,22 @@ if (!isDev) {
         console.log(`Server listening on http://localhost:${info.port} in ${process.env.NODE_ENV} mode.`)
     })
 
+    createWebsocket(server)
+}
+
+function createWebsocket(server: ServerType | null) {
+    if (!server) return console.error("Server is not defined")
+
     const io = new Server(server, {
         path: "/api/ws"
     })
-
+    
     io.on("connection", (socket) => {
         console.log("New connection")
-
+    
         socket.on("message", async (data) => {
             socket.emit("message", data)
-
+    
             if (process.env.IA_ACTIVE === "true") {
                 await reply({ socket, message: data.content })
             } else {
@@ -78,7 +87,7 @@ if (!isDev) {
                 } satisfies AIMessage)
             }
         })
-
+    
         socket.on("disconnect", () => {
             console.log("Connection closed")
         })

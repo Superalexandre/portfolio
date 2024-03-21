@@ -1,3 +1,4 @@
+import { useSpring, animated } from "@react-spring/web"
 import { useGesture } from "@use-gesture/react"
 import { useEffect, useRef, useState } from "react"
 import { MdSettings } from "react-icons/md"
@@ -13,7 +14,7 @@ import SettingsModal from "./ui/SettingsModal"
 import SpeedSelector from "./ui/SpeedSelector"
 import { Line, checkIfLineExists, clearTempLine, drawLine, drawLines, reverseFromTo } from "./utils/line"
 import { getTrainPath } from "./utils/path"
-import { Station, drawRandomStations, drawStations, highlightedStations, removeHighlightedStations } from "./utils/station"
+import { Station, /*drawRandomStations,*/ drawSeedStations, drawStations, highlightedStations, removeHighlightedStations } from "./utils/station"
 import { Train, canConnect, genTrain, handleTrain } from "./utils/train"
 import { getTheme } from "./utils/utils"
 
@@ -40,8 +41,8 @@ export default function Index() {
     const smallScreen = false
 
     const scale = useRef(1)
-    const translate = useRef([0, 0])
-    const lastPosition = useRef<number[] | null>([0, 0])
+    const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 0, immediate: true }))
+
 
     useEffect(() => {
         // console.log("useEffect empty")
@@ -52,7 +53,8 @@ export default function Index() {
         getTheme().then(themeValue => setTheme(() => themeValue))
 
         if (canvas && context) {
-            const stations = drawRandomStations({ context })
+            // const stations = drawRandomStations({ context })
+            const stations = drawSeedStations({ context }) 
             stationsRef.current = stations
         }
 
@@ -224,7 +226,10 @@ export default function Index() {
                 height: CANVAS_HEIGHT,
             },
             scale: scale.current,
-            translate: translate.current,
+            position: {
+                x: x.get(),
+                y: y.get(),
+            },
             speed,
             theme,
             buildingStations: clickedStations,
@@ -262,38 +267,26 @@ export default function Index() {
                 scale.current = Math.min(maxScale, scale.current * (1 - zoomFactor))
             }
 
-            if (mainLayer.current) mainLayer.current.style.transform = `scale(${scale.current}) translate(${translate.current[0]}px, ${translate.current[1]}px)`
-            if (trainLayer.current) trainLayer.current.style.transform = `scale(${scale.current}) translate(${translate.current[0]}px, ${translate.current[1]}px)`
+            if (mainLayer.current) mainLayer.current.style.transform = `scale(${scale.current}) translate(${x.get()}px, ${y.get()}px)`
+            if (trainLayer.current) trainLayer.current.style.transform = `scale(${scale.current}) translate(${x.get()}px, ${y.get()}px)`
         },
-        onDragStart: ({ xy: [x, y] }) => {
-            lastPosition.current = [x, y]
+        onDrag: ({ offset: [ox, oy] }) => {
+            console.log(ox, -CANVAS_WIDTH * scale.current, oy, -CANVAS_HEIGHT * scale.current)
+
+            api.set({ x: ox, y: oy })
+
+            if (mainLayer.current) mainLayer.current.style.transform = `scale(${scale.current}) translate(${x.get()}px, ${y.get()}px)`
+            if (trainLayer.current) trainLayer.current.style.transform = `scale(${scale.current}) translate(${x.get()}px, ${y.get()}px)`
         },
-        onDrag: ({ movement: [mx, my] }) => {
-            const panFactor = smallScreen ? 0.09 : 0.009
-
-            if (!lastPosition.current) return
-
-            let translateX = translate.current[0] + mx * panFactor / scale.current
-            let translateY = translate.current[1] + my * panFactor / scale.current
-
-            // Prevent the canvas to be moved outside the screen
-            const canvasWidth = CANVAS_WIDTH * scale.current
-            const canvasHeight = CANVAS_HEIGHT * scale.current
-
-            if (translateX > 0) translateX = 0
-            if (translateY > 0) translateY = 0
-
-            if (translateX < -canvasWidth + window.innerWidth) translateX = -canvasWidth + window.innerWidth
-            if (translateY < -canvasHeight + window.innerHeight) translateY = -canvasHeight + window.innerHeight
-
-            translate.current[0] = translateX
-            translate.current[1] = translateY
-            
-            if (mainLayer.current) mainLayer.current.style.transform = `scale(${scale.current}) translate(${translate.current[0]}px, ${translate.current[1]}px)`
-            if (trainLayer.current) trainLayer.current.style.transform = `scale(${scale.current}) translate(${translate.current[0]}px, ${translate.current[1]}px)`
-        },
-        onDragEnd: () => {
-            lastPosition.current = null
+    }, {
+        drag: {
+            from: () => [x.get(), y.get()],
+            bounds: {
+                left: -CANVAS_WIDTH * scale.current,
+                right: 0,
+                top: -CANVAS_HEIGHT * scale.current,
+                bottom: 0,
+            }
         }
     })
 
@@ -323,7 +316,7 @@ export default function Index() {
                 <MdSettings size={30} className="cursor-pointer text-black dark:text-white" onClick={() => setSettingsHidden(!settingsHidden)} />
             </div>
             <div {...bind()} className="absolute h-screen w-screen touch-none overflow-hidden">
-                <canvas
+                <animated.canvas
                     className="overflow-hidden bg-[#EBEBEB] dark:bg-[#070F2B]"
                     width={CANVAS_WIDTH}
                     height={CANVAS_HEIGHT}
@@ -333,11 +326,11 @@ export default function Index() {
                     onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations, smallScreen, scale: scale.current })}
 
                     style={{
-                        transformOrigin: "0 0",
-                        transform: `scale(${scale.current}) translate(${translate.current[0]}px, ${translate.current[1]}px)`,
+                        transform: `translate(${x.get()}, ${y.get()}) scale(${scale.current})`,
                     }}
                 />
-                <canvas
+
+                <animated.canvas
                     className="absolute left-0 top-0 z-10 bg-transparent"
                     width={CANVAS_WIDTH}
                     height={CANVAS_HEIGHT}
@@ -347,8 +340,7 @@ export default function Index() {
                     onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations, smallScreen, scale: scale.current })}
 
                     style={{
-                        transformOrigin: "0 0",
-                        transform: `scale(${scale.current}) translate(${translate.current[0]}px, ${translate.current[1]}px)`,
+                        transform: `translate(${x.get()}, ${y.get()}) scale(${scale.current})`,
                     }}
                 />
             </div>

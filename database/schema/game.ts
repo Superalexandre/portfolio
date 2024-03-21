@@ -17,6 +17,9 @@ export const game = sqliteTable("game", {
         .notNull(),
     userId: text("user_id")
         .references(() => accounts.id)
+    // link gameStations
+    // link gameLines
+    // link gameTrains
 })
 
 export const gameStations = sqliteTable("game_stations", {

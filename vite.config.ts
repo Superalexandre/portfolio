@@ -1,8 +1,5 @@
-// import devServer, { defaultOptions } from "@hono/vite-dev-server"
-// import tailwindcss from "tailwindcss"
 import { vitePlugin as remix } from "@remix-run/dev"
 import react from "@vitejs/plugin-react"
-// import esbuild from "esbuild"
 import { flatRoutes } from "remix-flat-routes"
 import { defineConfig } from "vite"
 import tsconfigPaths from "vite-tsconfig-paths"

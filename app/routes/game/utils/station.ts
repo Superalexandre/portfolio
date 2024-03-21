@@ -1,9 +1,10 @@
 import { MouseEvent } from "react"
+import seedrandom from "seedrandom"
 import { v4 as uuid } from "uuid"
 
 import { circle, square, star, triangle } from "./shapes"
 import { getRandomPosition, getRandomShape } from "./utils"
-import { STATIONS_NUMBER } from "../config"
+import { CANVAS_HEIGHT, CANVAS_WIDTH, SHAPES, STATIONS_NUMBER } from "../config"
 import styles from "../style"
 
 interface Station {
@@ -27,6 +28,47 @@ const drawStations = ({ stations, context }: { stations: Station[], context: Can
         if (shape === "triangle") triangle({ x, y, width, height, context, color })
         if (shape === "star") star({ x, y, width, height, context, branches: 5, color })
     })
+}
+
+const drawSeedStations = ({ seed, context }: { seed?: string, context: CanvasRenderingContext2D }) => {
+    const rng = seedrandom(seed)
+
+    console.log("Seed:", seed, rng(), rng.int32())
+
+    const MAX_X = CANVAS_WIDTH
+    const MAX_Y = CANVAS_HEIGHT
+
+    const shapes = SHAPES
+
+    const MIN_STATIONS = 20
+    const MAX_STATIONS = 100
+
+    const stationsNumber = Math.floor(rng() * (MAX_STATIONS - MIN_STATIONS) + MIN_STATIONS)
+
+    console.log("Stations number:", stationsNumber)
+
+    const stations: Station[] = Array.from({ length: stationsNumber }, (_, i) => {
+        // console.log(station, i)
+
+        const x = Math.floor(rng() * MAX_X + i * rng())
+        const y = Math.floor(rng() * MAX_Y + i * rng())
+        const shape = shapes[Math.floor(rng() * shapes.length)]
+        const id = uuid()
+
+        if (MAX_X <= x || MAX_Y <= y) console.log(x, y, i)
+
+        return {
+            x,
+            y,
+            id,
+            shape,
+            highlighted: false
+        }
+    })
+
+    drawStations({ context, stations })
+
+    return stations
 }
 
 const drawRandomStations = ({ number = STATIONS_NUMBER, context }: { number?: number, context: CanvasRenderingContext2D }): Station[] => {
@@ -94,6 +136,7 @@ const highlightedStations = (stations: Station[], station: Station) => {
 
 export {
     drawStations,
+    drawSeedStations,
     drawRandomStations,
     coordHasStation,
     removeHighlightedStations,
