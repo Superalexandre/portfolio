@@ -162,6 +162,7 @@
         "server.js",
         "app.js",
         "logger/*.js",
-        "ai/*.js"
+        "ai/*.js",
+        "postcss.config.cjs"
     ]
 }

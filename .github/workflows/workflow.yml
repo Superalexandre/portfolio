@@ -36,7 +36,7 @@ jobs:
         # continue-on-error: true
         id: depcheck
         # run: npm run depcheck
-        run: npx depcheck --ignores '~,ts-node,@typescript-eslint/eslint-plugin'
+        run: npx depcheck --ignores '~,ts-node,@typescript-eslint/eslint-plugin,autoprefixer'
       - name: ♻️ Duplicate
         # continue-on-error: true
         id: duplicate

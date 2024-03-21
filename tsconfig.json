@@ -4,7 +4,8 @@
         "remix.config.js",
         "**/*.ts",
         "**/*.tsx",
-        "server.ts"
+        "server.ts",
+        "postcss.config.cjs"
     ],
     "exclude": [
         "node_modules",
@@ -58,7 +59,6 @@
             // "module": "Node16",
             // "moduleResolution": "Node16",
             // "target": "ES2022",
-
             "module": "ESNext",
             "target": "ESNext",
             "moduleResolution": "Node",

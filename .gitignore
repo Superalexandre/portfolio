@@ -18,3 +18,8 @@ tsconfigServer.tsbuildinfo
 /app/tailwind-minify.css
 
 /ai/models
+
+# Ignore vite timestamps file
+# ex: vite.config.ts.timestamp-1711045030723-c390b917e0f1e.mjs
+
+vite.config.ts.timestamp-*.mjs
