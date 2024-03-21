@@ -16,7 +16,7 @@
         "db:migration": "drizzle-kit generate:sqlite",
         "db:migration:full": "npm run db:migration && node --no-warnings --loader ts-node/esm ./database/migrate.ts",
         "db:revert": "drizzle-kit drop",
-        "duplicate": "npx jscpd ./app"
+        "duplicate": "npx jscpd ./app -i '**/*.json' -l 20"
     },
     "dependencies": {
         "@hono/node-server": "^1.8.1",
