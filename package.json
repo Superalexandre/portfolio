@@ -4,8 +4,9 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "remix vite:build",
-        "dev": "remix vite:dev",
+        "build": "remix build",
+        "dev": "remix dev --manual -c \"node --no-warnings --loader ts-node/esm --watch-path ./server.ts --enable-source-maps ./server.ts\"",
+        "dev:ai": "node --no-warnings --loader ts-node/esm ./ai/ai.ts",
         "start": "node --enable-source-maps ./server.js",
         "typecheck": "tsc",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
@@ -15,7 +16,7 @@
         "db:migration": "drizzle-kit generate:sqlite",
         "db:migration:full": "npm run db:migration && node --no-warnings --loader ts-node/esm ./database/migrate.ts",
         "db:revert": "drizzle-kit drop",
-        "duplicate": "npx jscpd ./app"
+        "duplicate": "npx jscpd ./app -i '**/*.json' -l 20"
     },
     "dependencies": {
         "@hono/node-server": "^1.8.1",

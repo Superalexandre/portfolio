@@ -2,6 +2,11 @@
 
 Inspired by [Mini Metro](https://store.steampowered.com/app/287980/Mini_Metro/), this game is a relaxing yet challenging experience where you design and manage a subway system for a growing city. Create lines, manage stations, and upgrade your network to keep up with demand. With additional features like events and challenges, this game will keep you entertained for hours on end.
 
+# Name ideas
+- Tiny Metro
+- Little Lines
+- Tiny Tracks
+
 # 📝 TODO : 
 
 - [ ] Save the game in the database
