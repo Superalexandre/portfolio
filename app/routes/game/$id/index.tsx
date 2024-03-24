@@ -124,6 +124,8 @@ export default function Game() {
 
         return () => {
             if (context) context.clearRect(0, 0, canvasWidth, canvasHeight)
+
+            if (intervalRef.current) clearInterval(intervalRef.current)
         }
     }, [])
 
@@ -288,9 +290,9 @@ export default function Game() {
     }, [realLines.length, trainsRef.current.length, ms])
 
     useEffect(() => {
-        // console.log("useEffect request")
+        console.log("useEffect request")
 
-        if (pendingRequests.current.length === 0) return
+        if (pendingRequests.current.length === 0) return setLoadingReq(false)
 
         setLoadingReq(true)
 
@@ -302,7 +304,7 @@ export default function Game() {
             })
         })
 
-    }, [pendingRequests.current.length])
+    }, [pendingRequests.current.length, loadingReq])
 
     const handleDownload = () => {
         const jsonDownload = JSON.stringify({
