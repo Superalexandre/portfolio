@@ -1,10 +1,9 @@
 import { MutableRefObject } from "react"
 import { v4 as uuid } from "uuid"
 
-import { Line } from "./line"
+import { Line, reverseFromTo } from "./line"
 import { Path, getTrainPath } from "./path"
-// import { Station } from "./station"
-import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../config"
+import { Station, getStation } from "./station"
 import styles from "../style"
 
 interface LineTrain extends Line {
@@ -26,13 +25,13 @@ interface Train {
     lines: LineTrain[]
 }
 
-const genTrain = ({ lines }: { lines: LineTrain[] }): Train => {
+const genTrain = ({ stations, lines }: { stations: Station[], lines: LineTrain[] }): Train => {
     const { width: stationWidth } = styles.stations
     const stationMiddle = stationWidth / 2
 
     const id = uuid()
 
-    const from = lines[0].from
+    const from = getStation(stations, lines[0].from)
 
     const x = from.x + stationMiddle
     const y = from.y + stationMiddle
@@ -63,19 +62,20 @@ const drawTrain = ({ train, context }: { train: Train, context: CanvasRenderingC
 }
 
 interface handleTrainProps {
+    stations: Station[]
     context: CanvasRenderingContext2D
     trains: MutableRefObject<Train[]>
     ms: number
 }
 
-const handleTrain = ({ trains, context, ms }: handleTrainProps) => {
+const handleTrain = ({ stations, trains, context, ms }: handleTrainProps) => {
     const interval = setInterval(() => {
-        context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height)
 
         const newTrains: Train[] = trains.current.map((train) => {
             const pathNumber = train.onPath
 
-            if (!train.path) train.path = getTrainPath({ train })
+            if (!train.path) train.path = getTrainPath({ stations, train })
 
             const path = train.path
 
@@ -117,7 +117,7 @@ const handleTrain = ({ trains, context, ms }: handleTrainProps) => {
     return { interval }
 }
 
-const deleteLineFromTrain = (trains: Train[], line: Line) => {
+const deleteLineFromTrain = (stations: Station[], trains: Train[], line: Line) => {
     const newTrains = []
     const removeLines: Line[] = []
 
@@ -141,7 +141,7 @@ const deleteLineFromTrain = (trains: Train[], line: Line) => {
         removeLines.push(line)
 
         if (train.lines.length > 0) {
-            train.path = getTrainPath({ train })
+            train.path = getTrainPath({ stations, train })
             
             if (train.onPath >= train.path.length) train.onPath = train.path.length - 1
 
@@ -152,7 +152,7 @@ const deleteLineFromTrain = (trains: Train[], line: Line) => {
     return { newTrains, removeLines }
 }
 
-const canConnect = ({ trains, line }: { trains: Train[], line: Line }) => {
+const canConnect = ({ stations, trains, line }: { stations: Station[], trains: Train[], line: Line }) => {
     // Check if the new line can connect to any of the trains
 
     const canConnectResult = trains.map(train => {
@@ -163,8 +163,13 @@ const canConnect = ({ trains, line }: { trains: Train[], line: Line }) => {
         const firstStation = lines[0]
         const lastStation = lines[lines.length - 1]
 
-        const canConnectStart = firstStation.from.id === line.from.id
-        const canConnectEnd = lastStation.to.id === line.from.id
+        const lineFrom = getStation(stations, line.from)
+
+        const firstStationFrom = getStation(stations, firstStation.from)
+        const lastStationTo = getStation(stations, lastStation.to)
+
+        const canConnectStart = firstStationFrom.id === lineFrom.id
+        const canConnectEnd = lastStationTo.id === lineFrom.id
 
         const sameColor = train.color === line.color
 
@@ -186,12 +191,160 @@ const canConnect = ({ trains, line }: { trains: Train[], line: Line }) => {
     return canConnectResult
 }
 
+interface retrieveTrainsProps {
+    stations: Station[]
+    // trainsRef: MutableRefObject<Train[]>
+    lines: Line[]
+}
+
+const retrieveTrains = ({ stations, lines }: retrieveTrainsProps) => {
+    const newTrains = []
+    for (const [lineIndex, line] of lines.entries()) {
+        if (lineIndex === 0) {
+            const newTrain = genTrain({
+                stations: stations,
+                lines: [{
+                    ...line,
+                    order: 0
+                }]
+            })
+
+            // trainsRef.current.push(newTrain)
+            newTrains.push(newTrain)
+
+            continue
+        }
+
+        const canConnectToOtherTrain = canConnect({ stations, trains: newTrains, line })
+
+        if (canConnectToOtherTrain.length > 0) {
+            if (canConnectToOtherTrain.length > 1) {
+                console.error("!! More than one train can connect to the line !!")
+            
+                
+            }
+                
+
+            const canConnectResult = canConnectToOtherTrain[0]
+            if (!canConnectResult.canConnect) continue
+
+            const { train, isStart } = canConnectResult
+
+            if (isStart) {
+                const reversedLine = reverseFromTo(line)
+
+                const lastOrder = train.lines.length > 0 ? train.lines[0].order : 0
+                const newOrder = lastOrder - 1
+
+                train.lines.splice(0, 0, {
+                    ...reversedLine,
+                    order: newOrder
+                })
+            } else {
+                const order = train.lines.filter(lineFilter => lineFilter.order < 0).length + 1
+
+                train.lines.push({
+                    ...line,
+                    order
+                })
+            }
+
+            train.path = getTrainPath({ stations, train })
+
+            // trainsRef.current[trainsRef.current.indexOf(train)] = train
+            newTrains[newTrains.indexOf(train)] = train
+        } else {
+            // const lineInTrain = trainsRef.current.some(train => train.lines.some(trainLine => trainLine.id === line.id))
+            const lineInTrain = newTrains.some(train => train.lines.some(trainLine => trainLine.id === line.id))
+
+            if (lineInTrain) continue
+
+            const newTrain = genTrain({
+                stations: stations,
+                lines: [{
+                    ...line,
+                    order: 0
+                }]
+            })
+
+            // trainsRef.current.push(newTrain)
+            newTrains.push(newTrain)
+        }
+    }
+
+    return newTrains
+
+    /*
+    if (realLines.length > 0) {
+        // Check if the new line is the same color as the previous one and if its the same stations
+        const lastLine = realLines[realLines.length - 1]
+
+        const canConnectToOtherTrain = canConnect({ stations: stationsRef.current, trains: trainsRef.current, line: lastLine })
+
+        if (canConnectToOtherTrain.length > 0) {
+            if (canConnectToOtherTrain.length > 1) return console.error("!! More than one train can connect to the line !!")
+
+            const canConnectResult = canConnectToOtherTrain[0]
+            if (!canConnectResult.canConnect) return
+
+            console.log("Can connect to another train")
+
+            const { train, isStart } = canConnectResult
+
+            if (isStart) {
+                console.log("Is start")
+
+                const reversedLastLine = reverseFromTo(lastLine)
+
+                const lastOrder = train.lines.length > 0 ? train.lines[0].order : 0
+                const newOrder = lastOrder - 1
+
+                train.lines.splice(0, 0, {
+                    ...reversedLastLine,
+                    order: newOrder,
+                })
+
+            } else {
+                console.log("Is end", canConnectResult.isEnd)
+
+                const order = train.lines.filter(line => line.order < 0).length + 1
+
+                train.lines.push({
+                    ...lastLine,
+                    order: order,
+                })
+            }
+
+            // Update the path
+            train.path = getTrainPath({ stations: stationsRef.current, train })
+
+            trainsRef.current[trainsRef.current.indexOf(train)] = train
+        } else {
+            // Check if the lastLine is already in a train
+            const lineInTrain = trainsRef.current.some(train => train.lines.some(line => line.id === lastLine.id))
+            if (lineInTrain) return
+
+            const newTrain = genTrain({
+                stations: stationsRef.current,
+                lines: [{
+                    ...lastLine,
+                    order: 0,
+                }]
+            })
+
+            trainsRef.current.push(newTrain)
+        }
+    }
+    */
+}
+
 export {
     genTrain,
     drawTrain,
     handleTrain,
     deleteLineFromTrain,
-    canConnect
+    canConnect,
+    retrieveTrains
 }
 
 export type {

@@ -1,3 +1,6 @@
+
+type Shapes = "circle" | "square" | "triangle" | "star"
+
 interface Params {
     x: number,
     y: number,
@@ -80,4 +83,10 @@ export {
     square,
     triangle,
     star
+}
+
+export type {
+    Params,
+    StarParams,
+    Shapes
 }

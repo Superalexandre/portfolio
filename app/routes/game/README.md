@@ -36,7 +36,7 @@ Inspired by [Mini Metro](https://store.steampowered.com/app/287980/Mini_Metro/),
     - [ ] If two (or more) lines have the same path they overlap (+10 px ?)
     - [ ] When creating a line we can link to a station who already have a line (image : Bug 0)
 - [ ] Create random passengers
-- [ ] Add a seed system
+- [X] Add a seed system
 - [X] Add the zoom feature
 - [ ] Future features [Long term]
     - [ ] Add shortcuts

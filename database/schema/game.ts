@@ -1,3 +1,4 @@
+// import { relations } from "drizzle-orm"
 import { text, sqliteTable, integer } from "drizzle-orm/sqlite-core"
 
 import { accounts } from "./accounts"
@@ -7,6 +8,9 @@ export const game = sqliteTable("game", {
         .primaryKey()
         .unique()
         .notNull(),
+    name: text("name")
+        .notNull(),
+    seed: text("seed"),
     createdAt: text("created_at")
         .notNull(),
     updatedAt: text("updated_at")
@@ -22,13 +26,13 @@ export const game = sqliteTable("game", {
     // link gameTrains
 })
 
-export const gameStations = sqliteTable("game_stations", {
+export const gameStation = sqliteTable("game_station", {
     id: text("id")
         .primaryKey()
         .unique()
         .notNull(),
     gameId: text("game_id")
-        .references(() => game.id)
+        .references(() => game.id, { onDelete: "cascade" })
         .notNull(),
     x: integer("x")
         .notNull(),
@@ -40,31 +44,31 @@ export const gameStations = sqliteTable("game_stations", {
         .notNull()
 })
 
-export const gameLines = sqliteTable("game_lines", {
+export const gameLine = sqliteTable("game_line", {
     id: text("id")
         .primaryKey()
         .unique()
         .notNull(),
     gameId: text("game_id")
-        .references(() => game.id)
+        .references(() => game.id, { onDelete: "cascade" })
         .notNull(),
-    from: text("id")
-        .references(() => gameStations.id)
+    from: text("from_id")
+        .references(() => gameStation.id)
         .notNull(),
-    to: text("id")
-        .references(() => gameStations.id)
+    to: text("to_id")
+        .references(() => gameStation.id)
         .notNull(),
-    color: text("text")
+    color: text("color")
         .notNull()
 })
 
-export const gameTrains = sqliteTable("game_trains", {
+export const gameTrain = sqliteTable("game_train", {
     id: text("id")
         .primaryKey()
         .unique()
         .notNull(),
     gameId: text("game_id")
-        .references(() => game.id)
+        .references(() => game.id, { onDelete: "cascade" })
         .notNull(),
     x: integer("x")
         .notNull(),
@@ -82,3 +86,10 @@ export const gameTrains = sqliteTable("game_trains", {
     ]
     */
 })
+
+// export const gameRelations = relations(game, ({ one, many }) => ({
+//     game: one(game),
+//     stations: many(gameStation),
+//     lines: many(gameLine),
+//     trains: many(gameTrain)
+// }))

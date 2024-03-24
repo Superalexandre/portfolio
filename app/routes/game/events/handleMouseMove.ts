@@ -23,7 +23,7 @@ const handleMouseMove = ({ event, mainLayer, trainLayer, stationsRef, linesRef, 
     if (!context || !canvas || !trainCanvas) return
 
     const hoveredStation = coordHasStation({ event, stations: stationsRef.current, canvas, scale })
-    const hoveredLine = coordHasLine({ event, lines: linesRef.current, canvas, scale })
+    const hoveredLine = coordHasLine({ stations: stationsRef.current, event, lines: linesRef.current, canvas, scale })
 
     const hovered = hoveredStation || hoveredLine.hasLine
 
@@ -43,7 +43,7 @@ const handleMouseMove = ({ event, mainLayer, trainLayer, stationsRef, linesRef, 
         const x = (event.clientX - canvasX) / scale + 0.5
         const y = (event.clientY - canvasY) / scale + 0.5
 
-        const lines = drawTempLine({ from: clickedStation, to: { x, y }, context })
+        const lines = drawTempLine({ stations: stationsRef.current, from: clickedStation, to: { x, y }, context })
         linesRef.current.push(lines)
     }
 }

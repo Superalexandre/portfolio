@@ -2,16 +2,17 @@ import { MouseEvent } from "react"
 import seedrandom from "seedrandom"
 import { v4 as uuid } from "uuid"
 
-import { circle, square, star, triangle } from "./shapes"
+import { Shapes, circle, square, star, triangle } from "./shapes"
 import { getRandomPosition, getRandomShape } from "./utils"
-import { CANVAS_HEIGHT, CANVAS_WIDTH, SHAPES, STATIONS_NUMBER } from "../config"
+import { SHAPES, STATIONS_NUMBER } from "../config"
 import styles from "../style"
 
 interface Station {
+    id: string
+    gameId?: string
     x: number
     y: number
-    id: string
-    shape: string
+    shape: Shapes
     highlighted: boolean
 }
 
@@ -30,13 +31,11 @@ const drawStations = ({ stations, context }: { stations: Station[], context: Can
     })
 }
 
-const drawSeedStations = ({ seed, context }: { seed?: string, context: CanvasRenderingContext2D }) => {
+const getSeedStations = ({ seed, canvasWidth, canvasHeight }: { seed?: string, canvasWidth: number, canvasHeight: number }) => {
     const rng = seedrandom(seed)
 
-    console.log("Seed:", seed, rng(), rng.int32())
-
-    const MAX_X = CANVAS_WIDTH
-    const MAX_Y = CANVAS_HEIGHT
+    const MAX_X = canvasWidth
+    const MAX_Y = canvasHeight
 
     const shapes = SHAPES
 
@@ -45,17 +44,11 @@ const drawSeedStations = ({ seed, context }: { seed?: string, context: CanvasRen
 
     const stationsNumber = Math.floor(rng() * (MAX_STATIONS - MIN_STATIONS) + MIN_STATIONS)
 
-    console.log("Stations number:", stationsNumber)
-
     const stations: Station[] = Array.from({ length: stationsNumber }, (_, i) => {
-        // console.log(station, i)
-
         const x = Math.floor(rng() * MAX_X + i * rng())
         const y = Math.floor(rng() * MAX_Y + i * rng())
         const shape = shapes[Math.floor(rng() * shapes.length)]
         const id = uuid()
-
-        if (MAX_X <= x || MAX_Y <= y) console.log(x, y, i)
 
         return {
             x,
@@ -66,6 +59,12 @@ const drawSeedStations = ({ seed, context }: { seed?: string, context: CanvasRen
         }
     })
 
+    return stations
+}
+
+const drawSeedStations = ({ seed, context }: { seed?: string, context: CanvasRenderingContext2D }) => {
+    const stations = getSeedStations({ seed, canvasWidth: context.canvas.width, canvasHeight: context.canvas.height })
+
     drawStations({ context, stations })
 
     return stations
@@ -73,7 +72,7 @@ const drawSeedStations = ({ seed, context }: { seed?: string, context: CanvasRen
 
 const drawRandomStations = ({ number = STATIONS_NUMBER, context }: { number?: number, context: CanvasRenderingContext2D }): Station[] => {
     const stations: Station[] = Array.from({ length: number }, () => {
-        const { x, y } = getRandomPosition()
+        const { x, y } = getRandomPosition({ canvasWidth: context.canvas.width, canvasHeight: context.canvas.height })
         const shape = getRandomShape()
         const id = uuid()
 
@@ -134,13 +133,27 @@ const highlightedStations = (stations: Station[], station: Station) => {
     return newStations
 }
 
+const getStation = (stations: Station[], id: string | Station) => {
+    if (typeof id !== "string") return id
+    
+    // console.log(stations)
+
+    const station = stations.find(stationFind => stationFind.id === id)
+
+    return station as Station 
+
+    // return stations.find(station => station.id === id)
+}
+
 export {
     drawStations,
+    getSeedStations,
     drawSeedStations,
     drawRandomStations,
     coordHasStation,
     removeHighlightedStations,
-    highlightedStations
+    highlightedStations,
+    getStation
 }
 
 export type {

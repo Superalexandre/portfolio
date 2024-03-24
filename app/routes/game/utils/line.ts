@@ -1,26 +1,28 @@
 import { MouseEvent } from "react"
 import { v4 as uuid } from "uuid"
 
+import { saveDatabase } from "./database"
 import { getPathLine } from "./path"
-import { Station, drawStations } from "./station"
+import { Station, drawStations, getStation } from "./station"
 import { LineTrain } from "./train"
 import styles, { LineColor } from "../style"
 
 interface Line {
     id: string
-    from: Station
-    to: Station
+    gameId?: string
+    from: Station | string
+    to: Station | string
     color: LineColor
 }
 
-const drawLines = ({ lines, context }: { lines: Line[], context: CanvasRenderingContext2D }) => {
+const drawLines = ({ stations, lines, context }: { stations: Station[], lines: Line[], context: CanvasRenderingContext2D }) => {
     const { lineWidth } = styles.lines
 
     lines.forEach(line => {
         context.strokeStyle = line.color
         context.lineWidth = lineWidth
 
-        const paths = getPathLine({ line })
+        const paths = getPathLine({ stations, line })
 
         context.beginPath()
 
@@ -34,22 +36,23 @@ const drawLines = ({ lines, context }: { lines: Line[], context: CanvasRendering
     })
 }
 
-const drawLine = ({ from, to, context, color }: { from: Station, to: Station, context: CanvasRenderingContext2D, color: LineColor }): Line => {
+const drawLine = ({ stations, from, to, gameId, context, color }: { stations: Station[], from: Station, to: Station, gameId?: string, context: CanvasRenderingContext2D, color: LineColor }): Line => {
     const id = uuid()
 
     const line: Line = {
         id,
-        from,
-        to,
+        gameId,
+        from: getStation(stations, from),
+        to: getStation(stations, to),
         color: color
     }
 
-    drawLines({ lines: [line], context })
+    drawLines({ stations, lines: [line], context })
 
     return line
 }
 
-const drawTempLine = ({ from, to, context }: { from: Station, to: { x: number, y: number }, context: CanvasRenderingContext2D }) => {
+const drawTempLine = ({ stations, from, to, context }: { stations: Station[], from: Station, to: { x: number, y: number }, context: CanvasRenderingContext2D }) => {
     const { getColor } = styles.lines
 
     const line: Line = {
@@ -65,18 +68,21 @@ const drawTempLine = ({ from, to, context }: { from: Station, to: { x: number, y
         }
     }
 
-    drawLines({ lines: [line], context })
+    drawLines({ stations, lines: [line], context })
 
     return line
 }
 
-const checkIfLineExists = (lines: Line[], stations: Station[], color: string) => {
+const checkIfLineExists = (allStations: Station[], lines: Line[], clickedStations: Station[], color: string) => {
     return lines.some(line => {
-        const isSameFrom0 = line.from.id === stations[0].id
-        const isSameTo1 = line.to.id === stations[1].id
+        const fromStation = getStation(allStations, line.from)
+        const toStation = getStation(allStations, line.to)
 
-        const isSameFrom1 = line.from.id === stations[1].id
-        const isSameTo0 = line.to.id === stations[0].id
+        const isSameFrom0 = fromStation.id === clickedStations[0].id
+        const isSameTo1 = toStation.id === clickedStations[1].id
+
+        const isSameFrom1 = fromStation.id === clickedStations[1].id
+        const isSameTo0 = toStation.id === clickedStations[0].id
 
         const isSameColor = line.color === color
 
@@ -91,13 +97,13 @@ const clearTempLine = ({ context, stations, lines }: { context: CanvasRenderingC
         lines = lines.filter(line => line.id !== "temp")
 
         drawStations({ stations, context })
-        drawLines({ lines, context })
+        drawLines({ stations, lines, context })
     }
 
     return lines
 }
 
-const coordHasLine = ({ event, lines, canvas, scale }: { event: MouseEvent | MouseEvent<HTMLCanvasElement> | MouseEvent<HTMLDivElement>, lines: Line[], canvas: HTMLCanvasElement, scale: number }) => {
+const coordHasLine = ({ stations, event, lines, canvas, scale }: { stations: Station[], event: MouseEvent | MouseEvent<HTMLCanvasElement> | MouseEvent<HTMLDivElement>, lines: Line[], canvas: HTMLCanvasElement, scale: number }) => {
     const { x: canvasX, y: canvasY } = canvas.getBoundingClientRect()
 
     const x = (event.clientX - canvasX) / scale
@@ -106,7 +112,7 @@ const coordHasLine = ({ event, lines, canvas, scale }: { event: MouseEvent | Mou
     let foundLine: Line | undefined
 
     const hasLine = lines.some(line => {
-        const paths = getPathLine({ line })
+        const paths = getPathLine({ stations, line })
 
         return paths.some((path, index) => {
             const nextPath = index === paths.length - 1 ? paths[index - 1] : paths[index + 1]
@@ -139,12 +145,14 @@ const deleteLines = (lines: Line[], deletedLine: Line[]) => {
         const isDeleted = deletedLine.some(deleted => deleted.id === line.id)
 
         if (!isDeleted) newLines.push(line)
+
+        if (isDeleted && line.gameId) saveDatabase({ type: "line", action: "delete", gameId: line.gameId, data: line, id: line.id })
     }
 
     return newLines
 }
 
-function reverseFromTo(line: LineTrain | Line) {
+const reverseFromTo = (line: LineTrain | Line) => {
     return {
         ...line,
         from: line.to,

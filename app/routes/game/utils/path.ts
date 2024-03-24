@@ -1,4 +1,5 @@
 import { Line, reverseFromTo } from "./line"
+import { Station, getStation } from "./station"
 import { Train } from "./train"
 import styles from "../style"
 
@@ -8,10 +9,10 @@ interface Path {
     action: "lineTo" | "moveTo"
 }
 
-function getPathLine({ line }: { line: Line }) {
+function getPathLine({ stations, line }: { stations: Station[], line: Line }) {
     const { from, to } = line
 
-    const path = getPath({ from, to })
+    const path = getPath({ from: getStation(stations, from), to: getStation(stations, to) })
 
     return path
 }
@@ -42,10 +43,13 @@ function getPath({ from, to }: getPathProps) {
     return path
 }
 
-function getTrainPath({ train }: { train: Train }) {
+function getTrainPath({ stations, train }: { stations: Station[], train: Train }) {
     const { lines } = train
 
-    const canLoop = lines[0].from.id === lines[lines.length - 1].to.id
+    const fromStation = getStation(stations, lines[0].from)
+    const toStation = getStation(stations, lines[lines.length - 1].to)
+
+    const canLoop = fromStation.id === toStation.id
 
     // Get the path for each line in the order
     // Every positive order is after the start
@@ -55,7 +59,7 @@ function getTrainPath({ train }: { train: Train }) {
     for (const line of lines) {
         if (line.order < 0) continue
 
-        const linePath = getPathLine({ line })
+        const linePath = getPathLine({ stations, line })
 
         pathAfter.push(...linePath)
     }
@@ -66,7 +70,7 @@ function getTrainPath({ train }: { train: Train }) {
     for (const line of linesSorted) {
         if (line.order >= 0) continue
 
-        const linePath = getPathLine({ line: reverseFromTo(line) })
+        const linePath = getPathLine({ stations, line: reverseFromTo(line) })
 
         pathBefore.push(...linePath)
     }

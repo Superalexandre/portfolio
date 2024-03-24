@@ -1,10 +1,10 @@
 import Cookies from "universal-cookie"
 
-import { CANVAS_HEIGHT, CANVAS_WIDTH, MARGIN, SHAPES } from "../config"
+import { MARGIN, SHAPES } from "../config"
 
-const getRandomPosition = () => {
-    const x = Math.floor(Math.random() * (CANVAS_WIDTH - MARGIN) + MARGIN)
-    const y = Math.floor(Math.random() * (CANVAS_HEIGHT - MARGIN) + MARGIN)
+const getRandomPosition = ({ canvasHeight, canvasWidth }: { canvasHeight: number, canvasWidth: number }) => {
+    const x = Math.floor(Math.random() * (canvasWidth - MARGIN) + MARGIN)
+    const y = Math.floor(Math.random() * (canvasHeight - MARGIN) + MARGIN)
 
     return { x, y }
 }
@@ -13,7 +13,9 @@ const getRandomShape = () => {
     const shapes = SHAPES
     const randomIndex = Math.floor(Math.random() * shapes.length)
 
-    return shapes[randomIndex]
+    const shape = shapes[randomIndex]
+
+    return shape
 }
 
 const changeTheme = async () => {

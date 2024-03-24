@@ -40,11 +40,11 @@ const handleCanvasClick = ({ event, mainLayer, stationsRef, linesRef, trainsRef,
         return
     }
 
-    const clickedLine = coordHasLine({ event, lines: linesRef.current, canvas, scale })
+    const clickedLine = coordHasLine({ stations: stationsRef.current, event, lines: linesRef.current, canvas, scale })
     if (clickedLine.hasLine && clickedStations.length === 0) {
         if (!clickedLine.line) return
 
-        const { newTrains, removeLines } = deleteLineFromTrain(trainsRef.current, clickedLine.line)
+        const { newTrains, removeLines } = deleteLineFromTrain(stationsRef.current, trainsRef.current, clickedLine.line)
         // const newLines = linesRef.current.filter(line => line.id !== clickedLine.line?.id)
         const newLines = deleteLines(linesRef.current, [...removeLines])
 
@@ -56,7 +56,7 @@ const handleCanvasClick = ({ event, mainLayer, stationsRef, linesRef, trainsRef,
         context.clearRect(0, 0, context.canvas.width, context.canvas.height)
 
         drawStations({ stations: stationsRef.current, context })
-        drawLines({ lines: linesRef.current, context })
+        drawLines({ stations: stationsRef.current, lines: linesRef.current, context })
     }
 }
 

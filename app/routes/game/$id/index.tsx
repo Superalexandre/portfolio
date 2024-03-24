@@ -1,29 +1,69 @@
 import { useSpring, animated } from "@react-spring/web"
+import { ActionFunctionArgs, LoaderFunctionArgs, json, redirect } from "@remix-run/node"
+import { useLoaderData } from "@remix-run/react"
 import { useGesture } from "@use-gesture/react"
 import { useEffect, useRef, useState } from "react"
 import { MdSettings } from "react-icons/md"
 import { Toaster, toast } from "sonner"
 
-import { CANVAS_HEIGHT, CANVAS_WIDTH } from "./config"
-import { handleCanvasClick } from "./events/handleCanvasClick"
-import { handleContextMenu } from "./events/handleContextMenu"
-import { handleMouseMove } from "./events/handleMouseMove"
-import styles from "./style"
-import LineSelector from "./ui/LineSelector"
-import SettingsModal from "./ui/SettingsModal"
-import SpeedSelector from "./ui/SpeedSelector"
-import { Line, checkIfLineExists, clearTempLine, drawLine, drawLines, reverseFromTo } from "./utils/line"
-import { getTrainPath } from "./utils/path"
-import { Station, /*drawRandomStations,*/ drawSeedStations, drawStations, highlightedStations, removeHighlightedStations } from "./utils/station"
-import { Train, canConnect, genTrain, handleTrain } from "./utils/train"
-import { getTheme } from "./utils/utils"
+import { getUser } from "~/session.server"
 
-export default function Index() {
+import { handleCanvasClick } from "../events/handleCanvasClick"
+import { handleContextMenu } from "../events/handleContextMenu"
+import { handleMouseMove } from "../events/handleMouseMove"
+import styles from "../style"
+import LineSelector from "../ui/LineSelector"
+import SettingsModal from "../ui/SettingsModal"
+import SpeedSelector from "../ui/SpeedSelector"
+import { saveDatabase } from "../utils/database"
+import { getGameById, serverSaveDatabase } from "../utils/game"
+import { Line, checkIfLineExists, clearTempLine, drawLine, drawLines, reverseFromTo } from "../utils/line"
+import { getTrainPath } from "../utils/path"
+import { Station, /*drawRandomStations, drawSeedStations, */drawStations, highlightedStations, removeHighlightedStations } from "../utils/station"
+import { Train, canConnect, genTrain, handleTrain, retrieveTrains } from "../utils/train"
+import { getTheme } from "../utils/utils"
+
+export async function action({ request }: ActionFunctionArgs) {
+    const user = await getUser(request)
+    if (!user) return redirect("/game")
+
+    // get the body data
+    const jsonData = await request.json()
+    
+    await serverSaveDatabase(jsonData)
+
+    return json({
+        success: true,
+        error: false,
+        message: "ok"
+    })
+}
+
+export async function loader({ request, params }: LoaderFunctionArgs) {
+    if (!params.id) return redirect("/game")
+
+    const user = await getUser(request)
+    if (!user) return redirect("/game")
+
+    const game = await getGameById(params.id, user)
+    if (!game) return redirect("/game")
+
+    return { game }
+}
+
+export default function Game() {
+    const { game } = useLoaderData<typeof loader>()
+
+    console.log(game)
+
+    const canvasWidth = game.canvasWidth
+    const canvasHeight = game.canvasHeight
+
     const mainLayer = useRef<HTMLCanvasElement>(null)
     const trainLayer = useRef<HTMLCanvasElement>(null)
 
-    const stationsRef = useRef<Station[]>([])
-    const linesRef = useRef<Line[]>([])
+    const stationsRef = useRef<Station[]>(game.stations)
+    const linesRef = useRef<Line[]>(game.lines)
     const trainsRef = useRef<Train[]>([])
 
     const intervalRef = useRef<NodeJS.Timeout>()
@@ -43,6 +83,9 @@ export default function Index() {
     const scale = useRef(1)
     const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 0, immediate: true }))
 
+    const [width, setWidth] = useState(0)
+    const [height, setHeight] = useState(0)
+
 
     useEffect(() => {
         // console.log("useEffect empty")
@@ -54,12 +97,21 @@ export default function Index() {
 
         if (canvas && context) {
             // const stations = drawRandomStations({ context })
-            const stations = drawSeedStations({ context }) 
-            stationsRef.current = stations
+            // const stations = drawSeedStations({ seed: "coucou", context }) 
+            // stationsRef.current = stations
+            drawStations({ stations: stationsRef.current, context })
+            drawLines({ stations: stationsRef.current, lines: linesRef.current, context })
+
+            trainsRef.current = retrieveTrains({ stations: stationsRef.current, lines: linesRef.current })
+        }
+
+        if (window) {
+            setWidth(window.innerWidth)
+            setHeight(window.innerHeight)
         }
 
         return () => {
-            if (context) context.clearRect(0, 0, context.canvas.width, context.canvas.height)
+            if (context) context.clearRect(0, 0, canvasWidth, canvasHeight)
         }
     }, [])
 
@@ -80,7 +132,7 @@ export default function Index() {
 
 
             // Check if the line already exists
-            const alreadyExists = checkIfLineExists(linesRef.current, clickedStations, color)
+            const alreadyExists = checkIfLineExists(stationsRef.current, linesRef.current, clickedStations, color)
 
             if (alreadyExists) {
                 setClickedStations([])
@@ -92,6 +144,7 @@ export default function Index() {
 
             const lineColorHaveTrain = trainsRef.current.some(train => train.lines.some(line => line.color === color))
             const canConnectToOtherTrain = canConnect({
+                stations: stationsRef.current,
                 trains: trainsRef.current, line: {
                     id: "temp",
                     from: clickedStations[0],
@@ -109,7 +162,8 @@ export default function Index() {
             }
 
             const [from, to] = clickedStations
-            const line = drawLine({ from, to, context, color })
+            const line = drawLine({ stations: stationsRef.current, from, to, gameId: game.id, context, color })
+            saveDatabase({ type: "line", action: "create", gameId: game.id, data: line, id: line.id })
 
             setClickedStations([clickedStations[1]])
 
@@ -118,10 +172,10 @@ export default function Index() {
 
             toast.success("Ligne créée avec succès")
         } else {
-            context.clearRect(0, 0, context.canvas.width, context.canvas.height)
+            context.clearRect(0, 0, canvasWidth, canvasHeight)
 
             drawStations({ stations: stationsRef.current, context })
-            drawLines({ lines: linesRef.current, context })
+            drawLines({ stations: stationsRef.current, lines: linesRef.current, context })
         }
     }, [clickedStations])
 
@@ -140,7 +194,7 @@ export default function Index() {
             // Check if the new line is the same color as the previous one and if its the same stations
             const lastLine = realLines[realLines.length - 1]
 
-            const canConnectToOtherTrain = canConnect({ trains: trainsRef.current, line: lastLine })
+            const canConnectToOtherTrain = canConnect({ stations: stationsRef.current, trains: trainsRef.current, line: lastLine })
 
             if (canConnectToOtherTrain.length > 0) {
                 if (canConnectToOtherTrain.length > 1) return console.error("!! More than one train can connect to the line !!")
@@ -177,7 +231,7 @@ export default function Index() {
                 }
 
                 // Update the path
-                train.path = getTrainPath({ train })
+                train.path = getTrainPath({ stations: stationsRef.current, train })
 
                 trainsRef.current[trainsRef.current.indexOf(train)] = train
             } else {
@@ -186,6 +240,7 @@ export default function Index() {
                 if (lineInTrain) return
 
                 const newTrain = genTrain({
+                    stations: stationsRef.current,
                     lines: [{
                         ...lastLine,
                         order: 0,
@@ -210,7 +265,7 @@ export default function Index() {
 
         if (ms === 0) return
 
-        const { interval } = handleTrain({ trains: trainsRef, context: trainContext, ms })
+        const { interval } = handleTrain({ stations: stationsRef.current, trains: trainsRef, context: trainContext, ms })
         intervalRef.current = interval
 
         return () => {
@@ -220,10 +275,10 @@ export default function Index() {
     }, [realLines.length, trainsRef.current.length, ms])
 
     const handleDownload = () => {
-        const json = JSON.stringify({
+        const jsonDownload = JSON.stringify({
             canvas: {
-                width: CANVAS_WIDTH,
-                height: CANVAS_HEIGHT,
+                width: canvasWidth,
+                height: canvasHeight,
             },
             scale: scale.current,
             position: {
@@ -239,7 +294,7 @@ export default function Index() {
             trains: trainsRef.current,
         }, null, 4)
 
-        const blob = new Blob([json], { type: "application/json" })
+        const blob = new Blob([jsonDownload], { type: "application/json" })
         const url = URL.createObjectURL(blob)
 
         const a = document.createElement("a")
@@ -271,7 +326,7 @@ export default function Index() {
             if (trainLayer.current) trainLayer.current.style.transform = `scale(${scale.current}) translate(${x.get()}px, ${y.get()}px)`
         },
         onDrag: ({ offset: [ox, oy] }) => {
-            console.log(ox, -CANVAS_WIDTH * scale.current, oy, -CANVAS_HEIGHT * scale.current)
+            console.log(ox, -canvasWidth * scale.current, oy, -canvasWidth * scale.current)
 
             api.set({ x: ox, y: oy })
 
@@ -279,12 +334,21 @@ export default function Index() {
             if (trainLayer.current) trainLayer.current.style.transform = `scale(${scale.current}) translate(${x.get()}px, ${y.get()}px)`
         },
     }, {
+        /*
+        
+            if (translateX > 0) translateX = 0
+            if (translateY > 0) translateY = 0
+
+            if (translateX < -canvasWidth + window.innerWidth) translateX = -canvasWidth + window.innerWidth
+            if (translateY < -canvasHeight + window.innerHeight) translateY = -canvasHeight + window.innerHeight
+
+            */
         drag: {
             from: () => [x.get(), y.get()],
             bounds: {
-                left: -CANVAS_WIDTH * scale.current,
+                left: -(canvasWidth * scale.current) + width,
                 right: 0,
-                top: -CANVAS_HEIGHT * scale.current,
+                top: -(canvasWidth * scale.current) + height,
                 bottom: 0,
             }
         }
@@ -306,6 +370,10 @@ export default function Index() {
                     lines: linesRef.current,
                     trains: trainsRef.current,
                 }}
+                canvas={{
+                    width: canvasWidth,
+                    height: canvasHeight,
+                }}
             />
             <div className="fixed left-0 top-0 z-30 m-3">
                 <LineSelector color={color} setColor={setColor} />
@@ -318,8 +386,8 @@ export default function Index() {
             <div {...bind()} className="absolute h-screen w-screen touch-none overflow-hidden">
                 <animated.canvas
                     className="overflow-hidden bg-[#EBEBEB] dark:bg-[#070F2B]"
-                    width={CANVAS_WIDTH}
-                    height={CANVAS_HEIGHT}
+                    width={canvasWidth}
+                    height={canvasHeight}
                     ref={mainLayer}
                     onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations, scale: scale.current })}
                     onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
@@ -332,8 +400,8 @@ export default function Index() {
 
                 <animated.canvas
                     className="absolute left-0 top-0 z-10 bg-transparent"
-                    width={CANVAS_WIDTH}
-                    height={CANVAS_HEIGHT}
+                    width={canvasWidth}
+                    height={canvasHeight}
                     ref={trainLayer}
                     onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations, scale: scale.current })}
                     onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
