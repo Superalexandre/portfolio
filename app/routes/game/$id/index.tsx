@@ -57,9 +57,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
 export default function Game() {
     const { game } = useLoaderData<typeof loader>()
-
-    // console.log(game)
-
+    
     const canvasWidth = game.canvasWidth
     const canvasHeight = game.canvasHeight
 
@@ -71,7 +69,7 @@ export default function Game() {
     const trainsRef = useRef<Train[]>([])
 
     const pendingRequests = useRef<PendingRequest[]>([])
-    const [loading, setLoading] = useState(false)
+    const [loadingReq, setLoadingReq] = useState(true)
 
     const intervalRef = useRef<NodeJS.Timeout>()
 
@@ -121,6 +119,8 @@ export default function Game() {
             setWidth(window.innerWidth)
             setHeight(window.innerHeight)
         }
+
+        setLoadingReq(false)
 
         return () => {
             if (context) context.clearRect(0, 0, canvasWidth, canvasHeight)
@@ -292,13 +292,13 @@ export default function Game() {
 
         if (pendingRequests.current.length === 0) return
 
-        setLoading(true)
+        setLoadingReq(true)
 
         pendingRequests.current.forEach(({ request, requestId }) => {
             request.then(() => {
                 pendingRequests.current = pendingRequests.current.filter(req => req.requestId !== requestId)
 
-                if (pendingRequests.current.length === 0) setLoading(false)
+                if (pendingRequests.current.length === 0) setLoadingReq(false)
             })
         })
 
@@ -432,7 +432,7 @@ export default function Game() {
                 />
             </div>
 
-            <Loader className={`${loading ? "block" : "hidden"} fixed bottom-0 right-0 m-4 size-5`}></Loader>
+            <Loader className={`${loadingReq ? "block" : "hidden"} fixed bottom-0 right-0 m-4 size-5`}></Loader>
 
             <Toaster
                 position="bottom-right"
