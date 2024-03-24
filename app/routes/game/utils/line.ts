@@ -1,7 +1,7 @@
 import { MouseEvent } from "react"
 import { v4 as uuid } from "uuid"
 
-import { saveDatabase } from "./database"
+import { PendingRequestRef, saveDatabase } from "./database"
 import { getPathLine } from "./path"
 import { Station, drawStations, getStation } from "./station"
 import { LineTrain } from "./train"
@@ -138,7 +138,7 @@ const coordHasLine = ({ stations, event, lines, canvas, scale }: { stations: Sta
     return { hasLine, line: foundLine }
 }
 
-const deleteLines = (lines: Line[], deletedLine: Line[]) => {
+const deleteLines = (lines: Line[], deletedLine: Line[], pendingRequest: PendingRequestRef) => {
     const newLines = []
 
     for (const line of lines) {
@@ -146,7 +146,11 @@ const deleteLines = (lines: Line[], deletedLine: Line[]) => {
 
         if (!isDeleted) newLines.push(line)
 
-        if (isDeleted && line.gameId) saveDatabase({ type: "line", action: "delete", gameId: line.gameId, data: line, id: line.id })
+        if (isDeleted && line.gameId) {
+            const req = saveDatabase({ type: "line", action: "delete", gameId: line.gameId, data: line, id: line.id })
+        
+            pendingRequest.current.push(req)
+        }
     }
 
     return newLines

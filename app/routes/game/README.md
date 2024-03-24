@@ -35,6 +35,7 @@ Inspired by [Mini Metro](https://store.steampowered.com/app/287980/Mini_Metro/),
     - [ ] If the train is in "reverse" and we create a line it goes back
     - [ ] If two (or more) lines have the same path they overlap (+10 px ?)
     - [ ] When creating a line we can link to a station who already have a line (image : Bug 0)
+    - [ ] When a line is looped we can't break the loop
 - [ ] Create random passengers
 - [X] Add a seed system
 - [X] Add the zoom feature

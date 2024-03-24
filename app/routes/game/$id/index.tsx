@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react"
 import { MdSettings } from "react-icons/md"
 import { Toaster, toast } from "sonner"
 
+import Loader from "~/Components/Loader"
 import { getUser } from "~/session.server"
 
 import { handleCanvasClick } from "../events/handleCanvasClick"
@@ -15,11 +16,11 @@ import styles from "../style"
 import LineSelector from "../ui/LineSelector"
 import SettingsModal from "../ui/SettingsModal"
 import SpeedSelector from "../ui/SpeedSelector"
-import { saveDatabase } from "../utils/database"
+import { PendingRequest, saveDatabase } from "../utils/database"
 import { getGameById, serverSaveDatabase } from "../utils/game"
 import { Line, checkIfLineExists, clearTempLine, drawLine, drawLines, reverseFromTo } from "../utils/line"
 import { getTrainPath } from "../utils/path"
-import { Station, /*drawRandomStations, drawSeedStations, */drawStations, highlightedStations, removeHighlightedStations } from "../utils/station"
+import { Station, drawStations, highlightedStations, removeHighlightedStations } from "../utils/station"
 import { Train, canConnect, genTrain, handleTrain, retrieveTrains } from "../utils/train"
 import { getTheme } from "../utils/utils"
 
@@ -29,8 +30,11 @@ export async function action({ request }: ActionFunctionArgs) {
 
     // get the body data
     const jsonData = await request.json()
-    
+
     await serverSaveDatabase(jsonData)
+
+    // Wait 10s before returning
+    // await new Promise(resolve => setTimeout(resolve, 10000))
 
     return json({
         success: true,
@@ -54,7 +58,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 export default function Game() {
     const { game } = useLoaderData<typeof loader>()
 
-    console.log(game)
+    // console.log(game)
 
     const canvasWidth = game.canvasWidth
     const canvasHeight = game.canvasHeight
@@ -65,6 +69,9 @@ export default function Game() {
     const stationsRef = useRef<Station[]>(game.stations)
     const linesRef = useRef<Line[]>(game.lines)
     const trainsRef = useRef<Train[]>([])
+
+    const pendingRequests = useRef<PendingRequest[]>([])
+    const [loading, setLoading] = useState(false)
 
     const intervalRef = useRef<NodeJS.Timeout>()
 
@@ -96,6 +103,11 @@ export default function Game() {
         getTheme().then(themeValue => setTheme(() => themeValue))
 
         if (canvas && context) {
+            // Draw a border around the canvas
+            context.strokeStyle = "red"
+            context.lineWidth = 2
+            context.strokeRect(0, 0, canvasWidth, canvasHeight)
+
             // const stations = drawRandomStations({ context })
             // const stations = drawSeedStations({ seed: "coucou", context }) 
             // stationsRef.current = stations
@@ -163,7 +175,8 @@ export default function Game() {
 
             const [from, to] = clickedStations
             const line = drawLine({ stations: stationsRef.current, from, to, gameId: game.id, context, color })
-            saveDatabase({ type: "line", action: "create", gameId: game.id, data: line, id: line.id })
+            const req = saveDatabase({ type: "line", action: "create", gameId: game.id, data: line, id: line.id })
+            pendingRequests.current.push(req)
 
             setClickedStations([clickedStations[1]])
 
@@ -274,6 +287,23 @@ export default function Game() {
 
     }, [realLines.length, trainsRef.current.length, ms])
 
+    useEffect(() => {
+        // console.log("useEffect request")
+
+        if (pendingRequests.current.length === 0) return
+
+        setLoading(true)
+
+        pendingRequests.current.forEach(({ request, requestId }) => {
+            request.then(() => {
+                pendingRequests.current = pendingRequests.current.filter(req => req.requestId !== requestId)
+
+                if (pendingRequests.current.length === 0) setLoading(false)
+            })
+        })
+
+    }, [pendingRequests.current.length])
+
     const handleDownload = () => {
         const jsonDownload = JSON.stringify({
             canvas: {
@@ -326,32 +356,21 @@ export default function Game() {
             if (trainLayer.current) trainLayer.current.style.transform = `scale(${scale.current}) translate(${x.get()}px, ${y.get()}px)`
         },
         onDrag: ({ offset: [ox, oy] }) => {
-            console.log(ox, -canvasWidth * scale.current, oy, -canvasWidth * scale.current)
-
             api.set({ x: ox, y: oy })
 
             if (mainLayer.current) mainLayer.current.style.transform = `scale(${scale.current}) translate(${x.get()}px, ${y.get()}px)`
             if (trainLayer.current) trainLayer.current.style.transform = `scale(${scale.current}) translate(${x.get()}px, ${y.get()}px)`
         },
     }, {
-        /*
-        
-            if (translateX > 0) translateX = 0
-            if (translateY > 0) translateY = 0
-
-            if (translateX < -canvasWidth + window.innerWidth) translateX = -canvasWidth + window.innerWidth
-            if (translateY < -canvasHeight + window.innerHeight) translateY = -canvasHeight + window.innerHeight
-
-            */
         drag: {
             from: () => [x.get(), y.get()],
             bounds: {
-                left: -(canvasWidth * scale.current) + width,
+                left: -canvasWidth * scale.current + width,
                 right: 0,
-                top: -(canvasWidth * scale.current) + height,
+                top: -canvasHeight * scale.current + height,
                 bottom: 0,
             }
-        }
+        },
     })
 
     return (
@@ -389,7 +408,7 @@ export default function Game() {
                     width={canvasWidth}
                     height={canvasHeight}
                     ref={mainLayer}
-                    onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations, scale: scale.current })}
+                    onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations, scale: scale.current, pendingRequests })}
                     onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
                     onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations, smallScreen, scale: scale.current })}
 
@@ -403,7 +422,7 @@ export default function Game() {
                     width={canvasWidth}
                     height={canvasHeight}
                     ref={trainLayer}
-                    onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations, scale: scale.current })}
+                    onClick={(event) => handleCanvasClick({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations, scale: scale.current, pendingRequests })}
                     onContextMenu={(event) => handleContextMenu({ event, mainLayer, linesRef, stationsRef, setClickedStations })}
                     onMouseMove={(event) => handleMouseMove({ event, mainLayer, trainLayer, stationsRef, linesRef, clickedStations, smallScreen, scale: scale.current })}
 
@@ -412,6 +431,8 @@ export default function Game() {
                     }}
                 />
             </div>
+
+            <Loader className={`${loading ? "block" : "hidden"} fixed bottom-0 right-0 m-4 size-5`}></Loader>
 
             <Toaster
                 position="bottom-right"

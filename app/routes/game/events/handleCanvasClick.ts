@@ -1,10 +1,12 @@
 import { Dispatch, MouseEvent, MutableRefObject, RefObject, SetStateAction } from "react"
 
+import { PendingRequestRef } from "../utils/database"
 import { Line, clearTempLine, coordHasLine, deleteLines, drawLines } from "../utils/line"
 import { Station, coordHasStation, drawStations } from "../utils/station"
 import { Train, deleteLineFromTrain } from "../utils/train"
 
 interface handleCanvasClickProps {
+    pendingRequests: PendingRequestRef
     event: MouseEvent<HTMLCanvasElement>
     mainLayer: RefObject<HTMLCanvasElement>
     stationsRef: MutableRefObject<Station[]>
@@ -15,7 +17,7 @@ interface handleCanvasClickProps {
     scale: number
 }
 
-const handleCanvasClick = ({ event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations, scale }: handleCanvasClickProps) => {
+const handleCanvasClick = ({ pendingRequests, event, mainLayer, stationsRef, linesRef, trainsRef, clickedStations, setClickedStations, scale }: handleCanvasClickProps) => {
     const canvas = mainLayer.current
     const context = canvas?.getContext("2d")
 
@@ -46,7 +48,7 @@ const handleCanvasClick = ({ event, mainLayer, stationsRef, linesRef, trainsRef,
 
         const { newTrains, removeLines } = deleteLineFromTrain(stationsRef.current, trainsRef.current, clickedLine.line)
         // const newLines = linesRef.current.filter(line => line.id !== clickedLine.line?.id)
-        const newLines = deleteLines(linesRef.current, [...removeLines])
+        const newLines = deleteLines(linesRef.current, [...removeLines], pendingRequests)
 
         console.log("newTrain", newTrains)
 
