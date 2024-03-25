@@ -10,7 +10,7 @@ import { createGame, deleteGame, editGame, getUserGame } from "../utils/game"
 
 export async function action({ request }: ActionFunctionArgs) {
     const user = await getUser(request)
-    if (!user) return redirect("/login?redirectUrl=/game")
+    if (!user) return redirect("/account/login?redirectUrl=/game")
 
     const formData = await request.formData()
 
@@ -57,7 +57,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export async function loader({ request }: LoaderFunctionArgs) {
     const user = await getUser(request)
-    if (!user) return redirect("/login?redirectUrl=/game")
+    if (!user) return redirect("/account/login?redirectUrl=/game")
 
     const userGame = await getUserGame(user)
 
