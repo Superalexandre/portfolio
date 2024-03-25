@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from "react"
+import { HTMLInputAutoCompleteAttribute, HTMLInputTypeAttribute } from "react"
 import { IconType } from "react-icons"
 
 import type { FieldErrors } from "@/types/forms/FieldErrors"
@@ -18,7 +18,7 @@ interface InputFormProps {
     errorClass?: string
     type: HTMLInputTypeAttribute
     placeholder?: string | undefined
-    autoComplete?: string | undefined
+    autoComplete?: HTMLInputAutoCompleteAttribute | undefined
     className?: string | undefined
     id?: string | undefined
     name?: string | undefined
