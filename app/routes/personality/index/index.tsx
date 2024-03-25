@@ -70,6 +70,7 @@ const FormPersonalities = ({ personalities, setPersonality, setPopupAccountHidde
                 </label>
                 <select 
                     name="personality" 
+                    id="personality"
                     className="rounded-md bg-slate-800 p-2 text-white"
                     onChange={e => setPersonality(e.target.value)}
                 >
