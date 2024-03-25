@@ -107,7 +107,7 @@ export default function Index() {
                 name="password"
                 id="password"
                 placeholder={t("login.password")}
-                autoComplete="password"
+                autoComplete="current-password"
                 errors={errors as FieldErrors}
                 register={register}
                 Icon={MdPassword}
